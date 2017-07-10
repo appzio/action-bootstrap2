@@ -43,8 +43,7 @@ trait Onclick {
 
         $obj = new \StdClass;
         $obj->action = 'show-div';
-        $name = 'div-id';
-        $obj->$name = $divid;
+        $obj->div_id = $divid;
 
         $obj = $this->attachParameters($obj,$parameters);
 
@@ -60,8 +59,7 @@ trait Onclick {
 
         $obj = new \StdClass;
         $obj->action = 'hide-div';
-        $name = 'div-id';
-        $obj->$name = $divid;
+        $obj->div_id = $divid;
 
         $obj = $this->attachParameters($obj,$parameters);
 
