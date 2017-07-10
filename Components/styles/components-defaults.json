@@ -1,0 +1,22 @@
+{
+
+  "element-msg-plain-default": {
+    "padding": "10 10 10 10"
+  },
+
+  "element-slider-default": {
+    "margin": "10 10 10 10"
+  },
+
+  "router-error-message": {
+    "text-align": "center",
+    "padding": "10 10 10 10",
+    "color": "#FF000B"
+  },
+
+  "element-field-list-default": {
+    "color": "#000000"
+  }
+
+
+}

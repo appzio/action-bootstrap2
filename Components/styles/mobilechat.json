@@ -1,0 +1,102 @@
+{
+  "chat-no-comments": {
+    "font-size": "13",
+    "font-style": "normal",
+    "text-align": "center",
+    "color": "#474747",
+    "margin": "60 15 60 15"
+  },
+
+
+  "chat-column-1": {
+    "width": "50",
+    "height": "50",
+    "margin": "20 5 5 5",
+    "crop": "round"
+  },
+  "chat-column-2": {
+    "width": "13",
+    "height": "35",
+    "margin": "20 0 0 0",
+    "text-align": "right"
+  },
+  "chat-column-3": {
+    "width": "75%",
+    "vertical-align": "top",
+    "margin": "12 0 0 7",
+    "padding": "0 0 3 0",
+    "background-color": "#9dd7e9",
+    "color": "#ffffff",
+    "border-radius": "8"
+  },
+
+  "chat-column-5": {
+    "width": "73%",
+    "vertical-align": "top",
+    "margin": "12 4 0 0",
+    "padding": "0 0 0 0",
+    "background-color": "#f4f4f4",
+    "border-radius": "8"
+  },
+
+  "chat-row-msg": {
+    "vertical-align": "top",
+    "margin": "0 10 0 0",
+    "text-align": "left"
+  },
+  "chat-row-msg-mine": {
+    "vertical-align": "top",
+    "text-align": "right"
+  },
+  "chat-msg-info": {
+    "font-size": "9",
+    "font-style": "normal",
+    "color": "#6B6B6B",
+    "margin": "7 7 0 7",
+    "vertical-align": "top"
+  },
+  "chat-msg-text": {
+    "font-size": "13",
+    "font-style": "normal",
+    "color": "#474747",
+    "margin": "3 7 7 7",
+    "vertical-align": "top"
+  },
+
+  "chat-msg-text-centered": {
+    "font-size": "13",
+    "font-style": "normal",
+    "color": "#474747",
+    "margin": "3 7 7 7",
+    "vertical-align": "top",
+    "text-align": "center"
+  },
+
+  "chat-comment-field-wrap": {
+    "width" : "60%",
+    "margin": "3 8 5 8"
+  },
+  "chat-comment-field": {
+    "font-size": "12",
+    "font-style": "italic",
+    "text-align": "left",
+    "color": "#474747",
+    "padding": "4 4 4 4",
+    "height": "33"
+  },
+  "chat_load_more": {
+    "font-size": "11",
+    "font-style": "normal",
+    "text-align": "center",
+    "color": "#474747",
+    "margin": "5 15 5 15"
+  },
+
+  "message-status-text": {
+    "font-size": "10",
+    "color": "#949494",
+    "text-align": "right",
+    "margin": "2 80 2 15"
+  }
+  
+}
