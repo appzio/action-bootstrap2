@@ -16,6 +16,10 @@
 
   "element-field-list-default": {
     "color": "#000000"
+  },
+
+  "element-field-textview-default": {
+    "padding": "10 10 10 10"
   }
 
 
