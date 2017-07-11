@@ -1,6 +1,6 @@
 <?php
 
-namespace Packages\actionMexample\Components;
+namespace packages\actionMexample\Components;
 use Bootstrap\Components\BootstrapComponent;
 use function str_replace;
 use function str_replace_array;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Packages\actionMexample\Models;
+namespace packages\actionMexample\Models;
 use Bootstrap\Models\BootstrapModel;
 use function is_numeric;
 use function str_replace;

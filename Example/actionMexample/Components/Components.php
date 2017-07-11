@@ -1,6 +1,6 @@
 <?php
 
-namespace Packages\actionMexample\Components;
+namespace packages\actionMexample\Components;
 
 use Bootstrap\Components\BootstrapComponent;
 

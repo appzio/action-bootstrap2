@@ -1,8 +1,8 @@
 <?php
 
-namespace Packages\actionMexample\themes\example\Views;
-use Packages\actionMexample\Views\View as BootstrapView;
-use Packages\actionMexample\themes\example\Components\Components;
+namespace packages\actionMexample\themes\example\Views;
+use packages\actionMexample\Views\View as BootstrapView;
+use packages\actionMexample\themes\example\Components\Components;
 
 class View extends BootstrapView {
 

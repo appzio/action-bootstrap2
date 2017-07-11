@@ -1,9 +1,9 @@
 <?php
 
-namespace Packages\actionMexample\Views;
+namespace packages\actionMexample\Views;
 
 use Bootstrap\Views\BootstrapView;
-use Packages\actionMexample\Controllers\Components;
+use packages\actionMexample\Controllers\Components;
 use function stristr;
 
 /* this is the default view, that is extended
@@ -13,7 +13,7 @@ not be used */
 
 class View extends BootstrapView {
 
-    /* @var \Packages\actionMexample\Components\Components */
+    /* @var \packages\actionMexample\Components\Components */
     public $components;
     public $theme;
 

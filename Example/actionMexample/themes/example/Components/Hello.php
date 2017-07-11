@@ -1,6 +1,6 @@
 <?php
 
-namespace Packages\actionMexample\themes\example\Components;
+namespace packages\actionMexample\themes\example\Components;
 use Bootstrap\Components\BootstrapComponent;
 
 trait Hello {

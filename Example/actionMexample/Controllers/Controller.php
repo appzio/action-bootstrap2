@@ -1,9 +1,9 @@
 <?php
 
-namespace Packages\actionMexample\Controllers;
+namespace packages\actionMexample\Controllers;
 use Bootstrap\Controllers\BootstrapController;
-use Packages\actionMexample\Views\View as ArticleView;
-use Packages\actionMexample\Models\Model as ArticleModel;
+use packages\actionMexample\Views\View as ArticleView;
+use packages\actionMexample\Models\Model as ArticleModel;
 
 class Controller extends BootstrapController {
 

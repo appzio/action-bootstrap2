@@ -1,10 +1,10 @@
 <?php
 
-namespace Packages\actionMexample\Views;
+namespace packages\actionMexample\Views;
 
 class Pagetwo extends View {
 
-    /* @var \Packages\actionMexample\Components\Components */
+    /* @var \packages\actionMexample\Components\Components */
     public $components;
     public $theme;
 
