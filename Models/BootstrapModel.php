@@ -26,7 +26,7 @@ class BootstrapModel extends CActiveRecord {
     public $appid;
 
     /* this is a general place for validation errors that can be read by components */
-    public $validation_errors;
+    public $validation_errors = array();
 
     public function __construct($obj){
 
@@ -81,7 +81,9 @@ class BootstrapModel extends CActiveRecord {
         return false;
     }
 
-
+    public function getValidationErrors() {
+        return $this->validation_errors;
+    }
 
     public function getAllConfigParams(){
         $params = (array)$this->configobj;
@@ -92,11 +94,8 @@ class BootstrapModel extends CActiveRecord {
     public function reloadData(){
         $this->loadVariables();
         $this->loadVariableContent();
-        $this->actionobj = AeplayAction::model()->with('aetask')->findByPk($this->actionid);
+        $this->actionobj = \AeplayAction::model()->with('aetask')->findByPk($this->actionid);
         $this->configobj = json_decode($this->actionobj->config);
     }
-
-
-
 
 }

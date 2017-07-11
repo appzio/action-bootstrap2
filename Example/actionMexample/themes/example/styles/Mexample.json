@@ -52,8 +52,8 @@
 
 
   "mreg_fieldtext": {
-    "padding": "20 20 20 20",
-    "margin": "15 0 15 0",
+    "padding": "15 20 15 20",
+    "margin": "0 0 0 0",
     "font-size": "18",
     "width": "100%"
   },

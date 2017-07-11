@@ -1,6 +1,6 @@
 <?php
 
-namespace packages\actionMexample\Components;
+namespace packages\actionMexmaple\Components;
 use function array_flip;
 use Bootstrap\Components\BootstrapComponent;
 use function strtolower;
@@ -46,8 +46,8 @@ trait getPhoneNumberField {
         $clickparams['layout']->left = '50';
         $clickparams['layout']->right = '50';
         $clickparams['transition'] = 'fade';
-        $clickparams['tap-to-close'] = '1';
-        
+        $clickparams['tap_to_close'] = '1';
+
         $test = $this->getImageFileName($flag);
         if($test){
             $col[] = $this->getComponentImage($flag,array('style' => 'mreg_icon_field','onclick' => $this->getOnclickShowDiv('countries',$clickparams)));
@@ -63,11 +63,11 @@ trait getPhoneNumberField {
 
         if(isset($this->model->validation_errors[$field])){
             $row[] = $this->getComponentText($this->model->validation_errors[$field],array('style' => 'mreg_error'));
-            $row[] = $this->getComponentRow($col);
+            $row[] = $this->getComponentRow($col,array(),array('vertical-align' => 'middle'));
             return $this->getComponentColumn($row);
         }
 
-        return $this->getComponentRow($col);
+        return $this->getComponentRow($col,array(),array('vertical-align' => 'middle'));
     }
 
 }

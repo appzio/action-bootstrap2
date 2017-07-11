@@ -43,11 +43,11 @@ trait getIconField {
 
         if(isset($this->model->validation_errors[$field])){
             $row[] = $this->getComponentText($this->model->validation_errors[$field],array('style' => 'mreg_error'));
-            $row[] = $this->getComponentRow($col);
+            $row[] = $this->getComponentRow($col,array(),array('vertical-align' => 'middle'));
             return $this->getComponentColumn($row);
         }
 
-        return $this->getComponentRow($col);
+        return $this->getComponentRow($col,array(),array('vertical-align' => 'middle'));
     }
 
 }
