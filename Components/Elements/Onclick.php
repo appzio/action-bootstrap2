@@ -165,4 +165,47 @@ trait Onclick {
     }
 
 
+    /**
+     * @param array $parameters
+     * <code>
+     * $array = array(
+     * 'sync_open' => '1',
+     * 'id' => 'someid',
+     * );
+     * </code>
+
+     * @return \stdClass
+     */
+    public function getOnclickLocation($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'ask-location';
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+    /**
+     * @param $url // valid url (can be also tel://3391282822 for example)
+     * @param array $parameters
+     * <code>
+     * $array = array(
+     * );
+
+     * @return \stdClass
+     */
+    public function getOnclickOpenUrl($url, $parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'open-url';
+        $obj->action_config = $url;
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+
+
 }

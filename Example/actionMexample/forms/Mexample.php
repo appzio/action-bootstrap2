@@ -53,10 +53,18 @@ $buttons=array(
 );
 
 $actions = CHtml::listData(Aeaction::getAllActions($this->gid),'id','name');
+$shortname = 'mregister';
+
+if(isset($model->type_id) AND $model->type_id > 0){
+    $type = Aeactiontypes::model()->findByPk($model->type_id);
+    if(isset($type->shortname)){
+        $shortname = $type->shortname;
+    }
+}
 
 return array(
     'config[subject]' => array('type'=>'text', 'title'=>'%subject%'),
-    'config[article_action_theme]' => array('type'=>'dropdownlist','items' => Controller::getActionThemeListing('mregister'), 'hint' => '{%hint_article_action_theme%}'),
+    'config[article_action_theme]' => array('type'=>'dropdownlist','items' => Controller::getActionThemeListing($shortname), 'hint' => '{%hint_article_action_theme%}'),
     'config[button_action]' => array('type'=>'dropdownlist','items' => $buttons, 'hint' => '{%hint_article_button_action%}'),
 
     // alert
