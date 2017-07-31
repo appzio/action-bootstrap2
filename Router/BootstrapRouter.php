@@ -45,6 +45,8 @@ class BootstrapRouter implements BootstrapRouterInterface {
     public $controller;
     private $view_data;
     private $controller_path;
+    private $component_path;
+    private $action_shortname;
 
     public function __construct($obj){
         /* this exist to make the referencing of
@@ -62,16 +64,44 @@ class BootstrapRouter implements BootstrapRouterInterface {
         $this->setRoute();
         $default = $class ."Controllers\Controller";
         $newroute = $class."Controllers\\" .ucfirst($this->controller_name);
+        $backup = $this->getMainPath() ."\Controllers\Controller";
 
         if(classExists($newroute)){
             $this->controller_path = $newroute;
             return $newroute;
+        } elseif(classExists($backup)) {
+            $this->controller_path = $backup;
+            return $backup;
         } else {
             $this->controller_path = $default;
             $this->error[] = 'Defined controller for the route not found';
             return $default;
         }
     }
+
+
+    public function getComponent($class){
+        $this->setRoute();
+        $default = $class ."Components\Components";
+        $backup = $this->getMainPath() ."\Components\Components";
+
+        if(classExists($default)){
+            $this->component_path = $default;
+            return $default;
+        } elseif(classExists($backup)) {
+            $this->component_path = $backup;
+            return $backup;
+        } else {
+            $this->error[] = 'Defined component for the route not found';
+            return $default;
+        }
+    }
+
+    private function getMainPath(){
+        $name = 'packages\action'.ucfirst($this->action_shortname);
+        return $name;
+    }
+
 
     /**
      * @param $class -- class hierarchy coming from ArticleFactory
@@ -83,9 +113,15 @@ class BootstrapRouter implements BootstrapRouterInterface {
     public function getView($class){
         $default = $class ."Views\View";
         $defined = $class ."Views\\".ucfirst($this->view_name);
+        $backup = $this->getMainPath() ."Views\\".ucfirst($this->view_name);
+        $backup2 = $this->getMainPath() .'Views\View';
 
         if(classExists($defined)){
             return $defined;
+        } elseif(classExists($backup)) {
+            return $backup;
+        } elseif(classExists($backup2)) {
+            return $backup2;
         } else {
             $this->error[] = 'Defined view not found';
             return $default;

@@ -49,6 +49,10 @@ trait BootstrapRouterGetters {
         return $this->view_data;
     }
 
+    public function setActionShortname($name){
+        $this->action_shortname = $name;
+    }
+
 
 
 
