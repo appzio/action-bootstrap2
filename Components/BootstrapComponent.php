@@ -53,6 +53,10 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use Elements\FullpageLoader;
     use Elements\Spacers;
 
+    use Elements\Map;
+    use Elements\Calendar;
+
+
     public function __construct($obj){
         /* this exist to make the referencing of
         passed objects & variables easier */
