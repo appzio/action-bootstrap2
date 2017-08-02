@@ -2,6 +2,7 @@
 
 namespace Bootstrap\Components;
 
+use function array_merge;
 use Bootstrap\Components\BootstrapComponentInterface;
 use Bootstrap\Components\Elements as Elements;
 
@@ -25,6 +26,9 @@ class BootstrapComponent implements BootstrapComponentInterface {
     public $router;
 
     public $current_route;
+
+    /*  you can feed divs to be automatically included here*/
+    private $divs = array();
 
     use ComponentHelpers;
 
@@ -71,6 +75,19 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
     public function getErrors(){
         return $this->errors;
+    }
+
+
+    public function addDivs(array $divs){
+        if(!empty($this->divs)){
+            $this->divs = array_merge($this->divs,$divs);
+        } else {
+            $this->divs = $divs;
+        }
+    }
+
+    public function getDivs(){
+        return $this->divs;
     }
 
 
