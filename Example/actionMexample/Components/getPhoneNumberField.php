@@ -1,6 +1,6 @@
 <?php
 
-namespace packages\actionMexmaple\Components;
+namespace packages\actionMexample\Components;
 use function array_flip;
 use Bootstrap\Components\BootstrapComponent;
 use function strtolower;
