@@ -60,8 +60,32 @@ class BootstrapRouter implements BootstrapRouterInterface {
         }
     }
 
+    private function checkExistence($primary,$secondary){
+        if(classExists($primary)){
+            $this->controller_path = $primary;
+            return $primary;
+        } elseif(classExists($secondary)) {
+            $this->controller_path = $secondary;
+            return $secondary;
+        }
+    }
+
+
     public function getController($class){
         $this->setRoute();
+
+        // look for theme & mode
+        $mode = $this->model->getConfigParam('mode');
+
+        if($mode) {
+            $primary = $class . "Controllers\\" . ucfirst($mode);
+            $secondary = $this->getMainPath() . "\Controllers\\" . ucfirst($mode);
+            $check = $this->checkExistence($primary, $secondary);
+            if($check){
+                return $check;
+            }
+        }
+
         $default = $class ."Controllers\Controller";
         $newroute = $class."Controllers\\" .ucfirst($this->controller_name);
         $backup = $this->getMainPath() ."\Controllers\Controller";
@@ -78,7 +102,6 @@ class BootstrapRouter implements BootstrapRouterInterface {
             return $default;
         }
     }
-
 
     public function getComponent($class){
         $this->setRoute();
@@ -111,10 +134,12 @@ class BootstrapRouter implements BootstrapRouterInterface {
      */
 
     public function getView($class){
+
+        // look for others
         $default = $class ."Views\View";
         $defined = $class ."Views\\".ucfirst($this->view_name);
-        $backup = $this->getMainPath() ."Views\\".ucfirst($this->view_name);
-        $backup2 = $this->getMainPath() .'Views\View';
+        $backup = $this->getMainPath() ."\Views\\".ucfirst($this->view_name);
+        $backup2 = $this->getMainPath() .'\Views\View';
 
         if(classExists($defined)){
             return $defined;
