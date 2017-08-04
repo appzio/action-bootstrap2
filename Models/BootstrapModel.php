@@ -20,13 +20,21 @@ class BootstrapModel extends CActiveRecord {
     public $session_storage;
     public $click_parameters_to_save;
 
+    public $localizationComponent;
     public $submitvariables;
 
     public $playid;
     public $appid;
 
+    public $action_id;
+
     /* this is a general place for validation errors that can be read by components */
     public $validation_errors = array();
+
+    public $permanames;
+    public $rewriteconfigs;
+    public $rewriteactionfield;
+    private $current_itemid;
 
     public function __construct($obj){
 
@@ -40,6 +48,7 @@ class BootstrapModel extends CActiveRecord {
                 $this->$key = $obj->$key;
             }
         }
+
     }
 
     public function tableName(){
@@ -97,5 +106,80 @@ class BootstrapModel extends CActiveRecord {
         $this->actionobj = \AeplayAction::model()->with('aetask')->findByPk($this->actionid);
         $this->configobj = json_decode($this->actionobj->config);
     }
+
+    public function localize($string){
+        return $this->localizationComponent->smartLocalize($string);
+    }
+
+    /* returns mapping between permanent name & action id */
+    public function getActionidByPermaname($name){
+
+        if(isset($this->permanames[$name])){
+            return $this->permanames[$name];
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $field -- this you can see from the form, common fields are:
+     * - backarrow
+     * - hide_subject
+     * - hide_menubar
+     * - background_image_portrait
+     * @param $newcontent
+     */
+
+    public function rewriteActionConfigField($field, $newcontent){
+        $this->rewriteconfigs[$field] = $newcontent;
+    }
+
+    /**
+     * you can reconfigure any action properties with this
+     *
+     * @param $field
+     * @param $newcontent
+     */
+
+    public function rewriteActionField($field, $newcontent){
+        $this->rewriteactionfield[$field] = $newcontent;
+    }
+
+    /* this will get the current item id, as triggered initially by menuid.
+        ie. if you use for example open-action with id, you should define id like this:
+        controller/function/$id
+        this id gets saved to session so it will be remembered even though you would have
+        different menu commands inside the same context. It is tied to action_id
+    */
+
+    public function getItemId(){
+        $pointer = 'item_id_'.$this->action_id;
+
+        if($this->getMenuId()){
+            $this->current_itemid = $this->getMenuId();
+            $this->sessionSet($pointer, $this->itemid);
+        } elseif($this->sessionGet('productid')){
+            $this->current_itemid = $this->sessionGet($pointer);
+        }
+    }
+
+    /**
+     * @return mixed -- returns the currentlyc called menuid (if any)
+     */
+
+    public function getMenuId(){
+        return $this->router->getMenuId();
+    }
+
+
+    /**
+     * Current action id (not the play action, but the actual configuration object id
+     * @return int
+     */
+
+    public function getActionId(){
+        return $this->action_id;
+    }
+
 
 }

@@ -206,6 +206,22 @@ trait Onclick {
         return $obj;
     }
 
+    public function getOnclickOpenAction($permaname=false,$actionid=false,$parameters=array()){
+
+        if($permaname){
+            $actionid = $this->model->getActionidByPermaname($permaname);
+        }
+
+        $obj = new \stdClass();
+        $obj->action = 'open-action';
+        $obj->action_config = $actionid;
+
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+
+    }
+
 
 
 }

@@ -1,5 +1,11 @@
 {
 
+
+  "general_divider": {
+    "height": "1",
+    "background-color": "#E4E7E9"
+  },
+
   "element-msg-plain-default": {
     "padding": "10 10 10 10"
   },

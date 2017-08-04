@@ -4,7 +4,7 @@ namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 use function strtoupper;
 
-trait Text {
+trait Divider {
 
     /**
      * @param $content string, no support for line feeds
@@ -55,18 +55,13 @@ trait Text {
      * @return \stdClass
      */
 
-    public function getComponentText(string $content, array $parameters=array(),array $styles=array()) {
+    public function getComponentDivider($parameters=array(),$styles=array()) {
         /** @var BootstrapView $this */
 
 		$obj = new \StdClass;
         $obj->type = 'msg-plain';
-
-        if(isset($parameters['uppercase'])){
-            $content = $this->model->localize($content);
-            $content = strtoupper($content);
-        }
-
-        $obj->content = $content;
+        $obj->content = '';
+        $obj->style = 'general_divider';
 
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);

@@ -5,11 +5,13 @@ namespace Bootstrap\Components;
 use function array_merge;
 use Bootstrap\Components\BootstrapComponentInterface;
 use Bootstrap\Components\Elements as Elements;
+use Bootstrap\Models\BootstrapModel;
 
 class BootstrapComponent implements BootstrapComponentInterface {
 
     /* this is here just to fix a phpstorm auto complete bug with namespaces */
-    /* @var \Bootstrap\Models\BootstrapModel */
+
+    /* @var \Bootstrap\Components\Elements\Divider */
     public $phpstorm_bugfix;
 
     /* @var \Bootstrap\Models\BootstrapModel */
@@ -59,6 +61,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
     use Elements\Map;
     use Elements\Calendar;
+
+    use Elements\Divider;
 
 
     public function __construct($obj){
