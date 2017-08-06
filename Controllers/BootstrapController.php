@@ -4,6 +4,7 @@
 namespace Bootstrap\Controllers;
 
 use Bootstrap\Router\BootstrapRouter;
+use stdClass;
 
 class BootstrapController implements BootstrapControllerInterface {
 
@@ -25,6 +26,10 @@ class BootstrapController implements BootstrapControllerInterface {
     private $view_name;
 
     public $action_name;
+
+    public $playid;
+
+    public $onloads;
 
     public function __construct($obj){
         /* this exist to make the referencing of
@@ -50,6 +55,20 @@ class BootstrapController implements BootstrapControllerInterface {
 
     public function getMenuId(){
         return $this->router->getMenuId();
+    }
+
+    /* collects location once */
+    public function collectLocation(){
+        $cache = \Appcaching::getGlobalCache('location-asked'.$this->playid);
+
+        if(!$cache){
+            $menu2 = new stdClass();
+            $menu2->action = 'ask-location';
+            \Appcaching::setGlobalCache('location-asked'.$this->playid,true);
+            $this->onloads[] = $menu2;
+        } else {
+            return false;
+        }
     }
 
 

@@ -4,7 +4,15 @@ namespace Bootstrap\Views;
 
 trait ViewGetters {
 
-    public function getData($field,$type){
+
+    /**
+     * @param $field
+     * @param $type
+     * @param bool $required -- if this is set to true, an empty value will display an erorr on the client
+     * @return array|bool|int|\stdClass|string
+     */
+
+    public function getData($field, $type, $required=false){
 
         if(isset($this->data[$field])){
 
@@ -54,29 +62,33 @@ trait ViewGetters {
             }
         }
 
+
         switch($type){
             case 'array':
-                $this->setError('Empty data for '.$field);
+                if($required){
+                    $this->setError('Empty data for '.$field);
+                }
                 return array();
                 break;
             case 'bool':
-                $this->setError('Empty data for '.$field);
                 return false;
                 break;
             case 'int':
-                $this->setError('Empty data for '.$field);
                 return 0;
                 break;
             case 'string':
-                $this->setError('Empty data for '.$field);
+                if($required){
+                    $this->setError('Empty data for '.$field);
+                }
                 return '';
                 break;
             case 'float':
-                $this->setError('Empty data for '.$field);
                 return 0;
                 break;
             case 'object':
-                $this->setError('Empty data for '.$field);
+                if($required){
+                    $this->setError('Empty data for '.$field);
+                }
                 return new \stdClass();
                 break;
         }

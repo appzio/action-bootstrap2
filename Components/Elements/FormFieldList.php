@@ -2,8 +2,9 @@
 
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
+use function is_array;
 
-trait FormFieldText {
+trait FormFieldList {
 
     /**
      * @param $content string, no support for line feeds
@@ -56,18 +57,33 @@ trait FormFieldText {
      * @return \stdClass
      */
 
-    public function getComponentFormFieldText(string $field_content = '',array $parameters=array(),array $styles=array()){
+    public function getComponentFormFieldSelectorList($list,array $parameters=array(),array $styles=array()){
         /** @var BootstrapView $this */
 
         $obj = new \stdClass;
-        $obj->type = 'field-text';
+        $obj->type = 'field-list';
 
         if(empty($field_content) AND isset($parameters['variable']) AND !isset($parameters['empty'])){
             $this->model->getSubmittedVariableByName($parameters['variable']);
         }
 
-        $obj->content = ( !empty($field_content) ? $field_content : '' );
+        if(empty($list)){
+            return $this->getComponentText('Field definition missing');
+        }
 
+        if(is_array($list)){
+            $newlist = '';
+
+            foreach($list as $key=>$value){
+                $newlist = $key .';' .$value .';';
+            }
+
+            $newlist = substr($newlist,0,-1);
+            $list = $newlist;
+        }
+
+
+        $obj->content = $list;
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
         $obj = $this->configureDefaults($obj);

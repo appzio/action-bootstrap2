@@ -32,6 +32,11 @@ class BootstrapComponent implements BootstrapComponentInterface {
     /*  you can feed divs to be automatically included here*/
     private $divs = array();
 
+    public $aspect_ratio;
+    public $screen_width;
+    public $screen_height;
+
+
     use ComponentHelpers;
 
     /* all component traits need to be defined here */
@@ -63,6 +68,11 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use Elements\Calendar;
 
     use Elements\Divider;
+    use Elements\Swipe;
+    use Elements\SwipeNavi;
+
+    use Elements\FormFieldList;
+    use Elements\FormFieldBirthday;
 
 
     public function __construct($obj){

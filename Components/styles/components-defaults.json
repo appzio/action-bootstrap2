@@ -11,7 +11,7 @@
   },
 
   "element-slider-default": {
-    "margin": "10 10 10 10"
+    "margin": "10 10 10 15"
   },
 
   "router-error-message": {

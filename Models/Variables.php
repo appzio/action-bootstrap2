@@ -101,7 +101,6 @@ trait Variables {
 
     public function getSubmittedVariableByName($varname,$default=false)
     {
-
         /* @var $this BootstrapModel */
 
         if (isset($this->submitvariables[$this->getVariableId($varname)])) {

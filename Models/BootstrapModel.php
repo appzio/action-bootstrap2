@@ -3,6 +3,7 @@
 
 namespace Bootstrap\Models;
 
+use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
 use Aevariable;
 use AeplayVariable;
@@ -26,6 +27,9 @@ class BootstrapModel extends CActiveRecord {
     public $playid;
     public $appid;
 
+    /* @var \Bootstrap\Router\BootstrapRouter */
+    public $router;
+
     public $action_id;
 
     /* this is a general place for validation errors that can be read by components */
@@ -35,6 +39,8 @@ class BootstrapModel extends CActiveRecord {
     public $rewriteconfigs;
     public $rewriteactionfield;
     private $current_itemid;
+
+    private $errors;
 
     public function __construct($obj){
 
@@ -157,10 +163,15 @@ class BootstrapModel extends CActiveRecord {
 
         if($this->getMenuId()){
             $this->current_itemid = $this->getMenuId();
-            $this->sessionSet($pointer, $this->itemid);
-        } elseif($this->sessionGet('productid')){
+            $this->sessionSet($pointer, $this->current_itemid);
+        } elseif($this->sessionGet($pointer)){
             $this->current_itemid = $this->sessionGet($pointer);
+        } else {
+            $this->current_itemid = false;
         }
+
+        return $this->current_itemid;
+
     }
 
     /**
@@ -179,6 +190,23 @@ class BootstrapModel extends CActiveRecord {
 
     public function getActionId(){
         return $this->action_id;
+    }
+
+    public function getValidationError($name){
+
+        if(isset($this->validation_errors[$name])){
+            return (string)$this->validation_errors[$name];
+        }
+
+        return false;
+    }
+
+    public function setError($string){
+        $this->errors[] = $string;
+    }
+
+    public function getRuntimeErrors(){
+        return $this->errors;
     }
 
 

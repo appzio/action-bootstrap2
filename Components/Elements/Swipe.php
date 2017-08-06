@@ -2,21 +2,20 @@
 
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
+use function strtoupper;
 
-trait FormFieldText {
+trait Swipe {
 
     /**
      * @param $content string, no support for line feeds
      * @param array $parameters selected_state, variable, onclick, style
      * <code>
      * $array = array(
-     * 'hint' => 'hint text',
-     * 'height' => '40',
-     * 'submit_menu_id' => 'someid',
-     * 'maxlength', => '80',
-     * 'input_type' => 'text',
-     * 'activation' => 'initially' //initially or keep-open,
-     * 'empty' => '1'       // whether the field should be empty and not use submitted value
+     * 'selected_state' => 'style-class-name',
+     * 'variable'   => 'variablename',
+     * 'uppercase' => '1' // transform to uppercase
+     * 'onclick' => $onclick, // this must be an object or an array of objects
+     * 'style' => 'style-class-name',
      * );
      * </code>
      * @param array $styles
@@ -56,22 +55,23 @@ trait FormFieldText {
      * @return \stdClass
      */
 
-    public function getComponentFormFieldText(string $field_content = '',array $parameters=array(),array $styles=array()){
+    public function getComponentSwipe(array $pages, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
 
-        $obj = new \stdClass;
-        $obj->type = 'field-text';
+		$obj = new \StdClass;
+        $obj->type = 'swipe';
+        $obj->swipe_content = $pages;
 
-        if(empty($field_content) AND isset($parameters['variable']) AND !isset($parameters['empty'])){
-            $this->model->getSubmittedVariableByName($parameters['variable']);
-        }
-
-        $obj->content = ( !empty($field_content) ? $field_content : '' );
+        $allowed = array(
+            'swipe_content', 'text_content', 'progress_image', 'track_image','animate','remember_position','position',
+            'item_width','dynamic','id','items','animation','container_id','item_scale','transition','world_ending'
+        );
 
         $obj = $this->attachStyles($obj,$styles);
-        $obj = $this->attachParameters($obj,$parameters);
+        $obj = $this->attachParameters($obj,$parameters,$allowed);
         $obj = $this->configureDefaults($obj);
 
         return $obj;
-    }
+	}
+
 }
