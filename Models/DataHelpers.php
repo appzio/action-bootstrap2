@@ -47,7 +47,7 @@ trait DataHelpers {
         $location = ThirdpartyServices::geoAddressTranslation($this->getSavedVariable('lat'), $this->getSavedVariable('lon'), $this->appid);
 
         if(!$location){
-            $this->setError('Location could not be fetched, make sure you have Google API key defined');
+            //$this->setError('Location could not be fetched, make sure you have Google API key defined');
         }
 
         if(isset($location['city'])){ $vars['city'] = $location['city']; }

@@ -88,14 +88,18 @@ class BootstrapRouter implements BootstrapRouterInterface {
 
         $default = $class ."Controllers\Controller";
         $newroute = $class."Controllers\\" .ucfirst($this->controller_name);
-        $backup = $this->getMainPath() ."\Controllers\Controller";
+        $backup1 = $this->getMainPath() ."\Controllers\\" .ucfirst($this->controller_name);
+        $backup2 = $this->getMainPath() ."\Controllers\Controller";
 
         if(classExists($newroute)){
             $this->controller_path = $newroute;
             return $newroute;
-        } elseif(classExists($backup)) {
-            $this->controller_path = $backup;
-            return $backup;
+        } elseif(classExists($backup1)) {
+            $this->controller_path = $backup1;
+            return $backup1;
+        } elseif(classExists($backup2)) {
+            $this->controller_path = $backup2;
+            return $backup2;
         } else {
             $this->controller_path = $default;
             $this->error[] = 'Defined controller for the route not found';

@@ -115,40 +115,37 @@ trait Onclick {
         /* if we have also parameters to save we will first call
            server to save them and only then submit the second view */
 
-        if($saveparameters){
-            $persist_route = $persist_route == true ? 1 : 0;
+        $persist_route = $persist_route == true ? 1 : 0;
 
-            $persist = 'persist_route_'.$this->actionid;
-            $current = 'current_route_'.$this->actionid;
+        $persist = 'persist_route_'.$this->actionid;
+        $current = 'current_route_'.$this->actionid;
 
-            $saveparameters[$persist] = $persist_route;
-            $saveparameters[$current] = $route;
-            $saveparameters['save_async'] = 1;
-            $saveparameters['menu_id'] = $menuid;
-            $identifier = md5(serialize($saveparameters));
+        $saveparameters[$persist] = $persist_route;
+        $saveparameters[$current] = $route;
+        $saveparameters['save_async'] = 1;
+        $saveparameters['menu_id'] = $menuid;
+        $identifier = md5(serialize($saveparameters).$route.$persist_route);
 
-            /* These are marked for saving, but not actually saved to session
-            yet, only if matching menuid is actually clicked, they would get
-            saved by the ArticleFactory. This save is like an intent to possibly
-            save to session. */
+        /* These are marked for saving, but not actually saved to session
+        yet, only if matching menuid is actually clicked, they would get
+        saved by the ArticleFactory. This save is like an intent to possibly
+        save to session. */
 
-            $this->model->click_parameters_to_save[$identifier] = $saveparameters;
+        $this->model->click_parameters_to_save[$identifier] = $saveparameters;
 
-            $onclick = new \stdClass();
-            $onclick->action = 'submit-form-content';
-            $onclick->id = $identifier;
+        $onclick = new \stdClass();
+        $onclick->action = 'submit-form-content';
+        $onclick->id = $identifier;
 
-            if(!$async){
-                $obj->sync_open = 1;
-                $onclick->sync_open = 1;
-            }
-
-            $output[] = $onclick;
-            $output[] = $obj;
-            return $output;
+        if(!$async){
+            $obj->sync_open = 1;
+            $onclick->sync_open = 1;
         }
 
-        return $obj;
+        $output[] = $onclick;
+        $output[] = $obj;
+        return $output;
+
     }
 
     public function getOnclickImageUpload(string $variablename,$parameters=array()){
