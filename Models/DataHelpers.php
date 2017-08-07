@@ -44,6 +44,10 @@ trait DataHelpers {
     }
 
     public function setUserAddress(){
+        if(!$this->getSavedVariable('lat')){
+            return false;
+        }
+
         $location = ThirdpartyServices::geoAddressTranslation($this->getSavedVariable('lat'), $this->getSavedVariable('lon'), $this->appid);
 
         if(!$location){
