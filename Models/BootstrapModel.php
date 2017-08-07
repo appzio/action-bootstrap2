@@ -23,6 +23,7 @@ class BootstrapModel extends CActiveRecord {
 
     public $localizationComponent;
     public $submitvariables;
+    public $actionobj;
 
     public $playid;
     public $appid;

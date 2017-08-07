@@ -60,6 +60,9 @@ trait DataHelpers {
             $this->saveNamedVariables($vars);
         }
 
+        $this->reloadData();
+        
+
     }
 
 
