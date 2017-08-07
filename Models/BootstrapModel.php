@@ -32,6 +32,7 @@ class BootstrapModel extends CActiveRecord {
     public $router;
 
     public $action_id;
+    public $actionid;
 
     /* this is a general place for validation errors that can be read by components */
     public $validation_errors = array();
@@ -111,7 +112,7 @@ class BootstrapModel extends CActiveRecord {
         $this->loadVariables();
         $this->loadVariableContent();
         $this->actionobj = \AeplayAction::model()->with('aetask')->findByPk($this->actionid);
-        $this->configobj = json_decode($this->actionobj->config);
+        $this->configobj = @json_decode($this->actionobj->config);
     }
 
     public function localize($string){
