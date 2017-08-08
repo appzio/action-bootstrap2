@@ -90,15 +90,11 @@ trait Onclick {
         return $obj;
     }
 
-
-
-
     public function getOnclickRoute(string $route,$persist_route=true,array $saveparameters = array(),bool $async=true,array $clickparameters=array()) {
         /** @var BootstrapView $this */
 
         /* menuid will also need to be passed to session if using this function,
         as the save is a two part process */
-        $menuid = false;
 
         /* route is always marked by slash */
         $routeparts = explode('/', $route);
@@ -113,25 +109,9 @@ trait Onclick {
         $obj = $this->attachParameters($obj,$clickparameters);
 
         /* if we have also parameters to save we will first call
-           server to save them and only then submit the second view */
+        server to save them and only then submit the second view */
 
-        $persist_route = $persist_route == true ? 1 : 0;
-
-        $persist = 'persist_route_'.$this->actionid;
-        $current = 'current_route_'.$this->actionid;
-
-        $saveparameters[$persist] = $persist_route;
-        $saveparameters[$current] = $route;
-        $saveparameters['save_async'] = 1;
-        $saveparameters['menu_id'] = $menuid;
-        $identifier = md5(serialize($saveparameters).$route.$persist_route);
-
-        /* These are marked for saving, but not actually saved to session
-        yet, only if matching menuid is actually clicked, they would get
-        saved by the ArticleFactory. This save is like an intent to possibly
-        save to session. */
-
-        $this->model->click_parameters_to_save[$identifier] = $saveparameters;
+        $identifier = $this->encryptParams($persist_route,$route,$saveparameters);
 
         $onclick = new \stdClass();
         $onclick->action = 'submit-form-content';
@@ -148,13 +128,78 @@ trait Onclick {
 
     }
 
+    public function getOnclickOpenAction($permaname=false,$actionid=false,$parameters=array(),$route=false,$persist_route=true,$saveparams=array()){
+
+        if($permaname){
+            $actionid = $this->model->getActionidByPermaname($permaname);
+        }
+
+        $open = new \stdClass();
+        $open->action = 'open-action';
+        $open->action_config = $actionid;
+        $open = $this->attachParameters($open,$parameters);
+
+        if($route){
+            /* route is always marked by slash */
+            $routeparts = explode('/', $route);
+
+            if(!isset($routeparts[1]) OR empty($routeparts[1])){
+                $this->errors[] = 'Route is not defined right. It should controller/method';
+            }
+
+            // add the route to target
+            $open->id = $route;
+        }
+
+
+        if($route OR $saveparams){
+            /* this will save async */
+            $identifier = $this->encryptParams($persist_route,$route,$saveparams,$actionid);
+            $obj = new \StdClass;
+            $obj->action = 'submit-form-content';
+            $obj->id = $identifier;
+            //$obj = $this->attachParameters($obj,$parameters);
+
+            $output[] = $obj;
+            $output[] = $open;
+            return $output;
+        }
+
+        return $open;
+
+    }
+
+
+    private function encryptParams($persist_route,$route=false,$saveparameters=array(),$actionid=false){
+
+        $persist_route = $persist_route == true ? 1 : 0;
+
+        $actionid = $actionid ? $actionid : $this->actionid;
+
+        $persist = 'persist_route_'.$actionid;
+        $current = 'current_route_'.$actionid;
+
+        $saveparameters[$persist] = $persist_route;
+        $saveparameters[$current] = $route;
+        $saveparameters['save_async'] = 1;
+        $identifier = md5(serialize($saveparameters).$route.$persist_route);
+
+        /* These are marked for saving, but not actually saved to session
+        yet, only if matching menuid is actually clicked, they would get
+        saved by the ArticleFactory. This save is like an intent to possibly
+        save to session. */
+
+        $this->model->click_parameters_to_save[$identifier] = $saveparameters;
+        return $identifier;
+
+    }
+
     public function getOnclickImageUpload(string $variablename,$parameters=array()){
         /** @var BootstrapView $this */
 
         $obj = new \stdClass();
         $obj->action = 'upload-image';
         $obj->variable = $this->model->getVariableId($variablename);
-
 
         $obj = $this->attachParameters($obj,$parameters);
 
@@ -203,21 +248,6 @@ trait Onclick {
         return $obj;
     }
 
-    public function getOnclickOpenAction($permaname=false,$actionid=false,$parameters=array()){
-
-        if($permaname){
-            $actionid = $this->model->getActionidByPermaname($permaname);
-        }
-
-        $obj = new \stdClass();
-        $obj->action = 'open-action';
-        $obj->action_config = $actionid;
-
-        $obj = $this->attachParameters($obj,$parameters);
-
-        return $obj;
-
-    }
 
 
 

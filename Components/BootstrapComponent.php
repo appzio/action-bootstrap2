@@ -36,6 +36,27 @@ class BootstrapComponent implements BootstrapComponentInterface {
     public $screen_width;
     public $screen_height;
 
+    public $colors;
+
+    public $color_text_color;
+    public $color_icon_color;
+    public $color_background_color;
+    public $color_button_text;
+    public $color_dark_button_text;
+    public $color_top_bar_text_color;
+    public $color_top_bar_icon_color;
+    public $color_button_more_info_color;
+    public $color_button_more_info_icon_color;
+    public $color_button_more_info_text_color;
+    public $color_item_text_color;
+    public $color_top_bar_color;
+    public $color_button_color;
+    public $color_item_color;
+    public $color_button_icon_color;
+    public $color_button_text_color;
+    public $color_side_menu_color;
+    public $color_side_menu_text_color;
+    public $color_topbar_hilite;
 
     use ComponentHelpers;
 
@@ -73,6 +94,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
     use Elements\FormFieldList;
     use Elements\FormFieldBirthday;
+    use Elements\Bottommenu;
 
 
     public function __construct($obj){
@@ -85,6 +107,16 @@ class BootstrapComponent implements BootstrapComponentInterface {
                 $this->$key = $obj->$key;
             }
         }
+
+        /* set colors */
+        foreach($this->colors as $name=>$color){
+            $name = 'color_'.$name;
+
+            if(property_exists($this,$name)){
+                $this->$name = $color;
+            }
+        }
+
     }
 
     public function getErrors(){

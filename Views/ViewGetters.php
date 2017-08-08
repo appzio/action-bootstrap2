@@ -59,6 +59,10 @@ trait ViewGetters {
                         $this->setError('Wrong datatype for GetData '.$field);
                     }
                     break;
+
+                case 'mixed':
+                    return $this->data[$field];
+                    break;
             }
         }
 

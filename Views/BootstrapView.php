@@ -62,6 +62,10 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
     public $color_button_text_color;
     public $color_side_menu_color;
     public $color_side_menu_text_color;
+    public $color_topbar_hilite;
+
+    public $bottom_menu_id;
+    public $bottom_menu_json;
 
     /*Array ( [text_color] => #FF000000 [icon_color] => #FF000000 [background_color] => #FFCFD8DC [button_text] => #FF000000
     [dark_button_text] => #FFFFFFFF [top_bar_text_color] => #FFFFFFFF [top_bar_icon_color] => #FFFFFFFF
@@ -89,13 +93,25 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
                 $this->$name = $color;
             }
         }
+
+        if($this->bottom_menu_id){
+            $this->bottom_menu_json = true;
+        }
+
     }
 
     public function setError(string $msg){
         $this->errors[] = $msg;
     }
 
-    public function tab1(){
+    public function getBottomMenu()
+    {
+        return $this->getComponentBottommenu();
+
+    }
+
+
+        public function tab1(){
         $this->data = new \stdClass();
         $this->data->header = array();
         $this->data->scroll = array();

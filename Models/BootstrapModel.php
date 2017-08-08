@@ -33,6 +33,11 @@ class BootstrapModel extends CActiveRecord {
 
     public $action_id;
     public $actionid;
+    public $menus;
+
+    public $msgcount;
+    public $bottom_menu_id;
+    public $branchobj;
 
     /* this is a general place for validation errors that can be read by components */
     public $validation_errors = array();

@@ -36,8 +36,6 @@ trait Variables {
     }
 
 
-
-
     public function saveNamedVariables($variables,$exclude=false){
 
         $new = array();
@@ -61,7 +59,20 @@ trait Variables {
 
         if (isset($this->varcontent[$varname])) {
             return $this->varcontent[$varname];
-        } elseif ($default) {
+        }
+        
+        $id = $this->getVariableId($varname);
+
+        /* we seem to have a problem of variable not always being available. todo: research why? */
+
+        if($id){
+            $var = \AeplayVariable::model()->findByAttributes(array('play_id'=>$this->playid,'variable_id' => $id));
+            if(isset($var->value)){
+                return $var->value;
+            }
+        }
+
+        if ($default) {
             return $default;
         }
 
