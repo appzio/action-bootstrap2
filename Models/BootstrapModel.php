@@ -19,8 +19,10 @@ class BootstrapModel extends CActiveRecord {
     public $vars;
     public $varcontent;
     public $session_storage;
+
     public $click_parameters_to_save;
 
+    /* @var \Localizationapi */
     public $localizationComponent;
     public $submitvariables;
     public $actionobj;

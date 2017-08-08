@@ -108,7 +108,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
     }
 
     public function getComponent($class){
-        $this->setRoute();
+
         $default = $class ."Components\Components";
         $backup = $this->getMainPath() ."\Components\Components";
 
@@ -219,6 +219,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
     }
 
     public function prepareView(){
+
         $name = 'action'.ucfirst($this->action_name);
         $default = 'actionDefault';
 

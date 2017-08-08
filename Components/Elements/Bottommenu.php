@@ -56,6 +56,11 @@ trait Bottommenu {
     public function getComponentBottommenu(array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
 
+        if(!$this->model->bottom_menu_id){
+            return array();
+        }
+
+
         foreach ($this->model->menus['menus'] as $menu){
             if($menu['id'] == $this->model->bottom_menu_id){
                 $menudata = $menu['items'];
