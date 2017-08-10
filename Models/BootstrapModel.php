@@ -3,6 +3,7 @@
 
 namespace Bootstrap\Models;
 
+use function array_flip;
 use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
 use Aevariable;
@@ -124,6 +125,16 @@ class BootstrapModel extends CActiveRecord {
 
     public function localize($string){
         return $this->localizationComponent->smartLocalize($string);
+    }
+
+    public function getCurrentActionPermaname(){
+        $permanames = $this->permanames;
+        $permanames = array_flip($permanames);
+
+        if(isset($permanames[$this->action_id])){
+            return $permanames[$this->action_id];
+        }
+
     }
 
     /* returns mapping between permanent name & action id */

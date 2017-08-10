@@ -2,6 +2,8 @@
 
 namespace Bootstrap\Views;
 
+use function is_numeric;
+
 trait ViewGetters {
 
 
@@ -33,6 +35,13 @@ trait ViewGetters {
                     break;
                 case 'int':
                     if(is_int($this->data[$field])){
+                        return $this->data[$field];
+                    }else {
+                        $this->setError('Wrong datatype for GetData '.$field);
+                    }
+                    break;
+                case 'num':
+                    if(is_numeric($this->data[$field])){
                         return $this->data[$field];
                     }else {
                         $this->setError('Wrong datatype for GetData '.$field);
