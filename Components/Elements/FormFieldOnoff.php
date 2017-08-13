@@ -2,8 +2,9 @@
 
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
+use function is_array;
 
-trait FormFieldText {
+trait FormFieldOnoff {
 
     /**
      * @param $content string, no support for line feeds
@@ -56,26 +57,19 @@ trait FormFieldText {
      * @return \stdClass
      */
 
-    public function getComponentFormFieldText(string $field_content = '',array $parameters=array(),array $styles=array()){
+    public function getComponentFormFieldOnoff(array $parameters=array(),array $styles=array()){
         /** @var BootstrapView $this */
 
+        $type =  isset($parameters['type']) ? $parameters['type'] : '' ;
+        $value = isset($parameters['value']) ? $parameters['value'] : 0;
+
         $obj = new \stdClass;
-        $obj->type = 'field-text';
-
-        if(empty($field_content) AND isset($parameters['variable']) AND !isset($parameters['empty'])){
-            $this->model->getSubmittedVariableByName($parameters['variable']);
-        }
-
-        $obj->content = ( !empty($field_content) ? $field_content : '' );
+        $obj->type = ( $type == 'toggle' ? 'toggle' : 'field-checkbox' );
+        $obj->content = $value;
 
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
         $obj = $this->configureDefaults($obj);
-
-        if(isset($parameters['uppercase']) AND isset($parameters['hint'])){
-            $content = $this->model->localize($parameters['hint']);
-            $obj->hint = strtoupper($content);
-        }
 
         return $obj;
     }

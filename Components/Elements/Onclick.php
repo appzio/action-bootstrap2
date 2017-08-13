@@ -75,9 +75,14 @@ trait Onclick {
         $controller = $this->router->getControllerName();
         $action = $this->router->getActionName();
 
+        /* in case its a route */
+        if(!stristr($menuid, '/')){
+            $menuid = $controller.'/'.$action .'/' .$menuid;
+        }
+
         $obj = new \StdClass;
         $obj->action = 'submit-form-content';
-        $obj->id = $controller.'/'.$action .'/' .$menuid;
+        $obj->id = $menuid;
         $obj = $this->attachParameters($obj,$clickparameters);
 
         return $obj;
@@ -248,6 +253,13 @@ trait Onclick {
         return $obj;
     }
 
+    public function getOnclickGoHome($parameters=array()){
+        $obj = new \stdClass();
+        $obj->action = 'go-home';
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
 
 
 

@@ -95,6 +95,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
             $this->controller_path = $newroute;
             return $newroute;
         } elseif(classExists($backup1)) {
+
             $this->controller_path = $backup1;
             return $backup1;
         } elseif(classExists($backup2)) {

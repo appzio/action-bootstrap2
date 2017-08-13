@@ -34,14 +34,19 @@ trait ViewGetters {
                     }
                     break;
                 case 'int':
-                    if(is_int($this->data[$field])){
+                    if($this->data[$field] == 0) {
+                        return 0;
+                    }elseif(is_int($this->data[$field])){
                         return $this->data[$field];
                     }else {
                         $this->setError('Wrong datatype for GetData '.$field);
                     }
                     break;
                 case 'num':
-                    if(is_numeric($this->data[$field])){
+
+                    if($this->data[$field] == 0){
+                        return 0;
+                    }elseif(is_numeric($this->data[$field])){
                         return $this->data[$field];
                     }else {
                         $this->setError('Wrong datatype for GetData '.$field);
@@ -55,7 +60,9 @@ trait ViewGetters {
                     }
                     break;
                 case 'float':
-                    if(is_float($this->data[$field])){
+                    if($this->data[$field] == 0) {
+                        return 0;
+                    }elseif(is_float($this->data[$field])){
                         return $this->data[$field];
                     }else {
                         $this->setError('Wrong datatype for GetData '.$field);
