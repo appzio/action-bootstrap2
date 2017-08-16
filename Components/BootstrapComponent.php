@@ -96,6 +96,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use Elements\FormFieldBirthday;
     use Elements\Bottommenu;
     use Elements\FormFieldOnoff;
+    use Elements\Div;
 
 
     public function __construct($obj){
