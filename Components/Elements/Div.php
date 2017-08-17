@@ -60,8 +60,7 @@ trait Div {
 
 		$obj = new \StdClass;
         $obj->type = 'div';
-        $name = 'div-id';
-        $obj->$name = $id;
+        $obj->div_id = $id;
 
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);

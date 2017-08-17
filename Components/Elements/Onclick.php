@@ -70,6 +70,30 @@ trait Onclick {
         return $obj;
     }
 
+    public function getOnclickHideElement(string $element_id, array $parameters=array(),array $saveids = array()) {
+        /** @var BootstrapView $this */
+
+        $obj = new \StdClass;
+        $obj->action = 'hide-view';
+        $obj->view_id = $element_id;
+
+        $obj = $this->attachParameters($obj,$parameters);
+        return $obj;
+    }
+
+
+    public function getOnclickShowElement(string $element_id, array $parameters=array(),array $saveids = array()) {
+        /** @var BootstrapView $this */
+
+        $obj = new \StdClass;
+        $obj->action = 'show-view';
+        $obj->view_id = $element_id;
+
+        $obj = $this->attachParameters($obj,$parameters);
+        return $obj;
+    }
+
+
     public function getOnclickSubmit(string $menuid,$clickparameters=array()){
 
         $controller = $this->router->getControllerName();

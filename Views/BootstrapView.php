@@ -39,7 +39,7 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
     public $actionid;
 
     /* data sent by the controller */
-    protected $data;
+    public $data;
 
     /* layout code */
     public $layout;
@@ -100,9 +100,6 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
 
     }
 
-    public function setError(string $msg){
-        $this->errors[] = $msg;
-    }
 
     public function getBottomMenu()
     {
@@ -122,13 +119,6 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
         return $this->data;
     }
 
-    public function actionViewerror(){
-        $this->layout = new \stdClass();
-        $this->layout->scroll[] = $this->getComponentText('Controller is missing its methods',array(
-            'style' => 'router-error-message',
-        ));
-        return $this->layout;
-    }
 
     public function setViewData($data){
         $this->data = $data;

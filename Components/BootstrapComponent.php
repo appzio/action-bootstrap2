@@ -6,6 +6,8 @@ use function array_merge;
 use Bootstrap\Components\BootstrapComponentInterface;
 use Bootstrap\Components\Elements as Elements;
 use Bootstrap\Models\BootstrapModel;
+use Bootstrap\Views\ViewGetters;
+use Bootstrap\Views\ViewHelpers;
 
 class BootstrapComponent implements BootstrapComponentInterface {
 
@@ -37,6 +39,9 @@ class BootstrapComponent implements BootstrapComponentInterface {
     public $screen_height;
 
     public $colors;
+
+    /* this is the data passed from the controller */
+    public $data;
 
     public $color_text_color;
     public $color_icon_color;
@@ -98,6 +103,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use Elements\FormFieldOnoff;
     use Elements\Div;
 
+    use ViewGetters;
+    use ViewHelpers;
 
     public function __construct($obj){
         /* this exist to make the referencing of
