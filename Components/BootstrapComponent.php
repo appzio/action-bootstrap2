@@ -102,6 +102,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use Elements\Bottommenu;
     use Elements\FormFieldOnoff;
     use Elements\Div;
+    use Elements\ConfirmationDialog;
 
     use ViewGetters;
     use ViewHelpers;

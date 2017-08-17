@@ -31,6 +31,9 @@ class BootstrapController implements BootstrapControllerInterface {
 
     public $onloads;
 
+    // set this to true to suppress output (for async operations)
+    public $no_output = false;
+
     public function __construct($obj){
         /* this exist to make the referencing of
         passed objects & variables easier */

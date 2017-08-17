@@ -63,7 +63,7 @@ trait Spacers {
     public function getComponentVerticalSpacer($width = 10, array $parameters=array(),array $styles=array()) {
 
         $obj = $this->getComponentText('', array(), array(
-            'height' => $width
+            'width' => $width
         ));
 
         return $obj;

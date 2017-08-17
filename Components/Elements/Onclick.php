@@ -3,6 +3,7 @@
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 use function explode;
+use stdClass;
 use function stristr;
 
 trait Onclick {
@@ -38,18 +39,21 @@ trait Onclick {
         return $obj;
 	}
 
-    public function getOnclickShowDiv(string $divid, array $parameters=array(),array $saveids = array()) {
+    public function getOnclickShowDiv(string $divid, array $parameters=array(),$layout=array(),array $saveids = array()) {
         /** @var BootstrapView $this */
 
         $obj = new \StdClass;
         $obj->action = 'show-div';
         $obj->div_id = $divid;
 
-        $obj = $this->attachParameters($obj,$parameters);
-
-        if($saveids){
-
+        if($layout){
+            $obj->layout = new stdClass();
+            foreach($layout as $key=>$item){
+                $obj->layout->$key = $item;
+            }
         }
+
+        $obj = $this->attachParameters($obj,$parameters);
 
         return $obj;
     }
