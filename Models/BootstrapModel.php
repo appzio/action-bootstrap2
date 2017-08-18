@@ -229,5 +229,11 @@ class BootstrapModel extends CActiveRecord {
         return $this->errors;
     }
 
+    public function flushActionRoutes(){
+        $this->sessionSet('current_route_'.$this->action_id, '');
+        $this->sessionSet('persist_route_'.$this->action_id, '');
+    }
+
+
 
 }
