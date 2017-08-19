@@ -65,9 +65,67 @@ trait DataHelpers {
         }
 
         $this->reloadData();
-        
-
     }
+
+    public function findPlayFromVariables($var1,$var2,$var1_value,$var2_value){
+
+        $sql = "SELECT tbl1.play_id,tbl1.value,tbl2.value FROM ae_game_play_variable AS tbl1
+                LEFT JOIN ae_game_play_variable AS tbl2 ON tbl1.play_id = tbl2.play_id
+
+                LEFT JOIN ae_game_variable AS vartable1 ON tbl1.variable_id = vartable1.id
+                LEFT JOIN ae_game_variable AS vartable2 ON tbl2.variable_id = vartable2.id
+
+                WHERE tbl1.`value` = :user
+                AND tbl2.`value` = :pass
+                AND vartable1.game_id = :gid
+                AND vartable2.game_id = :gid
+
+                ORDER BY tbl1.play_id DESC
+                ";
+
+
+        $rows = Yii::app()->db
+            ->createCommand($sql)
+            ->bindValues(array(':user' => $user,
+                ':pass' => $this->password,
+                ':gid' => $this->gid
+            ))
+            ->queryAll();
+    }
+
+
+    /* note: this will return only the latest user with this value ! */
+    public function findPlayFromVariable($varname,$varvalue){
+
+        $sql = "SELECT tbl1.play_id,tbl1.value,tbl2.value FROM ae_game_play_variable AS tbl1
+                LEFT JOIN ae_game_play_variable AS tbl2 ON tbl1.play_id = tbl2.play_id
+
+                LEFT JOIN ae_game_variable AS vartable1 ON tbl1.variable_id = vartable1.id
+
+                WHERE tbl1.`value` = :varvalue
+                AND vartable1.game_id = :gid
+                AND vartable1.name = :varname
+              
+                ORDER BY tbl1.play_id DESC
+                ";
+
+
+        $rows = Yii::app()->db
+            ->createCommand($sql)
+            ->bindValues(array(
+                ':varname' => $varname,
+                ':varvalue' => $varvalue,
+                ':gid' => $this->appid
+            ))
+            ->queryAll();
+
+        print_r($rows[0]);die();
+
+        if(isset($rows[0])){
+            return $rows[0]->play_id;
+        }
+    }
+
 
 
 
