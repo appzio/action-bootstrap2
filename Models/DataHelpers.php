@@ -102,7 +102,7 @@ trait DataHelpers {
 
                 LEFT JOIN ae_game_variable AS vartable1 ON tbl1.variable_id = vartable1.id
 
-                WHERE tbl1.`value` = :varvalue
+                WHERE tbl2.`value` = :varvalue
                 AND vartable1.game_id = :gid
                 AND vartable1.name = :varname
               
@@ -110,7 +110,7 @@ trait DataHelpers {
                 ";
 
 
-        $rows = Yii::app()->db
+        $rows = \Yii::app()->db
             ->createCommand($sql)
             ->bindValues(array(
                 ':varname' => $varname,
@@ -119,10 +119,8 @@ trait DataHelpers {
             ))
             ->queryAll();
 
-        print_r($rows[0]);die();
-
-        if(isset($rows[0])){
-            return $rows[0]->play_id;
+        if(isset($rows[0]['play_id'])){
+            return $rows[0]['play_id'];
         }
     }
 
