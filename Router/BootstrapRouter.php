@@ -37,6 +37,8 @@ class BootstrapRouter implements BootstrapRouterInterface {
     public $new_menuid;
     public $actionid;
 
+    public $action_id;
+
     public $view_name;
     private $action_name;
     private $controller_name;
@@ -92,10 +94,10 @@ class BootstrapRouter implements BootstrapRouterInterface {
         $backup2 = $this->getMainPath() ."\Controllers\Controller";
 
         if(classExists($newroute)){
+
             $this->controller_path = $newroute;
             return $newroute;
         } elseif(classExists($backup1)) {
-
             $this->controller_path = $backup1;
             return $backup1;
         } elseif(classExists($backup2)) {
@@ -189,8 +191,8 @@ class BootstrapRouter implements BootstrapRouterInterface {
 
         if(stristr($this->menuid, '/')) {
             $this->configureNames($this->menuid,true);
-        }elseif($this->model->sessionGet('persist_route_'.$this->actionid)){
-            $route = $this->model->sessionGet('current_route_'.$this->actionid);
+        }elseif($this->model->sessionGet('persist_route_'.$this->action_id)){
+            $route = $this->model->sessionGet('current_route_'.$this->action_id);
             $this->configureNames($route);
         } else {
             $this->configureNames();

@@ -8,6 +8,7 @@ use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
 use Aevariable;
 use AeplayVariable;
+use function is_string;
 
 class BootstrapModel extends CActiveRecord {
 
@@ -229,9 +230,18 @@ class BootstrapModel extends CActiveRecord {
         return $this->errors;
     }
 
-    public function flushActionRoutes(){
-        $this->sessionSet('current_route_'.$this->action_id, '');
-        $this->sessionSet('persist_route_'.$this->action_id, '');
+    public function flushActionRoutes($actionid=false,$actionpermaname=false){
+
+        if(is_string($actionpermaname)){
+            $actionid = $this->getActionidByPermaname($actionpermaname);
+        }
+
+        if(!$actionid){
+            $actionid = $this->action_id;
+        }
+
+        $this->sessionSet('current_route_'.$actionid, '');
+        $this->sessionSet('persist_route_'.$actionid, '');
     }
 
 

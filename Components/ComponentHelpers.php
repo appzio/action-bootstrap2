@@ -11,7 +11,11 @@ trait ComponentHelpers {
     /** @var \Bootstrap\Models\BootstrapModel $this->model */
     public $model;
 
+    /* users own action (playaction) */
     public $actionid;
+
+    /* action id for the config object (action itself) */
+    public $action_id;
 
 	public function attachStyles(\stdClass $obj, array $styles) {
 

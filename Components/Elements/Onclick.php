@@ -184,7 +184,6 @@ trait Onclick {
             $open->id = $route;
         }
 
-
         if($route OR $saveparams){
             /* this will save async */
             $identifier = $this->encryptParams($persist_route,$route,$saveparams,$actionid);
@@ -207,7 +206,7 @@ trait Onclick {
 
         $persist_route = $persist_route == true ? 1 : 0;
 
-        $actionid = $actionid ? $actionid : $this->actionid;
+        $actionid = $actionid ? $actionid : $this->action_id;
 
         $persist = 'persist_route_'.$actionid;
         $current = 'current_route_'.$actionid;
