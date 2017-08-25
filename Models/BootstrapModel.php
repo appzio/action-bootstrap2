@@ -51,6 +51,10 @@ class BootstrapModel extends CActiveRecord {
     public $rewriteactionfield;
     private $current_itemid;
 
+    /* custom colors for bottomenu */
+    public $bottom_menu_color_background;
+    public $bottom_menu_color_text;
+
     private $errors;
 
     public function __construct($obj){

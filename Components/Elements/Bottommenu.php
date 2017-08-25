@@ -2,6 +2,7 @@
 
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
+use Helper;
 
 trait Bottommenu {
 
@@ -75,29 +76,40 @@ trait Bottommenu {
         $count = count($menudata);
         $counter = 1;
 
+        $background = $this->model->bottom_menu_color_background ? $this->model->bottom_menu_color_background : $this->color_top_bar_color;
+
+        if($this->model->bottom_menu_color_background){
+            $colorhelp = new \Color($this->model->bottom_menu_color_background);
+            $hilite = $colorhelp->darken();
+        } else {
+            $hilite = $this->color_topbar_hilite;
+        }
+
         foreach($menudata as $menuitem){
             /* show flag */
             if($menuitem['slug'] == 'mailbox' AND $this->model->msgcount){
                 $menuitem['flag'] = $this->model->msgcount;
             }
-            $column[] = $this->getItem($menuitem,$count,$counter);
+            $column[] = $this->getItem($menuitem,$count,$counter,$hilite);
             $counter++;
         }
 
 
         if(isset($column)){
-            $row[] = $this->getComponentText('',array(),array('height' => '2', 'background-color' => $this->color_topbar_hilite));
-            $row[] = $this->getComponentRow($column,array(),array('background-color' => $this->color_top_bar_color));
+            $row[] = $this->getComponentText('',array(),array('height' => '2', 'background-color' => $hilite));
+            $row[] = $this->getComponentRow($column,array(),array('background-color' => $background));
         } else {
-            $row[] = $this->getComponentText('No menu items found',array(),array('height' => '2', 'background-color' => $this->color_topbar_hilite));
+            $row[] = $this->getComponentText('No menu items found',array(),array('height' => '2', 'background-color' => $hilite));
         }
 
         $output[] = $this->getComponentColumn($row,array(),array('height' => '60'));
         return $output;
     }
 
-    private function getItem($item,$count,$current)
+    private function getItem($item,$count,$current,$hilite)
     {
+
+        $text_color = $this->model->bottom_menu_color_text ? $this->model->bottom_menu_color_text : $this->color_top_bar_text_color;
 
         if($current == $count){
             $width = round($this->screen_width / $count,0);
@@ -110,7 +122,7 @@ trait Bottommenu {
         if ($item['icon']) $row[] = $this->getComponentImage($item['icon'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
 
         $row[] = $this->getComponentText($item['text'], array(),array(
-            'color' => $this->color_top_bar_text_color, 'font-size' => '10', 'width' => $width, 'text-align' => 'center',
+            'color' => $text_color, 'font-size' => '10', 'width' => $width, 'text-align' => 'center',
             'margin' => '0 0 8 0'));
 
         /* set the menu action */
