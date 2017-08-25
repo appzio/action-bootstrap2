@@ -72,43 +72,67 @@ class BootstrapRouter implements BootstrapRouterInterface {
         }
     }
 
+    /*
+        1. look for active route inside the theme
+        2. look for active route on the main level
+        3. look for mode inside the the theme
+        4. look for mode inside the main level
+        5. look for default controller inside the theme
+        6. look for default controller on the main level
+    */
 
     public function getController($class){
         $this->setRoute();
 
-        // look for theme & mode
         $mode = $this->model->getConfigParam('mode');
+        $theme = $this->model->getConfigParam('article_action_theme');
 
-        if($mode) {
-            $mode_primary = $class . "Controllers\\" . ucfirst($mode);
-            $mode_secondary = $this->getMainPath() . "\Controllers\\" . ucfirst($mode);
-        }
-
+        $themepath = $this->getMainPath() ."\\themes\\" .$theme .'\\Controllers\\';
+        $mainpath = $this->getMainPath() .'\\Controllers\\';
         $default = $class ."Controllers\Controller";
-        $newroute = $class."Controllers\\" .ucfirst($this->controller_name);
-        $backup1 = $this->getMainPath() ."\Controllers\\" .ucfirst($this->controller_name);
-        $backup2 = $this->getMainPath() ."\Controllers\Controller";
 
-        if(classExists($newroute)){
-            $this->controller_path = $newroute;
-            return $newroute;
-        } elseif(classExists($backup1)) {
-            $this->controller_path = $backup1;
-            return $backup1;
-        } elseif(isset($mode_primary) AND classExists($mode_primary)){
-            $this->controller_path = $mode_primary;
-            return $mode_primary;
-        } elseif(isset($mode_secondary) AND classExists($mode_secondary)){
-            $this->controller_path = $mode_secondary;
-            return $mode_secondary;
-        } elseif(classExists($backup2)) {
-            $this->controller_path = $backup2;
-            return $backup2;
-        } else {
-            $this->controller_path = $default;
-            $this->error[] = 'Defined controller for the route not found';
-            return $default;
+        /* 1 & 2 active route */
+        if($this->controller_name){
+            /* check inside the theme */
+            if(classExists($themepath.$this->controller_name)) {
+                $this->controller_path = $themepath.$this->controller_name;
+                return $this->controller_path;
+            }
+
+            if(classExists($mainpath.$this->controller_name)) {
+                $this->controller_path = $mainpath.$this->controller_name;
+                return $this->controller_path;
+            }
         }
+
+        /* 3 & 4 mode */
+        if($mode){
+            if(classExists($themepath.ucfirst($mode))) {
+                $this->controller_path = $themepath.ucfirst($mode);
+                return $this->controller_path;
+            }
+
+            if(classExists($mainpath.ucfirst($mode))) {
+                $this->controller_path = $mainpath.ucfirst($mode);
+                return $this->controller_path;
+            }
+        }
+
+        /* 5 & 6 default */
+        if(classExists($themepath.'Controller')) {
+            $this->controller_path = $themepath.'Controller';
+            return $this->controller_path;
+        }
+
+        if(classExists($mainpath.'Controller')) {
+            $this->controller_path = $mainpath.'Controller';
+            return $this->controller_path;
+        }
+
+        $this->controller_path = $default;
+        $this->error[] = 'Defined controller for the route not found';
+        return $default;
+
     }
 
     public function getComponent($class){
@@ -148,6 +172,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
         $defined = $class ."Views\\".ucfirst($this->view_name);
         $backup = $this->getMainPath() ."\Views\\".ucfirst($this->view_name);
         $backup2 = $this->getMainPath() .'\Views\View';
+
 
         if(classExists($defined)){
             return $defined;
@@ -195,7 +220,6 @@ class BootstrapRouter implements BootstrapRouterInterface {
         } else {
             $this->configureNames();
         }
-
     }
 
     public function customRouting($class,$original_route,$case,$default){
