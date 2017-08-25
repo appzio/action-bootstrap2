@@ -94,13 +94,13 @@ class BootstrapRouter implements BootstrapRouterInterface {
         /* 1 & 2 active route */
         if($this->controller_name){
             /* check inside the theme */
-            if(classExists($themepath.$this->controller_name)) {
-                $this->controller_path = $themepath.$this->controller_name;
+            if(classExists($themepath.ucfirst($this->controller_name))) {
+                $this->controller_path = $themepath.ucfirst($this->controller_name);
                 return $this->controller_path;
             }
 
-            if(classExists($mainpath.$this->controller_name)) {
-                $this->controller_path = $mainpath.$this->controller_name;
+            if(classExists($mainpath.ucfirst($this->controller_name))) {
+                $this->controller_path = $mainpath.ucfirst($this->controller_name);
                 return $this->controller_path;
             }
         }
