@@ -231,7 +231,12 @@ trait Onclick {
 
         $obj = new \stdClass();
         $obj->action = 'upload-image';
-        $obj->variable = $this->model->getVariableId($variablename);
+
+        if($this->model->getVariableId($variablename)){
+            $obj->variable = $this->model->getVariableId($variablename);
+        } else {
+            $obj->variable = $variablename;
+        }
 
         $obj = $this->attachParameters($obj,$parameters);
 

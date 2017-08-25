@@ -80,12 +80,8 @@ class BootstrapRouter implements BootstrapRouterInterface {
         $mode = $this->model->getConfigParam('mode');
 
         if($mode) {
-            $primary = $class . "Controllers\\" . ucfirst($mode);
-            $secondary = $this->getMainPath() . "\Controllers\\" . ucfirst($mode);
-            $check = $this->checkExistence($primary, $secondary);
-            if($check){
-                return $check;
-            }
+            $mode_primary = $class . "Controllers\\" . ucfirst($mode);
+            $mode_secondary = $this->getMainPath() . "\Controllers\\" . ucfirst($mode);
         }
 
         $default = $class ."Controllers\Controller";
@@ -94,12 +90,17 @@ class BootstrapRouter implements BootstrapRouterInterface {
         $backup2 = $this->getMainPath() ."\Controllers\Controller";
 
         if(classExists($newroute)){
-
             $this->controller_path = $newroute;
             return $newroute;
         } elseif(classExists($backup1)) {
             $this->controller_path = $backup1;
             return $backup1;
+        } elseif(isset($mode_primary) AND classExists($mode_primary)){
+            $this->controller_path = $mode_primary;
+            return $mode_primary;
+        } elseif(isset($mode_secondary) AND classExists($mode_secondary)){
+            $this->controller_path = $mode_secondary;
+            return $mode_secondary;
         } elseif(classExists($backup2)) {
             $this->controller_path = $backup2;
             return $backup2;
