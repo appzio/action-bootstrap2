@@ -171,11 +171,8 @@ class BootstrapRouter implements BootstrapRouterInterface {
             $this->controller_name = $parts[0];
             $this->action_name = $parts[1];
         } elseif(isset($parts[0]) AND $parts[0]) {
-            $this->error[] = 'Incorrectly defined route';
-            $this->controller_name = 'controller';
             $this->action_name = 'default';
         } else {
-            $this->controller_name = 'controller';
             $this->action_name = 'default';
         }
 
