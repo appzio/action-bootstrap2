@@ -243,6 +243,36 @@ trait Onclick {
         return $obj;
     }
 
+    public function getOnclickPushPermissions($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'push-permission';
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+
+    public function getOnclickClosePopup($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'close-popup';
+        $obj = $this->attachParameters($obj,$parameters);
+        return $obj;
+    }
+
+    public function getOnclickListBranches($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'list-branches';
+        $obj = $this->attachParameters($obj,$parameters);
+        return $obj;
+    }
+
+
 
     /**
      * @param array $parameters
