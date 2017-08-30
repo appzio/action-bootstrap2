@@ -32,6 +32,9 @@ class BootstrapModel extends CActiveRecord {
     public $playid;
     public $appid;
 
+    /* not to be confused with playid, this is installation specific id */
+    public $userid;
+
     /* @var \Bootstrap\Router\BootstrapRouter */
     public $router;
 
