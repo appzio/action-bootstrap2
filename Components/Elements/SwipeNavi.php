@@ -87,6 +87,7 @@ trait SwipeNavi {
             }
 
             $obj = $this->getComponentRow($row,array(),array('width' => '100%', 'text-align' => 'center'));
+            $obj = $this->attachStyles($obj, $styles);
 
             return $obj;
 	}

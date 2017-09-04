@@ -323,6 +323,31 @@ trait Onclick {
         return $obj;
     }
 
+    public function getOnclickPurchase($ios_product_id=false,$android_product_id=false,array $parameters=array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'inapp-purchase';
+        $onclick->producttype_android = 'inapp';
+        $onclick->producttype_ios = 'inapp';
+
+        if(isset($param['product_id_ios'])) {
+            $onclick->product_id_ios = $ios_product_id;
+        }
+
+        if(isset($param['product_id_android'])) {
+            $onclick->product_id_android = $android_product_id;
+        }
+
+        $onclick = $this->attachParameters($onclick,$parameters);
+        return $onclick;
+    }
+
+    public function getOnclickPurchaseRestore($parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'inapp-restore';
+        $onclick = $this->attachParameters($onclick,$parameters);
+        return $onclick;
+    }
+
 
 
 }
