@@ -16,6 +16,7 @@ class BootstrapModel extends CActiveRecord {
     use Session;
     use DataHelpers;
     use Validators;
+    use Mobilematching;
 
     public $configobj;
     public $vars;
@@ -53,6 +54,11 @@ class BootstrapModel extends CActiveRecord {
     public $rewriteconfigs;
     public $rewriteactionfield;
     private $current_itemid;
+
+    public $mobilematchingobj;
+    public $mobilematchingmetaobj;
+
+
 
     /* custom colors for bottomenu */
     public $bottom_menu_color_background;

@@ -35,6 +35,18 @@ trait Variables {
         }
     }
 
+    public function getGlobalVariableByName($varname){
+
+        $var = \AegameKeyvaluestorage::model()->findByAttributes(array('game_id' => $this->appid,'key' => $varname));
+
+        if(isset($var->value)){
+            return $var->value;
+        } else {
+            return false;
+        }
+    }
+
+
 
     public function saveNamedVariables($variables,$exclude=false){
 
