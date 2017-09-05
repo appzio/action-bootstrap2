@@ -201,6 +201,41 @@ trait Onclick {
 
     }
 
+    public function getOnclickOpenBranch($branchid=false,$parameters=array(),$route=false,$persist_route=true,$saveparams=array()){
+
+        $open = new \stdClass();
+        $open->action = 'open-branch';
+        $open->action_config = $branchid;
+        $open = $this->attachParameters($open,$parameters);
+
+        if($route){
+            /* route is always marked by slash */
+            $routeparts = explode('/', $route);
+
+            if(!isset($routeparts[1]) OR empty($routeparts[1])){
+                $this->errors[] = 'Route is not defined right. It should controller/method';
+            }
+
+            // add the route to target
+            $open->id = $route;
+        }
+
+        if($route OR $saveparams){
+            /* this will save async */
+            $identifier = $this->encryptParams($persist_route,$route,$saveparams,$actionid);
+            $obj = new \StdClass;
+            $obj->action = 'submit-form-content';
+            $obj->id = $identifier;
+            //$obj = $this->attachParameters($obj,$parameters);
+
+            $output[] = $obj;
+            $output[] = $open;
+            return $output;
+        }
+
+        return $open;
+    }
+
 
     private function encryptParams($persist_route,$route=false,$saveparameters=array(),$actionid=false){
 
@@ -252,6 +287,99 @@ trait Onclick {
 
         return $obj;
     }
+
+
+    /* social sdks
+        tokens are sent by the client as variables. Look at the variable naming
+        by creating the onclick and then checking from debug action / app's variables
+    */
+
+    public function getOnclickGoogleLogin($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'google-login';
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+
+    public function getOnclickGoogleLogout($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'google-logout';
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+    /**
+     * @param array $parameters
+     * <code>
+     * array(   'fb_title' => 'my title',
+     *          'fb_message' => 'my share msg'
+     * </code>
+     * @return stdClass
+     */
+    public function getOnclickFacebookInvite($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'fb-invite';
+        $required = array('fb_title','fb_message');
+
+        $obj = $this->attachParameters($obj,$parameters,array(),$required);
+
+        return $obj;
+    }
+
+    /* this normally works only with category games */
+    public function getOnclickFacebookAppInvite($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'fb-appinvite';
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+    public function getOnclickFacebookLogin($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'fb-login';
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+    public function getOnclickFacebookLogout($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'fb-logout';
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+
+    public function getOnclickTwitterLogin($parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'fb-logout';
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+
+
+
 
 
     public function getOnclickClosePopup($parameters=array()){
@@ -315,6 +443,20 @@ trait Onclick {
         return $obj;
     }
 
+
+    public function getOnclickShowMessage($title,$message, $parameters=array()){
+        /** @var BootstrapView $this */
+
+        $obj = new \stdClass();
+        $obj->action = 'show-message';
+        $obj->title = $title;
+        $obj->action_config = $message;
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+
     public function getOnclickGoHome($parameters=array()){
         $obj = new \stdClass();
         $obj->action = 'go-home';
@@ -347,6 +489,100 @@ trait Onclick {
         $onclick = $this->attachParameters($onclick,$parameters);
         return $onclick;
     }
+
+    public function getOnclickBraintreePurchase($productid,$parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'braintree-purchase';
+        $onclick->purchase_product_id = $productid;
+        $onclick = $this->attachParameters($onclick,$parameters,array());
+        return $onclick;
+    }
+
+
+
+    public function getOnclickOpenSidemenu($parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'open-sidemenu';
+        $onclick = $this->attachParameters($onclick,$parameters);
+        return $onclick;
+    }
+
+    /* beacons and regions */
+    public function getOnclickMonitorRegion($beaconid,$parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'monitor-region';
+        $onclick->region = new stdClass();
+        $onclick->monitor_inside_beacons = 1;
+        $onclick->region->region = $beaconid;
+        $onclick = $this->attachParameters($onclick,$parameters);
+        return $onclick;
+    }
+
+    public function getOnclickStopRegion($region_id,$parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'monitor-region';
+        $onclick->region = new StdClass();
+        $onclick->region->region_id = $region_id;
+        $onclick = $this->attachParameters($onclick,$parameters);
+        return $onclick;
+    }
+
+
+    public function getOnclickStopAllRegions($parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'stop-all-regions';
+        $onclick = $this->attachParameters($onclick,$parameters);
+        return $onclick;
+    }
+
+    public function getOnclickFindBeacons($region_id,$parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'find-beacons';
+        $onclick->region = new StdClass();
+        $onclick->region->region_id = $region_id;
+        $onclick = $this->attachParameters($onclick,$parameters);
+        return $onclick;
+    }
+
+
+    /* advertising */
+    public function getOnclickOpenInterstitialAd($adcolony_zone=false,$parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'open-interstitial';
+        $onclick->adcolony_zoneid = $adcolony_zone;
+        $onclick = $this->attachParameters($onclick,$parameters);
+        return $onclick;
+    }
+
+
+    /* controlling items in swipe stack */
+    public function getOnclickSwipeStackControl($container_id,$direction='right',$parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'swipe-'.$direction;
+        $onclick->container_id = $container_id;
+        $onclick = $this->attachParameters($onclick,$parameters);
+        return $onclick;
+    }
+
+
+    /* you can check whether application can open a specific app url
+        requires variable, as the function will update that variable
+        with the result of the call
+    */
+
+    public function getOnclickCheckSchme($scheme_url,$parameters = array()){
+        $onclick = new \stdClass();
+        $onclick->action = 'check-scheme';
+        $onclick->action_config = $scheme_url;
+        $required = array('variable');
+        $onclick = $this->attachParameters($onclick,$parameters,array(),$required);
+        return $onclick;
+    }
+
+
+
+
+
 
 
 
