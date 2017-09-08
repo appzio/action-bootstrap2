@@ -222,7 +222,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
         }
     }
 
-    public function customRouting($class,$original_route,$case,$default){
+/*    public function customRouting($class,$original_route,$case,$default){
         $path = getNameSpacePath($class);
         $path = $path .'Router/Router.php';
 
@@ -240,8 +240,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
         }
 
         return $original_route;
-
-    }
+    }*/
 
     public function prepareView(){
 
@@ -253,7 +252,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
             $this->view_name = $viewinfo[0];
             $this->view_data = $viewinfo[1];
         } elseif(method_exists($this->controller, $default)) {
-            $this->error[] = 'Unknown controller method';
+            $this->error[] = 'Unknown controller method '.$default .' @ controller: ' .$this->controller_name;
             $viewinfo = $this->controller->$default();
             $this->view_name = $viewinfo[0];
             $this->view_data = $viewinfo[1];

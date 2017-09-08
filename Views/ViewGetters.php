@@ -111,6 +111,9 @@ trait ViewGetters {
                 }
                 return new \stdClass();
                 break;
+            case 'mixed':
+                return '';
+                break;
         }
 
         $this->setError('Unrecognised data type for '.$field);

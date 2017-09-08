@@ -7,6 +7,19 @@ namespace Bootstrap\Models;
 trait Session {
 
 
+    public function setRoute($route,$persist_route=true,$actionid=false){
+
+        $actionid = $actionid ? $actionid : $this->action_id;
+
+        $persist = 'persist_route_'.$actionid;
+        $current = 'current_route_'.$actionid;
+
+        /* save the route to session */
+        $this->sessionSet($current, $route);
+        $this->sessionSet($persist, $persist_route);
+
+    }
+
     public function sessionSetArray($array){
         if(is_array($array) AND !empty($array)){
             foreach($array as $key=>$value) {
