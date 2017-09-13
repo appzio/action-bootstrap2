@@ -90,6 +90,11 @@ trait Bottommenu {
             if($menuitem['slug'] == 'mailbox' AND $this->model->msgcount){
                 $menuitem['flag'] = $this->model->msgcount;
             }
+
+            if($menuitem['slug'] == 'approvals' AND $this->model->msgcount){
+                $menuitem['flag'] = $this->model->msgcount;
+            }
+
             $column[] = $this->getItem($menuitem,$count,$counter,$hilite);
             $counter++;
         }
@@ -119,7 +124,13 @@ trait Bottommenu {
             $width = round($this->screen_width / $count,0);
         }
 
-        if ($item['icon']) $row[] = $this->getComponentImage($item['icon'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
+        if ($item['action_config'] == $this->model->action_id AND $item['action'] == 'open-action' AND isset($item['icon_selected']) AND $item['icon_selected']) {
+             $row[] = $this->getComponentImage($item['icon_selected'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
+        } elseif($item['action_config'] == $this->model->branchobj->id AND $item['action'] == 'open-branch' AND isset($item['icon_selected']) AND $item['icon_selected']) {
+             $row[] = $this->getComponentImage($item['icon_selected'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
+        } else {
+            if ($item['icon']) $row[] = $this->getComponentImage($item['icon'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
+        }
 
         $row[] = $this->getComponentText($item['text'], array(),array(
             'color' => $text_color, 'font-size' => '10', 'width' => $width, 'text-align' => 'center',
