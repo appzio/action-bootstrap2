@@ -8,7 +8,6 @@ use stdClass;
 
 class BootstrapController implements BootstrapControllerInterface {
 
-
     /* this is here just to fix a phpstorm auto complete bug with namespaces */
     /* @var \Bootstrap\Models\BootstrapModel */
     public $phpstorm_bugfix;
@@ -73,9 +72,5 @@ class BootstrapController implements BootstrapControllerInterface {
             return false;
         }
     }
-
-
-
-
 
 }

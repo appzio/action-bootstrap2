@@ -75,9 +75,8 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
      [button_text_color] => #FFFFFFFF [side_menu_color] => #FFFFFFFF [side_menu_text_color] => #FF000000 )*/
 
     public function __construct($obj){
-
-        while($n = each($this)){
-            $key = $n['key'];
+        
+        foreach ($this as $key => $value ) {
             if(isset($obj->$key) AND !$this->$key){
                 $this->$key = $obj->$key;
             }
@@ -100,15 +99,12 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
 
     }
 
-
     public function getBottomMenu()
     {
         return $this->getComponentBottommenu();
-
     }
 
-
-        public function tab1(){
+    public function tab1(){
         $this->data = new \stdClass();
         $this->data->header = array();
         $this->data->scroll = array();
@@ -119,12 +115,8 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
         return $this->data;
     }
 
-
     public function setViewData($data){
         $this->data = $data;
     }
-
-
-
 
 }

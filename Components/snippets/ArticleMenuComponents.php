@@ -61,7 +61,6 @@ class ArticleMenuComponents {
 
         if($image){
             $image = $this->imagesobj->getAsset($image);
-
         }
 
         $item->id = $id;
