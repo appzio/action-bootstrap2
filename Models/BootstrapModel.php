@@ -8,6 +8,7 @@ use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
 use Aevariable;
 use AeplayVariable;
+use function is_array;
 use function is_string;
 
 class BootstrapModel extends CActiveRecord {
@@ -143,6 +144,11 @@ class BootstrapModel extends CActiveRecord {
 
     public function getCurrentActionPermaname(){
         $permanames = $this->permanames;
+
+        if(!is_array($permanames)){
+            return array();
+        }
+
         $permanames = array_flip($permanames);
 
         if(isset($permanames[$this->action_id])){

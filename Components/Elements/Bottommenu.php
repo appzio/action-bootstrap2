@@ -61,7 +61,6 @@ trait Bottommenu {
             return array();
         }
 
-
         foreach ($this->model->menus['menus'] as $menu){
             if($menu['id'] == $this->model->bottom_menu_id){
                 $menudata = $menu['items'];
@@ -124,10 +123,10 @@ trait Bottommenu {
             $width = round($this->screen_width / $count,0);
         }
 
-        if ($item['action_config'] == $this->model->action_id AND $item['action'] == 'open-action' AND isset($item['icon_selected']) AND $item['icon_selected']) {
-             $row[] = $this->getComponentImage($item['icon_selected'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
-        } elseif($item['action_config'] == $this->model->branchobj->id AND $item['action'] == 'open-branch' AND isset($item['icon_selected']) AND $item['icon_selected']) {
-             $row[] = $this->getComponentImage($item['icon_selected'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
+        if ($item['action_config'] == $this->model->action_id AND $item['action'] == 'open-action' AND isset($item['icon_active']) AND $item['icon_active']) {
+             $row[] = $this->getComponentImage($item['icon_active'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
+        } elseif($item['action_config'] == $this->model->branchobj->id AND $item['action'] == 'open-branch' AND isset($item['icon_active']) AND $item['icon_active']) {
+             $row[] = $this->getComponentImage($item['icon_active'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
         } else {
             if ($item['icon']) $row[] = $this->getComponentImage($item['icon'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
         }
