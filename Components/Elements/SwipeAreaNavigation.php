@@ -61,7 +61,7 @@ trait SwipeAreaNavigation {
 		$obj = new \StdClass;
         $obj->type = 'swipe-navigation';
         $obj->inactive_color = $inactive_color;
-        $obj->inactive_color = $active_color;
+        $obj->active_color = $active_color;
 
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
