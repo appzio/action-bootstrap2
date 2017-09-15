@@ -103,9 +103,11 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use Elements\FormFieldOnoff;
     use Elements\Div;
     use Elements\ConfirmationDialog;
+    use Elements\SwipeAreaNavigation;
 
     use ViewGetters;
     use ViewHelpers;
+
 
     public function __construct($obj){
         /* this exist to make the referencing of
