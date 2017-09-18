@@ -11,7 +11,6 @@ use function is_numeric;
 
 trait Variables {
 
-
     /* @var $this BootstrapModel */
 
     public function getVariableId($varname){
@@ -22,7 +21,6 @@ trait Variables {
             return false;
         }
     }
-
 
     public function getVariableName($varid){
 
@@ -45,8 +43,6 @@ trait Variables {
             return false;
         }
     }
-
-
 
     public function saveNamedVariables($variables,$exclude=false){
 
@@ -121,9 +117,7 @@ trait Variables {
         }
     }
 
-
-    public function getSubmittedVariableByName($varname,$default=false)
-    {
+    public function getSubmittedVariableByName($varname,$default=false) {
         /* @var $this BootstrapModel */
 
         if (isset($this->submitvariables[$this->getVariableId($varname)])) {
