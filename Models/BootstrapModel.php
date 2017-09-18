@@ -64,6 +64,13 @@ class BootstrapModel extends CActiveRecord {
     /* custom colors for bottomenu */
     public $bottom_menu_color_background;
     public $bottom_menu_color_text;
+    public $bottom_menu_hide_text;
+
+    /**
+     * @var accepted values:
+     *
+     */
+    public $bottom_menu_config;
 
     private $errors;
 

@@ -75,7 +75,7 @@ trait Bottommenu {
         $count = count($menudata);
         $counter = 1;
 
-        $background = $this->model->bottom_menu_color_background ? $this->model->bottom_menu_color_background : $this->color_top_bar_color;
+        $background = isset($this->model->bottom_menu_config['background_color']) ? $this->model->bottom_menu_config['background_color'] : $this->color_top_bar_color;
 
         if($this->model->bottom_menu_color_background){
             $colorhelp = new \Color($this->model->bottom_menu_color_background);
@@ -92,6 +92,7 @@ trait Bottommenu {
 
             if($menuitem['slug'] == 'approvals' AND $this->model->msgcount){
                 $menuitem['flag'] = $this->model->msgcount;
+                $menuitem['flag_color'] = '#87D46D';
             }
 
             $column[] = $this->getItem($menuitem,$count,$counter,$hilite);
@@ -106,14 +107,21 @@ trait Bottommenu {
             $row[] = $this->getComponentText('No menu items found',array(),array('height' => '2', 'background-color' => $hilite));
         }
 
-        $output[] = $this->getComponentColumn($row,array(),array('height' => '60'));
+        if(isset($this->model->bottom_menu_config['hide_text']) AND $this->model->bottom_menu_config['hide_text']) {
+            $height = 50;
+        } else {
+            $height = 60;
+        }
+
+        $output[] = $this->getComponentColumn($row,array(),array('height' => $height));
         return $output;
     }
 
     private function getItem($item,$count,$current,$hilite)
     {
+        /** @var BootstrapView $this */
 
-        $text_color = $this->model->bottom_menu_color_text ? $this->model->bottom_menu_color_text : $this->color_top_bar_text_color;
+        $text_color = isset($this->model->bottom_menu_config['text_color']) ? $this->model->bottom_menu_config['text_color'] : $this->color_top_bar_text_color;
 
         if($current == $count){
             $width = round($this->screen_width / $count,0);
@@ -131,9 +139,14 @@ trait Bottommenu {
             if ($item['icon']) $row[] = $this->getComponentImage($item['icon'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
         }
 
-        $row[] = $this->getComponentText($item['text'], array(),array(
-            'color' => $text_color, 'font-size' => '10', 'width' => $width, 'text-align' => 'center',
-            'margin' => '0 0 8 0'));
+        if(isset($this->model->bottom_menu_config['hide_text']) AND $this->model->bottom_menu_config['hide_text']){
+            $height = 50;
+        } else {
+            $row[] = $this->getComponentText($item['text'], array(),array(
+                'color' => $text_color, 'font-size' => '10', 'width' => $width, 'text-align' => 'center',
+                'margin' => '0 0 8 0'));
+            $height = 60;
+        }
 
         /* set the menu action */
         $onclick = new \stdClass();
@@ -144,21 +157,55 @@ trait Bottommenu {
         if ($item['sync_open'] == 1) $onclick->sync_open = 1;
         if ($item['sync_close'] == 1) $onclick->sync_close = 1;
 
+        $slug = $item['slug'];
+
+        if(isset($this->model->bottom_menu_config['hide_text']['flags'][$slug]) AND $this->model->bottom_menu_config['hide_text']['flags'][$slug]){
+           // $flag_color = isset($this->model->bottom_menu_config['flag_color']) ?
+        }
+
         /* add a number flag on the icon */
         if(isset($item['flag']) AND $item['flag']){
-            $some[] = $this->getComponentText($item['flag'],array(),array(
-                'font-size' => '11','background-color' => '#F80F26','color' => '#ffffff','padding' => '3 6 3 6','border-radius' => '4',
-                'border-color' => '#ffffff','text-align' => 'center'
-            ));
+
+            /*        $config['flags']['approvals'] = $this->getAdultNotificationCount();
+$config['flags']['notifications'] = NotificationsModel::getMyNotificationCount($this->playid);
+$config['background_color'] = '#ffffff';
+$config['text_color'] = '#000000';
+$config['hide_text'] = true;
+$config['flag_color'] = '#3EB439';
+$config['flag_text_color'] = '#ffffff';*/
+
+
+            if(isset($item['flag_color'])){
+                $color = $item['flag_color'];
+                $some[] = $this->getComponentText($item['flag'],array(),array(
+                    'font-size' => '11','background-color' => $color,'color' => '#ffffff',
+                    'padding' => '3 6 3 6',
+                    'border-radius' => '9',
+                    'height' => '18',
+                    'text-align' => 'center'
+                ));
+
+            } else {
+                $color = '#F80F26';
+
+                $some[] = $this->getComponentText($item['flag'],array(),array(
+                    'font-size' => '11','background-color' => $color,'color' => '#ffffff',
+                    'padding' => '3 6 3 6',
+                    'border-radius' => '4',
+                    'border-color' => '#ffffff','text-align' => 'center'
+                ));
+
+            }
+
             $row[] = $this->getComponentColumn($some,array(),array('height' => '21','width' => $width/2,'text-align' => 'right','margin' => '4 0 0 0','floating' => 1,'float' => 'right'));
         }
 
         if ($item['action_config'] == $this->model->action_id AND $item['action'] == 'open-action') {
-            return $this->getComponentColumn($row, array('onclick' => $onclick),array('width' => $width, 'text-align' => 'center', 'background-color' => $this->color_topbar_hilite,'height' => '60'));
+            return $this->getComponentColumn($row, array('onclick' => $onclick),array('width' => $width, 'text-align' => 'center', 'background-color' => $this->color_topbar_hilite,'height' => $height));
         } elseif($item['action_config'] == $this->model->branchobj->id AND $item['action'] == 'open-branch'){
-            return $this->getComponentColumn($row, array('onclick' => $onclick),array('width' => $width, 'text-align' => 'center', 'background-color' => $this->color_topbar_hilite,'height' => '60'));
+            return $this->getComponentColumn($row, array('onclick' => $onclick),array('width' => $width, 'text-align' => 'center', 'background-color' => $this->color_topbar_hilite,'height' => $height));
         } else {
-            return $this->getComponentColumn($row,array('onclick' => $onclick),array('width' => $width,'text-align' => 'center','height' => '60'));
+            return $this->getComponentColumn($row,array('onclick' => $onclick),array('width' => $width,'text-align' => 'center','height' => $height));
         }
 
 
