@@ -167,6 +167,9 @@ trait Bottommenu {
                'height' => '18',
                'text-align' => 'center'
            ));
+
+            $row[] = $this->getComponentColumn($some,array(),array('height' => '21','width' => $width/2,'text-align' => 'right','margin' => '4 0 0 0','floating' => 1,'float' => 'right'));
+
         }
 
         /* add a number flag on the icon */
