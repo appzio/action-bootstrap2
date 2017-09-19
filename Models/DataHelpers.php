@@ -94,8 +94,17 @@ trait DataHelpers {
     }
 
 
-    /* note: this will return only the latest user with this value ! */
-    public function findPlayFromVariable($varname,$varvalue){
+    /**
+     * note: this will return only the latest user with this value & it will exclude
+     * the current user by default
+    */
+    public function findPlayFromVariable($varname,$varvalue,$include_current_user=false){
+
+        if($include_current_user){
+            $add = '';
+        } else {
+            $add = 'AND tbl1.play_id <>' .$this->playid;
+        }
 
         $sql = "SELECT tbl1.play_id,tbl1.value,tbl2.value FROM ae_game_play_variable AS tbl1
                 LEFT JOIN ae_game_play_variable AS tbl2 ON tbl1.play_id = tbl2.play_id
@@ -105,6 +114,7 @@ trait DataHelpers {
                 WHERE tbl2.`value` = :varvalue
                 AND vartable1.game_id = :gid
                 AND vartable1.name = :varname
+                $add
               
                 ORDER BY tbl1.play_id DESC
                 ";

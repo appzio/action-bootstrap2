@@ -77,12 +77,8 @@ trait Bottommenu {
 
         $background = isset($this->model->bottom_menu_config['background_color']) ? $this->model->bottom_menu_config['background_color'] : $this->color_top_bar_color;
 
-        if($this->model->bottom_menu_color_background){
-            $colorhelp = new \Color($this->model->bottom_menu_color_background);
-            $hilite = $colorhelp->darken();
-        } else {
-            $hilite = $this->color_topbar_hilite;
-        }
+        $colorhelp = new \Color($background);
+        $hilite = $colorhelp->darken();
 
         foreach($menudata as $menuitem){
             /* show flag */
@@ -159,21 +155,22 @@ trait Bottommenu {
 
         $slug = $item['slug'];
 
-        if(isset($this->model->bottom_menu_config['hide_text']['flags'][$slug]) AND $this->model->bottom_menu_config['hide_text']['flags'][$slug]){
-           // $flag_color = isset($this->model->bottom_menu_config['flag_color']) ?
+        if(isset($this->model->bottom_menu_config['flags'][$slug]) AND $this->model->bottom_menu_config['flags'][$slug]){
+            $flag_color = isset($this->model->bottom_menu_config['flag_color']) ?$this->model->bottom_menu_config['flag_color'] : '#F80F26';
+            $flag_text_color = isset($this->model->bottom_menu_config['flag_text_color']) ?$this->model->bottom_menu_config['flag_text_color'] : '#ffffff';
+            $some[] = $this->getComponentText($this->model->bottom_menu_config['flags'][$slug],array(),array(
+               'font-size' => '11',
+               'background-color' => $flag_color,
+               'color' => $flag_text_color,
+               'padding' => '3 6 3 6',
+               'border-radius' => '9',
+               'height' => '18',
+               'text-align' => 'center'
+           ));
         }
 
         /* add a number flag on the icon */
         if(isset($item['flag']) AND $item['flag']){
-
-            /*        $config['flags']['approvals'] = $this->getAdultNotificationCount();
-$config['flags']['notifications'] = NotificationsModel::getMyNotificationCount($this->playid);
-$config['background_color'] = '#ffffff';
-$config['text_color'] = '#000000';
-$config['hide_text'] = true;
-$config['flag_color'] = '#3EB439';
-$config['flag_text_color'] = '#ffffff';*/
-
 
             if(isset($item['flag_color'])){
                 $color = $item['flag_color'];

@@ -96,11 +96,13 @@ class BootstrapRouter implements BootstrapRouterInterface {
             /* check inside the theme */
             if(classExists($themepath.ucfirst($this->controller_name))) {
                 $this->controller_path = $themepath.ucfirst($this->controller_name);
+                $this->controller_name = ucfirst($this->controller_name);
                 return $this->controller_path;
             }
 
             if(classExists($mainpath.ucfirst($this->controller_name))) {
                 $this->controller_path = $mainpath.ucfirst($this->controller_name);
+                $this->controller_name = ucfirst($this->controller_name);
                 return $this->controller_path;
             }
         }
@@ -109,11 +111,13 @@ class BootstrapRouter implements BootstrapRouterInterface {
         if($mode){
             if(classExists($themepath.ucfirst($mode))) {
                 $this->controller_path = $themepath.ucfirst($mode);
+                $this->controller_name = ucfirst($mode);
                 return $this->controller_path;
             }
 
             if(classExists($mainpath.ucfirst($mode))) {
                 $this->controller_path = $mainpath.ucfirst($mode);
+                $this->controller_name = ucfirst($mode);
                 return $this->controller_path;
             }
         }
@@ -121,15 +125,18 @@ class BootstrapRouter implements BootstrapRouterInterface {
         /* 5 & 6 default */
         if(classExists($themepath.'Controller')) {
             $this->controller_path = $themepath.'Controller';
+            $this->controller_name = 'Controller';
             return $this->controller_path;
         }
 
         if(classExists($mainpath.'Controller')) {
             $this->controller_path = $mainpath.'Controller';
+            $this->controller_name = 'Controller';
             return $this->controller_path;
         }
 
         $this->controller_path = $default;
+        $this->controller_name = 'Controller';
         $this->error[] = 'Defined controller for the route not found';
         return $default;
 

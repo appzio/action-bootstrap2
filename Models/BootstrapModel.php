@@ -60,15 +60,17 @@ class BootstrapModel extends CActiveRecord {
     public $mobilematchingmetaobj;
 
 
-
-    /* custom colors for bottomenu */
-    public $bottom_menu_color_background;
-    public $bottom_menu_color_text;
-    public $bottom_menu_hide_text;
-
     /**
-     * @var accepted values:
-     *
+     * You can feed following kind of config array for bottom_menu_config
+     * <code>
+     * $config['flags']['approvals'] = $this->getAdultNotificationCount();
+     * $config['flags']['notifications'] = NotificationsModel::getMyNotificationCount($this->playid);
+     * $config['background_color'] = '#ffffff';
+     * $config['text_color'] = '#000000';
+     * $config['hide_text'] = true;
+     * $config['flag_color'] = '#3EB439';
+     * $config['flag_text_color'] = '#ffffff';
+     * </code>
      */
     public $bottom_menu_config;
 
