@@ -46,18 +46,15 @@ class BootstrapComponent implements BootstrapComponentInterface {
     public $color_text_color;
     public $color_icon_color;
     public $color_background_color;
-    public $color_button_text;
     public $color_dark_button_text;
     public $color_top_bar_text_color;
     public $color_top_bar_icon_color;
     public $color_button_more_info_color;
     public $color_button_more_info_icon_color;
-    public $color_button_more_info_text_color;
     public $color_item_text_color;
     public $color_top_bar_color;
     public $color_button_color;
     public $color_item_color;
-    public $color_button_icon_color;
     public $color_button_text_color;
     public $color_side_menu_color;
     public $color_side_menu_text_color;
