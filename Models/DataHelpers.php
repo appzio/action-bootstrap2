@@ -12,6 +12,9 @@ trait DataHelpers {
 
     /* @var $this BootstrapModel */
 
+    /**
+     * @return array
+     */
     public function getCountryCodes(){
         $path = \Yii::getPathOfAlias('application.modules.aelogic.packages.actionMobileregister2.sql');
         $file = $path .'/countrycodes.json';
@@ -27,7 +30,10 @@ trait DataHelpers {
         return $output;
     }
 
-    /* returns country code based on users location */
+    /**
+     * returns country code based on users location
+     * @return mixed
+     */
     public function getCountryCode(){
         $codes = $this->getCountryCodes();
         
@@ -43,6 +49,9 @@ trait DataHelpers {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function setUserAddress(){
         if(!$this->getSavedVariable('lat')){
             return false;
@@ -67,6 +76,9 @@ trait DataHelpers {
         $this->reloadData();
     }
 
+    /*
+     * @return void
+     */
     public function findPlayFromVariables($var1,$var2,$var1_value,$var2_value){
 
         $sql = "SELECT tbl1.play_id,tbl1.value,tbl2.value FROM ae_game_play_variable AS tbl1
@@ -97,6 +109,7 @@ trait DataHelpers {
     /**
      * note: this will return only the latest user with this value & it will exclude
      * the current user by default
+     * @return mixed|void
     */
     public function findPlayFromVariable($varname,$varvalue,$include_current_user=false){
 

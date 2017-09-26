@@ -44,11 +44,17 @@ trait BootstrapRouterGetters {
         return $this->error;
     }
 
+    /**
+     * @return mixed
+     */
     public function getViewData()
     {
         return $this->view_data;
     }
 
+    /**
+     * @param $name
+     */
     public function setActionShortname($name){
         $this->action_shortname = $name;
     }

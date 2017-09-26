@@ -4,6 +4,10 @@ namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 use Helper;
 
+/**
+ * Trait Bottommenu
+ * @package Bootstrap\Components\Elements
+ */
 trait Bottommenu {
 
     /**
@@ -113,6 +117,13 @@ trait Bottommenu {
         return $output;
     }
 
+    /**
+     * @param $item
+     * @param $count
+     * @param $current
+     * @param $hilite
+     * @return \stdClass
+     */
     private function getItem($item,$count,$current,$hilite)
     {
         /** @var BootstrapView $this */
@@ -207,11 +218,5 @@ trait Bottommenu {
         } else {
             return $this->getComponentColumn($row,array('onclick' => $onclick),array('width' => $width,'text-align' => 'center','height' => $height));
         }
-
-
-
-
     }
-
-
 }

@@ -3,6 +3,10 @@
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 
+/**
+ * Trait FormFieldTextArea
+ * @package Bootstrap\Components\Elements
+ */
 trait FormFieldTextArea {
 
     /**

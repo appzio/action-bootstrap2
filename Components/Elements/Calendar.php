@@ -3,6 +3,10 @@
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 
+/**
+ * Trait Calendar
+ * @package Bootstrap\Components\Elements
+ */
 trait Calendar {
 
     /**

@@ -4,10 +4,18 @@
 
 namespace Bootstrap\Models;
 
+/**
+ * Trait Validators
+ * @package Bootstrap\Models
+ */
 trait Validators {
 
     /* @var $this BootstrapModel */
 
+    /**
+     * @param $email
+     * @return bool
+     */
     public function validateEmail($email){
 
         if ( empty($email) ) {
@@ -31,6 +39,10 @@ trait Validators {
         return false;
     }
 
+    /**
+     * @param $url
+     * @return bool
+     */
     public function validateWebsite($url){
         if(strlen($url) < 4){
             return false;
@@ -45,6 +57,11 @@ trait Validators {
         return !(gethostbyname($url["host"]) == $url["host"]);
     }
 
+    /**
+     * @param $password
+     * @param bool $strict
+     * @return bool
+     */
     public function validatePassword($password,$strict=false){
         if($strict){
             $uppercase = preg_match('@[A-Z]@', $password);
@@ -63,8 +80,4 @@ trait Validators {
         return false;
 
     }
-
-
-
-
 }

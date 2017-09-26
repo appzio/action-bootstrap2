@@ -3,6 +3,10 @@
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 
+/**
+ * Trait FormFieldBirthday
+ * @package Bootstrap\Components\Elements
+ */
 trait FormFieldBirthday {
 
     /**
@@ -55,7 +59,6 @@ trait FormFieldBirthday {
      * </code>
      * @return \stdClass
      */
-
     public function getComponentFormFieldBirthday(array $parameters=array(),array $styles=array()){
         /** @var BootstrapView $this */
 

@@ -19,6 +19,10 @@ use function strtolower;
 use function strtoupper;
 use function ucfirst;
 
+/**
+ * Class BootstrapRouter
+ * @package Bootstrap\Router
+ */
 class BootstrapRouter implements BootstrapRouterInterface {
 
     use \Bootstrap\Router\BootstrapRouterGetters;
@@ -33,23 +37,73 @@ class BootstrapRouter implements BootstrapRouterInterface {
     /* @var \Bootstrap\Models\BootstrapModel */
     public $model;
 
+    /**
+     * @var
+     */
     public $menuid;
+    /**
+     * @var
+     */
     public $new_menuid;
+    /**
+     * @var
+     */
     public $actionid;
 
+    /**
+     * @var
+     */
     public $action_id;
 
+    /**
+     * @var
+     */
     public $view_name;
+
+    /**
+     * @var
+     */
     private $action_name;
+
+    /**
+     * @var
+     */
     private $controller_name;
+
+    /**
+     * @var
+     */
     private $error;
 
+    /**
+     * @var
+     */
     public $controller;
+
+    /**
+     * @var
+     */
     private $view_data;
+
+    /**
+     * @var
+     */
     private $controller_path;
+
+    /**
+     * @var
+     */
     private $component_path;
+
+    /**
+     * @var
+     */
     private $action_shortname;
 
+    /**
+     * BootstrapRouter constructor.
+     * @param $obj
+     */
     public function __construct($obj){
         /* this exist to make the referencing of
         passed objects & variables easier */
@@ -62,6 +116,11 @@ class BootstrapRouter implements BootstrapRouterInterface {
         }
     }
 
+    /**
+     * @param $primary
+     * @param $secondary
+     * @return mixed
+     */
     private function checkExistence($primary,$secondary){
         if(classExists($primary)){
             $this->controller_path = $primary;
@@ -81,6 +140,10 @@ class BootstrapRouter implements BootstrapRouterInterface {
         6. look for default controller on the main level
     */
 
+    /**
+     * @param $class
+     * @return string
+     */
     public function getController($class){
         $this->setRoute();
 
@@ -142,6 +205,10 @@ class BootstrapRouter implements BootstrapRouterInterface {
 
     }
 
+    /**
+     * @param $class
+     * @return string
+     */
     public function getComponent($class){
 
         $default = $class ."Components\Components";
@@ -159,6 +226,9 @@ class BootstrapRouter implements BootstrapRouterInterface {
         }
     }
 
+    /**
+     * @return string
+     */
     private function getMainPath(){
         $name = 'packages\action'.ucfirst($this->action_shortname);
         return $name;
@@ -193,7 +263,10 @@ class BootstrapRouter implements BootstrapRouterInterface {
         }
     }
 
-
+    /**
+     * @param bool $route
+     * @param bool $include_menuid
+     */
     private function configureNames($route=false,$include_menuid=false){
 
         $route = strtolower($route);
@@ -215,6 +288,9 @@ class BootstrapRouter implements BootstrapRouterInterface {
 
     }
 
+    /**
+     * @return void
+     */
     private function setRoute(){
         /* if current routing is marked to be persistent and is not overriden by the
         current menu call, we will use the currently active route */
@@ -249,6 +325,9 @@ class BootstrapRouter implements BootstrapRouterInterface {
         return $original_route;
     }*/
 
+    /**
+     * @return void
+     */
     public function prepareView(){
 
         $name = 'action'.ucfirst($this->action_name);

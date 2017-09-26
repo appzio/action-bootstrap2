@@ -9,6 +9,10 @@ use Bootstrap\Models\BootstrapModel;
 use Bootstrap\Views\ViewGetters;
 use Bootstrap\Views\ViewHelpers;
 
+/**
+ * Class BootstrapComponent
+ * @package Bootstrap\Components
+ */
 class BootstrapComponent implements BootstrapComponentInterface {
 
     /* this is here just to fix a phpstorm auto complete bug with namespaces */
@@ -19,28 +23,69 @@ class BootstrapComponent implements BootstrapComponentInterface {
     /* @var \Bootstrap\Models\BootstrapModel */
     public $model;
 
+    /**
+     * @var
+     */
     public $errors;
 
+    /**
+     * @var
+     */
     public $imagesobj;
+
+    /**
+     * @var
+     */
     public $varcontent;
+
+    /**
+     * @var
+     */
     public $configobj;
+
+    /**
+     * @var
+     */
     public $branchobj;
 
     /* @var \Bootstrap\Router\BootstrapRouter */
     public $router;
 
+    /**
+     * @var
+     */
     public $current_route;
 
-    /*  you can feed divs to be automatically included here*/
+    /**
+     * You can feed divs to be automatically included here
+     * @var array
+     */
     private $divs = array();
 
+    /**
+     * @var
+     */
     public $aspect_ratio;
+
+    /**
+     * @var
+     */
     public $screen_width;
+
+    /**
+     * @var
+     */
     public $screen_height;
 
+    /**
+     * @var
+     */
     public $colors;
 
-    /* this is the data passed from the controller */
+    /**
+     * This is the data passed from the controller
+     * @var
+     */
     public $data;
 
     public $color_text_color;
@@ -105,7 +150,10 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ViewGetters;
     use ViewHelpers;
 
-
+    /**
+     * BootstrapComponent constructor.
+     * @param $obj
+     */
     public function __construct($obj){
         /* this exist to make the referencing of
         passed objects & variables easier */
@@ -128,11 +176,16 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
     }
 
+    /**
+     * @return mixed
+     */
     public function getErrors(){
         return $this->errors;
     }
 
-
+    /**
+     * @param array $divs
+     */
     public function addDivs(array $divs){
         if(!empty($this->divs)){
             $this->divs = array_merge($this->divs,$divs);
@@ -141,10 +194,11 @@ class BootstrapComponent implements BootstrapComponentInterface {
         }
     }
 
+    /**
+     * @return array
+     */
     public function getDivs(){
         return $this->divs;
     }
-
-
 
 }

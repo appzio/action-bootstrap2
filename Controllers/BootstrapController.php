@@ -6,6 +6,10 @@ namespace Bootstrap\Controllers;
 use Bootstrap\Router\BootstrapRouter;
 use stdClass;
 
+/**
+ * Class BootstrapController
+ * @package Bootstrap\Controllers
+ */
 class BootstrapController implements BootstrapControllerInterface {
 
     /* this is here just to fix a phpstorm auto complete bug with namespaces */
@@ -30,9 +34,15 @@ class BootstrapController implements BootstrapControllerInterface {
 
     public $onloads;
 
-    // set this to true to suppress output (for async operations)
+    /**
+     * set this to true to suppress output (for async operations)
+     */
     public $no_output = false;
 
+    /**
+     * BootstrapController constructor.
+     * @param $obj
+     */
     public function __construct($obj){
         /* this exist to make the referencing of
         passed objects & variables easier */
@@ -47,19 +57,31 @@ class BootstrapController implements BootstrapControllerInterface {
         $this->action_name = $this->router->getActionName();
     }
 
+    /**
+     * @return array
+     */
     public function actionDefault(){
         return ['View','viewerror'];
     }
 
+    /**
+     * @return array
+     */
     public function viewError(){
         return ['View','viewerror'];
     }
 
+    /**
+     * @return mixed
+     */
     public function getMenuId(){
         return $this->router->getMenuId();
     }
 
-    /* collects location once */
+    /**
+     * Collects location once
+     * @return bool
+     */
     public function collectLocation(){
         $cache = \Appcaching::getGlobalCache('location-asked'.$this->playid);
 
