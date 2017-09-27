@@ -3,6 +3,10 @@
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 
+/**
+ * Trait ConfirmationDialog
+ * @package Bootstrap\Components\Elements
+ */
 trait ConfirmationDialog {
 
     /**
@@ -15,7 +19,6 @@ trait ConfirmationDialog {
      * @param array $parameters selected_state, variable, onclick, style
      * @return \stdClass
      */
-
     public function getComponentConfirmationDialog($onclick_yes,$div,$text=false){
         /** @var BootstrapComponent $this */
 

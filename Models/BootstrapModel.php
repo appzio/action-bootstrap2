@@ -11,6 +11,10 @@ use AeplayVariable;
 use function is_array;
 use function is_string;
 
+/**
+ * Class BootstrapModel
+ * @package Bootstrap\Models
+ */
 class BootstrapModel extends CActiveRecord {
 
     use Variables;
@@ -76,6 +80,10 @@ class BootstrapModel extends CActiveRecord {
 
     private $errors;
 
+    /**
+     * BootstrapModel constructor.
+     * @param string $obj
+     */
     public function __construct($obj){
 
         parent::__construct();
@@ -91,19 +99,32 @@ class BootstrapModel extends CActiveRecord {
 
     }
 
+    /**
+     * @return string
+     */
     public function tableName(){
         return 'ae_game_branch_action';
     }
 
+    /**
+     * @return string
+     */
     public function primaryKey()
     {
         return 'id';
     }
 
+    /**
+     * @param string $className
+     * @return mixed|static
+     */
     public static function model($className=__CLASS__){
         return parent::model($className);
     }
 
+    /**
+     * @return array
+     */
     public function relations()
     {
         return array(
@@ -111,6 +132,9 @@ class BootstrapModel extends CActiveRecord {
         );
     }
 
+    /**
+     * @return array
+     */
     public function attributeLabels()
     {
         return array(
@@ -119,6 +143,11 @@ class BootstrapModel extends CActiveRecord {
         );
     }
 
+    /**
+     * @param $param
+     * @param bool $default
+     * @return bool
+     */
     public function getConfigParam($param,$default=false){
 
         if (isset($this->configobj->$param)) {
@@ -130,16 +159,25 @@ class BootstrapModel extends CActiveRecord {
         return false;
     }
 
+    /**
+     * @return array
+     */
     public function getValidationErrors() {
         return $this->validation_errors;
     }
 
+    /**
+     * @return array
+     */
     public function getAllConfigParams(){
         $params = (array)$this->configobj;
         return $params;
     }
 
-    /* reload all variable data */
+    /**
+     * Reload all variable data
+     * @return void
+     */
     public function reloadData(){
         $this->loadVariables();
         $this->loadVariableContent();
@@ -147,10 +185,17 @@ class BootstrapModel extends CActiveRecord {
         $this->configobj = @json_decode($this->actionobj->config);
     }
 
+    /**
+     * @param $string
+     * @return bool|mixed|string
+     */
     public function localize($string){
         return $this->localizationComponent->smartLocalize($string);
     }
 
+    /**
+     * @return array
+     */
     public function getCurrentActionPermaname(){
         $permanames = $this->permanames;
 
@@ -166,7 +211,12 @@ class BootstrapModel extends CActiveRecord {
 
     }
 
-    /* returns mapping between permanent name & action id */
+    /**
+     * Returns mapping between permanent name & action id
+     *
+     * @param $name
+     * @return bool
+     */
     public function getActionidByPermaname($name){
 
         if(isset($this->permanames[$name])){
@@ -200,13 +250,14 @@ class BootstrapModel extends CActiveRecord {
         $this->rewriteactionfield[$field] = $newcontent;
     }
 
-    /* this will get the current item id, as triggered initially by menuid.
-        ie. if you use for example open-action with id, you should define id like this:
-        controller/function/$id
-        this id gets saved to session so it will be remembered even though you would have
-        different menu commands inside the same context. It is tied to action_id
-    */
-
+    /**
+     * this will get the current item id, as triggered initially by menuid.
+     * ie. if you use for example open-action with id, you should define id like this:
+     * controller/function/$id
+     * this id gets saved to session so it will be remembered even though you would have
+     * different menu commands inside the same context. It is tied to action_id
+     * @return bool|mixed
+     */
     public function getItemId(){
         $pointer = 'item_id_'.$this->action_id;
 
@@ -226,7 +277,6 @@ class BootstrapModel extends CActiveRecord {
     /**
      * @return mixed -- returns the currentlyc called menuid (if any)
      */
-
     public function getMenuId(){
         return $this->router->getMenuId();
     }
@@ -236,11 +286,14 @@ class BootstrapModel extends CActiveRecord {
      * Current action id (not the play action, but the actual configuration object id
      * @return int
      */
-
     public function getActionId(){
         return $this->action_id;
     }
 
+    /**
+     * @param $name
+     * @return bool|string
+     */
     public function getValidationError($name){
 
         if(isset($this->validation_errors[$name])){
@@ -250,14 +303,26 @@ class BootstrapModel extends CActiveRecord {
         return false;
     }
 
+    /**
+     * @param $string
+     * @return void
+     */
     public function setError($string){
         $this->errors[] = $string;
     }
 
+    /**
+     * @return mixed
+     * @return void
+     */
     public function getRuntimeErrors(){
         return $this->errors;
     }
 
+    /**
+     * @param bool $actionid
+     * @param bool $actionpermaname
+     */
     public function flushActionRoutes($actionid=false,$actionpermaname=false){
 
         if(is_string($actionpermaname)){

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class BootstrapPreprocessor
+ */
 class BootstrapPreprocessor {
 
     public $styles;
@@ -8,14 +11,24 @@ class BootstrapPreprocessor {
     public $mobileobj;
     public $playobj;
 
+    /**
+     * BootstrapPreprocessor constructor.
+     */
     public function __construct(){
 
     }
 
+    /**
+     *
+     */
     public function loadStyles(){
 
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function Process($data){
 
         if(isset($data->scroll)){
@@ -25,6 +38,10 @@ class BootstrapPreprocessor {
         return $data;
     }
 
+    /**
+     * @param $playobj
+     * @return bool
+     */
     public function saveStyles($playobj){
 
         if(!$this->styles){
@@ -49,6 +66,10 @@ class BootstrapPreprocessor {
 
     }
 
+    /**
+     * @param $data
+     * @return array
+     */
     private function doProcessing($data){
         $output = array();
 
@@ -85,7 +106,11 @@ class BootstrapPreprocessor {
         return $output;
     }
 
-
+    /**
+     * @param $md5
+     * @param $stylecontent
+     * @return mixed
+     */
     private function addNewStyle($md5,$stylecontent){
         $this->styles[$md5] = $stylecontent;
         return $md5;

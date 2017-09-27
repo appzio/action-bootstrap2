@@ -2,8 +2,14 @@
 
 namespace Bootstrap\Views;
 
+/**
+ * Trait ViewHelpers
+ * @package Bootstrap\Views
+ */
 trait ViewHelpers {
-
+    /**
+     * @return \stdClass
+     */
     public function actionViewerror(){
         $this->layout = new \stdClass();
         $this->layout->scroll[] = $this->getComponentText('Controller is missing its methods',array(
@@ -12,10 +18,10 @@ trait ViewHelpers {
         return $this->layout;
     }
 
+    /**
+     * @param string $msg
+     */
     public function setError(string $msg){
         $this->errors[] = $msg;
     }
-
-
-
 }

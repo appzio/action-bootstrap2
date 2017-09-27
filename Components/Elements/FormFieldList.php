@@ -4,6 +4,10 @@ namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 use function is_array;
 
+/**
+ * Trait FormFieldList
+ * @package Bootstrap\Components\Elements
+ */
 trait FormFieldList {
 
     /**

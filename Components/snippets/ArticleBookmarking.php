@@ -1,12 +1,11 @@
 <?php
 
-/*
-    general class for managing user specific bookmarks of actions
-    if you bookmark an action, remember that it has to be visible to user (triggered)
-    this class does not deal with visibility at all for now
-
-*/
-
+/**
+ * Class ArticleBookmarking
+ * general class for managing user specific bookmarks of actions
+ * if you bookmark an action, remember that it has to be visible to user (triggered)
+ * this class does not deal with visibility at all for now
+ */
 class ArticleBookmarking extends ArticleComponent {
 
     public $variables;
@@ -15,7 +14,10 @@ class ArticleBookmarking extends ArticleComponent {
     public $bookmarks;
     public $bookmarks_array;
 
-    /* important, this is not the play_action id, but ae_game_branch_action */
+    /**
+     * @var
+     * Important, this is not the play_action id, but ae_game_branch_action
+     */
     public $action_id;
     public $actionid;
 
@@ -34,6 +36,9 @@ class ArticleBookmarking extends ArticleComponent {
     public $userlist;
     public $notification_action;
 
+    /**
+     * @return array|bool
+     */
     public function template(){
 
         $action = $this->options['action'];
@@ -66,6 +71,9 @@ class ArticleBookmarking extends ArticleComponent {
         }
     }
 
+    /**
+     * @return void
+     */
     public function removeBookmarks(){
 
         $up = false;
@@ -91,7 +99,9 @@ class ArticleBookmarking extends ArticleComponent {
         }
     }
 
-
+    /**
+     * @return void
+     */
     public function init(){
         $this->bookmarks = @json_decode($this->varcontent[$this->bookmark_var_name]);
 
@@ -104,9 +114,11 @@ class ArticleBookmarking extends ArticleComponent {
         } else {
             $this->bookmarks_array = array();
         }
-
     }
 
+    /**
+     * @return bool
+     */
     public function bookmarkStatus(){
         $actionid = $this->actionid;
 
@@ -117,8 +129,10 @@ class ArticleBookmarking extends ArticleComponent {
         return false;
     }
 
-
-    /* two ways to remove, either from a list or with a actionid */
+    /**
+     * Two ways to remove, either from a list or with a actionid
+     * @return bool
+     */
     public function deleteAllBookmarks(){
 
         $array = (array)$this->bookmarks;
@@ -132,7 +146,12 @@ class ArticleBookmarking extends ArticleComponent {
         return true;
     }
 
-    /* two ways to remove, either from a list or with a actionid */
+    /**
+     * Two ways to remove, either from a list or with a actionid
+     *
+     * @param bool $actionid
+     * @return bool
+     */
     public function bookmarkRemove($actionid=false){
         if(!$actionid){
             $actionid = $this->actionid;
@@ -147,6 +166,9 @@ class ArticleBookmarking extends ArticleComponent {
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function bookmarkSave(){
         $actionid = $this->actionid;
 
@@ -168,7 +190,9 @@ class ArticleBookmarking extends ArticleComponent {
         return true;
     }
 
-    /* will update authors notification variable */
+    /**
+     * Will update authors notification variable
+     */
     private function updateNotification(){
 
         if(isset($this->configobj->user) AND is_numeric($this->configobj->user)){
@@ -213,10 +237,18 @@ class ArticleBookmarking extends ArticleComponent {
 
     }
 
+    /**
+     *
+     */
     private function flushBookmarksCache(){
 
     }
 
+    /**
+     * @param $bookmarkdata
+     * @param string $mode
+     * @return array
+     */
     public function bookmarksRender($bookmarkdata,$mode='images'){
         $output = array();
 
@@ -230,6 +262,11 @@ class ArticleBookmarking extends ArticleComponent {
 
     }
 
+    /**
+     * @param $bookmarkdata
+     * @param string $style
+     * @return array
+     */
     public function getBookmarks($bookmarkdata,$style = 'bm'){
 
         $output = array();
@@ -308,12 +345,17 @@ class ArticleBookmarking extends ArticleComponent {
         return $output;
     }
 
-
+    /**
+     * @return void
+     */
     private function savebookmarks(){
         $bookmarks = json_encode($this->bookmarks);
         AeplayVariable::updateWithName($this->playid,$this->bookmark_var_name,$bookmarks,$this->gid);
     }
 
+    /**
+     * @param $num
+     */
     private function updateAction($num){
 
         $id = $this->action_id;
@@ -330,6 +372,5 @@ class ArticleBookmarking extends ArticleComponent {
         }
 
     }
-
 
 }

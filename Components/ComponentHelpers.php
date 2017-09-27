@@ -6,6 +6,10 @@ use function array_search;
 use function is_numeric;
 use function is_string;
 
+/**
+ * Trait ComponentHelpers
+ * @package Bootstrap\Components
+ */
 trait ComponentHelpers {
 
     /** @var \Bootstrap\Models\BootstrapModel $this->model */
@@ -17,6 +21,11 @@ trait ComponentHelpers {
     /* action id for the config object (action itself) */
     public $action_id;
 
+    /**
+     * @param \stdClass $obj
+     * @param array $styles
+     * @return \stdClass
+     */
 	public function attachStyles(\stdClass $obj, array $styles) {
 
 	    if(!$styles){
@@ -32,7 +41,13 @@ trait ComponentHelpers {
         return $obj;
 	}
 
-
+    /**
+     * @param \stdClass $obj
+     * @param array $parameters
+     * @param array $allowed
+     * @param array $required
+     * @return \stdClass
+     */
     public function attachParameters(\stdClass $obj, array $parameters, array $allowed=array(),array $required = array()) {
 
 	    if(!$parameters){
@@ -74,7 +89,10 @@ trait ComponentHelpers {
         return $obj;
     }
 
-
+    /**
+     * @param $obj
+     * @return mixed
+     */
     public function configureDefaults($obj){
 
 	    if(!isset($obj->style) AND !isset($obj->style_content)){
@@ -89,6 +107,12 @@ trait ComponentHelpers {
 
     }
 
+    /**
+     * @param $name
+     * @param $params
+     * @param bool $default
+     * @return bool
+     */
     public function addParam($name,$params,$default=false){
         if(isset($params[$name])){
             return $params[$name];

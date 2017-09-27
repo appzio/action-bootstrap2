@@ -3,6 +3,10 @@
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 
+/**
+ * Trait FormFieldText
+ * @package Bootstrap\Components\Elements
+ */
 trait FormFieldText {
 
     /**

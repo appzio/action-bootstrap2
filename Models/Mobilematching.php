@@ -9,10 +9,18 @@ use Aevariable;
 use function array_flip;
 use function is_numeric;
 
+/**
+ * Trait Mobilematching
+ * @package Bootstrap\Models
+ */
 trait Mobilematching {
 
     /* @var $this BootstrapModel */
 
+    /**
+     * @param bool $otheruserid
+     * @param bool $debug
+     */
     public function initMobileMatching($otheruserid=false,$debug=false){
         \Yii::import('application.modules.aelogic.packages.actionMobilematching.models.*');
         $this->mobilematchingobj = new \MobilematchingModel();

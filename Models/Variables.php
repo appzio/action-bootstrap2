@@ -9,10 +9,18 @@ use Aevariable;
 use function array_flip;
 use function is_numeric;
 
+/**
+ * Trait Variables
+ * @package Bootstrap\Models
+ */
 trait Variables {
 
     /* @var $this BootstrapModel */
 
+    /**
+     * @param $varname
+     * @return bool
+     */
     public function getVariableId($varname){
 
         if(isset($this->vars[$varname])){
@@ -22,6 +30,10 @@ trait Variables {
         }
     }
 
+    /**
+     * @param $varid
+     * @return bool
+     */
     public function getVariableName($varid){
 
         $vars = array_flip($this->vars);
@@ -33,6 +45,10 @@ trait Variables {
         }
     }
 
+    /**
+     * @param $varname
+     * @return bool
+     */
     public function getGlobalVariableByName($varname){
 
         $var = \AegameKeyvaluestorage::model()->findByAttributes(array('game_id' => $this->appid,'key' => $varname));
@@ -44,6 +60,11 @@ trait Variables {
         }
     }
 
+    /**
+     * @param $variables
+     * @param bool $exclude
+     * @return bool
+     */
     public function saveNamedVariables($variables,$exclude=false){
 
         $new = array();
@@ -63,6 +84,11 @@ trait Variables {
         return true;
     }
 
+    /**
+     * @param $varname
+     * @param bool $default
+     * @return bool
+     */
     public function getSavedVariable($varname,$default=false){
 
         if (isset($this->varcontent[$varname])) {
@@ -87,6 +113,10 @@ trait Variables {
         return false;
     }
 
+    /**
+     * @param $gid
+     * @return bool
+     */
     public static function getVariables($gid){
         $vars = \Aevariable::model()->findAllByAttributes(array('game_id' => $gid));
 
@@ -102,6 +132,10 @@ trait Variables {
         }
     }
 
+    /**
+     * @param $playid
+     * @return bool
+     */
     public static function getVariableContent($playid){
         $vars = \AeplayVariable::model()->with('variable')->findAllByAttributes(array('play_id' => $playid));
 
@@ -117,6 +151,11 @@ trait Variables {
         }
     }
 
+    /**
+     * @param $varname
+     * @param bool $default
+     * @return bool
+     */
     public function getSubmittedVariableByName($varname,$default=false) {
         /* @var $this BootstrapModel */
 
@@ -131,10 +170,16 @@ trait Variables {
         return false;
     }
 
+    /**
+     * @return mixed
+     */
     public function getAllSubmittedVariables(){
         return $this->submitvariables;
     }
 
+    /**
+     * @return array
+     */
     public function getAllSubmittedVariablesByName(){
 
         /* depeneding on whether app has variable set or not,
@@ -155,8 +200,12 @@ trait Variables {
         return array();
     }
 
-
-
+    /**
+     * @param $vars
+     * @param $playid
+     * @param bool $exclude
+     * @return bool
+     */
     public static function saveVariables($vars,$playid,$exclude=false){
 
         if(is_array($vars)){
@@ -187,6 +236,10 @@ trait Variables {
 
     }
 
+    /**
+     * @param $variable
+     * @param $value
+     */
     public function saveVariable($variable,$value){
         if ( !is_numeric($variable) ) {
             $varid = $this->getVariableId($variable);
@@ -206,26 +259,38 @@ trait Variables {
         $this->loadVariableContent(true);
     }
 
+    /**
+     * @param $variablename
+     * @return void
+     */
     public function deleteVariable($variablename){
         \AeplayVariable::deleteWithName($this->playid,$variablename,$this->appid);
         $this->loadVariableContent(true);
     }
 
+    /**
+     * @return void
+     */
     public function loadVariables(){
         $this->vars = $this->getVariables($this->appid);
     }
 
+    /**
+     * @param bool $force
+     * @return void
+     */
     public function loadVariableContent($force=false){
         $this->varcontent = $this->getVariableContent($this->appid);
     }
 
 
-    /*
-    * Retrieve all variables, which belong to a certain "playid"
-    * If you intend to use this method without passing a parameter,
-    * you may consider referring to $this->varcontent instead
-    */
-
+    /**
+     * Retrieve all variables, which belong to a certain "playid"
+     * If you intend to use this method without passing a parameter,
+     * you may consider referring to $this->varcontent instead
+     * @param bool $playid
+     * @return array|bool
+     */
     public function foreignVariablesGet( $playid = false ) {
 
         if ( empty($playid) ) {
@@ -244,13 +309,13 @@ trait Variables {
         return $vars;
     }
 
-
+    /**
+     * @param string $variablename
+     * @param $value
+     * @param int $playid
+     */
     public function foreignVariableSave( string $variablename, $value, int $playid ){
         \AeplayVariable::updateWithName( $playid, $variablename, $value, $this->appid );
         $this->loadVariableContent(true);
     }
-
-
-
-
 }

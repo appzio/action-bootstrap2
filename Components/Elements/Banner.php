@@ -3,6 +3,10 @@
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 
+/**
+ * Trait Banner
+ * @package Bootstrap\Components\Elements
+ */
 trait Banner {
 
     /**
@@ -10,7 +14,6 @@ trait Banner {
      * @param string $size -- banner | rectangle
      * @return \StdClass
      */
-
     public function getBannerAd($advertisingid, $size='banner') {
         /** @var BootstrapView $this */
 		$obj = new \StdClass;

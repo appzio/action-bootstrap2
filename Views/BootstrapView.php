@@ -15,6 +15,10 @@ use function is_string;
 use function property_exists;
 use stdClass;
 
+/**
+ * Class BootstrapView
+ * @package Bootstrap\Views
+ */
 class BootstrapView extends BootstrapComponent implements BootstrapViewInterface   {
 
     use ViewHelpers;
@@ -33,38 +37,116 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
     /* @var \Bootstrap\Components\BootstrapComponent */
     public $components;
 
+    /**
+     * @var
+     */
     public $colors;
 
+    /**
+     * @var
+     */
     public $menuid;
+    /**
+     * @var
+     */
     public $actionid;
 
     /* data sent by the controller */
+    /**
+     * @var stdClass
+     */
     public $data;
 
     /* layout code */
+    /**
+     * @var
+     */
     public $layout;
 
+    /**
+     * @var
+     */
     public $color_text_color;
+    /**
+     * @var
+     */
     public $color_icon_color;
+    /**
+     * @var
+     */
     public $color_background_color;
+    /**
+     * @var
+     */
     public $color_button_text;
+    /**
+     * @var
+     */
     public $color_dark_button_text;
+    /**
+     * @var
+     */
     public $color_top_bar_text_color;
+    /**
+     * @var
+     */
     public $color_top_bar_icon_color;
+    /**
+     * @var
+     */
     public $color_button_more_info_color;
+    /**
+     * @var
+     */
     public $color_button_more_info_icon_color;
+    /**
+     * @var
+     */
     public $color_button_more_info_text_color;
+    /**
+     * @var
+     */
     public $color_item_text_color;
+    /**
+     * @var
+     */
     public $color_top_bar_color;
+    /**
+     * @var
+     */
     public $color_button_color;
+    /**
+     * @var
+     */
     public $color_item_color;
+    /**
+     * @var
+     */
     public $color_button_icon_color;
+    /**
+     * @var
+     */
     public $color_button_text_color;
+    /**
+     * @var
+     */
     public $color_side_menu_color;
+    /**
+     * @var
+     */
     public $color_side_menu_text_color;
+    /**
+     * @var
+     */
     public $color_topbar_hilite;
 
+    /**
+     * @var
+     */
     public $bottom_menu_id;
+    /**
+     * @var bool
+     */
     public $bottom_menu_json;
 
     /*Array ( [text_color] => #FF000000 [icon_color] => #FF000000 [background_color] => #FFCFD8DC [button_text] => #FF000000
@@ -74,6 +156,10 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
     [button_color] => #FF536DFE [item_color] => #FFFFCDD2 [button_icon_color] => #FFFFFFFF
      [button_text_color] => #FFFFFFFF [side_menu_color] => #FFFFFFFF [side_menu_text_color] => #FF000000 )*/
 
+    /**
+     * BootstrapView constructor.
+     * @param $obj
+     */
     public function __construct($obj){
         
         foreach ($this as $key => $value ) {
@@ -99,11 +185,17 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
 
     }
 
+    /**
+     * @return array
+     */
     public function getBottomMenu()
     {
         return $this->getComponentBottommenu();
     }
 
+    /**
+     * @return stdClass
+     */
     public function tab1(){
         $this->data = new \stdClass();
         $this->data->header = array();
@@ -115,6 +207,9 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
         return $this->data;
     }
 
+    /**
+     * @param $data
+     */
     public function setViewData($data){
         $this->data = $data;
     }

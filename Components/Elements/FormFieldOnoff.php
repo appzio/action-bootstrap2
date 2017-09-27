@@ -4,6 +4,10 @@ namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 use function is_array;
 
+/**
+ * Trait FormFieldOnoff
+ * @package Bootstrap\Components\Elements
+ */
 trait FormFieldOnoff {
 
     /**

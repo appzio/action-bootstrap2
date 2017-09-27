@@ -4,6 +4,10 @@ namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 use function strtoupper;
 
+/**
+ * Trait Div
+ * @package Bootstrap\Components\Elements
+ */
 trait Div {
 
     /**
@@ -54,7 +58,6 @@ trait Div {
      * </code>
      * @return \stdClass
      */
-
     public function getComponentDiv(string $id, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
 

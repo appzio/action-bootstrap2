@@ -4,6 +4,10 @@ namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 use function strtoupper;
 
+/**
+ * Trait Divider
+ * @package Bootstrap\Components\Elements
+ */
 trait Divider {
 
     /**

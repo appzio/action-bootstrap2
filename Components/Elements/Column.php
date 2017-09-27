@@ -3,6 +3,10 @@
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 
+/**
+ * Trait Column
+ * @package Bootstrap\Components\Elements
+ */
 trait Column {
 
     /**
@@ -45,7 +49,6 @@ trait Column {
      * </code>
      * @return \stdClass
      */
-
     public function getComponentColumn(array $content, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
 
@@ -59,5 +62,4 @@ trait Column {
 
         return $obj;
 	}
-
 }

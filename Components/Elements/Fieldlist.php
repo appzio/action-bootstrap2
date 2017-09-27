@@ -3,6 +3,10 @@
 namespace Bootstrap\Components\Elements;
 use Bootstrap\Views\BootstrapView;
 
+/**
+ * Trait Fieldlist
+ * @package Bootstrap\Components\Elements
+ */
 trait Fieldlist {
 
     /**
@@ -45,7 +49,6 @@ trait Fieldlist {
      * </code>
      * @return \stdClass
      */
-
     public function getComponentFormFieldList(string $content, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
 
