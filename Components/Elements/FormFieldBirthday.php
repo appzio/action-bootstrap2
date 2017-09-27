@@ -67,10 +67,17 @@ trait FormFieldBirthday {
         $dayvalue = $this->model->getSubmittedVariableByName('birth_day') ? $this->model->getSubmittedVariableByName('birth_day') : '01';
         $monthvalue = $this->model->getSubmittedVariableByName('birth_month') ? $this->model->getSubmittedVariableByName('birth_month') : '01';
 
-        $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => 'birth_day'),array('width' => 50,'margin' => '0 10 0 40'));
-        $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => 'birth_month',array('width' => 150,'margin' => '0 10 0 0')));
-        $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => 'birth_year'),array('width' => 80,'margin' => '0 40 0 0'));
+        if(isset($parameters['format']) AND $parameters['format'] == 'us'){
+            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => 'birth_month',array('width' => 120,'margin' => '0 10 0 0')));
+            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => 'birth_day'),array('width' => 50,'margin' => '0 10 0 10'));
+            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => 'birth_year'),array('width' => 80,'margin' => '0 0 0 0'));
+        } else {
+            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => 'birth_day'),array('width' => 50,'margin' => '0 10 0 0'));
+            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => 'birth_month',array('width' => 150,'margin' => '0 10 0 0')));
+            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => 'birth_year'),array('width' => 80,'margin' => '0 0 0 0'));
 
-        return $this->getComponentRow($col);
+        }
+
+        return $this->getComponentRow($col,array(),array('margin' => '0 40 0 40'));
     }
 }
