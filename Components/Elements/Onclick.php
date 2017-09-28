@@ -471,13 +471,8 @@ trait Onclick {
         $onclick->producttype_android = 'inapp';
         $onclick->producttype_ios = 'inapp';
 
-        if(isset($param['product_id_ios'])) {
-            $onclick->product_id_ios = $ios_product_id;
-        }
-
-        if(isset($param['product_id_android'])) {
-            $onclick->product_id_android = $android_product_id;
-        }
+        $onclick->product_id_ios = $ios_product_id;
+        $onclick->product_id_android = $android_product_id;
 
         $onclick = $this->attachParameters($onclick,$parameters);
         return $onclick;
