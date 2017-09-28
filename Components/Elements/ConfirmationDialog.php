@@ -19,10 +19,15 @@ trait ConfirmationDialog {
      * @param array $parameters selected_state, variable, onclick, style
      * @return \stdClass
      */
-    public function getComponentConfirmationDialog($onclick_yes,$div,$text=false){
+    public function getComponentConfirmationDialog($onclick_yes,$div,$text=false,$parameters=array()){
         /** @var BootstrapComponent $this */
 
-        $out[] = $this->getComponentText('{#are_you_sure#}?',array('style' => 'confirmation_title'));
+        if(isset($parameters['title'])){
+            $out[] = $this->getComponentText($parameters['title'],array('style' => 'confirmation_title'));
+        } else {
+            $out[] = $this->getComponentText('{#are_you_sure#}?',array('style' => 'confirmation_title'));
+        }
+
         $out[] = $this->getComponentText('',array('style' => 'confirmation_divider'));
 
         $onclick_cancel = $this->getOnclickHideDiv($div);
@@ -32,7 +37,12 @@ trait ConfirmationDialog {
             $out[] = $this->getComponentText($text,array('style' => 'confirmation_dialogtext'));
         }
 
-        $btn[] = $this->getComponentText('{#cancel#}',array('onclick' =>$onclick_cancel,'style' => 'confirmation_btn'));
+        if(isset($parameters['title_cancel'])){
+            $btn[] = $this->getComponentText($parameters['title_cancel'],array('onclick' =>$onclick_cancel,'style' => 'confirmation_btn'));
+        } else {
+            $btn[] = $this->getComponentText('{#cancel#}',array('onclick' =>$onclick_cancel,'style' => 'confirmation_btn'));
+        }
+
         $btn[] = $this->getComponentVerticalSpacer('10');
         $btn[] = $this->getComponentText('{#yes#}',array('onclick' =>$onclick_yes,'style' => 'confirmation_btn'));
 
