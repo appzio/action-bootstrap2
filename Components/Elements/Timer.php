@@ -7,7 +7,7 @@ use Bootstrap\Views\BootstrapView;
  * Trait Fieldlist
  * @package Bootstrap\Components\Elements
  */
-trait InfiniteScroll {
+trait Timer {
 
     /**
      * @param $content array of other objects
@@ -49,15 +49,15 @@ trait InfiniteScroll {
      * </code>
      * @return \stdClass
      */
-    public function getInfiniteScroll(string $content, array $parameters=array(),array $styles=array()) {
+    public function getTimer(string $content, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
 
 		$obj = new \StdClass;
-        $obj->type = 'infinite-scroll';
-        $obj->items = $content;
+        $obj->type = 'timer';
+        $obj->content = $content;
 
-        $required = array('next_page_id');
-
+        $required = array('timer_id','mode','submit_menu_id');
+        
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters,array(),$required);
         $obj = $this->configureDefaults($obj);

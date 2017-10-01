@@ -146,6 +146,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use Elements\Div;
     use Elements\ConfirmationDialog;
     use Elements\SwipeAreaNavigation;
+    use Elements\InfiniteScroll;
+    use Elements\Timer;
 
     use ViewGetters;
     use ViewHelpers;
