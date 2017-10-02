@@ -8,6 +8,7 @@ use Bootstrap\Components\Elements as Elements;
 use Bootstrap\Models\BootstrapModel;
 use Bootstrap\Views\ViewGetters;
 use Bootstrap\Views\ViewHelpers;
+use ImagesController;
 
 /**
  * Class BootstrapComponent
@@ -29,21 +30,26 @@ class BootstrapComponent implements BootstrapComponentInterface {
     public $errors;
 
     /**
-     * @var
+     * Image processor object.
+     * @var ImagesController
      */
     public $imagesobj;
 
     /**
+     * Includes currently loaded user variables in array. Normally you would use $this->getSavedVariable instead of accessing this directly.
+     * Declared public for easier debugging for certain cases.
      * @var
      */
     public $varcontent;
 
     /**
+     * Actions configuration as defined in the web admin. All these can be overriden using $this->rewriteActionConfigField()
      * @var
      */
     public $configobj;
 
     /**
+     * Configuration array for the branch. Includes all configuration fields defined in the web admin.
      * @var
      */
     public $branchobj;
@@ -52,6 +58,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     public $router;
 
     /**
+     * Holds the currently active route information /Controllername/Methodname/menuid
      * @var
      */
     public $current_route;
@@ -63,21 +70,25 @@ class BootstrapComponent implements BootstrapComponentInterface {
     private $divs = array();
 
     /**
+     * aspect ration is screen_width / screen_height
      * @var
      */
     public $aspect_ratio;
 
     /**
+     * screen width in pixels
      * @var
      */
     public $screen_width;
 
     /**
+     * screen height in pixels
      * @var
      */
     public $screen_height;
 
     /**
+     * Includes an array of colors defined for the app / branch / action
      * @var
      */
     public $colors;
@@ -88,21 +99,37 @@ class BootstrapComponent implements BootstrapComponentInterface {
      */
     public $data;
 
+    /* use depreceated */
     public $color_text_color;
+    /* use depreceated */
     public $color_icon_color;
+    /* use depreceated */
     public $color_background_color;
+    /* use depreceated */
     public $color_dark_button_text;
+    /* use depreceated */
     public $color_top_bar_text_color;
+    /* use depreceated */
     public $color_top_bar_icon_color;
+    /* use depreceated */
     public $color_button_more_info_color;
+    /* use depreceated */
     public $color_button_more_info_icon_color;
+    /* use depreceated */
     public $color_item_text_color;
+    /* use depreceated */
     public $color_top_bar_color;
+    /* use depreceated */
     public $color_button_color;
+    /* use depreceated */
     public $color_item_color;
+    /* use depreceated */
     public $color_button_text_color;
+    /* use depreceated */
     public $color_side_menu_color;
+    /* use depreceated */
     public $color_side_menu_text_color;
+    /* use depreceated */
     public $color_topbar_hilite;
 
     use ComponentHelpers;
@@ -148,6 +175,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use Elements\SwipeAreaNavigation;
     use Elements\Timer;
 
+
     use ViewGetters;
     use ViewHelpers;
 
@@ -185,6 +213,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
     }
 
     /**
+     * Register div's to be used with this function. Takes an array with divid which points to component name (without file extension)
+     *
      * @param array $divs
      */
     public function addDivs(array $divs){

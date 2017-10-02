@@ -12,6 +12,10 @@ trait ViewGetters {
 
 
     /**
+     * Data passed from the controller is availble to views and components through this function. Notice
+     * that data passed from controller should be typed. This will ease debugging and reduce type related errors.
+     * Types are: array, bool, int, num, string, float, object or mixed.
+     *
      * @param $field
      * @param $type
      * @param bool $required -- if this is set to true, an empty value will display an erorr on the client

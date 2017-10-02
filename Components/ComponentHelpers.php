@@ -22,6 +22,7 @@ trait ComponentHelpers {
     public $action_id;
 
     /**
+     * Used by components to attach style parameters. Client expects them to be in object, configurations are defined as array when using components.
      * @param \stdClass $obj
      * @param array $styles
      * @return \stdClass

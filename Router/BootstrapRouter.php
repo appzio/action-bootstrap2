@@ -3,23 +3,18 @@
 
 namespace Bootstrap\Router;
 
-use function array_pop;
-use function basename;
-use Bootstrap\Views\BootstrapRouterGetters;
-use function classExists;
-use function Composer\Autoload\includeFile;
-use function explode;
-use function file_exists;
-use function file_get_contents;
-use function getNameSpacePath;
-use function implode;
-use function method_exists;
-use function stristr;
-use function strtolower;
-use function strtoupper;
-use function ucfirst;
-
 /**
+ * This class handles the routing for actions. Router will always first search for theme & mode files and
+ * revert to action main level if they are missing and finally to default Controller.php, View.php & Models.php.
+ * When creating actions and themes, make sure that the routes are defined correctly, any misdefined route will
+ * cause an error.
+ *
+ * Action modes are defined in the action's web configuration (and need to be set in the form file).
+ *
+ * If action has permanent route active, it will use that. Permanent routes are saved into session, so if your
+ * action is stuck on a wrong route, you can use the debug action to clear all session values to clear the routes also.
+ * There is also a controller method for clearing action's routes called $this->flushActionRoutes();
+ *
  * Class BootstrapRouter
  * @package Bootstrap\Router
  */
@@ -131,16 +126,16 @@ class BootstrapRouter implements BootstrapRouterInterface {
         }
     }
 
-    /*
-        1. look for active route inside the theme
-        2. look for active route on the main level
-        3. look for mode inside the the theme
-        4. look for mode inside the main level
-        5. look for default controller inside the theme
-        6. look for default controller on the main level
-    */
 
     /**
+     *  Controller routing logic:
+     *   1. look for active route inside the theme
+     *   2. look for active route on the main level
+     *   3. look for mode inside the the theme
+     *   4. look for mode inside the main level
+     *   5. look for default controller inside the theme
+     *   6. look for default controller on the main level
+     *
      * @param $class
      * @return string
      */
@@ -289,12 +284,11 @@ class BootstrapRouter implements BootstrapRouterInterface {
     }
 
     /**
+     * if current routing is marked to be persistent and is not overriden by the
+     * current menu call, we will use the currently active route
      * @return void
      */
     private function setRoute(){
-        /* if current routing is marked to be persistent and is not overriden by the
-        current menu call, we will use the currently active route */
-
         if(stristr($this->menuid, '/')) {
             $this->configureNames($this->menuid,true);
         }elseif($this->model->sessionGet('persist_route_'.$this->action_id)){
@@ -304,27 +298,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
             $this->configureNames();
         }
     }
-
-/*    public function customRouting($class,$original_route,$case,$default){
-        $path = getNameSpacePath($class);
-        $path = $path .'Router/Router.php';
-
-        $original_route_array = explode('\\', $original_route);
-        $newroute = array_pop($original_route_array);
-
-        if(file_exists($path)){
-            require_once($path);
-
-            if(isset($routes[$newroute][$case])){
-                $original_route_array[] = $routes[$newroute][$case];
-                $original_route = implode('\\', $original_route_array);
-                return $original_route;
-            }
-        }
-
-        return $original_route;
-    }*/
-
+    
     /**
      * @return void
      */
