@@ -5,6 +5,9 @@ use Bootstrap\Views\BootstrapView;
 
 /**
  * Trait FormFieldTextArea
+ * This trait provides access to the textarea component.
+ * A textarea is a multi line input field.
+ *
  * @package Bootstrap\Components\Elements
  */
 trait FormFieldTextArea {

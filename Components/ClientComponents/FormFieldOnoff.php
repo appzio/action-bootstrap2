@@ -6,6 +6,9 @@ use function is_array;
 
 /**
  * Trait FormFieldOnoff
+ * This trait provides access to the toggle component.
+ * A toggle is a switch that can have two values - true or false
+ *
  * @package Bootstrap\Components\Elements
  */
 trait FormFieldOnoff {

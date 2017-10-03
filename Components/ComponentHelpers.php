@@ -8,6 +8,8 @@ use function is_string;
 
 /**
  * Trait ComponentHelpers
+ * This trait declares component helper and utility methods
+ *
  * @package Bootstrap\Components
  */
 trait ComponentHelpers {

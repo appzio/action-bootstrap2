@@ -4,6 +4,13 @@ namespace Bootstrap\Components\ClientComponents;
 use Bootstrap\Views\BootstrapView;
 use function strtoupper;
 
+/**
+ * Trait Text
+ * This trait provides text components.
+ * Everything in Appzio is a component, therefore adding text is done the same way as adding images, fields, etc.
+ *
+ * @package Bootstrap\Components\ClientComponents
+ */
 trait Text {
 
     /**

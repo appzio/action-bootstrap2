@@ -264,6 +264,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
     }
 
     /**
+     * Return divs object
+     *
      * @return array
      */
     public function getDivs(){

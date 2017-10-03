@@ -6,6 +6,9 @@ use function is_array;
 
 /**
  * Trait FormFieldList
+ * This trait provides the list component.
+ * A list component is useful when you need a user to select from multiple options.
+ *
  * @package Bootstrap\Components\Elements
  */
 trait FormFieldList {

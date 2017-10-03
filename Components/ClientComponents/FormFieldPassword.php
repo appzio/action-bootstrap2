@@ -5,6 +5,9 @@ use Bootstrap\Views\BootstrapView;
 
 /**
  * Trait FormFieldPassword
+ * This trait provides access to the password input field.
+ * Password input fields hide characters after they are written.
+ *
  * @package Bootstrap\Components\Elements
  */
 trait FormFieldPassword {

@@ -5,6 +5,8 @@ use Bootstrap\Views\BootstrapView;
 
 /**
  * Trait FormFieldText
+ * This trait provides the basic text input component.
+ *
  * @package Bootstrap\Components\Elements
  */
 trait FormFieldText {

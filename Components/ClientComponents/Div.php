@@ -6,12 +6,15 @@ use function strtoupper;
 
 /**
  * Trait Div
+ * This trait provides divs - customizable popups.
+ * They act as a wrapper and can contain any kind and any number of other components
+ *
  * @package Bootstrap\Components\Elements
  */
 trait Div {
 
     /**
-     * @param $content string, no support for line feeds
+     * @param $id string
      * @param array $parameters selected_state, variable, onclick, style
      * <code>
      * $array = array(

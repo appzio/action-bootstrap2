@@ -6,9 +6,18 @@ use function explode;
 use stdClass;
 use function stristr;
 
+/**
+ * Trait Onclick
+ * This trait provides the different onclick objects methods used in views.
+ * Onclick objects are used when you are specifying the behavior of your components when the user clicks on them.
+ * @package Bootstrap\Components\ClientComponents
+ */
 trait Onclick {
 
     /**
+     * Specify which tab to be opened when the component is clicked
+     *
+     * @param $number int
      * @param array $parameters sync_open, sync_close, context,
      * <code>
      * $array = array(
@@ -19,10 +28,10 @@ trait Onclick {
      * 'id' => 'someid',
      * );
      * </code>
+     * @param $saveids array
 
      * @return \stdClass
      */
-
     public function getOnclickTab(int $number, array $parameters=array(),array $saveids = array()) {
         /** @var BootstrapView $this */
 
@@ -39,6 +48,15 @@ trait Onclick {
         return $obj;
 	}
 
+    /**
+     * Specify which div to be shown when the component is clicked
+     *
+     * @param string $divid
+     * @param array $parameters tap_to_close, transition, layout, background
+     * @param array $layout
+     * @param array $saveids
+     * @return StdClass
+     */
     public function getOnclickShowDiv(string $divid, array $parameters=array(),$layout=array(),array $saveids = array()) {
         /** @var BootstrapView $this */
 
@@ -58,6 +76,14 @@ trait Onclick {
         return $obj;
     }
 
+    /**
+     * Specify which div to hide when the component is clicked
+     *
+     * @param string $divid
+     * @param array $parameters
+     * @param array $saveids
+     * @return StdClass
+     */
     public function getOnclickHideDiv(string $divid, array $parameters=array(),array $saveids = array()) {
         /** @var BootstrapView $this */
 

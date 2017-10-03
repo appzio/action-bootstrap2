@@ -6,6 +6,8 @@ use function strtoupper;
 
 /**
  * Trait Divider
+ * This trait provides the divider component.
+ *
  * @package Bootstrap\Components\Elements
  */
 trait Divider {
