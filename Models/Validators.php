@@ -6,6 +6,8 @@ namespace Bootstrap\Models;
 
 /**
  * Trait Validators
+ * This trait contains validation related logic
+ *
  * @package Bootstrap\Models
  */
 trait Validators {
@@ -13,6 +15,8 @@ trait Validators {
     /* @var $this BootstrapModel */
 
     /**
+     * Email validation
+     *
      * @param $email
      * @return bool
      */
@@ -40,6 +44,8 @@ trait Validators {
     }
 
     /**
+     * Website validation
+     *
      * @param $url
      * @return bool
      */
@@ -58,6 +64,8 @@ trait Validators {
     }
 
     /**
+     * Password validation
+     *
      * @param $password
      * @param bool $strict
      * @return bool

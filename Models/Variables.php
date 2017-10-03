@@ -11,6 +11,8 @@ use function is_numeric;
 
 /**
  * Trait Variables
+ * This trait contains all variable related functionality
+ *
  * @package Bootstrap\Models
  */
 trait Variables {
@@ -18,6 +20,8 @@ trait Variables {
     /* @var $this BootstrapModel */
 
     /**
+     * Return variable id by name
+     *
      * @param $varname
      * @return bool
      */
@@ -31,6 +35,8 @@ trait Variables {
     }
 
     /**
+     * Return variable name by id
+     *
      * @param $varid
      * @return bool
      */
@@ -46,6 +52,8 @@ trait Variables {
     }
 
     /**
+     * Return global variable for app by id
+     *
      * @param $varname
      * @return bool
      */
@@ -61,6 +69,8 @@ trait Variables {
     }
 
     /**
+     * Save a list of variables
+     *
      * @param $variables
      * @param bool $exclude
      * @return bool
@@ -85,6 +95,9 @@ trait Variables {
     }
 
     /**
+     * Returned saved variable for current user
+     * If not stored in memory will be queried from the database and added
+     *
      * @param $varname
      * @param bool $default
      * @return bool
@@ -114,6 +127,8 @@ trait Variables {
     }
 
     /**
+     * Get all variables for application
+     *
      * @param $gid
      * @return bool
      */
@@ -133,8 +148,10 @@ trait Variables {
     }
 
     /**
+     * Get all variables for a user or return false
+     *
      * @param $playid
-     * @return bool
+     * @return mixed
      */
     public static function getVariableContent($playid){
         $vars = \AeplayVariable::model()->with('variable')->findAllByAttributes(array('play_id' => $playid));
@@ -152,6 +169,9 @@ trait Variables {
     }
 
     /**
+     * Get a submitted variable by name.
+     * Variables are usually submitted via forms
+     *
      * @param $varname
      * @param bool $default
      * @return bool
@@ -171,6 +191,8 @@ trait Variables {
     }
 
     /**
+     * Returns all submitted variables
+     *
      * @return mixed
      */
     public function getAllSubmittedVariables(){
@@ -178,6 +200,8 @@ trait Variables {
     }
 
     /**
+     * Returns all submitted variables with names as key
+     *
      * @return array
      */
     public function getAllSubmittedVariablesByName(){
@@ -201,6 +225,8 @@ trait Variables {
     }
 
     /**
+     * Save a list of variables for given user
+     *
      * @param $vars
      * @param $playid
      * @param bool $exclude
@@ -237,6 +263,8 @@ trait Variables {
     }
 
     /**
+     * Save single variable for current active user
+     *
      * @param $variable
      * @param $value
      */
@@ -260,6 +288,8 @@ trait Variables {
     }
 
     /**
+     * Delete variable for current active user
+     *
      * @param $variablename
      * @return void
      */
@@ -269,6 +299,8 @@ trait Variables {
     }
 
     /**
+     * Load variables for the application
+     *
      * @return void
      */
     public function loadVariables(){
@@ -276,6 +308,8 @@ trait Variables {
     }
 
     /**
+     * Load variable content for the application
+     *
      * @param bool $force
      * @return void
      */
@@ -288,6 +322,7 @@ trait Variables {
      * Retrieve all variables, which belong to a certain "playid"
      * If you intend to use this method without passing a parameter,
      * you may consider referring to $this->varcontent instead
+     *
      * @param bool $playid
      * @return array|bool
      */
@@ -310,6 +345,8 @@ trait Variables {
     }
 
     /**
+     * Save variable for given user
+     *
      * @param string $variablename
      * @param $value
      * @param int $playid

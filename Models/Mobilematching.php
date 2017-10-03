@@ -11,6 +11,8 @@ use function is_numeric;
 
 /**
  * Trait Mobilematching
+ * This trait contains basic matching functionality
+ *
  * @package Bootstrap\Models
  */
 trait Mobilematching {
@@ -18,6 +20,9 @@ trait Mobilematching {
     /* @var $this BootstrapModel */
 
     /**
+     * Initialize model.
+     * This model contains basic matching/unmatching functionality
+     *
      * @param bool $otheruserid
      * @param bool $debug
      */

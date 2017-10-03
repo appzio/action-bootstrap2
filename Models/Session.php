@@ -6,11 +6,15 @@ namespace Bootstrap\Models;
 
 /**
  * Trait Session
+ * This trait contains session related functionality
+ *
  * @package Bootstrap\Models
  */
 trait Session {
 
     /**
+     * Save route to session
+     *
      * @param $route
      * @param bool $persist_route
      * @param bool $actionid
@@ -29,6 +33,8 @@ trait Session {
     }
 
     /**
+     * Save an array in session storage
+     *
      * @param $array
      */
     public function sessionSetArray($array){
@@ -40,6 +46,8 @@ trait Session {
     }
 
     /**
+     * Save key value pair in session
+     *
      * @param $key
      * @param $value
      */
@@ -48,6 +56,8 @@ trait Session {
     }
 
     /**
+     * Retrieve value from session by key
+     *
      * @param $key
      * @return bool
      */

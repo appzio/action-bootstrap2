@@ -25,13 +25,33 @@ class BootstrapController implements BootstrapControllerInterface {
     /* @var BootstrapRouter */
     public $router;
 
+    /**
+     * Current active tab
+     * @var
+     */
     public $current_tab;
+
+    /**
+     * @var
+     */
     private $view_name;
 
+    /**
+     * Active action name
+     * @var mixed
+     */
     public $action_name;
 
+    /**
+     * Current logged user id
+     * @var
+     */
     public $playid;
 
+    /**
+     * Actions executed on load
+     * @var
+     */
     public $onloads;
 
     /**
@@ -58,6 +78,8 @@ class BootstrapController implements BootstrapControllerInterface {
     }
 
     /**
+     * Default entry point for controllers
+     *
      * @return array
      */
     public function actionDefault(){
@@ -72,6 +94,8 @@ class BootstrapController implements BootstrapControllerInterface {
     }
 
     /**
+     * Return current menu id if sent
+     *
      * @return mixed
      */
     public function getMenuId(){

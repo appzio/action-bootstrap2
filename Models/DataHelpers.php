@@ -7,12 +7,19 @@ namespace Bootstrap\Models;
 use function array_flip;
 use ThirdpartyServices;
 
+/**
+ * Trait DataHelpers
+ * This trait contains data and other utility methods
+ * @package Bootstrap\Models
+ */
 trait DataHelpers {
 
 
     /* @var $this BootstrapModel */
 
     /**
+     * Get country codes from JSON file
+     *
      * @return array
      */
     public function getCountryCodes(){
@@ -31,7 +38,8 @@ trait DataHelpers {
     }
 
     /**
-     * returns country code based on users location
+     * Returns country code based on users location
+     *
      * @return mixed
      */
     public function getCountryCode(){
@@ -50,6 +58,8 @@ trait DataHelpers {
     }
 
     /**
+     * Set current user address
+     *
      * @return bool
      */
     public function setUserAddress(){
@@ -76,8 +86,13 @@ trait DataHelpers {
         $this->reloadData();
     }
 
-    /*
-     * @return void
+    /**
+     * Find user id from variable values
+     *
+     * @param $var1
+     * @param $var2
+     * @param $var1_value
+     * @param $var2_value
      */
     public function findPlayFromVariables($var1,$var2,$var1_value,$var2_value){
 
@@ -107,7 +122,7 @@ trait DataHelpers {
 
 
     /**
-     * note: this will return only the latest user with this value & it will exclude
+     * Note: this will return only the latest user with this value & it will exclude
      * the current user by default
      * @return mixed|void
     */
@@ -146,8 +161,4 @@ trait DataHelpers {
             return $rows[0]['play_id'];
         }
     }
-
-
-
-
 }
