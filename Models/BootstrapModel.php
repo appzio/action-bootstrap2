@@ -8,8 +8,6 @@ use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
 use Aevariable;
 use AeplayVariable;
-use function is_array;
-use function is_string;
 
 /**
  * Class BootstrapModel
@@ -41,7 +39,9 @@ class BootstrapModel extends CActiveRecord {
     /* not to be confused with playid, this is installation specific id */
     public $userid;
 
-    /* @var \Bootstrap\Router\BootstrapRouter */
+    /**
+     * @var \Bootstrap\Router\BootstrapRouter
+     */
     public $router;
 
     public $action_id;
@@ -52,7 +52,9 @@ class BootstrapModel extends CActiveRecord {
     public $bottom_menu_id;
     public $branchobj;
 
-    /* this is a general place for validation errors that can be read by components */
+    /**
+     * this is a general place for validation errors that can be read by components
+     */
     public $validation_errors = array();
 
     public $permanames;
@@ -144,6 +146,10 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Returns a configuration parameter as defined in action's web configuration panel.
+     * You can rewrite any configuration parameters in your action using $this->rewriteActionConfigField('fieldname','newvalue');
+     * Typical parameters you would use are: backarrow, background_color, hide_menubar, subject, share_title, share_description,
+     * share_image, hide_scrollbar, pull_to_refresh, transparent_statusbar
      * @param $param
      * @param bool $default
      * @return bool

@@ -184,14 +184,15 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
         return $this->getComponentBottommenu();
     }
 
-    /** All views must define at least tab1() to return any data. Explanation of different sections:
+    /**
+     * All views must define at least tab1() to return any data. Explanation of different sections:
      * Header -- non-scrolling element on top of the view
      * Scroll -- main layout section which scrolls
      * Footer -- non-scrolling element at the bottom of the view
      * Onload -- any actions to be performed when view is activated. This should be fed only with OnClick items
-     * Control -- similar to onload
+     * Control -- similar to onload, but the command is executed only once after refresh action
      * Divs -- Any divs that are part of the view. Note that divs can be also be defined outside of the tab1, inside a function called divs()
-     * @return stdClass
+     * @return \stdClass
      */
     public function tab1(){
         $this->data = new \stdClass();
