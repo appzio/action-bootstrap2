@@ -1,8 +1,5 @@
 <?php
 
-
-namespace Bootstrap\Router;
-
 /**
  * This class handles the routing for actions. Router will always first search for theme & mode files and
  * revert to action main level if they are missing and finally to default Controller.php, View.php & Models.php.
@@ -18,6 +15,9 @@ namespace Bootstrap\Router;
  * Class BootstrapRouter
  * @package Bootstrap\Router
  */
+
+namespace Bootstrap\Router;
+
 class BootstrapRouter implements BootstrapRouterInterface {
 
     use \Bootstrap\Router\BootstrapRouterGetters;

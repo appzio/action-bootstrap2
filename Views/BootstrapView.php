@@ -1,4 +1,8 @@
 <?php
+/**
+ * Class BootstrapView
+ * @package Bootstrap\Views
+ */
 
 namespace Bootstrap\Views;
 
@@ -6,10 +10,6 @@ use Bootstrap\Components\BootstrapComponent;
 use Bootstrap\Components\ComponentHelpers;
 use Bootstrap\Components\Elements as Elements;
 
-/**
- * Class BootstrapView
- * @package Bootstrap\Views
- */
 class BootstrapView extends BootstrapComponent implements BootstrapViewInterface   {
 
     use ViewHelpers;

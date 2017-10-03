@@ -2,9 +2,11 @@
 
 namespace Bootstrap\Components;
 
-use function array_merge;
 use Bootstrap\Components\BootstrapComponentInterface;
-use Bootstrap\Components\Elements as Elements;
+use Bootstrap\Components\ClientComponents as ClientComponents;
+use Bootstrap\Components\Snippets as Snippets;
+use Bootstrap\Components\AppzioUiKit as AppzioUiKit;
+
 use Bootstrap\Models\BootstrapModel;
 use Bootstrap\Views\ViewGetters;
 use Bootstrap\Views\ViewHelpers;
@@ -18,7 +20,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
     /* this is here just to fix a phpstorm auto complete bug with namespaces */
 
-    /* @var \Bootstrap\Components\Elements\Divider */
+    /* @var \Bootstrap\Components\ClientComponents\Divider */
     public $phpstorm_bugfix;
 
     /* @var \Bootstrap\Models\BootstrapModel */
@@ -99,82 +101,118 @@ class BootstrapComponent implements BootstrapComponentInterface {
      */
     public $data;
 
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_text_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_icon_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_background_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_dark_button_text;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_top_bar_text_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_top_bar_icon_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_button_more_info_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_button_more_info_icon_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_item_text_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_top_bar_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_button_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_item_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_button_text_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_side_menu_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_side_menu_text_color;
-    /* use depreceated */
+    /**
+     * use depreceated
+     */
     public $color_topbar_hilite;
 
     use ComponentHelpers;
+    use ComponentParameters;
+    use ComponentStyles;
 
     /* all component traits need to be defined here */
-    use Elements\Banner;
-    use Elements\Column;
-    use Elements\FormFieldPassword;
-    use Elements\FormFieldText;
-    use Elements\FormFieldTextArea;
-    use Elements\FormFieldUploadImage;
-    use Elements\FormFieldUploadVideo;
+    use ClientComponents\Banner;
+    use ClientComponents\Column;
+    use ClientComponents\FormFieldPassword;
+    use ClientComponents\FormFieldText;
+    use ClientComponents\FormFieldTextArea;
+    use ClientComponents\FormFieldUploadImage;
+    use ClientComponents\FormFieldUploadVideo;
 
-    use Elements\Html;
-    use Elements\Image;
-    use Elements\InfiniteScroll;
-    use Elements\Loader;
-    use Elements\Onclick;
+    use ClientComponents\Html;
+    use ClientComponents\Image;
+    use ClientComponents\InfiniteScroll;
+    use ClientComponents\Loader;
+    use ClientComponents\Onclick;
 
-    use Elements\Progress;
-    use Elements\RangeSlider;
-    use Elements\Row;
-    use Elements\Text;
-    use Elements\Video;
-    use Elements\Fieldlist;
+    use ClientComponents\Progress;
+    use ClientComponents\RangeSlider;
+    use ClientComponents\Row;
+    use ClientComponents\Text;
+    use ClientComponents\Video;
+    use ClientComponents\Fieldlist;
 
-    use Elements\FullpageLoader;
-    use Elements\Spacers;
+    use ClientComponents\FullpageLoader;
+    use ClientComponents\Spacers;
 
-    use Elements\Map;
-    use Elements\Calendar;
+    use ClientComponents\Map;
+    use ClientComponents\Calendar;
 
-    use Elements\Divider;
-    use Elements\Swipe;
-    use Elements\SwipeNavi;
+    use ClientComponents\Divider;
+    use ClientComponents\Swipe;
+    use ClientComponents\SwipeNavi;
 
-    use Elements\FormFieldList;
-    use Elements\FormFieldBirthday;
-    use Elements\Bottommenu;
-    use Elements\FormFieldOnoff;
-    use Elements\Div;
-    use Elements\ConfirmationDialog;
-    use Elements\SwipeAreaNavigation;
-    use Elements\Timer;
+    use ClientComponents\FormFieldList;
+    use ClientComponents\FormFieldBirthday;
+    use ClientComponents\Bottommenu;
+    use ClientComponents\FormFieldOnoff;
+    use ClientComponents\Div;
+    use ClientComponents\ConfirmationDialog;
+    use ClientComponents\SwipeAreaNavigation;
+    use ClientComponents\Timer;
 
+    use Snippets\Forms\formHintedField;
+    use AppzioUiKit\Text\uiKitTextHeader;
 
     use ViewGetters;
     use ViewHelpers;
