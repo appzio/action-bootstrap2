@@ -5,6 +5,9 @@ use Bootstrap\Views\BootstrapView;
 
 /**
  * Trait Column
+ * This trait provides columns.
+ * Columns are a wrapper component used to order components on multiple lines - each on it's own line.
+ *
  * @package Bootstrap\Components\Elements
  */
 trait Column {

@@ -8,9 +8,12 @@ use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
 use Aevariable;
 use AeplayVariable;
+use function is_array;
+use function is_string;
 
 /**
  * Class BootstrapModel
+ *
  * @package Bootstrap\Models
  */
 class BootstrapModel extends CActiveRecord {
@@ -21,48 +24,153 @@ class BootstrapModel extends CActiveRecord {
     use Validators;
     use Mobilematching;
 
+    /**
+     * Configuration object passed from the parser
+     *
+     * @var
+     */
     public $configobj;
+
+    /**
+     * List of variables in name - id pairs.
+     * Should be accessed with the methods declared in the Variables trait, not directly.
+     *
+     * @var
+     */
     public $vars;
+
+    /**
+     * List of variables in name - value pairs
+     * Should be accessed with the methods declared in the Variables trait, not directly.
+     *
+     * @var
+     */
     public $varcontent;
+
+    /**
+     * @var
+     */
     public $session_storage;
 
+    /**
+     * @var
+     */
     public $click_parameters_to_save;
 
     /* @var \Localizationapi */
     public $localizationComponent;
-    public $submitvariables;
-    public $actionobj;
-
-    public $playid;
-    public $appid;
-
-    /* not to be confused with playid, this is installation specific id */
-    public $userid;
 
     /**
-     * @var \Bootstrap\Router\BootstrapRouter
+     * List of submitted variables
+     *
+     * @var
      */
+    public $submitvariables;
+
+    /**
+     * Action configuration object
+     * @var
+     */
+    public $actionobj;
+
+    /**
+     * Current active user id
+     *
+     * @var
+     */
+    public $playid;
+
+    /**
+     * Current application id
+     *
+     * @var
+     */
+    public $appid;
+
+    /**
+     * Not to be confused with playid, this is installation specific id
+     * @var
+     */
+    public $userid;
+
+    /* @var \Bootstrap\Router\BootstrapRouter */
     public $router;
 
+    /**
+     * @var
+     */
     public $action_id;
+
+    /**
+     * @var
+     */
     public $actionid;
+
+    /**
+     * List of application menus
+     *
+     * @var
+     */
     public $menus;
 
+    /**
+     * @var
+     */
     public $msgcount;
+
+    /**
+     * @var
+     */
     public $bottom_menu_id;
+
+    /**
+     * Branch configuration object
+     *
+     * @var
+     */
     public $branchobj;
 
     /**
-     * this is a general place for validation errors that can be read by components
+     * This is a general place for validation errors that can be read by components
+     *
+     * @var array
      */
     public $validation_errors = array();
 
+    /**
+     * Action permanames (slugs) with action id
+     *
+     * @var
+     */
     public $permanames;
+
+    /**
+     * @var
+     */
     public $rewriteconfigs;
+
+    /**
+     * @var
+     */
     public $rewriteactionfield;
+
+    /**
+     * @var
+     */
     private $current_itemid;
 
+    /**
+     * Matching model
+     *
+     * @var
+     */
     public $mobilematchingobj;
+
+    /**
+     * Matching meta model
+     *
+     * @var
+     */
     public $mobilematchingmetaobj;
 
 
@@ -80,6 +188,9 @@ class BootstrapModel extends CActiveRecord {
      */
     public $bottom_menu_config;
 
+    /**
+     * @var
+     */
     private $errors;
 
     /**
@@ -150,6 +261,7 @@ class BootstrapModel extends CActiveRecord {
      * You can rewrite any configuration parameters in your action using $this->rewriteActionConfigField('fieldname','newvalue');
      * Typical parameters you would use are: backarrow, background_color, hide_menubar, subject, share_title, share_description,
      * share_image, hide_scrollbar, pull_to_refresh, transparent_statusbar
+     * 
      * @param $param
      * @param bool $default
      * @return bool
@@ -166,6 +278,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Get validation errors list
+     *
      * @return array
      */
     public function getValidationErrors() {
@@ -173,6 +287,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Get list of all configuration parameters
+     *
      * @return array
      */
     public function getAllConfigParams(){
@@ -182,6 +298,7 @@ class BootstrapModel extends CActiveRecord {
 
     /**
      * Reload all variable data
+     *
      * @return void
      */
     public function reloadData(){
@@ -192,6 +309,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Localize string
+     *
      * @param $string
      * @return bool|mixed|string
      */
@@ -200,6 +319,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Get the active action's permaname (slug)
+     *
      * @return array
      */
     public function getCurrentActionPermaname(){
@@ -233,6 +354,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Rewrite configuration field by key
+     *
      * @param $field -- this you can see from the form, common fields are:
      * - backarrow
      * - hide_subject
@@ -246,7 +369,7 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * you can reconfigure any action properties with this
+     * Reconfigure any action property
      *
      * @param $field
      * @param $newcontent
@@ -257,11 +380,12 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * this will get the current item id, as triggered initially by menuid.
+     * This will get the current item id, as triggered initially by menuid.
      * ie. if you use for example open-action with id, you should define id like this:
      * controller/function/$id
      * this id gets saved to session so it will be remembered even though you would have
      * different menu commands inside the same context. It is tied to action_id
+     *
      * @return bool|mixed
      */
     public function getItemId(){
@@ -281,7 +405,9 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * @return mixed -- returns the currentlyc called menuid (if any)
+     * Returns the currentlyc called menuid (if any)
+     *
+     * @return mixed
      */
     public function getMenuId(){
         return $this->router->getMenuId();
@@ -290,6 +416,7 @@ class BootstrapModel extends CActiveRecord {
 
     /**
      * Current action id (not the play action, but the actual configuration object id
+     *
      * @return int
      */
     public function getActionId(){
@@ -297,6 +424,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Return validation error from the list by name
+     *
      * @param $name
      * @return bool|string
      */
@@ -310,6 +439,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Add error in the errors object
+     *
      * @param $string
      * @return void
      */
@@ -318,6 +449,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Return errors object
+     *
      * @return mixed
      * @return void
      */
@@ -326,6 +459,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
+     * Remove routes from the session
+     *
      * @param bool $actionid
      * @param bool $actionpermaname
      */
@@ -342,7 +477,4 @@ class BootstrapModel extends CActiveRecord {
         $this->sessionSet('current_route_'.$actionid, '');
         $this->sessionSet('persist_route_'.$actionid, '');
     }
-
-
-
 }

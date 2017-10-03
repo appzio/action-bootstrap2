@@ -3,6 +3,13 @@
 namespace Bootstrap\Components\ClientComponents;
 use Bootstrap\Views\BootstrapView;
 
+/**
+ * Trait Row
+ * This trait provides rows.
+ * Rows are wrapper components used to arrange other components on a single row.
+ *
+ * @package Bootstrap\Components\ClientComponents
+ */
 trait Row {
 
     /**
