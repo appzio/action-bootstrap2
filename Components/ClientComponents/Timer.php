@@ -3,10 +3,6 @@
 namespace Bootstrap\Components\ClientComponents;
 use Bootstrap\Views\BootstrapView;
 
-/**
- * Trait Fieldlist
- * @package Bootstrap\Components\Elements
- */
 trait Timer {
 
     /**
@@ -21,32 +17,7 @@ trait Timer {
      * 'swipe_id' => 'swipeareaid' // refers to swipearea in the view
      * );
      * </code>
-     * @param array $styles
-     * <code>
-     * $array = array(
-     * 'margin' => '0 0 0 0',
-     * 'padding' => '0 0 0 0',
-     * 'width' => '200', // or 100%
-     * 'height' => '400',
-     * 'max_height' => '500',
-     * 'background-color' => '#ffffff',
-     * 'background-image' => 'filename.png',
-     * 'background-size' => 'cover', // or 'contain', 'top' (default)
-     * 'vertical-align' => 'middle',
-     * 'text-align' => 'center',
-     * 'children_style' => 'style-class-name' // this is used only in menu, progress and field-list components
-     * 'floating' => '1',
-     * 'float' => 'right',
-     * 'parent_style' => 'style-class-name',
-     * 'shadow-color' => '#000000',
-     * 'shadow-offset' => '0 1',
-     * 'shadow-radius' => '5',
-     * 'border-width' => '1',
-     * 'border-color' => '#000000',
-     * 'border-radius' => '4',
-     * 'opacity' => '0.4',
-     * );
-     * </code>
+     * @param array $styles -- please see the link for more information about parameters [link] Bootstrap\Components\ComponentStyles
      * @return \stdClass
      */
     public function getTimer(string $content, array $parameters=array(),array $styles=array()) {

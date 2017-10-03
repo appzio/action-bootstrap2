@@ -1,6 +1,9 @@
 <?php
 
-/* here is stuff that COULD be in the Aeaction model, but its hear mainly for security purposes */
+/**
+ * This trait contains all the variable related functionality - saving, retrieving, deleting, etc.
+ * It is used in the main Bootstrap Model so it can be available in the actions that extend it.
+ */
 
 namespace Bootstrap\Models;
 
@@ -9,12 +12,6 @@ use Aevariable;
 use function array_flip;
 use function is_numeric;
 
-/**
- * Trait Variables
- * This trait contains all variable related functionality
- *
- * @package Bootstrap\Models
- */
 trait Variables {
 
     /* @var $this BootstrapModel */
@@ -96,7 +93,7 @@ trait Variables {
 
     /**
      * Returned saved variable for current user
-     * If not stored in memory will be queried from the database and added
+     * If not stored in memory will be queried from the database
      *
      * @param $varname
      * @param bool $default
@@ -127,7 +124,7 @@ trait Variables {
     }
 
     /**
-     * Get all variables for application
+     * Get all variables for the given application
      *
      * @param $gid
      * @return bool
@@ -170,7 +167,7 @@ trait Variables {
 
     /**
      * Get a submitted variable by name.
-     * Variables are usually submitted via forms
+     * Variables are usually submitted when you trigger a "submit-form-content" action
      *
      * @param $varname
      * @param bool $default

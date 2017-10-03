@@ -1,15 +1,7 @@
 <?php
 
-/* here is stuff that COULD be in the Aeaction model, but its hear mainly for security purposes */
-
 namespace Bootstrap\Models;
 
-/**
- * Trait Validators
- * This trait contains validation related logic
- *
- * @package Bootstrap\Models
- */
 trait Validators {
 
     /* @var $this BootstrapModel */

@@ -1,17 +1,11 @@
 <?php
 
-/* here is stuff that COULD be in the Aeaction model, but its hear mainly for security purposes */
 
 namespace Bootstrap\Models;
 
 use function array_flip;
 use ThirdpartyServices;
 
-/**
- * Trait DataHelpers
- * This trait contains data and other utility methods
- * @package Bootstrap\Models
- */
 trait DataHelpers {
 
 

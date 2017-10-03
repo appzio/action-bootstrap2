@@ -25,23 +25,24 @@ class BootstrapModel extends CActiveRecord {
     use Mobilematching;
 
     /**
-     * Configuration object passed from the parser
+     * Actions configuration as defined in the web admin. All these can be overriden using $this->rewriteActionConfigField()
      *
      * @var
      */
     public $configobj;
 
     /**
-     * List of variables in name - id pairs.
+     * Array of currently loaded user variables in name - id pairs.
      * Should be accessed with the methods declared in the Variables trait, not directly.
+     * Declared public for easier debugging for certain cases.
      *
      * @var
      */
     public $vars;
 
     /**
-     * List of variables in name - value pairs
-     * Should be accessed with the methods declared in the Variables trait, not directly.
+     * Includes currently loaded user variables in array. Normally you would use $this->getSavedVariable instead of accessing this directly.
+     * Declared public for easier debugging for certain cases.
      *
      * @var
      */
@@ -61,34 +62,37 @@ class BootstrapModel extends CActiveRecord {
     public $localizationComponent;
 
     /**
-     * List of submitted variables
+     * Array containing the submitted variables for a certain request.
+     * Submitting a form using a "submit-form-content" action will allow you to access all of the form variables from this array.
+     * Should be used in the model for validation and storing.
      *
      * @var
      */
     public $submitvariables;
 
     /**
-     * Action configuration object
+     * Array containing the configuration specified in the web admin.
+     * Fields can be rewritten using the rewriteActionField() method
      * @var
      */
     public $actionobj;
 
     /**
-     * Current active user id
+     * Currently logged in user id
      *
      * @var
      */
     public $playid;
 
     /**
-     * Current application id
+     * Current active application id
      *
      * @var
      */
     public $appid;
 
     /**
-     * Not to be confused with playid, this is installation specific id
+     * Not to be confused with playid, this is installation specific id - the phone on which the app is installed
      * @var
      */
     public $userid;
@@ -97,17 +101,21 @@ class BootstrapModel extends CActiveRecord {
     public $router;
 
     /**
+     * Id of the currently active action
      * @var
      */
     public $action_id;
 
     /**
+     * Id of the currently active action
+     *
      * @var
      */
     public $actionid;
 
     /**
-     * List of application menus
+     * Array containing all of the application menus.
+     * An application can have multiple menus defined for different purposes and used in different places in the app - side, top, bottom.
      *
      * @var
      */
@@ -119,26 +127,28 @@ class BootstrapModel extends CActiveRecord {
     public $msgcount;
 
     /**
+     * Id of the application bottom menu
      * @var
      */
     public $bottom_menu_id;
 
     /**
-     * Branch configuration object
+     * Configuration array for the branch. Includes all configuration fields defined in the web admin.
      *
      * @var
      */
     public $branchobj;
 
     /**
-     * This is a general place for validation errors that can be read by components
+     * This is a general place for storing validation errors.
+     * Usually used from the controller for conditional checks and to display errors.
      *
      * @var array
      */
     public $validation_errors = array();
 
     /**
-     * Action permanames (slugs) with action id
+     * Array consisting of action permanames (slugs) - action id pairs
      *
      * @var
      */
@@ -160,9 +170,11 @@ class BootstrapModel extends CActiveRecord {
     private $current_itemid;
 
     /**
-     * Matching model
+     * The model containing the matching related functionality.
+     * Matching is used not only in dating applications but in all other apps that have similar business logic
+     * i.e. tenants and properties
      *
-     * @var
+     * @var \MatchingMobileproperties
      */
     public $mobilematchingobj;
 
@@ -261,7 +273,7 @@ class BootstrapModel extends CActiveRecord {
      * You can rewrite any configuration parameters in your action using $this->rewriteActionConfigField('fieldname','newvalue');
      * Typical parameters you would use are: backarrow, background_color, hide_menubar, subject, share_title, share_description,
      * share_image, hide_scrollbar, pull_to_refresh, transparent_statusbar
-     * 
+     *
      * @param $param
      * @param bool $default
      * @return bool
@@ -278,7 +290,8 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * Get validation errors list
+     * Get an array of validation errors.
+     * Errors are usually filled in from the model upon form validation.
      *
      * @return array
      */
@@ -287,7 +300,7 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * Get list of all configuration parameters
+     * Returns an associative array of the configuration object.
      *
      * @return array
      */
@@ -297,7 +310,7 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * Reload all variable data
+     * Reloads all variable data and action data
      *
      * @return void
      */
@@ -309,7 +322,7 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * Localize string
+     * Localize a string
      *
      * @param $string
      * @return bool|mixed|string
@@ -319,7 +332,7 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * Get the active action's permaname (slug)
+     * Get the active action's permaname (slug) if it is set
      *
      * @return array
      */
@@ -405,7 +418,7 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * Returns the currentlyc called menuid (if any)
+     * Returns the currently called menuid if set
      *
      * @return mixed
      */
@@ -415,7 +428,7 @@ class BootstrapModel extends CActiveRecord {
 
 
     /**
-     * Current action id (not the play action, but the actual configuration object id
+     * Current action id (not the play action, but the actual configuration object id)
      *
      * @return int
      */
@@ -424,7 +437,7 @@ class BootstrapModel extends CActiveRecord {
     }
 
     /**
-     * Return validation error from the list by name
+     * Return validation error from the array by name
      *
      * @param $name
      * @return bool|string
