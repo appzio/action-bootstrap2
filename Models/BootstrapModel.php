@@ -498,4 +498,17 @@ class BootstrapModel extends CActiveRecord {
         $this->sessionSet('current_route_'.$actionid, '');
         $this->sessionSet('persist_route_'.$actionid, '');
     }
+
+    /**
+     * Used by infinite scrolling content. So if action is refreshed with this id set,
+     * you should return the next batch of content.
+     * @return bool
+     */
+    public function getNextPageId(){
+        if(isset($_REQUEST['next_page_id'])){
+            return $_REQUEST['next_page_id'];
+        }
+
+        return false;
+    }
 }
