@@ -130,10 +130,15 @@ class BootstrapRouter implements BootstrapRouterInterface {
     /**
      *  Controller routing logic:
      *   1. look for active route inside the theme
+     *
      *   2. look for active route on the main level
+     *
      *   3. look for mode inside the the theme
+     *
      *   4. look for mode inside the main level
+     *
      *   5. look for default controller inside the theme
+     *
      *   6. look for default controller on the main level
      *
      * @param $class
