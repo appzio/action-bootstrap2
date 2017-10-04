@@ -2,7 +2,6 @@
 
 namespace Bootstrap\Components\ClientComponents;
 use Bootstrap\Views\BootstrapView;
-use function strtoupper;
 
 trait Swipe {
 

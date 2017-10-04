@@ -2,7 +2,6 @@
 
 namespace Bootstrap\Components\ClientComponents;
 use Bootstrap\Views\BootstrapView;
-use function is_array;
 
 trait FormFieldList {
 

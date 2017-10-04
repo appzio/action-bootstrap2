@@ -2,8 +2,6 @@
 
 namespace Bootstrap\Views;
 
-use function is_numeric;
-
 trait ViewGetters {
 
 

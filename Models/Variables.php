@@ -9,8 +9,6 @@ namespace Bootstrap\Models;
 
 use Aegame;
 use Aevariable;
-use function array_flip;
-use function is_numeric;
 
 trait Variables {
 

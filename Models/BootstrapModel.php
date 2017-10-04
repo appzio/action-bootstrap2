@@ -3,13 +3,10 @@
 
 namespace Bootstrap\Models;
 
-use function array_flip;
 use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
 use Aevariable;
 use AeplayVariable;
-use function is_array;
-use function is_string;
 
 /**
  * Class BootstrapModel

@@ -2,10 +2,6 @@
 
 namespace Bootstrap\Components;
 
-use function array_search;
-use function is_numeric;
-use function is_string;
-
 trait ComponentHelpers {
 
     /**
