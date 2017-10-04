@@ -13,10 +13,10 @@ Example of style:
 }
 ```
 
-## Style files
+### Style files
 Style files reside either on the action's main level at styles directory and need to be named with the actions shortname. So if your action is called actionMexample, the style file should be at `styles/Mexample.json`. In most cases styles are at theme's directory at `themes/mytheme/styles/Mexample.json`.
 
-## Inline styles
+### Inline styles
 You can define inline style like this:
 ```
  $this->getComponentText('My Text',$parameters,array(
@@ -34,7 +34,7 @@ General cases where you would use an inline style is when you need to rely on de
  );
 ```
 
-## Style inheritance
+### Style inheritance
 You can use style inheritance in both inline styles and in style sheets. Note though that using multiple inheritances can make debugging more difficult. Using our previous example, you could define it in the following way:
 ```
  $width = $this->screen_width - 120;
@@ -60,7 +60,7 @@ Or inside the style file:
 }
 ```
 
-## Supported tags
+### Supported tags
 
      * 'margin' => '0 0 0 0'
      * 'padding' => '0 0 0 0'
@@ -91,3 +91,15 @@ Or inside the style file:
      * 'border-color' => '#000000'
      * 'border-radius' => '4'
      * 'opacity' => '0.4'
+     
+### Accessing your app's style information
+
+Various different style files are merged into one and can be accessed with this API call:
+
+`http://{your_server}/api/{you_api_key}/apps/getappstyles?fb_login=false`
+
+Api key you can find from your web dashboard. 
+
+### Overwriting styles
+
+Default component styles can be overriden in your action styles or 

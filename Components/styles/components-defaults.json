@@ -1,5 +1,11 @@
 {
 
+  "message-status-text-3": {
+    "font-size": "10",
+    "color": "#949494",
+    "text-align": "right",
+    "margin": "2 80 2 15"
+  },
 
   "confirmationdialog":{
     "background-color": "#66000000",
