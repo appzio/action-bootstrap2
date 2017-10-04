@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Class BootstrapPreprocessor
- */
 class BootstrapPreprocessor {
 
     public $styles;
@@ -18,9 +15,6 @@ class BootstrapPreprocessor {
 
     }
 
-    /**
-     *
-     */
     public function loadStyles(){
 
     }
@@ -40,6 +34,7 @@ class BootstrapPreprocessor {
 
     /**
      * Save generated styles for the current user
+     *
      * @param $playobj
      * @return bool
      */

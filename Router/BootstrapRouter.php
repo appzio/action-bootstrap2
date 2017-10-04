@@ -26,20 +26,33 @@ class BootstrapRouter implements BootstrapRouterInterface {
     /* @var \Bootstrap\Models\BootstrapModel */
     public $phpstorm_bugfix;
 
-    /* @var \Bootstrap\Views\BootstrapView */
+    /**
+     * The view instance. Views are passed the data returned from the controller and
+     * are responsible for generating the layout data.
+     *
+     * @var \Bootstrap\Views\BootstrapView
+     */
     public $view;
 
-    /* @var \Bootstrap\Models\BootstrapModel */
+    /**
+     * The model instance. Models are responsible for querying and storing data but
+     * also provide useful utility methods for sessions, variables and validation.
+     *
+     * @var \Bootstrap\Models\BootstrapModel
+     */
     public $model;
 
     /**
+     * The current menu id if set
      * @var
      */
     public $menuid;
+
     /**
      * @var
      */
     public $new_menuid;
+
     /**
      * @var
      */
@@ -51,16 +64,22 @@ class BootstrapRouter implements BootstrapRouterInterface {
     public $action_id;
 
     /**
+     * The current view name
+     *
      * @var
      */
     public $view_name;
 
     /**
+     * The current action name as defined when created.
+     *
      * @var
      */
     private $action_name;
 
     /**
+     * The currently called controller class name.
+     *
      * @var
      */
     private $controller_name;
@@ -71,26 +90,38 @@ class BootstrapRouter implements BootstrapRouterInterface {
     private $error;
 
     /**
+     * The controller instance
+     *
      * @var
      */
     public $controller;
 
     /**
+     * Layout data returned from the view after it was called with the controller data.
      * @var
      */
     private $view_data;
 
     /**
+     * Path to the controller class
+     *
      * @var
      */
     private $controller_path;
 
     /**
+     * Path to main component instance. This class makes use of the other
+     * actions in the same module and provides them to the controller under
+     * the $components property
+     *
      * @var
      */
     private $component_path;
 
     /**
+     * Action shortname/permaname. Acts as a slug, usually all lowercase
+     * letters with no blank spaces.
+     *
      * @var
      */
     private $action_shortname;
@@ -112,6 +143,8 @@ class BootstrapRouter implements BootstrapRouterInterface {
     }
 
     /**
+     * Check whether controller class exists
+     *
      * @param $primary
      * @param $secondary
      * @return mixed
@@ -206,6 +239,8 @@ class BootstrapRouter implements BootstrapRouterInterface {
     }
 
     /**
+     * Get component class path. This class provides access to the module's components.
+     *
      * @param $class
      * @return string
      */
@@ -227,6 +262,8 @@ class BootstrapRouter implements BootstrapRouterInterface {
     }
 
     /**
+     * Get path to the currently called action's module.
+     *
      * @return string
      */
     private function getMainPath(){
@@ -236,10 +273,11 @@ class BootstrapRouter implements BootstrapRouterInterface {
 
 
     /**
+     * Get path to the currently called view. View name is passed
+     * from the controller returned data.
+     *
      * @param $class -- class hierarchy coming from ArticleFactory
      * @return bool|string
-     *
-     *
      */
 
     public function getView($class){
@@ -289,8 +327,9 @@ class BootstrapRouter implements BootstrapRouterInterface {
     }
 
     /**
-     * if current routing is marked to be persistent and is not overriden by the
+     * If current routing is marked to be persistent and is not overriden by the
      * current menu call, we will use the currently active route
+     *
      * @return void
      */
     private function setRoute(){
@@ -305,6 +344,10 @@ class BootstrapRouter implements BootstrapRouterInterface {
     }
     
     /**
+     * Call the controller method if it exists, else call the default one.
+     * It returns the view name that should be called and data that should
+     * be passed to it.
+     *
      * @return void
      */
     public function prepareView(){

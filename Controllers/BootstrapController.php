@@ -16,17 +16,31 @@ class BootstrapController implements BootstrapControllerInterface {
     /* @var \Bootstrap\Models\BootstrapModel */
     public $phpstorm_bugfix;
 
-    /* @var \Bootstrap\Views\BootstrapView */
+    /**
+     * The view instance. Views are responsible for returning the layout of the app dependining on the information passed from the controller.
+     *
+     * @var \Bootstrap\Views\BootstrapView
+     */
     public $view;
 
-    /* @var \Bootstrap\Models\BootstrapModel */
+    /**
+     * The model instance. Models are used to query and save data to storage.
+     * They also provide access to variable, session, validation and other utility methods.
+     *
+     * @var \Bootstrap\Models\BootstrapModel
+     */
     public $model;
 
-    /* @var BootstrapRouter */
+    /**
+     * The router class instance. The router is responsible for instantiating the controller and the view.
+     *
+     * @var BootstrapRouter
+     */
     public $router;
 
     /**
      * Current active tab
+     *
      * @var
      */
     public $current_tab;
@@ -38,24 +52,28 @@ class BootstrapController implements BootstrapControllerInterface {
 
     /**
      * Active action name
+     *
      * @var mixed
      */
     public $action_name;
 
     /**
-     * Current logged user id
+     * Currently logged user id
+     *
      * @var
      */
     public $playid;
 
     /**
-     * Actions executed on load
+     * Array of actions that should be triggered when the application loads.
+     * These can vary but making a refresh on load can cause an infinite loop.
+     *
      * @var
      */
     public $onloads;
 
     /**
-     * set this to true to suppress output (for async operations)
+     * Set this to true to suppress output (for async operations)
      */
     public $no_output = false;
 
@@ -94,7 +112,7 @@ class BootstrapController implements BootstrapControllerInterface {
     }
 
     /**
-     * Return current menu id if sent
+     * Return current menu id if set
      *
      * @return mixed
      */
@@ -104,6 +122,7 @@ class BootstrapController implements BootstrapControllerInterface {
 
     /**
      * Collects location once
+     *
      * @return bool
      */
     public function collectLocation(){

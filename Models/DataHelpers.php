@@ -12,7 +12,7 @@ trait DataHelpers {
     /* @var $this BootstrapModel */
 
     /**
-     * Get country codes from JSON file
+     * Get country codes from JSON file in name - country code pairs
      *
      * @return array
      */
@@ -118,6 +118,7 @@ trait DataHelpers {
     /**
      * Note: this will return only the latest user with this value & it will exclude
      * the current user by default
+     *
      * @return mixed|void
     */
     public function findPlayFromVariable($varname,$varvalue,$include_current_user=false){

@@ -6,21 +6,26 @@ use function array_search;
 use function is_numeric;
 use function is_string;
 
-/**
- * Trait ComponentHelpers
- * This trait declares component helper and utility methods
- *
- * @package Bootstrap\Components
- */
 trait ComponentHelpers {
 
-    /** @var \Bootstrap\Models\BootstrapModel $this->model */
+    /**
+     * The model instance. Models are responsible for querying and storing data.
+     * They also provide variable, session and validation functionality as well as other useful utility methods.
+     *
+     * @var \Bootstrap\Models\BootstrapModel $this->model
+     */
     public $model;
 
-    /* users own action (playaction) */
+    /**
+     * Users own action (playaction)
+     *
+     * @var
+     */
     public $actionid;
 
-    /* action id for the config object (action itself) */
+    /**
+     * Action id for the config object (action itself)
+     */
     public $action_id;
 
     /**
@@ -57,11 +62,13 @@ trait ComponentHelpers {
 
 
     /**
+     * Returns the image file name. This method is used in places in which we cannot write the image name.
+     * Example usecase is setting the background image of a component
+     *
      * @param $image
      * @param array $params isvar, width, height, crop, defaultimage, debug
      * @return bool
      */
-
     public function getImageFileName($image,$params=array()){
 
         $isvar = $this->addParam('isvar',$params,false);  // you can use variable id

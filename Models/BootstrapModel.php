@@ -64,6 +64,7 @@ class BootstrapModel extends CActiveRecord {
     /**
      * Array containing the submitted variables for a certain request.
      * Submitting a form using a "submit-form-content" action will allow you to access all of the form variables from this array.
+     * Usually retrieved with getAllSubmittedVariables() or getSubmittedVariableByName() methods.
      * Should be used in the model for validation and storing.
      *
      * @var
@@ -93,15 +94,21 @@ class BootstrapModel extends CActiveRecord {
 
     /**
      * Not to be confused with playid, this is installation specific id - the phone on which the app is installed
+     *
      * @var
      */
     public $userid;
 
-    /* @var \Bootstrap\Router\BootstrapRouter */
+    /**
+     * Router object instance. This is the object that instantiates the controller and wires up the view depending on the called route.
+     *
+     * @var \Bootstrap\Router\BootstrapRouter
+     */
     public $router;
 
     /**
-     * Id of the currently active action
+     * Id of the action in the web admin
+     *
      * @var
      */
     public $action_id;
@@ -128,6 +135,7 @@ class BootstrapModel extends CActiveRecord {
 
     /**
      * Id of the application bottom menu
+     *
      * @var
      */
     public $bottom_menu_id;

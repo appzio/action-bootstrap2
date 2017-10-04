@@ -17,7 +17,6 @@ trait ComponentParameters {
      * @param array $required
      * @return \stdClass
      */
-
     public function attachParameters(\stdClass $obj, array $parameters, array $allowed=array(),array $required = array()) {
 
         if(!$parameters){

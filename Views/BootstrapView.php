@@ -22,10 +22,20 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
     /* @var \Bootstrap\Controllers\BootstrapController */
     //public $controller;
 
-    /* @var \Bootstrap\Models\BootstrapModel */
+    /**
+     * The model instance. It is responsible for querying and storing data and
+     * also provides useful utility methods for variables, sessions and validation.
+     *
+     * @var \Bootstrap\Models\BootstrapModel
+     */
     public $model;
 
-    /* @var \Bootstrap\Components\BootstrapComponent */
+    /**
+     * The main component instance. This class provides access to the other
+     * components in the current module.
+     *
+     * @var \Bootstrap\Components\BootstrapComponent
+     */
     public $components;
 
     /** Includes an array of colors defined for the app / branch / action
@@ -39,24 +49,34 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
     public $colors;
 
     /**
+     * The current menu id if set
+     *
      * @var
      */
     public $menuid;
+
     /**
      * Id for the current action as is known only for this particular user.
+     *
      * @var
      */
     public $actionid;
 
-    /* data sent by the controller */
     /**
-     * @var stdClass
+     * Data sent by the controller. Should not be accessed directly, instead use
+     * the getData() method.
+     *
+     * @var \stdClass
      */
     public $data;
 
-    /* layout code where different parts of the view are defined as arrays, layout in itself should be an object */
     /**
-     * @var
+     * This object contains the layout data that will be passed to the client.
+     * It should contain 4 arrays named - divs, header, scroll and footer. Each
+     * one of those arrays will contain the components that will be rendered in this
+     * part of the screen.
+     *
+     * @var \stdClass
      */
     public $layout;
 
@@ -138,11 +158,15 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
     public $color_topbar_hilite;
 
     /**
+     * Id of the bottom app menu
+     *
      * @var
      */
     public $bottom_menu_id;
+
     /**
      * Bottom menu json code is saved here. Normally you shouldn't need to access this directly.
+     *
      * @var bool
      */
     public $bottom_menu_json;
@@ -176,7 +200,9 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
 
     }
 
-    /** Returns bottom menu. Bottom menu is defined in the web admin.
+    /**
+     * Returns bottom menu. Bottom menu is defined in the web admin.
+     *
      * @return array
      */
     public function getBottomMenu()

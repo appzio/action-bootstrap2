@@ -2,11 +2,8 @@
 
 namespace Bootstrap\Views;
 
-/**
- * Trait ViewHelpers
- * @package Bootstrap\Views
- */
 trait ViewHelpers {
+
     /**
      * @return \stdClass
      */

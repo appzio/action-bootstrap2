@@ -4,10 +4,6 @@ namespace Bootstrap\Views;
 
 use function is_numeric;
 
-/**
- * Trait ViewGetters
- * @package Bootstrap\Views
- */
 trait ViewGetters {
 
 
