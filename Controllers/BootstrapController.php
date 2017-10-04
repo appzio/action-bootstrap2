@@ -4,7 +4,6 @@
 namespace Bootstrap\Controllers;
 
 use Bootstrap\Router\BootstrapRouter;
-use stdClass;
 
 /**
  * Class BootstrapController

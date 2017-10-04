@@ -720,11 +720,11 @@ trait Onclick {
 
     /**
      * TODO
-     * @param bool $adcolony_zone
+     * @param string $adcolony_zone. If this is not defined, will use Google interstitial.
      * @param array $parameters
      * @return stdClass
      */
-    public function getOnclickOpenInterstitialAd($adcolony_zone=false,$parameters = array()){
+    public function getOnclickOpenInterstitialAd(string $adcolony_zone='',$parameters = array()){
         $onclick = new \stdClass();
         $onclick->action = 'open-interstitial';
         $onclick->adcolony_zoneid = $adcolony_zone;

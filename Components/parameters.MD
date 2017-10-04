@@ -2,18 +2,19 @@
 
 Components support different parameters depending on the component type. Refer to individual component documentation to see which parameters are supported. 
 
-#### Documentation of the most commonly supported parameters
+#### Documentation of the most commonly supported parameters that apply to most elements
 
 `style` This is the most common parameter and defines the style class name. All components support this, but not all style parameters might not be supported in some edge cases (video for example).
 
 `onclick` Second most commonly used parameter, which defines an action upon click. All components support this. This can be either one onclick object obtained with any of the `$this->getOnclick` helpers or an array of several onclicks. When array is defined, client will execute commands in order they are defined in the array. IMPORTANT NOTE HERE: some onclicks return an array (most notably route when it has saveparameters), whereas most onclicks will return and object. 
 
-`variable` Used by text, form elements and images. This helps client tie the data. For example, if you set a variable outside of the component, when variable is defined the value would get updated immediately. Commong example case is where you have a clickable field which reveals a selector element that sets the value.
+`variable` Used by text, form elements and images. This helps client tie the data. For example, if you set a variable outside of the component, when variable is defined the value would get updated immediately. Common example case is where you have a clickable field which reveals a selector element that sets the value. 
+
+NOTE: you can use either actual variable id's together with $this->getVariableId('name') or give them as strings. If the variable is defined for the app, the client would always send id instead of the string. All async functionalities require that the variable exists for the app and they need to be defined by id, NOT STRING.
 
 `id` Id of the element. This is used when showing or hiding elements with onclick, by swipestack and swipe components. If you have multiple swipe components in the view with a swipe indicator, they must have id's defiend. If you only have one swipe element, the swipe navigation will default to that even without id.
 
-
-##### Form field text component parameters
+#### Form field text component parameters
 
 `hint` Shows a hint on the background of "field-text" or "field-textview" if the components have no content. Uses the form style with opacity set to 0.6.
 
@@ -39,8 +40,7 @@ Components support different parameters depending on the component type. Refer t
 
 `disable_onclick_when_keypad_is_on` This will disable all clickable items as long as the keyboard is open.
 
-
-##### Selectors (checkbox and radio button -like functionality)
+#### Selectors (checkbox and radio button -like functionality)
 
 Example of defining a select element:
 
@@ -68,7 +68,7 @@ Example of defining a select element:
 
 If the elements are using the same variable, it behaves like a radio button, if they have different variables, it acts as checkboxes.
 
-##### Image component parameters
+#### Image component parameters
 `image_fallback` when clicked, change to this image immediately
 
 `lazy` can load after view, shows a loader
@@ -77,8 +77,7 @@ If the elements are using the same variable, it behaves like a radio button, if 
 
 `tap_image` image asset name to be used on the full screen view
 
-
-##### Map component parameters
+#### Map component parameters
 Map component uses Google maps to display a map. Note that you need to define Google Maps API key in your app settings for this to work. Please refer to Google documentation: 
 
 * https://developers.google.com/maps/documentation/ios-sdk/map
@@ -92,16 +91,14 @@ Map component uses Google maps to display a map. Note that you need to define Go
 
 `markers` Array of map markers
 
-
-##### Video component parameters
+#### Video component parameters
 `autostart` Starts video when entering the view.
 
 `showplayer` Shows player controls.
 
 `loop` Loops the video.
 
-
-##### Calendar component parameters
+#### Calendar component parameters
 `date` Unix time
 
 `date_format` For example MM / dd / yyyy
@@ -120,21 +117,22 @@ Map component uses Google maps to display a map. Note that you need to define Go
 
 `today_style` Style name
 
-
-##### Swipe component specific parameters
+#### Swipe component specific parameters
 
 `remember_position` Remembers the position of the swiped page between refreshes and when navigating out from the action.
 
 `hide_scrollbar` Hides bottom scroll bar
 
-`swipe_back_content` tbd
-
 `topbar_title` Changes the action's top bar. This must be defined for the main level of the element which is inside the swipe.
 
 `animation` nudge. If this is set, the swipe component will make a small nudge movment when entering the view. This will hint user that the content is swipable. 
 
+#### Swipe naviagation parameters
 
-##### Swipestack component specific parameters
+`active_color` This is used to specify the color of the active dot in "swipe-navigation" component.
+`inactive_color` This is used to specify the color of the inactive dots in "swipe-navigation" component
+
+#### Swipestack component specific parameters
 
 Swipe component is a very powerful component, which allows the actions to be recorded by the backend in an asynchronous manner. This provides seamless user experience when swiping items in the swipe stack. 
 
@@ -158,63 +156,67 @@ Swipe component is a very powerful component, which allows the actions to be rec
 
 `overlay_down` A component that will be rendered on top of the card that the user is swiping.
 
+`swipe_back_content` An array with components that the user can swipe back. When the user do "swipe-back" the first item from this array will be returned to the 'swipestack' component with an animation.
 
-##### Used by swipe and scrolling content
+#### Used by swipe and scrolling content
 
 `dynamic` Defines the element to be dynamically loading
 
 `world_ending` Yes, really, don't ask about parameter naming. This is the menuid that gets called when we are near the cached content ending. This is a que for the backend to provide more items.
 
-##### Advertising component parameters
+#### Advertising component parameters
 
-`ad_size` tbd
+`ad_size` either banner or rectangle
 
+#### Slider component parameters
 
-##### Slider component parameters
+Remember to add `variable` for the slider. If you have also `variable2` defined, this will display a range slider. 
 
-`min_value` tbd
+`min_value` Numeric. Minimum value to set.
 
-`max_value` tbd
+`max_value` Numeric. Maximum value to set.
 
-`min_range` tbd
+`step` Numeric. In what increments the slider moves.
 
-`max_range` tbd
+`hide_tooltip` 1 or 0 whether the value is hidden when dragging the value
 
-`step` tbd
+`tooltip_prefix` Prefix for the value. For example currency.
 
-`hide_tooltip` tbd
+`tooltip_suffix` Suffix for the value. For example currency.
 
-`tooltip_prefix` tbd
+`track_height` Height of the slider itself, excluding thumbs.
 
-`tooltip_suffix` tbd
+`left_track_color` Hex. Color of the selected part. 
 
-`track_height` tbd
+`right_track_color` Hex. Color of the unselected part.
 
-`left_track_color` tbd
+`thumb_color` Color for the slider's handle.
 
-`right_track_color` tbd
+`thumb_image` Use image instead of the default slider handle.
 
-`thumb_color` tbd
+`thumb_height` Height for the slider's handle.
 
-`thumb_image` tbd
+##### Applies only for range slider
 
-`thumb_height` tbd
+`variable2` Variable where second slider from the range slider is saved.
 
+`min_range` Numeric. Minimum range for range slider
 
-##### Progress bar component parameters
+`max_range` Numeric. Maximum range for range slider
 
-`text_content` tbd
+#### Progress bar component parameters
 
-`progress_image` tbd
+`text_content` Text content shown inside the bar. Styling the text is done by giving style parameters for the element itself.
 
-`progress_color` tbd
+`progress_image` Use image instead of the color for the progress bar itself.
 
-`track_image` tbd
+`progress_color` Hex. Color for the inactive part of the progess bar.
 
-`track_color` tbd
+`track_image` Use image instead of color for the active part.
 
+`track_color` Hex. Color for the active part of the progess bar.
 
-##### Infinite scrolling content
+#### Infinite scrolling content
 
 `next_page_id` You can access this with $this->getNextPageId() in the model. Use this to retrieve paged results.
 
@@ -222,9 +224,9 @@ Swipe component is a very powerful component, which allows the actions to be rec
 
 `show_loader` Whether to show the loader when reaching the end of the current page.
 
-##### Timer component
+#### Timer component
 
-`timer_id` Id of the timer component
+`timer_id` Id of the timer component. This needs to be defined, client uses this to keep track of the time on the client side.
 
 `submit_menu_id` Menuid to call when countdown reaches zero
 
