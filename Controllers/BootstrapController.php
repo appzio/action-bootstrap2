@@ -128,7 +128,7 @@ class BootstrapController implements BootstrapControllerInterface {
         $cache = \Appcaching::getGlobalCache('location-asked'.$this->playid);
 
         if(!$cache){
-            $menu2 = new stdClass();
+            $menu2 = new \stdClass();
             $menu2->action = 'ask-location';
             \Appcaching::setGlobalCache('location-asked'.$this->playid,true);
             $this->onloads[] = $menu2;
