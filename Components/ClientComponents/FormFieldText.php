@@ -12,7 +12,7 @@ use Bootstrap\Views\BootstrapView;
 trait FormFieldText {
 
     /**
-     * @param $content string, no support for line feeds
+     * @param $field_content string, no support for line feeds
      * @param array $parameters selected_state, variable, onclick, style
      * <code>
      * $array = array(
@@ -29,7 +29,7 @@ trait FormFieldText {
      * @return \stdClass
      */
 
-    public function getComponentFormFieldText(string $content = '',array $parameters=array(),array $styles=array()){
+    public function getComponentFormFieldText(string $field_content = '',array $parameters=array(),array $styles=array()){
         /** @var BootstrapView $this */
 
         $obj = new \stdClass;
