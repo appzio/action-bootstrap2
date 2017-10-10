@@ -267,10 +267,6 @@ class BootstrapModel extends CActiveRecord {
          * init mobile notifications
          *
          */
-        $this->notifications = new NotificationsModel();
-        $this->notifications->playid = $this->playid;
-        $this->notifications->app_id = $this->appid;
-        $this->notifications->model = $this;
 
         $theme = $this->getActionThemeByPermaname('notifications');
 
@@ -279,13 +275,20 @@ class BootstrapModel extends CActiveRecord {
             $namespace = 'packages\actionMnotifications\themes\\' .$theme .'\Models\NotificationsModel';
 
             if(class_exists($namespace)){
-                $this->notifications->theme = new $namespace;
+                $this->notifications = new $namespace;
             } else {
-                $this->notifications->theme = new NotificationsModel;
+                $this->notifications = new NotificationsModel;
             }
 
             $this->notifications->theme = $this->configobj->article_action_theme;
+        } else {
+            $this->notifications = new NotificationsModel;
         }
+
+        $this->notifications->playid = $this->playid;
+        $this->notifications->app_id = $this->appid;
+        $this->notifications->model = $this;
+
 
     }
 

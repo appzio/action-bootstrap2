@@ -99,10 +99,6 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
     /**
      * @var
      */
-    public $color_dark_button_text;
-    /**
-     * @var
-     */
     public $color_top_bar_text_color;
     /**
      * @var
@@ -136,10 +132,6 @@ class BootstrapView extends BootstrapComponent implements BootstrapViewInterface
      * @var
      */
     public $color_item_color;
-    /**
-     * @var
-     */
-    public $color_button_icon_color;
     /**
      * @var
      */

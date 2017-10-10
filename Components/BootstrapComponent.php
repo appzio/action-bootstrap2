@@ -116,15 +116,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     /**
      * use depreceated
      */
-    public $color_dark_button_text;
-    /**
-     * use depreceated
-     */
     public $color_top_bar_text_color;
-    /**
-     * use depreceated
-     */
-    public $color_top_bar_icon_color;
     /**
      * use depreceated
      */
