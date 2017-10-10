@@ -7,6 +7,7 @@ use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
 use Aevariable;
 use AeplayVariable;
+use packages\actionMnotifications\Models\NotificationsModel as NotificationsModel;
 
 /**
  * Class BootstrapModel
@@ -186,20 +187,55 @@ class BootstrapModel extends CActiveRecord {
     /**
      * Matching meta model
      *
-     * @var
+     * @var Mobilematching;
      */
     public $mobilematchingmetaobj;
 
+    /**
+     * This is used for Notifications action, making it very easy to register push & email notifications.
+     * Register a new notification like this:
+     * <code>
+     * $this->mobile_notifications->addNotification(array(
+     *
+     * to_playid=false,
+     *
+     * to_email=false,
+     *
+     * subject = '',
+     *
+     * $msg='',
+     *
+     * action_id=false,
+     *
+     * action_param='',
+     *
+     * image='',
+     *
+     * type='invitation'
+     *
+     * </code>
+     *
+     * You can show the notifications of the user with Mobile Notificiations action. You can configure additional
+     *
+     * @var NotificationsModel;
+     */
+    public $notifications;
 
     /**
      * You can feed following kind of config array for bottom_menu_config
      * <code>
      * $config['flags']['approvals'] = $this->getAdultNotificationCount();
+     *
      * $config['flags']['notifications'] = NotificationsModel::getMyNotificationCount($this->playid);
+     *
      * $config['background_color'] = '#ffffff';
+     *
      * $config['text_color'] = '#000000';
+     *
      * $config['hide_text'] = true;
+     *
      * $config['flag_color'] = '#3EB439';
+     *
      * $config['flag_text_color'] = '#ffffff';
      * </code>
      */
@@ -225,6 +261,30 @@ class BootstrapModel extends CActiveRecord {
             if(isset($obj->$key) AND !$this->$key){
                 $this->$key = $obj->$key;
             }
+        }
+
+        /**
+         * init mobile notifications
+         *
+         */
+        $this->notifications = new NotificationsModel();
+        $this->notifications->playid = $this->playid;
+        $this->notifications->app_id = $this->appid;
+        $this->notifications->model = $this;
+
+        $theme = $this->getActionThemeByPermaname('notifications');
+
+        /* sets theme specific model */
+        if($theme){
+            $namespace = 'packages\actionMnotifications\themes\\' .$theme .'\Models\NotificationsModel';
+
+            if(class_exists($namespace)){
+                $this->notifications->theme = new $namespace;
+            } else {
+                $this->notifications->theme = new NotificationsModel;
+            }
+
+            $this->notifications->theme = $this->configobj->article_action_theme;
         }
 
     }
@@ -419,6 +479,25 @@ class BootstrapModel extends CActiveRecord {
         }
 
         return $this->current_itemid;
+    }
+
+    /**
+     * This will extract numeric part separate from the menuid and
+     * return parts for the menu string & numeric values separately.
+     *
+     * @return array
+     */
+
+    public function getItemParts(){
+        $id = $this->getItemId();
+        $numeric = preg_match('_\d.*', $id);
+        $text = str_replace($numeric, '', $id);
+        $numeric = str_replace('_', '', $numeric);
+        if($numeric AND $text){
+            return array('string' => $text,'id' => $numeric);
+        }
+
+        return array('string' => '','id' => '');
 
     }
 
