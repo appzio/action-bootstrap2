@@ -79,7 +79,7 @@ trait DataHelpers {
     }
 
     /**
-     * Find user id from variable values
+     * Find play based on two different variables
      *
      * @param $var1
      * @param $var2
@@ -94,8 +94,10 @@ trait DataHelpers {
                 LEFT JOIN ae_game_variable AS vartable1 ON tbl1.variable_id = vartable1.id
                 LEFT JOIN ae_game_variable AS vartable2 ON tbl2.variable_id = vartable2.id
 
-                WHERE tbl1.`value` = :user
-                AND tbl2.`value` = :pass
+                WHERE tbl1.`value` = :var1_value
+                AND tbl2.`value` = :var2_value
+                AND vartable1.name = :var1_name
+                AND vartable2.name = :var2_name
                 AND vartable1.game_id = :gid
                 AND vartable2.game_id = :gid
 
@@ -103,13 +105,22 @@ trait DataHelpers {
                 ";
 
 
-        $rows = Yii::app()->db
+        $rows = \Yii::app()->db
             ->createCommand($sql)
-            ->bindValues(array(':user' => $user,
-                ':pass' => $this->password,
-                ':gid' => $this->gid
+            ->bindValues(array(
+                ':var1_value' => $var1_value,
+                ':var2_value' => $var2_value,
+                ':var1_name' => $var1,
+                ':var2_name' => $var2,
+                ':gid' => $this->appid
             ))
             ->queryAll();
+
+        if(isset($rows[0]['play_id'])){
+            return $rows[0]['play_id'];
+        }
+
+        return false;
     }
 
 
@@ -117,7 +128,7 @@ trait DataHelpers {
      * Note: this will return only the latest user with this value & it will exclude
      * the current user by default
      *
-     * @return mixed|void
+     * @return mixed
     */
     public function findPlayFromVariable($varname,$varvalue,$include_current_user=false){
 
@@ -152,6 +163,28 @@ trait DataHelpers {
 
         if(isset($rows[0]['play_id'])){
             return $rows[0]['play_id'];
+        }
+
+        return false;
+    }
+
+    public function getActionThemeByPermaname($permaname){
+        $cachename = 'theme'.$permaname.$this->appid;
+        $cache = \Appcaching::getGlobalCache($cachename);
+
+        if($cache){
+            return $cache;
+        }
+
+        \Appcaching::getAppCache('theme'.$permaname, $this->appid);
+
+        $id = $this->getActionidByPermaname($permaname);
+        if($id){
+            $config = \Aeaction::getActionConfig($id);
+            if(isset($config->article_action_theme) AND $config->article_action_theme){
+                \Appcaching::setGlobalCache($cachename, $config->article_action_theme,1200);
+                return $config->article_action_theme;
+            }
         }
     }
 }

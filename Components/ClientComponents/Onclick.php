@@ -42,7 +42,7 @@ trait Onclick {
      * @param array $parameters tap_to_close, transition, layout, background
      * @param array $layout
      * @param array $saveids
-     * @return StdClass
+     * @return \stdClass
      */
     public function getOnclickShowDiv(string $divid, array $parameters=array(),$layout=array(),array $saveids = array()) {
         /** @var BootstrapView $this */
@@ -69,7 +69,7 @@ trait Onclick {
      * @param string $divid
      * @param array $parameters
      * @param array $saveids
-     * @return StdClass
+     * @return \stdClass
      */
     public function getOnclickHideDiv(string $divid, array $parameters=array(),array $saveids = array()) {
         /** @var BootstrapView $this */
@@ -93,7 +93,7 @@ trait Onclick {
      * @param string $element_id
      * @param array $parameters
      * @param array $saveids
-     * @return StdClass
+     * @return \stdClass
      */
     public function getOnclickHideElement(string $element_id, array $parameters=array(),array $saveids = array()) {
         /** @var BootstrapView $this */
@@ -112,7 +112,7 @@ trait Onclick {
      * @param string $element_id
      * @param array $parameters
      * @param array $saveids
-     * @return StdClass
+     * @return \stdClass
      */
     public function getOnclickShowElement(string $element_id, array $parameters=array(),array $saveids = array()) {
         /** @var BootstrapView $this */
@@ -130,7 +130,7 @@ trait Onclick {
      *
      * @param string $menuid
      * @param array $clickparameters
-     * @return StdClass
+     * @return \stdClass
      */
     public function getOnclickSubmit(string $menuid,$clickparameters=array()){
 
@@ -154,7 +154,7 @@ trait Onclick {
     /**
      * Clicking the component to which this is attached will complete the current action
      *
-     * @return StdClass
+     * @return \stdClass
      */
     public function getOnclickCompleteAction(){
         $obj = new \StdClass;
@@ -223,7 +223,7 @@ trait Onclick {
      * @param bool $route
      * @param bool $persist_route
      * @param array $saveparams
-     * @return array|stdClass
+     * @return array|\stdClass
      */
     public function getOnclickOpenAction($permaname=false,$actionid=false,$parameters=array(),$route=false,$persist_route=true,$saveparams=array()){
 
@@ -273,7 +273,7 @@ trait Onclick {
      * @param bool $route
      * @param bool $persist_route
      * @param array $saveparams
-     * @return array|stdClass
+     * @return array|\stdClass
      */
     public function getOnclickOpenBranch($branchid=false,$parameters=array(),$route=false,$persist_route=true,$saveparams=array()){
 
@@ -348,7 +348,7 @@ trait Onclick {
      *
      * @param string $variablename
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickImageUpload(string $variablename,$parameters=array()){
         /** @var BootstrapView $this */
@@ -371,7 +371,7 @@ trait Onclick {
      * Clicking the component to which the returned object is attached will ask for push notification permissions.
      *
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickPushPermissions($parameters=array()){
         /** @var BootstrapView $this */
@@ -393,7 +393,7 @@ trait Onclick {
      * Clicking the component to which the returned object is attached will trigger the google authentication dialog
      *
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickGoogleLogin($parameters=array()){
         /** @var BootstrapView $this */
@@ -410,7 +410,7 @@ trait Onclick {
      * Clicking the component to which the returned object is attached will logout the current user
      *
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickGoogleLogout($parameters=array()){
         /** @var BootstrapView $this */
@@ -429,7 +429,7 @@ trait Onclick {
      *   'fb_title' => 'my title',
      *   'fb_message' => 'my share msg'
      * </code>
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickFacebookInvite($parameters=array()){
         /** @var BootstrapView $this */
@@ -490,7 +490,7 @@ trait Onclick {
      * Clicking the component to which the returned object is attached will close the popup defined in the parameters
      *
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickClosePopup($parameters=array()){
         /** @var BootstrapView $this */
@@ -507,7 +507,7 @@ trait Onclick {
      * It's useful when you want to update the state of your app.
      *
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickListBranches($parameters=array()){
         /** @var BootstrapView $this */
@@ -568,7 +568,7 @@ trait Onclick {
      * @param $title
      * @param $message
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickShowMessage($title,$message, $parameters=array()){
         /** @var BootstrapView $this */
@@ -585,7 +585,7 @@ trait Onclick {
     /**
      * TODO
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickGoHome($parameters=array()){
         $obj = new \stdClass();
@@ -600,7 +600,7 @@ trait Onclick {
      * @param bool $ios_product_id
      * @param bool $android_product_id
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickPurchase($ios_product_id=false,$android_product_id=false,array $parameters=array()){
         $onclick = new \stdClass();
@@ -618,7 +618,7 @@ trait Onclick {
     /**
      * TODO
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickPurchaseRestore($parameters = array()){
         $onclick = new \stdClass();
@@ -631,7 +631,7 @@ trait Onclick {
      * TODO
      * @param $productid
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickBraintreePurchase($productid,$parameters = array()){
         $onclick = new \stdClass();
@@ -647,7 +647,7 @@ trait Onclick {
      * This is often used when you are using a custom header and want to open the side menu when clicking on an icon.
      *
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickOpenSidemenu($parameters = array()){
         $onclick = new \stdClass();
@@ -660,12 +660,12 @@ trait Onclick {
      * TODO
      * @param $beaconid
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickMonitorRegion($beaconid,$parameters = array()){
         $onclick = new \stdClass();
         $onclick->action = 'monitor-region';
-        $onclick->region = new stdClass();
+        $onclick->region = new \stdClass();
         $onclick->monitor_inside_beacons = 1;
         $onclick->region->region = $beaconid;
         $onclick = $this->attachParameters($onclick,$parameters);
@@ -676,12 +676,12 @@ trait Onclick {
      * TODO
      * @param $region_id
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickStopRegion($region_id,$parameters = array()){
         $onclick = new \stdClass();
         $onclick->action = 'monitor-region';
-        $onclick->region = new StdClass();
+        $onclick->region = new \StdClass();
         $onclick->region->region_id = $region_id;
         $onclick = $this->attachParameters($onclick,$parameters);
         return $onclick;
@@ -690,7 +690,7 @@ trait Onclick {
     /**
      * TODO
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickStopAllRegions($parameters = array()){
         $onclick = new \stdClass();
@@ -703,23 +703,22 @@ trait Onclick {
      * TODO
      * @param $region_id
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickFindBeacons($region_id,$parameters = array()){
         $onclick = new \stdClass();
         $onclick->action = 'find-beacons';
-        $onclick->region = new StdClass();
+        $onclick->region = new \StdClass();
         $onclick->region->region_id = $region_id;
         $onclick = $this->attachParameters($onclick,$parameters);
         return $onclick;
     }
 
-
     /**
      * TODO
      * @param string $adcolony_zone. If this is not defined, will use Google interstitial.
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickOpenInterstitialAd(string $adcolony_zone='',$parameters = array()){
         $onclick = new \stdClass();
@@ -735,7 +734,7 @@ trait Onclick {
      * @param $container_id
      * @param string $direction
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickSwipeStackControl($container_id,$direction='right',$parameters = array()){
         $onclick = new \stdClass();
@@ -755,7 +754,7 @@ trait Onclick {
      * TODO
      * @param $scheme_url
      * @param array $parameters
-     * @return stdClass
+     * @return \stdClass
      */
     public function getOnclickCheckSchme($scheme_url,$parameters = array()){
         $onclick = new \stdClass();
