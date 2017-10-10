@@ -493,14 +493,20 @@ class BootstrapModel extends CActiveRecord {
 
     public function getItemParts(){
         $id = $this->getItemId();
-        $numeric = preg_match('_\d.*', $id);
-        $text = str_replace($numeric, '', $id);
-        $numeric = str_replace('_', '', $numeric);
+        $default = array('string' => '','id' => '');
+        preg_match('/_\d.*/', $id,$numeric);
+
+        if(!isset($numeric[0])){
+            return $default;
+        }
+
+        $text = str_replace($numeric[0], '', $id);
+        $numeric = str_replace('_', '', $numeric[0]);
         if($numeric AND $text){
             return array('string' => $text,'id' => $numeric);
         }
 
-        return array('string' => '','id' => '');
+        return $default;
 
     }
 
