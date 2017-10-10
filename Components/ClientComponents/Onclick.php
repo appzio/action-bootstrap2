@@ -52,7 +52,7 @@ trait Onclick {
         $obj->div_id = $divid;
 
         if($layout){
-            $obj->layout = new stdClass();
+            $obj->layout = new \stdClass();
             foreach($layout as $key=>$item){
                 $obj->layout->$key = $item;
             }
