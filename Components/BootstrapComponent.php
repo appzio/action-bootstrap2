@@ -203,6 +203,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\SwipeAreaNavigation;
     use ClientComponents\Timer;
 
+    use ClientComponents\ImageGrid;
+
     use Snippets\Forms\formHintedField;
     use AppzioUiKit\Text\uiKitTextHeader;
 
