@@ -602,11 +602,15 @@ trait Onclick {
      * @param array $parameters
      * @return \stdClass
      */
-    public function getOnclickPurchase($ios_product_id=false,$android_product_id=false,array $parameters=array()){
+    public function getOnclickPurchase($ios_product_id=false,$android_product_id=false,$subscription=false,array $parameters=array()){
         $onclick = new \stdClass();
         $onclick->action = 'inapp-purchase';
         $onclick->producttype_android = 'inapp';
         $onclick->producttype_ios = 'inapp';
+
+        if($subscription){
+            $onclick->producttype_android = 'subs';
+        }
 
         $onclick->product_id_ios = $ios_product_id;
         $onclick->product_id_android = $android_product_id;

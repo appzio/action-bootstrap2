@@ -137,4 +137,12 @@ class BootstrapController implements BootstrapControllerInterface {
         }
     }
 
+    /* this is a special action you can call to flush routes */
+    public function actionFlushroutes(){
+        $this->model->flushActionRoutes();
+        $this->no_output = true;
+        return ['Blank',array()];
+    }
+
+
 }
