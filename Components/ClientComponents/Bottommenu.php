@@ -145,7 +145,7 @@ trait Bottommenu {
                'text-align' => 'center'
            ));
 
-            $row[] = $this->getComponentColumn($some,array(),array('height' => '21','width' => $width/2,'text-align' => 'right','margin' => '4 0 0 0','floating' => 1,'float' => 'right'));
+            $row[] = $this->getComponentColumn($some,array(),array('height' => '21','width' => $width/2,'text-align' => 'right','margin' => '4 0 0 0','vertical-align' => 'top', 'floating' => 1));
 
         }
 
