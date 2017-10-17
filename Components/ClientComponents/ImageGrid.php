@@ -81,8 +81,8 @@ trait ImageGrid
             $params['height'] = $this->grid;
         }
 
-        $params['imgwidth'] = '600';
-        $params['imgheight'] = '600';
+        $params['imgwidth'] = '300';
+        $params['imgheight'] = '300';
         $params['imgcrop'] = 'yes';
         $params['crop'] = (isset($crop) ? $crop : 'yes');
 
