@@ -59,7 +59,7 @@ trait ImageGrid
 
         $response[] = $this->getComponentRow($column, array(), array('margin' => '0 ' . $this->margin . ' 0 ' . $this->margin));
 
-        return $response;
+        return $this->getComponentRow(array($response));
     }
 
     public function setGridWidths()
