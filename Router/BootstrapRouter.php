@@ -187,6 +187,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
         $mainpath = $this->getMainPath() .'\\Controllers\\';
         $default = $class ."Controllers\Controller";
 
+
         /* 1 & 2 active route */
         if($this->controller_name){
             /* check inside the theme */

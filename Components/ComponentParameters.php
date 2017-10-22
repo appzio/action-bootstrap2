@@ -38,11 +38,12 @@ trait ComponentParameters {
             }
         }
 
+
         /* outputs an error if a required parameter is missing */
         if(!empty($required)){
 
             foreach ($required as $item){
-                if(!array_search($item, $parameters)){
+                if(!isset($obj->$item)){
                     return $this->getComponentText('Missing required parameter '.$item);
                 }
             }

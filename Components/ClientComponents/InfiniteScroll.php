@@ -20,7 +20,7 @@ trait InfiniteScroll {
      * @param array $styles -- please see the link for more information about parameters [link] Bootstrap\Components\ComponentStyles
      * @return \stdClass
      */
-    public function getInfiniteScroll(string $content, array $parameters=array(),array $styles=array()) {
+    public function getInfiniteScroll(array $content, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
 
 		$obj = new \StdClass;

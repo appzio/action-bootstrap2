@@ -21,4 +21,15 @@ trait ViewHelpers {
     public function setError(string $msg){
         $this->errors[] = $msg;
     }
+
+    /**
+     * Simple helper that will return either white or black color depending on the given color
+     * @param $bgcolor
+     * Color to check for
+     * @return string
+     * Returns either #000000 or #ffffff
+     */
+    public function getTextColorForBackground($bgcolor){
+            return (hexdec($bgcolor) > 0xffffff/2) ? '#000000':'#ffffff';
+    }
 }
