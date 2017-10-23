@@ -81,11 +81,6 @@ trait ImageGrid
             $params['height'] = $this->grid;
         }
 
-        $params['imgwidth'] = '300';
-        $params['imgheight'] = '300';
-        $params['imgcrop'] = 'yes';
-        $params['crop'] = (isset($crop) ? $crop : 'yes');
-
         if ($this->deleting AND $this->model->getSavedVariable($name) AND strlen($this->model->getSavedVariable($name)) > 2) {
             $params['opacity'] = '0.6';
             $onclick = new \StdClass();
@@ -106,7 +101,11 @@ trait ImageGrid
             'config' => $this->model->getVariableId($name),
             'debug' => 1,
             'fallback_image' => 'photo-placeholder.png',
-            'priority' => 9
+            'priority' => 9,
+            'imgwidth' => '300',
+            'imgheight' => '300',
+            'imgcrop' => 'yes',
+            'crop' => (isset($crop) ? $crop : 'yes')
         ), $params);
     }
 }
