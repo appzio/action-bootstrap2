@@ -96,7 +96,7 @@ trait ImageGrid
             $onclick->max_dimensions = '1200';
             $onclick->variable = $this->model->getVariableId($name);
             $onclick->action_config = $this->model->getVariableId($name);
-            $onclick->sync_upload = true;
+//            $onclick->sync_upload = true;
         }
 
         return $this->getComponentImage($this->model->getSavedVariable($name), array(
