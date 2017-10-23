@@ -96,16 +96,15 @@ trait ImageGrid
             $onclick->max_dimensions = '1200';
             $onclick->variable = $this->model->getVariableId($name);
             $onclick->action_config = $this->model->getVariableId($name);
-            $onclick->sync_upload = true;
         }
 
         return $this->getComponentImage($this->model->getSavedVariable($name), array(
             'defaultimage' => 'pic_placeholder.png',
             'onclick' => $onclick,
+            'use_variable' => true,
             'variable' => $this->model->getVariableId($name),
             'config' => $this->model->getVariableId($name),
             'debug' => 1,
-            'fallback_image' => 'photo-placeholder.png',
             'priority' => 9
         ), $params);
     }
