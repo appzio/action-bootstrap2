@@ -207,6 +207,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
     use Snippets\Forms\formHintedField;
     use AppzioUiKit\Text\uiKitTextHeader;
+    use AppzioUiKit\Controls\uiKitLikeStar;
 
     use ViewGetters;
     use ViewHelpers;

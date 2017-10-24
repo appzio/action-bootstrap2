@@ -84,8 +84,13 @@ trait uiKitItemListInfinite {
             'font-size' => '13',
             'padding' => '0 4 4 4'));
 
+        /* setting the item star */
         if(isset($parameters['route_add']) AND $parameters['route_del']){
-            $stars = $this->getStars($parameters,$item);
+            $like = $parameters['route_add'].$item->id;
+            $unlike = $parameters['route_del'].$item->id;
+            $liked = isset($parameters['bookmarks'][$item->id]) ? 1 : 0;
+            $star[] = $this->uiKitLikeStar($liked,$like,$unlike,18,$item->id);
+            $stars[] = $this->getComponentColumn($star,array(),array('floating' => 1,'float' => 'right','margin' => '0 5 0 0'));
             $pricerow = array_merge($pricerow,$stars);
         }
 
