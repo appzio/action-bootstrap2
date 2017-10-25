@@ -25,11 +25,11 @@ trait uiKitLikeStar {
 
         $onclick_like[] = $this->getOnclickShowElement('star_liked'.$id,array('transition' => 'none'));
         $onclick_like[] = $this->getOnclickHideElement('star_unliked'.$id,array('transition' => 'none'));
-        $onclick_like[] = $this->getOnclickSubmit($action_unlike,array('loader_off' => true));
+        $onclick_like[] = $this->getOnclickSubmit($action_like,array('loader_off' => true));
 
         $onclick_unlike[] = $this->getOnclickShowElement('star_unliked'.$id,array('transition' => 'none'));
         $onclick_unlike[] = $this->getOnclickHideElement('star_liked'.$id,array('transition' => 'none'));
-        $onclick_unlike[] = $this->getOnclickSubmit($action_like,array('loader_off' => true));
+        $onclick_unlike[] = $this->getOnclickSubmit($action_unlike,array('loader_off' => true));
 
         $params['imgwidth'] = '80';
         $params['imgheight'] = '80';
