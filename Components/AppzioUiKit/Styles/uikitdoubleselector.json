@@ -1,0 +1,44 @@
+{
+  "akit_double_selector_hint":{
+    "text-align": "left",
+    "font-size": "12",
+    "margin": "15 40 0 40"
+  },
+  "akit_double_selector_error": {
+    "text-align": "right",
+    "font-size": "12",
+    "margin": "15 40 0 40",
+    "color": "#B41C11",
+    "floating": "1",
+    "float": "right"
+  },
+  "akit_double_selector_field": {
+    "color": "#000000"
+  },
+  "akit_double_selector_icon": {
+    "width": "30",
+    "height": "30",
+    "margin": "0 20 0 30",
+    "floating": "1",
+    "float": "right"
+  },
+  "akit_double_selector_select_button": {
+    "padding": "10 20 10 20",
+    "background-color": "#F89063",
+    "margin": "0 40 0 40",
+    "text-align": "center",
+    "border-radius": "7",
+    "color": "#ffffff",
+    "font-size": "14"
+  },
+  "akit_double_selector_divider_error": {
+    "height": "1",
+    "background-color": "#B41C11",
+    "margin": "2 40 5 40"
+  },
+  "akit_double_selector_divider": {
+    "height": "1",
+    "background-color": "#E4E7E9",
+    "margin": "2 40 5 40"
+  }
+}
