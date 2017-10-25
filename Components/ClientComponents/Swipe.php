@@ -31,7 +31,7 @@ trait Swipe {
         $allowed = array(
             'swipe_content', 'text_content', 'progress_image', 'track_image','animate','remember_position','position',
             'item_width','dynamic','id','items','animation','container_id','item_scale','transition','world_ending',
-            'hide_scrollbar'
+            'hide_scrollbar','swipe_id'
         );
 
         $obj = $this->attachStyles($obj,$styles);

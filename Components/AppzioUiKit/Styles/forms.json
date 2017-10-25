@@ -5,6 +5,13 @@
     "background-color": "#66000000",
     "width": "100%",
     "border-radius": "3"
+  },
+
+  "uikit_divider":{
+    "height": "1",
+    "background-color": "#CDD0D0",
+    "width": "100%",
+    "opacity": "0.5"
   }
 
 

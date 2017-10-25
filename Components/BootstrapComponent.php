@@ -206,11 +206,27 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\ImageGrid;
 
     use Snippets\Forms\formHintedField;
+
     use AppzioUiKit\Text\uiKitTextHeader;
     use AppzioUiKit\Controls\uiKitLikeStar;
     use AppzioUiKit\Controls\uiKitDoubleSelector;
     use AppzioUiKit\Controls\uiKitHintedCalendar;
     use AppzioUiKit\Controls\uiKitHintedTime;
+
+    use AppzioUiKit\Text\uiKitTextBlock;
+    use AppzioUiKit\Headers\uiKitTitlePriceLocation;
+    use AppzioUiKit\Headers\uiKitHeaderWithImage;
+    use AppzioUiKit\Buttons\uiKitButtonFilled;
+    use AppzioUiKit\Buttons\uiKitButtonHollow;
+    use AppzioUiKit\Buttons\uiKitDoubleButtons;
+
+    use AppzioUiKit\Forms\uiKitDivider;
+    use AppzioUiKit\Headers\uiKitTwoColumnHeader;
+
+    use AppzioUiKit\Listing\uiKitTagList;
+    use AppzioUiKit\Listing\uiKitThreeColumnImageSwiper;
+    use AppzioUiKit\Listing\uiKitFullWidthImageSwiper;
+    use AppzioUiKit\Listing\uiKitItemListInfinite;
 
     use ViewGetters;
     use ViewHelpers;

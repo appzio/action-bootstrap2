@@ -32,7 +32,6 @@ trait Text {
         }
 
         $obj->content = $content;
-
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
         $obj = $this->configureDefaults($obj);
