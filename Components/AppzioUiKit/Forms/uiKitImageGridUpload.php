@@ -1,12 +1,10 @@
 <?php
 
-namespace Bootstrap\Components\ClientComponents;
+namespace Bootstrap\Components\AppzioUiKit\Forms;
 
-use Bootstrap\Components\BootstrapComponent;
+use Bootstrap\Models\BootstrapModel;
 
-trait ImageGrid
-{
-
+trait uiKitImageGridUpload {
 
     private $deleting = false;
     private $margin;
@@ -23,13 +21,13 @@ trait ImageGrid
      * @return array
      */
 
-    public function getComponentImageGrid($options = array(), $styles = array(), $parameters = array())
+    public function uiKitImageGridUpload($options = array(), $styles = array(), $parameters = array())
     {
         $variable  = $options['base_variable'];
 
         /** @var BootstrapComponent $this */
         $width = $this->screen_width ? $this->screen_width : 320;
-        $this->margin = 20;
+        $this->margin = 15;
         $this->grid = $width - ($this->margin * 4);
         $this->grid = round($this->grid / 3, 0);
 
@@ -67,14 +65,13 @@ trait ImageGrid
     public function setGridWidths()
     {
         $width = $this->screen_width ? $this->screen_width : 320;
-        $this->margin = 20;
         $this->grid = $width - ($this->margin * 4);
         $this->grid = round($this->grid / 3, 0);
     }
 
     public function getProfileImage($name, $mainimage = false)
     {
-        /** @var BootstrapComponent $this */
+        /** @var BootstrapModel $this->model */
         if ($mainimage) {
             $params['width'] = $this->grid * 2 + $this->margin;
             $params['height'] = $this->grid * 2 + $this->margin;
@@ -110,4 +107,5 @@ trait ImageGrid
             'priority' => 9
         ), $params);
     }
+
 }

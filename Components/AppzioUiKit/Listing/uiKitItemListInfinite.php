@@ -20,20 +20,39 @@ trait uiKitItemListInfinite {
         /** @var BootstrapView $this */
 
         $counter = 0;
+        $featured_item = array();
+        $extra_items = array();
 
         foreach($content as $item){
-            $col[] = $this->getItemBox($item,$parameters);
-            $counter++;
 
-            if($counter == 3){
+            if(!empty($featured_item) AND $counter < 2){
+                $first = array_shift($featured_item);
+                $col[] = $this->getItemBoxWide($first,$parameters);
+                $col[] = $this->getItemBox($item,$parameters);
+                $counter++;
+                $counter++;
+            } elseif($item->featured AND $counter < 2){
+                $col[] = $this->getItemBoxWide($item,$parameters);
+                $counter++;
+                $counter++;
+            } elseif($item->featured) {
+                $featured_item[] = $item;
+                continue;
+            } else {
+                $col[] = $this->getItemBox($item,$parameters);
+                $counter++;
+            }
+
+            if($counter == 3 AND isset($col)){
                 $rows[] = $this->getComponentRow($col,array('style' => 'uikit_itemlist_row'),array('margin' => '15 7 0 7'));
                 $counter = 0;
                 unset($col);
             }
+
         }
 
         if(isset($col)){
-            $rows[] = $this->getComponentColumn($col);
+            $rows[] = $this->getComponentColumn($col,array('style' => 'uikit_itemlist_row'),array('margin' => '15 7 0 7'));
         }
 
         return $this->getInfiniteScroll($rows,array('next_page_id' => '2'));
@@ -49,7 +68,6 @@ trait uiKitItemListInfinite {
         $onclick->back_button = 1;
         $onclick->action_config = $this->model->getActionidByPermaname('itemdetail');
         $onclick->sync_open = 1;
-        $onclick->sync_close = 1;
         $onclick->id = $item->id;
 
         $width = ($this->screen_width / 3) - 19;
@@ -58,6 +76,7 @@ trait uiKitItemListInfinite {
             'imgwidth' => '200',
             'imgheight' => '200',
             'imgcrop' => 'yes',
+            'lazy' => 1,
             'onclick' => $onclick
         ), array(
             'width' => $width,
@@ -111,90 +130,89 @@ trait uiKitItemListInfinite {
 
     }
 
-    private function getStars($parameters,$item){
-        $style = array(
-            'floating' => '1',
-            'float' => 'right',
-            'height' => 18,
-            'margin' => '0 5 0 0',
-        );
+    private function getItemBoxWide($item,$parameters){
 
-        $onclick_hide[] = $this->getOnclickShowElement('hidden_'.$item->id,array('transition' => 'none'));
-        $onclick_hide[] = $this->getOnclickHideElement('visible_'.$item->id,array('transition' => 'none'));
+        $images = json_decode($item->images,true);
+        $featured_image = array_shift($images);
 
-        $onclick_show[] = $this->getOnclickHideElement('hidden_'.$item->id,array('transition' => 'none'));
-        $onclick_show[] = $this->getOnclickShowElement('visible_'.$item->id,array('transition' => 'none'));
+        $onclick = new \stdClass();
+        $onclick->action = 'open-action';
+        $onclick->back_button = 1;
+        $onclick->action_config = $this->model->getActionidByPermaname('itemdetail');
+        $onclick->sync_open = 1;
+        $onclick->id = $item->id;
 
-        /* if is active */
-        if(isset($parameters['bookmarks'][$item->id])){
-            $onclick_hide[] = $this->getOnclickSubmit($parameters['route_del'].$item->id);
+        $width = ($this->screen_width / 3)*2 - 23;
+        $height = ($this->screen_width / 3) - 19;
 
-            $pricerow[] = $this->getComponentImage('star_selected.png',array(
-                'onclick' => $onclick_hide,
-                'id' => 'visible_'.$item->id
-            ),$style);
+        $out[] = $this->getComponentImage($featured_image, array(
+            'imgwidth' => '400',
+            'imgheight' => '200',
+            'imgcrop' => 'yes',
+            'lazy' => 1,
+            'onclick' => $onclick
+        ), array(
+            'width' => $width,
+            'height' => $height,
+            'crop' => 'yes'
+        ));
 
-            $onclick_hide[] = $this->getOnclickSubmit($parameters['route_add'].$item->id);
+        $text[] = $this->getComponentText($item->name,array(),array(
+            'color' => '#545050',
+            'font-size' => '13',
+            'padding' => '4 4 4 4'));
 
-            $pricerow[] = $this->getComponentImage('star_not_selected.png',array(
-                'onclick' => $onclick_show,
-                'id' => 'hidden_'.$item->id,
-                'visibility' => 'hidden',
-            ),$style);
 
-        } else {
-            $onclick_hide[] = $this->getOnclickSubmit($parameters['route_add'].$item->id);
+        $out[] = $this->getComponentRow($text,array(),array(
+            'background-color' => '#ffffff',
+            'width' => $width,
+            'text-align' => 'left',
+            'font-size' => '13',
+            ));
 
-            $pricerow[] = $this->getComponentImage('star_not_selected.png',array(
-                'onclick' => $onclick_hide,
-                'id' => 'visible_'.$item->id
-            ),$style);
+        $pricerow[] = $this->getComponentText('$'.$item->price,array(),array(
+            'color' => '#3EB439',
+            'background-color' => '#ffffff',
+            'font-size' => '13',
+            'padding' => '0 4 4 4'));
 
-            $onclick_hide[] = $this->getOnclickSubmit($parameters['route_del'].$item->id);
-
-            $pricerow[] = $this->getComponentImage('star_selected.png',array(
-                'onclick' => $onclick_show,
-                'id' => 'hidden_'.$item->id,
-                'visibility' => 'hidden',
-            ),$style);
+        /* setting the item star */
+        if(isset($parameters['route_add']) AND $parameters['route_del']){
+            $like = $parameters['route_add'].$item->id;
+            $unlike = $parameters['route_del'].$item->id;
+            $liked = isset($parameters['bookmarks'][$item->id]) ? 1 : 0;
+            $star[] = $this->uiKitLikeStar($liked,$like,$unlike,18,$item->id);
+            $stars[] = $this->getComponentColumn($star,array(),array('floating' => 1,'float' => 'right','margin' => '0 5 0 0'));
+            $pricerow = array_merge($pricerow,$stars);
         }
 
-        return $pricerow;
-    }
-
-
-    private function uikitGetItemImage($image)
-    {
-        return $this->getComponentImage($image, array(), array(
-            'width' => '120',
-            'height' => '120',
-            'crop' => 'yes',
+        $out[] = $this->getComponentRow($pricerow,array(),array(
+            'background-color' => '#ffffff',
+            'width' => $width,
+            'text-align' => 'left',
+            'font-size' => '13',
         ));
-    }
 
-    private function uikitGetItemInfo($item)
-    {
-        return $this->getComponentRow(array(
-            $this->getComponentText($item->name, array('style' => 'item_card_information_name')),
-            $this->getComponentText('$' . $item->price, array('style' => 'item_card_information_price'))
-        ), array(), array(
-            'padding' => '5 10 5 10',
-            'width' => 'auto'
+        $out[] = $this->getComponentText($item->description,array(),array(
+            'color' => '#545050',
+            'background-color' => '#ffffff',
+            'font-size' => '9',
+            'height' => '25',
+            'padding' => '0 4 0 4'));
+
+        $out[] = $this->uikitGetItemTags($item,true);
+
+        return $this->getComponentColumn($out,array(),array(
+            'border-radius' => '4',
+            'margin' => '0 7 0 7'
         ));
+
+
     }
 
-    private function uikitGetItemCategory($item)
+    private function uikitGetItemTags($item,$wide=false)
     {
-        return $this->getComponentRow(array(
-            $this->getComponentText($item->category->name, array('style' => 'item_tag'))
-        ), array(), array(
-            'margin' => '10 0 0 10'
-        ));
-    }
-
-    private function uikitGetItemTags($item)
-    {
-        $maxCount = 3;
+        $maxCount = 2;
         $count = 1;
         $tagsList = array();
         $style = array(
@@ -205,6 +223,8 @@ trait uiKitItemListInfinite {
             'padding' => '4 4 4 4',
             'border-radius' => '3'
         );
+
+        $tag_list = '';
 
         foreach ($item->tags as $tag) {
             if ($count <= $maxCount) {
@@ -219,13 +239,34 @@ trait uiKitItemListInfinite {
                 break;
             }
 
+            $tag_list .= $tag->name.', ';
+
             $count++;
         }
 
-        return $this->getComponentRow($tagsList, array(), array(
-            'padding' => '0 4 4 2',
-            'background-color' => '#ffffff',
-        ));
+        if($tag_list){
+            $tag_list = substr($tag_list,'0','-2');
+            $out[] = $this->getComponentText('{#tags#}: ',array(),array('font-size' => '9','color' => '#000000'));
+            $out[] = $this->getComponentText($tag_list,array(),array('font-size' => '9','color' => '#B2B4B3'));
+        } else {
+            $out[] = $this->getComponentText('{#no_tags#}',array(),array('font-size' => '9','color' => '#B2B4B3'));
+        }
+
+        if($wide){
+            return $this->getComponentRow($out, array(), array(
+                'padding' => '0 0 4 4',
+                'height' => '20',
+                'background-color' => '#ffffff',
+            ));
+        } else {
+            return $this->getComponentColumn($out, array(), array(
+                'padding' => '0 4 4 4',
+                'height' => '45',
+                'background-color' => '#ffffff',
+            ));
+        }
+
+
     }
 
 }

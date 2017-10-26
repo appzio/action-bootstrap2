@@ -37,7 +37,7 @@ trait uiKitTagList {
         $onclick_delete_params = isset($params['onclick_delete_params']) ? $params['onclick_delete_params'] : '';
 
         if(empty($items)){
-            return $this->uiKitDivider();
+            return $this->getComponentText('',array(),array('height' => 1,'background-color' => '#ffffff'));
         }
 
         $width = $this->screen_width - 30;

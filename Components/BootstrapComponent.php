@@ -221,6 +221,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Buttons\uiKitDoubleButtons;
 
     use AppzioUiKit\Forms\uiKitDivider;
+    use AppzioUiKit\Forms\uiKitImageGridUpload;
     use AppzioUiKit\Headers\uiKitTwoColumnHeader;
 
     use AppzioUiKit\Listing\uiKitTagList;
