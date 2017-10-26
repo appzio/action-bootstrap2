@@ -30,8 +30,8 @@ trait uiKitHintedTime
             'hour' => $hours,
             'minutes' => $minutes
         ), array(
-            'active_icon' => 'time-placeholder.png',
-            'inactive_icon' => 'time-placeholder.png',
+            'active_icon' => 'clock-icon.png',
+            'inactive_icon' => 'clock-icon.png',
         ));
     }
 }

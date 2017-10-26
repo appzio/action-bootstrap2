@@ -15,6 +15,9 @@
   "akit_calendar_field": {
     "color": "#000000"
   },
+  "akit_calendar_field_wrapper": {
+    "margin": "8 20 8 40"
+  },
   "akit_calendar_icon": {
     "width": "30",
     "height": "30",

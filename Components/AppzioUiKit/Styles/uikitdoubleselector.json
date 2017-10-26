@@ -40,5 +40,9 @@
     "height": "1",
     "background-color": "#E4E7E9",
     "margin": "2 40 5 40"
+  },
+  "akit_double_selector_field_list": {
+    "text-align": "center",
+    "width": "50%"
   }
 }

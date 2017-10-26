@@ -49,7 +49,11 @@ trait uiKitHintedCalendar
         $onclick[] = $this->getOnclickHideElement($variablename . 'hinter');
         $onclick[] = $this->getOnclickShowElement($variablename . 'selector');
 
-        $out[] = $this->getComponentRow($row, array('onclick' => $onclick, 'id' => $variablename . 'hinter'), array('margin' => '8 20 8 40'));
+        $out[] = $this->getComponentRow($row, array(
+            'onclick' => $onclick,
+            'id' => $variablename . 'hinter',
+            'style' => 'akit_calendar_field_wrapper'
+        ));
 
         /* data that's shown after click, hidden by default */
         $closeclick[] = $this->getOnclickHideElement($variablename . 'selector');
