@@ -42,7 +42,7 @@ trait uiKitDoubleSelector
             $row[] = $this->getComponentText(' ');
         }
 
-        $row[] = $this->getComponentImage($inactiveIcon, array('style' => 'akit_double_selector_icon'));
+        $row[] = $this->getComponentImage($activeIcon, array('style' => 'akit_double_selector_icon'));
 
         if (isset($parameters['hide'])) {
             $onclick[] = $this->getOnclickHideElement($parameters['hide']);
@@ -57,7 +57,7 @@ trait uiKitDoubleSelector
         $closeclick[] = $this->getOnclickHideElement($variablenames[0] . 'selector');
         $closeclick[] = $this->getOnclickShowElement($variablenames[0] . 'hinter');
 
-        $closeimg[] = $this->getComponentImage($activeIcon, array('onclick' => $closeclick, 'style' => 'akit_double_selector_icon'), array());
+        $closeimg[] = $this->getComponentImage($inactiveIcon, array('onclick' => $closeclick, 'style' => 'akit_double_selector_icon'), array());
         //$openstate[] = $this->getComponentRow($closeimg,array('onclick'=>$onclick,'id' => $variablename.'hinter'),array('margin' => '8 20 8 40'));
 
         foreach ($variablenames as $variablename) {
@@ -68,8 +68,11 @@ trait uiKitDoubleSelector
             }
 
             $openstateCol[] = $this->getComponentFormFieldList($list[$variablename], array(
-                'update_on_entry' => 1, 'variable' => $variablename, 'value' => $value
-            ), array('text-align' => 'center', 'width' => '50%'));
+                'update_on_entry' => 1,
+                'variable' => $variablename,
+                'value' => $value,
+                'style' => 'akit_double_selector_field_list'
+            ));
         }
 
         $openstateRow[] = $this->getComponentRow($openstateCol);
