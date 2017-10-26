@@ -61,7 +61,7 @@ trait ImageGrid
 
         $response[] = $this->getComponentRow($column, array(), array('margin' => '0 ' . $this->margin . ' 0 ' . $this->margin));
 
-        return $this->getComponentColumn($response);
+        return $this->getComponentColumn($response,array(),array('margin' => '0 0 0 0'));
     }
 
     public function setGridWidths()
@@ -101,7 +101,7 @@ trait ImageGrid
         }
 
         return $this->getComponentImage($this->model->getSavedVariable($name), array(
-            'defaultimage' => 'pic_placeholder.png',
+            'defaultimage' => 'formkit-photo-placeholder.png',
             'onclick' => $onclick,
             'use_variable' => true,
             'variable' => $this->model->getVariableId($name),

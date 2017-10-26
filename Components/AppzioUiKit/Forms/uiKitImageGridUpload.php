@@ -32,16 +32,16 @@ trait uiKitImageGridUpload {
         $this->grid = round($this->grid / 3, 0);
 
         $column[] = $this->getComponentRow(array(
-            $this->getProfileImage($variable, true),
+            $this->uikgGetProfileImage($variable, true),
         ), array(), array(
             'width' => '65%'
         ));
 
         $column[] = $this->getComponentVerticalSpacer($this->margin);
 
-        $row[] = $this->getProfileImage($variable . '2');
+        $row[] = $this->uikgGetProfileImage($variable . '2');
         $row[] = $this->getComponentSpacer($this->margin);
-        $row[] = $this->getProfileImage($variable . '3');
+        $row[] = $this->uikgGetProfileImage($variable . '3');
 
         $column[] = $this->getComponentColumn($row);
 
@@ -51,25 +51,19 @@ trait uiKitImageGridUpload {
         unset($column);
         unset($row);
 
-        $column[] = $this->getProfileImage($variable . '4');
+        $column[] = $this->uikgGetProfileImage($variable . '4');
         $column[] = $this->getComponentVerticalSpacer($this->margin);
-        $column[] = $this->getProfileImage($variable . '5');
+        $column[] = $this->uikgGetProfileImage($variable . '5');
         $column[] = $this->getComponentVerticalSpacer($this->margin);
-        $column[] = $this->getProfileImage($variable . '6');
+        $column[] = $this->uikgGetProfileImage($variable . '6');
 
         $response[] = $this->getComponentRow($column, array(), array('margin' => '0 ' . $this->margin . ' 0 ' . $this->margin));
 
         return $this->getComponentColumn($response);
     }
 
-    public function setGridWidths()
-    {
-        $width = $this->screen_width ? $this->screen_width : 320;
-        $this->grid = $width - ($this->margin * 4);
-        $this->grid = round($this->grid / 3, 0);
-    }
 
-    public function getProfileImage($name, $mainimage = false)
+    protected function uikgGetProfileImage($name, $mainimage = false)
     {
         /** @var BootstrapModel $this->model */
         if ($mainimage) {
@@ -98,8 +92,11 @@ trait uiKitImageGridUpload {
         }
 
         return $this->getComponentImage($this->model->getSavedVariable($name), array(
-            'defaultimage' => 'pic_placeholder.png',
+            'defaultimage' => 'formkit-photo-placeholder.png',
             'onclick' => $onclick,
+            'imgwidth' => '300',
+            'imgheight' => '300',
+            'imgcrop' => 'yes',
             'use_variable' => true,
             'variable' => $this->model->getVariableId($name),
             'config' => $this->model->getVariableId($name),

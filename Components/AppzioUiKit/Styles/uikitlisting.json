@@ -28,7 +28,15 @@
   "item_tag_delete":{
     "width": "25",
     "margin": "0 6 0 0"
+  },
+
+  "uikit_search_noresults":{
+    "margin": "15 15 15 15",
+    "font-size": "18",
+    "text-align": "center"
   }
+
+
 
 
 }

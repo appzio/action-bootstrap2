@@ -16,7 +16,9 @@ trait uiKitButtonHollow {
         $style['parent_style'] = 'uikit_default_btn';
         $style['border-color'] = isset($styles['border-color']) ? $styles['border-color'] : '#656B6F';
         $style['color'] = isset($styles['color']) ? $styles['color'] : '#656B6F';
-        return $this->getComponentText($title,$parameters,$style);
+        $style['margin'] = isset($styles['margin']) ? $styles['margin'] : '0 80 0 80';
+        $styles = array_merge($styles,$style);
+        return $this->getComponentText($title,$parameters,$styles);
     }
 
 

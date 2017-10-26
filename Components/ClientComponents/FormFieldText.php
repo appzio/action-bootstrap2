@@ -35,11 +35,11 @@ trait FormFieldText {
         $obj = new \stdClass;
         $obj->type = 'field-text';
 
-        if(empty($field_content) AND isset($parameters['variable']) AND !isset($parameters['empty'])){
+        if(empty($field_content) AND isset($parameters['variable']) AND !isset($parameters['empty']) AND !isset($parameters['value'])){
             $this->model->getSubmittedVariableByName($parameters['variable']);
         }
 
-        $obj->content = ( !empty($field_content) ? $field_content : '' );
+        $obj->content = $field_content;
 
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);

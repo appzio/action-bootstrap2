@@ -19,6 +19,7 @@ trait ComponentParameters {
      */
     public function attachParameters(\stdClass $obj, array $parameters, array $allowed=array(),array $required = array()) {
 
+
         if(!$parameters){
             if($required){
                 return $this->getComponentText('Missing required parameter for '.$obj->type);
@@ -28,7 +29,9 @@ trait ComponentParameters {
 
         foreach($parameters as $name=>$param){
             if($allowed){
-                if(array_search($name, $allowed)){
+                if(in_array($name,$allowed)){
+                    $obj->$name = $param;
+                } elseif(in_array($name,$required)) {
                     $obj->$name = $param;
                 } else {
                     return $this->getComponentText('Disallowed parameter '.$name);
