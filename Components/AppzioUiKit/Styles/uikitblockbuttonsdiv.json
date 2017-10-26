@@ -1,0 +1,18 @@
+{
+  "uikit_block_btn_div": {
+    "background-color": "#FFFFFF",
+    "width": "150",
+    "border-radius": "5",
+    "shadow-color": "#000000",
+    "shadow-radius": "4",
+    "shadow-offset": "0 3"
+  },
+  "uikit_block_btn_div_item_active": {
+    "padding": "10 10 10 10",
+    "color": "#1b1b1b"
+  },
+  "uikit_block_btn_div_item_disabled": {
+    "padding": "10 10 10 10",
+    "color": "#DADADA"
+  }
+}

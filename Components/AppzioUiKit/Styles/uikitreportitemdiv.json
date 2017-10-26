@@ -1,0 +1,11 @@
+{
+  "uikit_report_item_div_reason": {
+    "padding": "15 10 15 20"
+  },
+  "uikit_report_item_div_checkbox": {
+    "margin": "0 10 5 7",
+    "floating": "1",
+    "float": "right",
+    "vertical-align": "middle"
+  }
+}
