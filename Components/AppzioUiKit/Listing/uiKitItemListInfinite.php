@@ -52,7 +52,11 @@ trait uiKitItemListInfinite {
         }
 
         if(isset($col)){
-            $rows[] = $this->getComponentColumn($col,array('style' => 'uikit_itemlist_row'),array('margin' => '15 7 0 7'));
+            $rows[] = $this->getComponentRow($col,array('style' => 'uikit_itemlist_row'),array('margin' => '15 7 0 7'));
+        }
+
+        if(!isset($rows)){
+            $rows[] = $this->getComponentText('',array('uikit_search_noresults'));
         }
 
         return $this->getInfiniteScroll($rows,array('next_page_id' => '2'));

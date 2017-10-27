@@ -30,7 +30,6 @@ trait Row {
 
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
-        $obj = $this->configureDefaults($obj);
 
         return $obj;
 	}

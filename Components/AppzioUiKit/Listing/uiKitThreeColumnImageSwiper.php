@@ -16,7 +16,6 @@ trait uiKitThreeColumnImageSwiper {
         foreach ($images as $item) {
             $onclick = new \stdClass();
             $onclick->action = 'open-action';
-            $onclick->back_button = 1;
             $onclick->action_config = $this->model->getActionidByPermaname('itemdetail');
             $onclick->sync_open = 1;
             $onclick->id = $item['id'];
