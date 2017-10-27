@@ -20,8 +20,8 @@ trait uiKitRemoveItemDiv
                 'style' => 'uikit_div_button',
                 'onclick' => array(
                     $this->getOnclickSubmit('Controller/remove'),
-                    $this->getOnclickHideDiv('remove-item'),
-                    $this->getOnclickHideDiv('block-buttons'),
+                    $this->getOnclickHideDiv('uikit-remove-item'),
+                    $this->getOnclickHideDiv('uikit-block-buttons'),
                     $this->getOnclickGoHome()
                 )
             ))

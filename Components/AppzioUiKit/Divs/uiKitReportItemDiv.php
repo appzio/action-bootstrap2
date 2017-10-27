@@ -37,8 +37,8 @@ trait uiKitReportItemDiv
                 'style' => 'uikit_div_button',
                 'onclick' => array(
                     $this->getOnclickSubmit('Reporting/default'),
-                    $this->getOnclickHideDiv('report-item'),
-                    $this->getOnclickHideDiv('block-buttons'),
+                    $this->getOnclickHideDiv('uikit-report-item'),
+                    $this->getOnclickHideDiv('uikit-block-buttons'),
                     $this->getOnclickGoHome()
                 )
             ))

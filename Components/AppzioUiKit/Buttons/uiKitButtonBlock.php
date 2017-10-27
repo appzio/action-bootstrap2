@@ -16,7 +16,7 @@ trait uiKitButtonBlock
         $this->addDivs(array('uikit-block-buttons' => 'uiKitBlockButtonsDiv'));
 
         $layout = new \stdClass();
-        $layout->top = $this->screen_height / 7;
+        $layout->top = $this->screen_height / 12;
         $layout->right = $this->screen_width / 8;
 
         $onclick = $this->getOnclickShowDiv('uikit-block-buttons', array(
@@ -31,8 +31,10 @@ trait uiKitButtonBlock
                 'style' => 'uikit_block_btn_icon'
             ))
         ), array(), array(
-            'margin' => '-' . $this->screen_height / 2.7 . ' 0 ' . $this->screen_height / 3.1 . ' 0',
-            'padding' => '0 20 0 20'
+            'vertical-align' => 'middle'
+//            'margin' => '-' . $this->screen_height / 2.7 . ' 0 ' . $this->screen_height / 3.1 . ' 0',
+//            'padding' => '0 20 0 20',
+//            'margin' => '-' . round($this->screen_width / 1.45, 0) . ' 0 ' . round($this->screen_width / 1.6, 0) . ' 0'
         ));
     }
 }

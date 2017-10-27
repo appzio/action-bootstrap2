@@ -10,7 +10,7 @@
   },
 
   "uikit_block_btn_icon": {
-    "width": "35",
+    "width": "30",
     "floating": "1",
     "float": "right"
   }
