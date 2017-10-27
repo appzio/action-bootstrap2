@@ -17,7 +17,7 @@ trait uiKitButtonBlock
 
         $layout = new \stdClass();
         $layout->top = $this->screen_height / 12;
-        $layout->right = $this->screen_width / 8;
+        $layout->right = $this->screen_width / 12;
 
         $onclick = $this->getOnclickShowDiv('uikit-block-buttons', array(
             'tap_to_close' => 1,
