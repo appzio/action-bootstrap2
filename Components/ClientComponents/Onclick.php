@@ -151,6 +151,25 @@ trait Onclick {
 
     }
 
+    public function getOnclickSetVariables(array $variables,$clickparameters=array()){
+        $obj = new \StdClass;
+        $obj->action = 'set-variables';
+        $obj->set_variables_data = new \stdClass();
+
+        if(empty($variables)){
+            $this->errors[] = 'You are using set variables onclick, but no variables are defined';
+        }
+
+        foreach($variables as $var=>$value){
+            $obj->set_variables_data->$var = $value;
+        }
+
+
+        $obj = $this->attachParameters($obj,$clickparameters);
+        return $obj;
+
+    }
+
     /**
      * Clicking the component to which this is attached will complete the current action
      *

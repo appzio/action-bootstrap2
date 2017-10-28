@@ -1,0 +1,40 @@
+{
+
+  "ukit_hierarchical_firstlevel":{
+    "background-color" : "#E1E4E3",
+    "padding" : "0 15 0 15",
+    "height": "50",
+    "vertical-align": "middle",
+    "font-size": "18"
+  },
+
+  "ukit_hierarchical_secondlevel":{
+    "padding" : "0 15 0 30",
+    "height": "50",
+    "vertical-align": "middle",
+    "font-size": "16"
+  },
+  "ukit_hierarchical_thirdlevel":{
+    "padding" : "0 15 0 45",
+    "height": "50",
+    "vertical-align": "middle",
+    "font-size": "16"
+  },
+
+  "ukit_hierarchical_fourthlevel":{
+    "padding" : "0 15 0 60",
+    "height": "50",
+    "vertical-align": "middle",
+    "font-size": "16"
+  },
+
+  "ukit_selector_arror":{
+    "floating": "1",
+    "float": "right",
+    "height": "25",
+    "margin": "0 15 0 0",
+    "vertical-align": "middle"
+  }
+
+
+}

@@ -4,7 +4,6 @@ namespace Bootstrap\Components\AppzioUiKit\Listing;
 
 trait uiKitTagList {
 
-
     /**
      * View component to render list of tags. Will wrap to multiple lines if needed.
      * @param array $items

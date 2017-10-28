@@ -12,6 +12,14 @@
     "background-color": "#CDD0D0",
     "width": "100%",
     "opacity": "0.5"
+  },
+
+  "ukit_form_field_select_icon":{
+    "width": "30",
+    "floating": "1",
+    "float": "right",
+    "vertical-align": "middle",
+    "margin": "0 15 0 0"
   }
 
 

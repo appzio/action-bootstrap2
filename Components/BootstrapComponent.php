@@ -211,6 +211,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Controls\uiKitDoubleSelector;
     use AppzioUiKit\Controls\uiKitHintedCalendar;
     use AppzioUiKit\Controls\uiKitHintedTime;
+    use AppzioUiKit\Controls\uiKitHierarchicalCategories;
 
     use AppzioUiKit\Text\uiKitTextHeader;
     use AppzioUiKit\Text\uiKitTextBlock;
@@ -228,6 +229,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Forms\uiKitSearchField;
     use AppzioUiKit\Forms\uiKitHintedTextField;
     use AppzioUiKit\Forms\uiKitTagRadioButtons;
+    use AppzioUiKit\Forms\uiKitHintedSelectButtonField;
 
     use AppzioUiKit\Listing\uiKitTagList;
     use AppzioUiKit\Listing\uiKitThreeColumnImageSwiper;
