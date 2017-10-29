@@ -9,11 +9,15 @@ trait uiKitHierarchicalCategories
 
 
     public $current_category_info;
+    public $submit_click;
 
     /**
      * Takes a specially formatted array to display a hierarchical, collapsible
-     * list up to four levels. See actionMitems > Model for more clues on formatting the array.
-     * This component will submit only single item and close the popup on selection.
+     * list up to four levels. See actionMitems > Categories traig for more clues on formatting
+     * the array. This component will submit only single item and close the popup on selection.
+     *
+     * Note that the final ordering of the elements happens here in the component, so the
+     * model can send the results in any order.
      *
      * @param $categories
      * @param $onclick
@@ -21,8 +25,10 @@ trait uiKitHierarchicalCategories
      * @return mixed
      */
 
-    public function uiKitHierarchicalCategories($categories,$onclick=false)
+    public function uiKitHierarchicalCategories($categories,$onclick_save_route=false)
     {
+
+        $this->submit_click = $onclick_save_route;
 
         foreach($categories as $category) {
 
@@ -104,11 +110,8 @@ trait uiKitHierarchicalCategories
         $row[] = $this->getComponentText($name,array('style' => 'ukit_hierarchical_'.$level.'level'));
 
         if(empty($this->current_category_info['children'])){
-            $params['onclick'] = $this->getOnclickClosePopup(array(
-                //'set_variables_data' => array($this->model->getVariableId('category') => $this->current_category_info['name']
-                )
-            );
-
+            $params['onclick'][] = $this->getOnclickSubmit($this->submit_click.$this->current_category_info['id']);
+            $params['onclick'][] = $this->getOnclickClosePopup();
             $row[] = $this->getComponentImage('uikit_selector_green_icon.png',array('style' => 'ukit_selector_arror'));
         } else {
             $row[] = $this->getComponentImage($icon,array('style' => 'ukit_selector_arror'));

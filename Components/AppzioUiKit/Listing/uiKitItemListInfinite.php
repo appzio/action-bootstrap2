@@ -22,6 +22,7 @@ trait uiKitItemListInfinite {
         $counter = 0;
         $featured_item = array();
         $extra_items = array();
+        $featured_counter = 0;
 
         foreach($content as $item){
 
@@ -33,6 +34,7 @@ trait uiKitItemListInfinite {
                 $counter++;
             } elseif($item->featured AND $counter < 2){
                 $col[] = $this->getItemBoxWide($item,$parameters);
+                $featured_counter++;
                 $counter++;
                 $counter++;
             } elseif($item->featured) {

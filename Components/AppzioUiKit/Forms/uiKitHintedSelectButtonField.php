@@ -30,7 +30,7 @@ trait uiKitHintedSelectButtonField {
         }
 
         if(!isset($parameters['value'])){
-            $val = $this->model->getSubmittedVariableByName($variablename) ? $this->model->getSubmittedVariableByName($variablename) : $this->model->getSavedVariable($variablename);
+            $val = $this->model->getSavedVariable($variablename.'_name') ? $this->model->getSavedVariable($variablename.'_name') : '{#click_to_select#}';
         } else {
             $val = $parameters['value'];
         }

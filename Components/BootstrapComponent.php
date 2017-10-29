@@ -223,6 +223,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Buttons\uiKitButtonFilled;
     use AppzioUiKit\Buttons\uiKitButtonHollow;
     use AppzioUiKit\Buttons\uiKitDoubleButtons;
+    use AppzioUiKit\Buttons\uiKitButtonBlock;
 
     use AppzioUiKit\Forms\uiKitDivider;
     use AppzioUiKit\Forms\uiKitImageGridUpload;
@@ -239,7 +240,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Divs\uiKitBlockButtonsDiv;
     use AppzioUiKit\Divs\uiKitReportItemDiv;
     use AppzioUiKit\Divs\uiKitRemoveItemDiv;
-    use AppzioUiKit\Buttons\uiKitButtonBlock;
+
+    use AppzioUiKit\Fullviews\uiKitIntroWithButtons;
 
     use ViewGetters;
     use ViewHelpers;

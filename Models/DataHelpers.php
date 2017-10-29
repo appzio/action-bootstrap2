@@ -59,10 +59,14 @@ trait DataHelpers {
             return false;
         }
 
+        if($this->getSavedVariable('country')){
+            return false;
+        }
+
         $location = ThirdpartyServices::geoAddressTranslation($this->getSavedVariable('lat'), $this->getSavedVariable('lon'), $this->appid);
 
         if(!$location){
-            //$this->setError('Location could not be fetched, make sure you have Google API key defined');
+            $this->setError('Location could not be fetched, make sure you have Google API key defined');
         }
 
         if(isset($location['city'])){ $vars['city'] = $location['city']; }
@@ -75,7 +79,8 @@ trait DataHelpers {
             $this->saveNamedVariables($vars);
         }
 
-        $this->reloadData();
+        $this->loadVariables();
+        $this->loadVariableContent();
     }
 
     /**

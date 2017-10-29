@@ -31,9 +31,12 @@ trait uiKitTagList {
 
         $background = isset($params['background']) ? $params['background'] : '#ffffff';
         $onclick_edit = isset($params['onclick_edit']) ? $params['onclick_edit'] : '';
-        $clickparams_edit = isset($params['clickparams_edit']) ? $params['clickparams_edit'] : '';
+        $clickparams_edit = isset($params['clickparams_edit']) ? $params['clickparams_edit'] : array();
         $onclick_delete = isset($params['onclick_delete']) ? $params['onclick_delete'] : '';
-        $onclick_delete_params = isset($params['onclick_delete_params']) ? $params['onclick_delete_params'] : '';
+        $onclick_delete_params = isset($params['onclick_delete_params']) ? $params['onclick_delete_params'] : array();
+        unset($params);
+
+        $onclick_delete_params['viewport'] = 'current';
 
         if(empty($items)){
             return $this->getComponentText('',array(),array('height' => 1,'background-color' => '#ffffff'));
@@ -53,6 +56,7 @@ trait uiKitTagList {
             // 17 are the margins and padding
             $size = imagettfbbox(9,0,$font,$tag['title']);
             $size = $size[4] + 17;
+
 
             if($onclick_delete){
                 $params['style'] = 'item_tag_with_delete';

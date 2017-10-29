@@ -26,9 +26,9 @@ trait uiKitDoubleButtons {
 
     public function uiKitDoubleButtons(string $btn1_title, string $btn2_title, $btn1_parameters=array(), $btn2_parameters=array(), $btn1_styles=array(), $btn2_styles=array(), $background='#ffffff'){
         $out[] = $this->getComponentSpacer('20');
-        $out[] = $this->uiKitButtonFilled($btn1_title);
+        $out[] = $this->uiKitButtonFilled($btn1_title,$btn1_parameters);
         $out[] = $this->getComponentSpacer('10');
-        $out[] = $this->uiKitButtonHollow($btn2_title);
+        $out[] = $this->uiKitButtonHollow($btn2_title,$btn2_parameters);
         $out[] = $this->getComponentSpacer('20');
 
         return $this->getComponentColumn($out, array(), array(
