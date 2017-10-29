@@ -35,10 +35,18 @@ trait uiKitHintedSelectButtonField {
             $val = $parameters['value'];
         }
 
-        $row[] = $this->getComponentText($val,array('style' => 'steps_field_noedit','variable' => $variablename));
-        $row[] = $this->getComponentImage('uikit-select-form-icon.png',array('style' => 'ukit_form_field_select_icon'));
+        $icon = isset($parameters['icon']) ? $parameters['icon'] : 'uikit-select-form-icon.png';
 
-        $out[] = $this->getComponentRow($row,array('onclick' => $onclick));
+        if(isset($parameters['editable_field'])){
+            $row[] = $this->getComponentFormFieldText($val,array('style' => 'steps_field_noedit','variable' => $variablename));
+            $row[] = $this->getComponentImage($icon,array('style' => 'ukit_form_field_select_icon','onclick' => $onclick));
+            $out[] = $this->getComponentRow($row,array());
+        } else {
+            $row[] = $this->getComponentText($val,array('style' => 'steps_field_noedit','variable' => $variablename));
+            $row[] = $this->getComponentImage($icon,array('style' => 'ukit_form_field_select_icon'));
+            $out[] = $this->getComponentRow($row,array('onclick' => $onclick));
+        }
+
 
         if($this->model->getValidationError($variablename)){
             $out[] = $this->getComponentText('',array('style' => 'steps_field_divider_error'));
