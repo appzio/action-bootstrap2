@@ -54,9 +54,8 @@ trait uiKitTagList {
             }
 
             // 17 are the margins and padding
-            $size = imagettfbbox(9,0,$font,$tag['title']);
+            $size = imagettfbbox(10,0,$font,$tag['title']);
             $size = $size[4] + 17;
-
 
             if($onclick_delete){
                 $params['style'] = 'item_tag_with_delete';

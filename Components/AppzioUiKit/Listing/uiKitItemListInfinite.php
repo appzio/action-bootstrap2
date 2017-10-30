@@ -24,6 +24,9 @@ trait uiKitItemListInfinite {
         $extra_items = array();
         $featured_counter = 0;
 
+        $page = isset($_REQUEST['next_page_id']) ? $_REQUEST['next_page_id'] : 1;
+        $page++;
+
         foreach($content as $item){
 
             if(!empty($featured_item) AND $counter < 2){
@@ -69,7 +72,7 @@ trait uiKitItemListInfinite {
             $rows[] = $this->getComponentText('',array('uikit_search_noresults'));
         }
 
-        return $this->getInfiniteScroll($rows,array('next_page_id' => '2'));
+        return $this->getInfiniteScroll($rows,array('next_page_id' => $page));
 	}
 
 	private function getItemBox($item,$parameters){
