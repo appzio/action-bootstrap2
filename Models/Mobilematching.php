@@ -29,6 +29,24 @@ trait Mobilematching {
         $this->mobilematchingmetaobj = new \MobilematchingmetaModel();
     }
 
+    /* generates a unique chat id between two users */
+    public function getTwoWayChatId($id,$playid=false){
+
+        if(!$playid){
+            $playid = $this->playid;
+        }
+
+        if($id < $playid){
+            $chatid = $id.'-chat-'.$playid;
+        } else {
+            $chatid = $playid.'-chat-'.$id;
+        }
+
+        return $chatid;
+
+    }
+
+
 
 
 

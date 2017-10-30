@@ -89,8 +89,10 @@ trait uiKitItemListInfinite {
             'height' => $width,
             'crop' => 'yes'
         ));
+
+        $name = strlen($item->name) > 40 ? substr($item->name,0,40) .'...' : $item->name;
         
-        $text[] = $this->getComponentText($item->name,array(),array(
+        $text[] = $this->getComponentText($name,array(),array(
             'color' => '#545050',
             'font-size' => '13',
             'padding' => '4 4 4 4'));
