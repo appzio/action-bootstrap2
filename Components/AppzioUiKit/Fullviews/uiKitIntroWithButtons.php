@@ -13,7 +13,7 @@ trait uiKitIntroWithButtons {
         }
 
         if(isset($swipe)){
-            $col[] = $this->getComponentSwipe($swipe,array('dynamic' => 1),array());
+            $col[] = $this->getComponentSwipe($swipe,array('hide_scrollbar' => 1),array());
             return $this->getComponentColumn($col);
         }
 
@@ -54,7 +54,7 @@ trait uiKitIntroWithButtons {
 
 
             if(isset($col)){
-            return $this->getComponentColumn($col,array(),array('height' => $this->screen_height - 80));
+            return $this->getComponentColumn($col,array(),array('height' => $this->screen_height - 50,'margin' => '0 0 0 0'));
         } else {
             return $this->getComponentText('no info');
         }

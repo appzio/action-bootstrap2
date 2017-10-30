@@ -8,14 +8,19 @@ trait uiKitTitlePriceLocation {
 
         $row[] = $this->getComponentText($title,array(),array(
             'margin' => '8 0 0 15',
-            'font-size' => '20'
+            'font-size' => '20',
+            'width' => '75%',
+            'vertical-align' => 'top'
         ));
         $row[] = $this->getComponentText($price,array(),array(
             'float' => 'right',
             'floating' => '1',
+            'text-align' => 'right',
             'color' => '#3EB439',
             'font-size' => '20',
-            'margin' => '8 15 0 0'
+            'margin' => '8 15 0 0',
+            'width' => '25%',
+            'vertical-align' => 'top'
         ));
         $output[] = $this->getComponentRow($row);
         unset($row);

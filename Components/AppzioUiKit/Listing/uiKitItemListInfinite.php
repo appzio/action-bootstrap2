@@ -57,6 +57,14 @@ trait uiKitItemListInfinite {
             $rows[] = $this->getComponentRow($col,array('style' => 'uikit_itemlist_row'),array('margin' => '15 7 0 7'));
         }
 
+        if(!empty($featured_item)){
+            unset($col);
+            $first = array_shift($featured_item);
+            $col[] = $this->getItemBoxWide($first,$parameters);
+            $rows[] = $this->getComponentRow($col,array('style' => 'uikit_itemlist_row'),array('margin' => '15 7 0 7'));
+        }
+
+
         if(!isset($rows)){
             $rows[] = $this->getComponentText('',array('uikit_search_noresults'));
         }
