@@ -63,17 +63,7 @@ trait DataHelpers {
             return false;
         }
 
-        $location = ThirdpartyServices::geoAddressTranslation($this->getSavedVariable('lat'), $this->getSavedVariable('lon'), $this->appid);
-
-        if(!$location){
-            $this->setError('Location could not be fetched, make sure you have Google API key defined');
-        }
-
-        if(isset($location['city'])){ $vars['city'] = $location['city']; }
-        if(isset($location['country'])){ $vars['country'] = $location['country']; }
-        if(isset($location['county'])){ $vars['county'] = $location['county']; }
-        if(isset($location['zip'])){ $vars['zip'] = $location['zip']; }
-        if(isset($location['street'])){ $vars['street'] = $location['street']; }
+        $vars = $this->coordinatesToAddress($this->getSavedVariable('lat'), $this->getSavedVariable('lon'));
 
         if(isset($vars)){
             $this->saveNamedVariables($vars);
@@ -81,6 +71,24 @@ trait DataHelpers {
 
         $this->loadVariables();
         $this->loadVariableContent();
+    }
+
+    public function coordinatesToAddress($lat,$lon){
+        $location = ThirdpartyServices::geoAddressTranslation($lat, $lon, $this->appid);
+
+        if(!$location){
+            $this->setError('Location could not be fetched, make sure you have Google API key defined');
+        }
+
+        $vars = array();
+
+        if(isset($location['city'])){ $vars['city'] = $location['city']; }
+        if(isset($location['country'])){ $vars['country'] = $location['country']; }
+        if(isset($location['county'])){ $vars['county'] = $location['county']; }
+        if(isset($location['zip'])){ $vars['zip'] = $location['zip']; }
+        if(isset($location['street'])){ $vars['street'] = $location['street']; }
+
+        return $vars;
     }
 
     /**

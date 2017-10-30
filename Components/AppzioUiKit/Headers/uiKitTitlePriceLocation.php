@@ -20,8 +20,6 @@ trait uiKitTitlePriceLocation {
         $output[] = $this->getComponentRow($row);
         unset($row);
 
-        $city = 'Sofia';
-
         $row[] = $this->getComponentImage('uikit-icon-map-link.png',array(),array(
             'margin' => '8 0 8 15',
             'width' => '30'
