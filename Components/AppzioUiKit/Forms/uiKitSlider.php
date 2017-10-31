@@ -52,6 +52,9 @@ trait uiKitSlider {
             $slider_params['value2'] = $value2;
             $slider_params['variable2'] = $variable2;
             $slider_params['tooltip_suffix'] = $unit;
+            $slider_params['left_track_color'] = $right_track_color;
+            $slider_params['right_track_color'] = $left_track_color;
+
         }
 
         $slider[] = $this->getComponentRangeSlider($slider_params,array('width' => '100%','margin' => '15 15 15 15'));
