@@ -26,7 +26,11 @@ trait uiKitHintedSelectButtonField {
             $error[] = $this->getComponentText($this->model->getValidationError($variablename),array('style' => 'steps_error'));
             $out[] = $this->getComponentRow($error,array(),array('width' => '100%'));
         } else {
-            $out[] = $this->getComponentText($hint, array('style' => 'steps_hint','uppercase' => true));
+            if(isset($parameters['big_form_title'])){
+                $out[] = $this->uiKitFormSectionHeader($hint);
+            } else {
+                $out[] = $this->getComponentText($hint, array('style' => 'steps_hint','uppercase' => true));
+            }
         }
 
         if(!isset($parameters['value'])){
@@ -47,8 +51,9 @@ trait uiKitHintedSelectButtonField {
             $out[] = $this->getComponentRow($row,array('onclick' => $onclick));
         }
 
-
-        if($this->model->getValidationError($variablename)){
+        if(isset($parameters['big_form_title'])) {
+            $out[] = $this->getComponentText('', array('style' => 'steps_field_divider_small'));
+        }elseif($this->model->getValidationError($variablename)){
             $out[] = $this->getComponentText('',array('style' => 'steps_field_divider_error'));
         } else {
             $out[] = $this->getComponentText('',array('style' => 'steps_field_divider'));
@@ -62,8 +67,13 @@ trait uiKitHintedSelectButtonField {
             $out[] = $this->getComponentRow($err,array('style' => 'email_exists_row'));
         }
 
+        if(isset($parameters['big_form_title'])){
+            return $this->getComponentColumn($out,array(),array('background-color'=> '#ffffff'));
+        } else {
+            return $this->getComponentColumn($out);
+        }
 
-        return $this->getComponentColumn($out);
+
 	}
 
 }

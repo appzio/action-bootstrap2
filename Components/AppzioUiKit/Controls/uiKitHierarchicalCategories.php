@@ -10,6 +10,7 @@ trait uiKitHierarchicalCategories
 
     public $current_category_info;
     public $submit_click;
+    public $tab;
 
     /**
      * Takes a specially formatted array to display a hierarchical, collapsible
@@ -25,10 +26,18 @@ trait uiKitHierarchicalCategories
      * @return mixed
      */
 
-    public function uiKitHierarchicalCategories($categories,$onclick_save_route=false)
+    public function uiKitHierarchicalCategories($categories,$onclick_save_route=false,$tab=false)
     {
 
         $this->submit_click = $onclick_save_route;
+        $this->tab = $tab;
+
+        if($tab){
+            $this->current_category_info['id'] = 0;
+            $out[] = $this->uiKitHierarchicalCategoriesGetRow('{#no_category_filtering#}', '');
+            $out[] = $this->getComponentSpacer('10');
+        }
+
 
         foreach($categories as $category) {
 
@@ -62,7 +71,10 @@ trait uiKitHierarchicalCategories
                 }
             }
         }
-        
+
+
+
+
         if(isset($out)){
             return $this->getComponentColumn($out);
         } else {
@@ -78,22 +90,17 @@ trait uiKitHierarchicalCategories
             $onclick[] = $this->getOnclickHideElement($id.'_collapsed',array('transition' => 'none'));
 
             if($this->current_category_info['children']){
-                foreach($this->current_category_info['children'] as $cat){
-                    $onclick[] = $this->getOnclickShowElement($cat,array('transition' => 'none'));
-                }
+                $onclick[] = $this->getOnclickShowElement('sub_'.$id.'_*',array('transition' => 'none'));
+                $onclick[] = $this->getOnclickShowElement('subcollapsed_'.$id.'_*',array('transition' => 'none'));
             }
         } else {
             $onclick[] = $this->getOnclickHideElement($id.'_expanded',array('transition' => 'none'));
             $onclick[] = $this->getOnclickShowElement($id.'_collapsed',array('transition' => 'none'));
 
             if($this->current_category_info['all_children']){
-                foreach($this->current_category_info['all_children'] as $cat){
-                    $onclick[] = $this->getOnclickHideElement($cat,array('transition' => 'none'));
-                    $onclick[] = $this->getOnclickHideElement($cat.'_expanded',array('transition' => 'none'));
-                    $onclick[] = $this->getOnclickShowElement($cat.'_collapsed',array('transition' => 'none'));
-                }
+                $onclick[] = $this->getOnclickHideElement('sub_'.$id.'_*',array('transition' => 'none'));
+                $onclick[] = $this->getOnclickHideElement('subexpanded_'.$id.'_*',array('transition' => 'none'));
             }
-
         }
 
         return $onclick;
@@ -104,14 +111,27 @@ trait uiKitHierarchicalCategories
             $out[] = $this->uiKitDivider();
         }
 
+        $id = $this->current_category_info['id'];
+
+        $var = $this->model->getVariableId('category_name') ? $this->model->getVariableId('category_name') : '';
+
         $params = array();
         $styles = array();
 
         $row[] = $this->getComponentText($name,array('style' => 'ukit_hierarchical_'.$level.'level'));
 
         if(empty($this->current_category_info['children'])){
-            $params['onclick'][] = $this->getOnclickSubmit($this->submit_click.$this->current_category_info['id']);
-            $params['onclick'][] = $this->getOnclickClosePopup();
+            $params['onclick'][] = $this->getOnclickSubmit($this->submit_click.$id);
+
+            if($this->tab){
+                $params['onclick'][] = $this->getOnclickTab(1);
+                if($var){
+                    $params['onclick'][] = $this->getOnclickSetVariables(array($var => $this->model->getCategoryPath($id)));
+                }
+            } else {
+                $params['onclick'][] = $this->getOnclickClosePopup();
+            }
+
             $row[] = $this->getComponentImage('uikit_selector_green_icon.png',array('style' => 'ukit_selector_arror'));
         } else {
             $row[] = $this->getComponentImage($icon,array('style' => 'ukit_selector_arror'));
@@ -169,17 +189,17 @@ trait uiKitHierarchicalCategories
         $out = $this->uiKitHierarchicalCategoriesGetRow($name,'formkit-selector-arrow-fwd.png','second');
 
         $output[] = $this->getComponentColumn($out,array(
-            'id' => $id.'_collapsed',
+            'id' => 'subcollapsed_'.$parent_id.'_'.$id.'_collapsed',
             'onclick' => $this->uiKitHierarchicalCategoriesOnclicks($id)));
 
         $out = $this->uiKitHierarchicalCategoriesGetRow($name,'formkit-selector-arrow-down.png','second');
 
         $output[] = $this->getComponentColumn($out,array(
-            'id' => $id.'_expanded',
+            'id' => 'subexpanded_'.$parent_id.'_'.$id.'_expanded',
             'visibility' => 'hidden',
             'onclick' => $this->uiKitHierarchicalCategoriesOnclicks($id,'expanded')));
 
-        return $this->getComponentColumn($output,array('id' => $id,'visibility' => 'hidden'));
+        return $this->getComponentColumn($output,array('id' => 'sub_'.$parent_id.'_'.$id,'visibility' => 'hidden'));
 
     }
     private function uiKitHierarchicalCategoriesThirdLevel($name,$id,$parent_id){

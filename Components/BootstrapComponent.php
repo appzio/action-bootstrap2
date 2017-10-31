@@ -231,6 +231,9 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Forms\uiKitHintedTextField;
     use AppzioUiKit\Forms\uiKitTagRadioButtons;
     use AppzioUiKit\Forms\uiKitHintedSelectButtonField;
+    use AppzioUiKit\Forms\uiKitSlider;
+    use AppzioUiKit\Forms\uiKitTwoHandSlider;
+    use AppzioUiKit\Forms\uiKitFormSectionHeader;
 
     use AppzioUiKit\Listing\uiKitTagList;
     use AppzioUiKit\Listing\uiKitThreeColumnImageSwiper;

@@ -1,0 +1,35 @@
+{
+
+  "uikit_slider_right_hint":{
+    "width" : "33%",
+    "text-align" : "right",
+    "font-size" : "14",
+    "color" : "#000000"
+  },
+
+  "uikit_slider_left_hint":{
+    "width" : "33%",
+    "font-size" : "14",
+    "color" : "#000000"
+  },
+
+  "uikit_slider_hint":{
+    "font-size" : "14",
+    "color" : "#000000"
+  },
+
+  "uikit_slider_indicator":{
+    "width" : "33%",
+    "text-align" : "center"
+  },
+
+  "uikit_slider_hintrow":{
+    "padding": "12 20 0 20",
+    "background-color": "#ffffff"
+  },
+
+  "uikit_slider_background":{
+    "background-color": "#ffffff"
+  }
+
+}

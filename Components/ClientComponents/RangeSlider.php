@@ -34,7 +34,8 @@ trait RangeSlider {
         $obj->type = 'slider';
 
         $required = array('variable','min_value','max_value','step');
-        $allowed = array('left_track_color','right_track_color','thumb_color','thumb_image','track_height','value');
+        $allowed = array('left_track_color','right_track_color','thumb_color','thumb_image','track_height','value','variable2','value2',
+            'tooltip_suffix','tooltip_prefix');
 
         //print_r($allowed);
         $obj = $this->attachStyles($obj,$styles);

@@ -20,7 +20,19 @@
     "float": "right",
     "vertical-align": "middle",
     "margin": "0 15 0 0"
+  },
+
+  "uikit_formsection_header":{
+    "padding": "15 15 15 15",
+    "font-size": "14",
+    "background-color": "#F9F9F9"
+  },
+
+  "steps_field_divider_small":{
+    "height": "1",
+    "background-color": "#E4E7E9"
   }
+
 
 
 
