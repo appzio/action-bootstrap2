@@ -38,20 +38,74 @@ trait uiKitIntroWithButtons {
         }
 
         if(isset($item['buttons'])){
-            $col[] = $this->getComponentSpacer('120');
 
             if(count($item['buttons']) == 1 AND isset($item['buttons'][0]['title']) AND isset($item['buttons'][0]['onclick'])){
-                $col[] = $this->uiKitButtonFilled($item['buttons'][0]['title'],array('onclick' => $item['buttons'][0]['onclick'],
-                    'noanimate' => true));
+                $btns[] = $this->getComponentText($item['buttons'][0]['title'],array(
+                        'onclick' => $item['buttons'][0]['onclick'],
+                        'noanimate' => true)
+                ,array(
+                    'margin' => '0 80 0 80',
+                    'text-align' => 'center',
+                    'border-radius' => '19',
+                    'font-size' => '16',
+                    'font-ios' => 'OpenSans-Semibold',
+                    'font-android' => 'OpenSans-Semibold',
+                    'height' => '40',
+                    'color' => '#ffffff',
+                    'width' => '100%',
+                    'background-color' => $this->colors['button_color']
+                ));
             } elseif(count($item['buttons']) == 2){
-                $col[] = $this->uiKitDoubleButtons($item['buttons'][0]['title'],$item['buttons'][1]['title'],
+                $btns[] = $this->getComponentText($item['buttons'][0]['title'],array(
+                        'onclick' => $item['buttons'][0]['onclick'],
+                        'noanimate' => true)
+                    ,array(
+                        'margin' => '0 80 0 80',
+                        'text-align' => 'center',
+                        'border-radius' => '19',
+                        'font-size' => '16',
+                        'font-ios' => 'OpenSans-Semibold',
+                        'font-android' => 'OpenSans-Semibold',
+                        'height' => '40',
+                        'color' => '#ffffff',
+                        'width' => '100%',
+                        'background-color' => $this->colors['button_color']
+                    ));
+
+                $btns[] = $this->getComponentText($item['buttons'][1]['title'],array(
+                        'onclick' => $item['buttons'][1]['onclick'],
+                        'noanimate' => true)
+                    ,array(
+                        'margin' => '15 80 0 80',
+                        'text-align' => 'center',
+                        'border-radius' => '19',
+                        'font-size' => '16',
+                        'font-ios' => 'OpenSans',
+                        'font-android' => 'OpenSans',
+                        'height' => '40',
+                        'color' => '#000000',
+                        'width' => '100%',
+                        'border-color' => '#000000',
+                        'border-width' => '1'
+                    ));
+
+/*                $btns[] = $this->uiKitDoubleButtons($item['buttons'][0]['title'],$item['buttons'][1]['title'],
                     array('onclick' => $item['buttons'][0]['onclick'],'back_button' => 1),
                     array('onclick' => $item['buttons'][1]['onclick'],'back_button' => 1),
-                    array(),array(),'#F0F3F8');
+                    array(),array(),'#F0F3F8');*/
             }
+
+
+            if(isset($btns)){
+                $col[] = $this->getComponentColumn($btns,array(),array(
+                    'floating' => '1',
+                    'vertical-align' => 'bottom',
+                    'width' => $this->screen_width,
+                    'text-align' => 'center',
+                    'margin' => '15 0 30 0'));
+            }
+
         }
-
-
 
             if(isset($col)){
             return $this->getComponentColumn($col,array(),array('height' => $this->screen_height - 50,'margin' => '0 0 0 0'));
