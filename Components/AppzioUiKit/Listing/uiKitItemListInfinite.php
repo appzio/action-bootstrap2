@@ -139,7 +139,7 @@ trait uiKitItemListInfinite {
             'font-size' => '13',
         ));
 
-        $out[] = $this->uikitGetItemTags($item);
+        $out[] = $this->uikitGetItemTags($item,false,$width);
 
         return $this->getComponentColumn($out,array(),array(
             'border-radius' => '4',
@@ -191,6 +191,7 @@ trait uiKitItemListInfinite {
 
         $pricerow[] = $this->getComponentText('$'.$item->price,array(),array(
             'color' => '#3EB439',
+            'width' => $width,
             'background-color' => '#ffffff',
             'font-size' => '13',
             'padding' => '0 4 4 4'));
@@ -216,10 +217,11 @@ trait uiKitItemListInfinite {
             'color' => '#545050',
             'background-color' => '#ffffff',
             'font-size' => '9',
+            'width' => $width,
             'height' => '25',
             'padding' => '0 4 0 4'));
 
-        $out[] = $this->uikitGetItemTags($item,true);
+        $out[] = $this->uikitGetItemTags($item,true,$width);
 
         return $this->getComponentColumn($out,array(),array(
             'border-radius' => '4',
@@ -229,7 +231,7 @@ trait uiKitItemListInfinite {
 
     }
 
-    private function uikitGetItemTags($item,$wide=false)
+    private function uikitGetItemTags($item,$wide=false,$width)
     {
         $maxCount = 2;
         $count = 1;
@@ -275,12 +277,14 @@ trait uiKitItemListInfinite {
             return $this->getComponentRow($out, array(), array(
                 'padding' => '0 0 4 4',
                 'height' => '20',
+                'width' => $width,
                 'background-color' => '#ffffff',
             ));
         } else {
             return $this->getComponentColumn($out, array(), array(
                 'padding' => '0 4 4 4',
                 'height' => '45',
+                'width' => $width,
                 'background-color' => '#ffffff',
             ));
         }

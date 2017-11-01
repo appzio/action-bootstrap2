@@ -14,8 +14,6 @@
   },
 
   "uikit_intro_description":{
-    "border-radius" : "24",
-    "height" : "40",
     "font-size": "16",
     "text-align" : "center",
     "margin": "0 40 10 40",
