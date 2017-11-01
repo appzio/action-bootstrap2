@@ -34,7 +34,7 @@ trait uiKitHierarchicalCategories
 
         if($tab){
             $this->current_category_info['id'] = 0;
-            $out[] = $this->uiKitHierarchicalCategoriesGetRow('{#no_category_filtering#}', '');
+            $out = $this->uiKitHierarchicalCategoriesGetRow('{#no_category_filtering#}', '');
             $out[] = $this->getComponentSpacer('10');
         }
 
