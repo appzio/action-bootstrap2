@@ -1,18 +1,13 @@
 {
-
-
-  "akit_searchbox_text":{
+  "akit_searchbox_text": {
+    "width": "100%",
     "font-size": "14",
     "vertical-align": "middle",
-    "margin" : "0 0 0 10"
+    "padding": "0 0 0 10"
   },
-
   "akit_loader": {
     "color": "#00000",
     "text-align": "center",
     "margin": "0 10 0 0"
   }
-
-
-
 }

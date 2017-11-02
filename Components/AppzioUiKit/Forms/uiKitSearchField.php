@@ -46,7 +46,6 @@ trait uiKitSearchField {
         $row[] = $this->getComponentRow($right,array(),array('margin' => '0 0 0 0','floating' => 1,'float' => 'right'));
 
         return $this->getComponentRow($row,array(),array('background-color' => "#ffffff",'vertical-align' => 'middle','padding'=> '5 15 5 15'));
-
     }
 
 }

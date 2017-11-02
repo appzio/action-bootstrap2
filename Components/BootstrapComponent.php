@@ -239,6 +239,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Listing\uiKitThreeColumnImageSwiper;
     use AppzioUiKit\Listing\uiKitFullWidthImageSwiper;
     use AppzioUiKit\Listing\uiKitItemListInfinite;
+	use AppzioUiKit\Listing\uiKitNewsListInfinite;
 
     use AppzioUiKit\Divs\uiKitBlockButtonsDiv;
     use AppzioUiKit\Divs\uiKitReportItemDiv;

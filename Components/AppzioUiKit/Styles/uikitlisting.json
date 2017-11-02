@@ -1,12 +1,9 @@
 {
-
-
-  "akit_form":{
+  "akit_form": {
     "background-color": "#66000000",
     "width": "100%",
     "border-radius": "3"
   },
-
   "item_tag": {
     "color": "#ffffff",
     "background-color": "#4A90E2",
@@ -15,7 +12,6 @@
     "border-radius": "5",
     "margin": "0 5 0 0"
   },
-
   "item_tag_with_delete": {
     "color": "#ffffff",
     "background-color": "#4A90E2",
@@ -24,19 +20,13 @@
     "border-radius": "5",
     "margin": "0 0 0 0"
   },
-
-  "item_tag_delete":{
+  "item_tag_delete": {
     "width": "25",
     "margin": "0 6 0 0"
   },
-
-  "uikit_search_noresults":{
+  "uikit_search_noresults": {
     "margin": "15 15 15 15",
     "font-size": "18",
     "text-align": "center"
   }
-
-
-
-
 }
