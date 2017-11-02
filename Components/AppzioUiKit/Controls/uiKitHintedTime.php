@@ -6,7 +6,7 @@ use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitHintedTime
 {
-    public function uiKitHintedTime()
+    public function uiKitHintedTime($hourValue, $minutesValue)
     {
         /** @var BootstrapComponent $this */
 
@@ -32,6 +32,12 @@ trait uiKitHintedTime
         ), array(
             'active_icon' => 'clock-icon.png',
             'inactive_icon' => 'clock-icon.png',
+            'hour' => array(
+                'value' => $hourValue
+            ),
+            'minutes' => array(
+                'value' => $minutesValue
+            )
         ));
     }
 }
