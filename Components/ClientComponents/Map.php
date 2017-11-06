@@ -20,12 +20,11 @@ trait Map {
      * @return \stdClass
      */
 
-    public function getComponentMap(string $variable, array $parameters=array(),array $styles=array()) {
+    public function getComponentMap(array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
 
 		$obj = new \StdClass;
-        $obj->type = 'calendar';
-        $obj->variable = $this->model->getVariableId($variable);
+        $obj->type = 'map';
 
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);

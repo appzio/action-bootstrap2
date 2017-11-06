@@ -74,13 +74,21 @@ trait uiKitHintedCalendar
             'update_on_entry' => 1,
             'variable' => $variablename,
             'date_format' => 'MM / dd / yyyy'
-        ), array('height' => '400', 'width' => $width, 'margin' => '0 40 0 40',
-            'selection_style' => array('color' => '#ffffff', 'background-color' => '#0000FF'),
+        ), array(
+            'height' => '400',
+            'width' => $width,
+            'margin' => '0 40 0 40',
+            'selection_style' => array(
+                'color' => '#ffffff',
+                'background-color' => '#0000FF'
+            ),
         ));
 
         $openstate[] = $this->getComponentText('{#choose#}', array('onclick' => $closeclick, 'style' => 'akit_calendar_choose_button'));
 
-        $out[] = $this->getComponentColumn($openstate, array('id' => $variablename . 'selector', 'height' => '300', 'visibility' => 'hidden'), array());
+        $out[] = $this->getComponentColumn($openstate, array('id' => $variablename . 'selector', 'height' => '300', 'visibility' => 'hidden'), array(
+            'text-align' => 'center'
+        ));
 
         /* error handling */
         if ($this->model->getValidationError($variablename)) {
