@@ -72,7 +72,12 @@ trait uiKitItemListInfinite {
             $rows[] = $this->getComponentText('',array('uikit_search_noresults'));
         }
 
-        return $this->getInfiniteScroll($rows,array('next_page_id' => $page));
+        if(count($content) < 10){
+            return $this->getInfiniteScroll($rows);
+        } else {
+            return $this->getInfiniteScroll($rows,array('next_page_id' => $page));
+        }
+
 	}
 
 	private function getItemBox($item,$parameters){
