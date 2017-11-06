@@ -24,13 +24,24 @@ trait uiKitIntroWithButtons {
 
     public function uiKitIntroWithButtonsGetItem($item){
 
+        $ratio = $this->screen_width / $this->screen_height;
+
         if(isset($item['icon'])){
-            $icon[] = $this->getComponentImage($item['icon'],array('style' => 'uikit_intro_icon'));
-            $col[] = $this->getComponentColumn($icon,array(),array('text-align' => 'center','margin' => '40 0 20 0'));
+            if($ratio < 0.57) {
+                $icon[] = $this->getComponentImage($item['icon'], array('style' => 'uikit_intro_icon'));
+                $col[] = $this->getComponentColumn($icon, array(), array('text-align' => 'center', 'margin' => '40 0 20 0'));
+            } else {
+                $icon[] = $this->getComponentImage($item['icon'], array('style' => 'uikit_intro_icon_small'));
+                $col[] = $this->getComponentColumn($icon, array(), array('text-align' => 'center', 'margin' => '20 0 10 0'));
+            }
         }
 
         if(isset($item['title'])){
-            $col[] = $this->getComponentText($item['title'],array('style' => 'uikit_intro_title'));
+            if($ratio < 0.57){
+                $col[] = $this->getComponentText($item['title'],array('style' => 'uikit_intro_title'));
+            } else {
+                $col[] = $this->getComponentText($item['title'],array('style' => 'uikit_intro_title_small'));
+            }
         }
 
         if(isset($item['description'])){
