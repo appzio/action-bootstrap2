@@ -1,14 +1,7 @@
 {
-  "repositories": [{
-    "type":"composer",
-    "url": "http://packages.phundament.com"
-  }],
-
-  "require": {
-    "php": ">=7.0",
-    "yiisoft/yii": "1.1.*"
-  },
-  "config": {
-    "secure-http": false
-  }
+    "name": "appzio/action-bootstrap2",
+    "minimum-stability": "dev",
+    "require-dev": {
+    	"yiisoft/yii": "1.1.*"
+    }
 }
