@@ -26,9 +26,9 @@ trait InfiniteScroll {
 		$obj = new \StdClass;
         $obj->type = 'infinite-scroll';
         $obj->items = $content;
-        
+
         $obj = $this->attachStyles($obj,$styles);
-        $obj = $this->attachParameters($obj,$parameters,array(),$required);
+        $obj = $this->attachParameters($obj,$parameters);
         $obj = $this->configureDefaults($obj);
 
         return $obj;
