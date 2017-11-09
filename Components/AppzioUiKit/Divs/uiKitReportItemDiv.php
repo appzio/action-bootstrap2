@@ -33,6 +33,21 @@ trait uiKitReportItemDiv
                 'style' => 'uikit_div_title'
             )),
             $this->getComponentColumn($blockReasons),
+            $this->getComponentText('{#please_chose_at_least_one_reason#}', array(
+                'id' => 'error-message',
+                'visibility' => 'hidden',
+                'margin' => '5 0 5 0'
+            ), array(
+                'color' => '#ff0000',
+                'text-align' => 'center'
+            )),
+            $this->getComponentText('Report', array(
+                'style' => 'uikit_div_button',
+                'id' => 'show-error-button',
+                'onclick' => array(
+                    $this->getOnclickShowElement('error-message')
+                )
+            )),
             $this->getComponentText('Report', array(
                 'style' => 'uikit_div_button',
                 'onclick' => array(
@@ -40,7 +55,9 @@ trait uiKitReportItemDiv
                     $this->getOnclickHideDiv('uikit-report-item'),
                     $this->getOnclickHideDiv('uikit-block-buttons'),
                     $this->getOnclickGoHome()
-                )
+                ),
+                'id' => 'submit-form-button',
+                'visibility' => 'hidden',
             ))
         ), array(
             'style' => 'uikit_div'
@@ -55,7 +72,18 @@ trait uiKitReportItemDiv
             )),
             $this->getComponentFormFieldOnoff(array(
                 'variable' => $text,
-                'style' => 'uikit_report_item_div_checkbox'
+                'style' => 'uikit_report_item_div_checkbox',
+                'onclick' => array(
+                    $this->getOnclickShowElement('submit-form-button', array(
+                        'transition' => 'none'
+                    )),
+                    $this->getOnclickHideElement('show-error-button', array(
+                        'transition' => 'none'
+                    )),
+                    $this->getOnclickHideElement('error-message', array(
+                        'transition' => 'none'
+                    ))
+                )
             ))
         ));
     }
