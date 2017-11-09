@@ -76,7 +76,6 @@ trait uiKitNewsListInfinite {
             'imgheight' => '400',
             'imgcrop' => 'yes',
             'lazy' => 1,
-            'onclick' => $this->getOnclickOpenUrl( $item->link_url ),
         ), array(
             'width' => $width,
             'height' => $height,
@@ -101,34 +100,19 @@ trait uiKitNewsListInfinite {
         	$out[] = $this->getPlaceInfo( $place_info, $item );
         }
 
-        $out[] = $this->getComponentText('View news', array(
-	        'onclick' => $this->getOnclickShowElement('news_item_' . $item->id)
-        ), array(
+        $out[] = $this->getComponentText('View news', array(), array(
 			'color' => '#545050',
 			'font-size' => '15',
 			'padding' => '7 5 7 5'
         ));
 
-        $out[] = $this->getComponentColumn(array(
-	        $this->getComponentText($item->description, array(), array(
-		        'color' => '#545050',
-		        'font-size' => '12',
-		        'padding' => '7 5 7 5'
-	        )),
-	        $this->getComponentText('Hide news', array(
-		        'onclick' => $this->getOnclickHideElement('news_item_' . $item->id)
-	        ), array(
-		        'color' => '#545050',
-		        'font-size' => '15',
-		        'padding' => '0 5 7 5'
-	        )),
-        ),array(
-	        'id' => 'news_item_' . $item->id,
-	        'visibility' => 'hidden',
-        ),array(
-        ));
-
-        return $this->getComponentColumn($out,array(),array(
+        return $this->getComponentColumn($out, array(
+	        'onclick' => $this->getOnclickOpenAction('itemdetails', false, array(
+		        'id' => $item->id,
+		        'back_button' => 1,
+		        'sync_open' => 1,
+	        ))
+        ), array(
             'border-radius' => '4',
             'margin' => '0 7 0 7',
             'background-color' => '#ffffff',
@@ -151,6 +135,7 @@ trait uiKitNewsListInfinite {
     }
 
     private function getPlaceInfo( $place_info, $item ) {
+
 	    return $this->getComponentRow(array(
 		    $this->getComponentImage($place_info->logo, array(), array(
 			    'width' => 20,
@@ -160,7 +145,7 @@ trait uiKitNewsListInfinite {
 		    )),
 		    $this->getComponentText($place_info->name, array(), array(
 			    'font-size' => '16',
-			    'color' => '#2badd7',
+			    'color' => ( isset($place_info->hex_color) AND $place_info->hex_color ) ? $place_info->hex_color : '#70ce92',
 		    )),
 		    $this->getComponentText('•', array(), array(
 			    'font-size' => '10',
