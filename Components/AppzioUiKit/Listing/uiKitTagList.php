@@ -60,7 +60,7 @@ trait uiKitTagList {
             if($onclick_delete){
                 $params['style'] = 'item_tag_with_delete';
                 $size = $size + 31;
-                $delete = $this->getOnclickSubmit($onclick_delete.$tag['id'],$onclick_delete_params);
+                $onclick_delete = $this->getOnclickSubmit($onclick_delete.'delete_tag_'.$tag['title'],$onclick_delete_params);
             } else {
                 $params['style'] = 'item_tag';
             }
@@ -73,12 +73,12 @@ trait uiKitTagList {
                 $available_width = $width;
                 $tags[] = $this->getComponentText(($tag['title']), $params);
                 if($onclick_delete) {
-                    $tags[] = $this->getComponentImage('uikit-delete-icongrey.png', array('style' => 'item_tag_delete','onclick' => $delete));
+                    $tags[] = $this->getComponentImage('uikit-delete-icongrey.png', array('style' => 'item_tag_delete','onclick' => $onclick_delete));
                 }
             } else {
                 $tags[] = $this->getComponentText(($tag['title']), $params);
                 if($onclick_delete) {
-                    $tags[] = $this->getComponentImage('uikit-delete-icongrey.png', array('style' => 'item_tag_delete','onclick' => $delete));
+                    $tags[] = $this->getComponentImage('uikit-delete-icongrey.png', array('style' => 'item_tag_delete','onclick' => $onclick_delete));
                 }
             }
         }
