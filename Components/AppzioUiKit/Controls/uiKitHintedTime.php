@@ -6,7 +6,7 @@ use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitHintedTime
 {
-    public function uiKitHintedTime($hourValue, $minutesValue)
+    public function uiKitHintedTime($hourValue, $minutesValue = 0)
     {
         /** @var BootstrapComponent $this */
 
