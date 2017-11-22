@@ -1,0 +1,16 @@
+{
+  "uikit_tab_navigation": {
+    "width": "100%"
+  },
+  "uikit_tab_navigation_item": {
+    "text-align": "center",
+    "color": "#000000",
+    "background-color": "#ffffff",
+    "padding": "15 15 15 15",
+    "border-width": "1",
+    "border-color": "#fafafa"
+  },
+  "uikit_tab_navigation_line": {
+    "background-color": "#fecb2f"
+  }
+}

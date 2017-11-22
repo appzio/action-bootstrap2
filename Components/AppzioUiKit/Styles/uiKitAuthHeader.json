@@ -1,0 +1,12 @@
+{
+  "uikit_auth_header": {
+    "background-color": "#fecb2f",
+    "text-align": "center"
+  },
+  "uikit_auth_header_image": {
+    "width": 100
+  },
+  "uikit_auth_header_text": {
+    "font-size": 24
+  }
+}

@@ -5,12 +5,14 @@ use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitAuthHeader
 {
-    public function uiKitAuthHeader(string $image, string $text, $parameters = array(), $styles = array())
+    public function uiKitAuthHeader(string $image, string $text, $params = array(), $styles = array())
     {
         /** @var BootstrapComponent $this */
         return $this->getComponentRow(array(
             $this->getHeaderImage($image),
             $this->getHeaderText($text)
+        ), array(
+            'style' => 'uikit_auth_header'
         ));
     }
 
@@ -22,7 +24,9 @@ trait uiKitAuthHeader
             return;
         }
 
-        return $this->getComponentImage($image);
+        return $this->getComponentImage($image, array(
+            'style' => 'uikit_auth_header_image'
+        ));
     }
 
     protected function getHeaderText($text)
@@ -33,6 +37,8 @@ trait uiKitAuthHeader
             return;
         }
 
-        return $this->getComponentText($text);
+        return $this->getComponentText($text, array(
+            'style' => 'uikit_auth_header_text'
+        ));
     }
 }
