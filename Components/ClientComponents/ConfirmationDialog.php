@@ -23,7 +23,11 @@ trait ConfirmationDialog {
 
         $out[] = $this->getComponentText('',array('style' => 'confirmation_divider'));
 
-        $onclick_cancel = $this->getOnclickHideDiv($div);
+        if(isset($parameters['onclick_cancel'])){
+            $onclick_cancel = $parameters['onclick_cancel'];
+        } else {
+            $onclick_cancel = $this->getOnclickHideDiv($div);
+        }
 
         if($text){
             $out[] = $this->getComponentSpacer(10);

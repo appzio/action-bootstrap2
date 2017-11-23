@@ -224,6 +224,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Buttons\uiKitButtonHollow;
     use AppzioUiKit\Buttons\uiKitDoubleButtons;
     use AppzioUiKit\Buttons\uiKitButtonBlock;
+    use AppzioUiKit\Buttons\uiKitButtonHollowWithIcon;
 
     use AppzioUiKit\Forms\uiKitDivider;
     use AppzioUiKit\Forms\uiKitImageGridUpload;
@@ -240,6 +241,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Listing\uiKitFullWidthImageSwiper;
     use AppzioUiKit\Listing\uiKitItemListInfinite;
 	use AppzioUiKit\Listing\uiKitNewsListInfinite;
+	use AppzioUiKit\Listing\uiKitItemListPlain;
 
     use AppzioUiKit\Divs\uiKitBlockButtonsDiv;
     use AppzioUiKit\Divs\uiKitReportItemDiv;
