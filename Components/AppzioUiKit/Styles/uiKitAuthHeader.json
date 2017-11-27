@@ -4,9 +4,14 @@
     "text-align": "center"
   },
   "uikit_auth_header_image": {
-    "width": 100
+    "width": 120,
+    "margin": "40 0 60 0"
   },
   "uikit_auth_header_text": {
-    "font-size": 24
+    "color": "#ffffff",
+    "font-weight": "bold",
+    "font-size": "24",
+    "text-align": "center",
+    "margin": "0 0 50 0"
   }
 }

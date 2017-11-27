@@ -3,12 +3,13 @@
     "width": "100%"
   },
   "uikit_tab_navigation_item": {
+    "padding": "20 0 20 0",
     "text-align": "center",
-    "color": "#000000",
     "background-color": "#ffffff",
-    "padding": "15 15 15 15",
     "border-width": "1",
-    "border-color": "#fafafa"
+    "border-color": "#fafafa",
+    "font-size": "14",
+    "width": "50%"
   },
   "uikit_tab_navigation_line": {
     "background-color": "#fecb2f"

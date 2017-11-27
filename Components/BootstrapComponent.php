@@ -260,6 +260,9 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Articles\uiKitArticleBlockquote;
 	use AppzioUiKit\Articles\uiKitArticleNextentry;
 
+	use AppzioUiKit\Headers\uiKitAuthHeader;
+	use AppzioUiKit\Navigation\uiKitTabNavigation;
+
     use ViewGetters;
     use ViewHelpers;
 

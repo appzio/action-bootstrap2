@@ -21,9 +21,7 @@ trait Spacers {
 
     public function getComponentSpacer($height = 10, array $parameters=array(),array $styles=array()) {
 
-        $obj = $this->getComponentText('', array(), array(
-            'height' => $height
-        ));
+        $obj = $this->getComponentText('', $parameters, array_merge(array('height' => $height), $styles));
 
         return $obj;
 	}

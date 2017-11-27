@@ -1,6 +1,6 @@
 <?php
 
-namespace Bootstrap\Components\AppzioUiKit\Headers;
+namespace Bootstrap\Components\AppzioUiKit\Navigation;
 use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitTabNavigation
@@ -15,7 +15,7 @@ trait uiKitTabNavigation
         }
 
         return $this->getComponentRow($tabs, array(
-            'style' => 'uikit_tab_navigation'
+            'width' => '100%'
         ));
     }
 
@@ -26,17 +26,32 @@ trait uiKitTabNavigation
         if (!$tab['active']) {
             return $this->getComponentText($tab['text'], array(
                 'onclick' => $tab['onclick'],
-                'style' => 'uikit_tab_navigation_item'
+            ), array(
+                'padding' => '20 0 20 0',
+                'text-align' => 'center',
+                'background-color' => '#ffffff',
+                'border-width' => '1',
+                'border-color' => '#fafafa',
+                'font-size' => '14',
+                'width' => '50%'
             ));
         } else {
             return $this->getComponentColumn(array(
                 $this->getComponentText($tab['text'], array(
-                    'onclick' => $tab['onclick'],
-                    'style' => 'uikit_tab_navigation_item'
+                    'onclick' => $tab['onclick']
+                ), array(
+                    'padding' => '20 0 20 0',
+                    'text-align' => 'center',
+                    'background-color' => '#ffffff',
+                    'border-width' => '1',
+                    'border-color' => '#fafafa',
+                    'font-size' => '14',
                 )),
-                $this->getComponentSpacer('5', array(
-                    'style' => 'uikit_tab_navigation_line'
+                $this->getComponentSpacer('3', array(), array(
+                    'background-color' => "#fecb2f"
                 ))
+            ), array(), array(
+                'width' => '50%'
             ));
         }
     }
