@@ -788,11 +788,18 @@ trait Onclick {
         return $onclick;
     }
 
+	/**
+	 * @param array $parameters
+	 * @return \stdClass
+	 */
+	public function getOnclickShare($parameters=array()){
+		/** @var BootstrapView $this */
 
+		$obj = new \stdClass();
+		$obj->action = 'share';
+		$obj = $this->attachParameters($obj,$parameters);
 
-
-
-
-
+		return $obj;
+	}
 
 }

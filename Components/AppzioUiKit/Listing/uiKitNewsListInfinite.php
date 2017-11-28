@@ -82,13 +82,23 @@ trait uiKitNewsListInfinite {
             'crop' => 'yes',
         ));
 
-        $text[] = $this->getComponentText($item->name,array(),array(
-            'color' => '#545050',
-            'font-size' => '20',
-            'font-weight' => 'bold',
-            'padding' => '5 5 5 5'));
-
-        $out[] = $this->getComponentRow($text,array(),array(
+        $out[] = $this->getComponentRow(array(
+	        $this->getComponentText($item->name, array(), array(
+		        'color' => '#545050',
+		        'font-size' => '20',
+		        'font-weight' => 'bold',
+		        'padding' => '5 5 5 5'
+	        )),
+	        /*$this->getComponentImage('icon-item-share.png', array(
+	        	'onclick' => $this->getOnclickShare(),
+	        ), array(
+	        	'float' => 'right',
+	        	'floating' => '1',
+	        	'margin' => '0 5 0 0',
+	        	'width' => '20',
+	        )),*/
+        ),array(), array(
+            'padding' => '5 0 0 0',
             'background-color' => '#ffffff',
             'width' => $width,
             'text-align' => 'left',
