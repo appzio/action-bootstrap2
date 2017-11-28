@@ -24,7 +24,7 @@ trait uiKitInformationTile
             'margin' => '10 5 10 5',
             'height' => '170',
             'width' => '170'
-        )));
+        ), $style));
     }
 
     protected function getTileIcon($icon)
