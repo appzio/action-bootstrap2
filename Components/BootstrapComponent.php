@@ -265,6 +265,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Text\uiKitInformationTile;
 	use AppzioUiKit\Listing\uiKitIconList;
 	use AppzioUiKit\Listing\uiKitPeopleList;
+	use AppzioUiKit\Listing\uiKitList;
 
     use ViewGetters;
     use ViewHelpers;
