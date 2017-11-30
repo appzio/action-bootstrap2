@@ -9,9 +9,10 @@
   },
   "uikit_auth_header_text": {
     "color": "#ffffff",
-    "font-weight": "bold",
     "font-size": "24",
     "text-align": "center",
-    "margin": "0 0 50 0"
+    "margin": "0 0 50 0",
+    "font-ios": "OpenSans-ExtraBold",
+    "font-android": "OpenSans-ExtraBold"
   }
 }

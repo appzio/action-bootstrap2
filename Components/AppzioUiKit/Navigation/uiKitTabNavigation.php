@@ -33,7 +33,9 @@ trait uiKitTabNavigation
                 'border-width' => '1',
                 'border-color' => '#fafafa',
                 'font-size' => '14',
-                'width' => '50%'
+                'width' => '50%',
+                'font-ios' => 'OpenSans',
+                'font-android' => 'OpenSans'
             ));
         } else {
             return $this->getComponentColumn(array(
@@ -46,6 +48,8 @@ trait uiKitTabNavigation
                     'border-width' => '1',
                     'border-color' => '#fafafa',
                     'font-size' => '14',
+                    'font-ios' => 'OpenSans',
+                    'font-android' => 'OpenSans'
                 )),
                 $this->getComponentSpacer('3', array(), array(
                     'background-color' => "#fecb2f"
