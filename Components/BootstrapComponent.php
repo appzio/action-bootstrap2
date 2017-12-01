@@ -11,6 +11,7 @@ use Bootstrap\Models\BootstrapModel;
 use Bootstrap\Views\ViewGetters;
 use Bootstrap\Views\ViewHelpers;
 use ImagesController;
+use packages\actionMitems\Components\uiKitAccordion;
 
 /**
  * Class BootstrapComponent
@@ -266,6 +267,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Listing\uiKitIconList;
 	use AppzioUiKit\Listing\uiKitPeopleList;
 	use AppzioUiKit\Listing\uiKitList;
+	use AppzioUiKit\Listing\uiKitAccordion;
 
     use ViewGetters;
     use ViewHelpers;
