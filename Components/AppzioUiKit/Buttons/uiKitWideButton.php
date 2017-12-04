@@ -7,12 +7,12 @@ use Bootstrap\Components\BootstrapComponent;
 trait uiKitWideButton
 {
 
-    public function uiKitWideButton(string $content)
+    public function uiKitWideButton(string $content, array $params = array())
     {
         /** @var BootstrapComponent $this */
         return $this->getComponentRow(array(
             $this->getComponentText($content, array(
-                'onclick' => new \stdClass()
+                'onclick' => isset($params['onclick']) ? $params['onclick'] : new \stdClass()
             ), array(
                 'color' => '#5a3a3a',
                 'border-color' => '#9b9b9b',
