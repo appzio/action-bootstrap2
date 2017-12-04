@@ -11,7 +11,7 @@ trait uiKitTabNavigation
         $tabs = array();
 
         foreach ($content as $tab) {
-            $tabs[] = $this->getTab($tab);
+            $tabs[] = $this->getTab($tab, count($content));
         }
 
         return $this->getComponentRow($tabs, array(
@@ -19,7 +19,7 @@ trait uiKitTabNavigation
         ));
     }
 
-    protected function getTab($tab)
+    protected function getTab($tab, $count)
     {
         /** @var BootstrapComponent $this */
 
@@ -33,7 +33,7 @@ trait uiKitTabNavigation
                 'border-width' => '1',
                 'border-color' => '#fafafa',
                 'font-size' => '14',
-                'width' => '50%',
+                'width' => $this->screen_width / $count,
                 'font-ios' => 'OpenSans',
                 'font-android' => 'OpenSans'
             ));
@@ -42,20 +42,20 @@ trait uiKitTabNavigation
                 $this->getComponentText($tab['text'], array(
                     'onclick' => $tab['onclick']
                 ), array(
-                    'padding' => '20 0 20 0',
+                    'padding' => '20 0 17 0',
                     'text-align' => 'center',
                     'background-color' => '#ffffff',
                     'border-width' => '1',
                     'border-color' => '#fafafa',
                     'font-size' => '14',
                     'font-ios' => 'OpenSans',
-                    'font-android' => 'OpenSans'
+                    'font-android' => 'OpenSans',
                 )),
                 $this->getComponentSpacer('3', array(), array(
                     'background-color' => "#fecb2f"
                 ))
             ), array(), array(
-                'width' => '50%'
+                'width' => $this->screen_width / $count,
             ));
         }
     }
