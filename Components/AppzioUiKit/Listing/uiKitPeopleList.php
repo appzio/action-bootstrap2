@@ -30,12 +30,6 @@ trait uiKitPeopleList
     {
         /** @var BootstrapView $this */
         return $this->getComponentRow(array(
-            $this->getComponentImage($person['image'], array(), array(
-                'width' => '45',
-                'crop' => 'yes',
-                'imgcrop' => 'round',
-                'margin' => '0 10 0 10',
-            )),
             $this->getComponentColumn(array(
                 $this->getComponentText($person['name'], array(), array(
                     'padding' => '0 0 0 0',
