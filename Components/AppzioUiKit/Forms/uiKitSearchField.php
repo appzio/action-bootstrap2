@@ -33,7 +33,7 @@ trait uiKitSearchField {
             'value' => $val,
             'hint' => '{#search#}',
             'variable' => 'searchterm',
-            'id' => 1,
+//            'id' => 1,
             'submit_menu_id' => $submit,
             'suggestions_style_row' => 'akit_list_row',
             'suggestions_text_style' => 'akit_list_text',
