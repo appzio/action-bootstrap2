@@ -28,9 +28,7 @@ trait uiKitPeopleList
 
         foreach ($people as $item) {
             $items[] = $this->getPersonRow($item);
-            $items[] = $this->getComponentSpacer(1, array(), array(
-                'background-color' => '#fafafa'
-            ));
+            $items[] = $this->uiKitDivider();
         }
 
         return $this->getInfiniteScroll($items, array('next_page_id' => (int)$page + 1));
@@ -47,34 +45,39 @@ trait uiKitPeopleList
         /** @var BootstrapView $this */
         return $this->getComponentRow(array(
             $this->getComponentColumn(array(
-                $this->getComponentText($person['name'], array(), array(
-                    'padding' => '0 0 0 0',
-                    'font-ios' => 'OpenSans',
-                    'font-size' => '14'
-                )),
-                $this->getComponentText(strtoupper($person['info']), array(), array(
-                    'padding' => '0 0 0 0',
-                    'color' => '#a8a8a8',
-                    'font-size' => '12',
-                    'font-ios' => 'OpenSans'
-                )),
-                $this->getComponentText($person['contact'], array(), array(
-                    'padding' => '0 0 0 0',
-                    'color' => '#a8a8a8',
-                    'font-size' => '12',
-                    'font-ios' => 'OpenSans'
-                ))
+                $this->getPersonName($person['name']),
+                $this->getPersonInfo($person['info']),
+                $this->getPersonContact($person['contact'])
             ))
         ), array(
+            'style' => 'uikit_people_list_person_wrapper',
             'onclick' => $this->getOnclickShowDiv('email', array(
                 'background' => 'blur',
                 'tap_to_close' => 1,
                 'transition' => 'from-bottom',
                 'layout' => $divLayout
             ))
-        ), array(
-            'vertical-align' => 'middle',
-            'padding' => '10 0 10 20',
+        ));
+    }
+
+    protected function getPersonName($name)
+    {
+        return $this->getComponentText($name, array(
+            'style' => 'uikit_people_list_person_name'
+        ));
+    }
+
+    protected function getPersonInfo($info)
+    {
+        return $this->getComponentText(strtoupper($info), array(
+            'style' => 'uikit_people_list_person_info'
+        ));
+    }
+
+    protected function getPersonContact($contact)
+    {
+        return $this->getComponentText($contact, array(
+            'style' => 'uikit_people_list_person_contact'
         ));
     }
 }

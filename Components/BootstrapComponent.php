@@ -271,6 +271,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Buttons\uiKitIconButton;
 	use AppzioUiKit\Buttons\uiKitWideButton;
 	use AppzioUiKit\Text\uiKitSectionLabel;
+	use AppzioUiKit\Divs\uiKitEmailDiv;
 
     use ViewGetters;
     use ViewHelpers;

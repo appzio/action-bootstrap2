@@ -1,0 +1,23 @@
+{
+  "uikit_people_list_person_wrapper": {
+    "vertical-align": "middle",
+    "padding": "10 0 10 20"
+  },
+  "uikit_people_list_person_name": {
+    "padding": "0 0 0 0",
+    "font-ios": "OpenSans",
+    "font-size": "14"
+  },
+  "uikit_people_list_person_info": {
+    "padding": "0 0 0 0",
+    "color": "#a8a8a8",
+    "font-size": "12",
+    "font-ios": "OpenSans"
+  },
+  "uikit_people_list_person_contact": {
+    "padding": "0 0 0 0",
+    "color": "#a8a8a8",
+    "font-size": "12",
+    "font-ios": "OpenSans"
+  }
+}
