@@ -15,13 +15,15 @@ trait uiKitPeopleList
      *         'onclick' - action to be executed on row click - required
      *     )
      * )
-     * @param array $parameters
+     * @param array $params
      * @param array $styles
      * @return \stdClass
      */
-    public function uiKitPeopleList(array $people, array $parameters = array(), array $styles = array())
+    public function uiKitPeopleList(array $people, array $params = array(), array $styles = array())
     {
         /** @var BootstrapView $this */
+        $page = isset($_REQUEST['next_page_id']) ? $_REQUEST['next_page_id'] : 1;
+
         $items = array();
 
         foreach ($people as $item) {
@@ -31,7 +33,7 @@ trait uiKitPeopleList
             ));
         }
 
-        return $this->getComponentColumn($items);
+        return $this->getInfiniteScroll($items, array('next_page_id' => (int)$page + 1));
     }
 
     protected function getPersonRow($person)
