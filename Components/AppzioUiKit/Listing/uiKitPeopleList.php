@@ -34,14 +34,14 @@ trait uiKitPeopleList
         return $this->getInfiniteScroll($items, array('next_page_id' => (int)$page + 1));
     }
 
+    /**
+     * Returns a listing row for a single person
+     *
+     * @param $person
+     * @return \stdClass
+     */
     protected function getPersonRow($person)
     {
-        $divLayout = new \stdClass();
-        $divLayout->top = 80;
-        $divLayout->bottom = 0;
-        $divLayout->left = 0;
-        $divLayout->right = 0;
-
         /** @var BootstrapView $this */
         return $this->getComponentRow(array(
             $this->getComponentColumn(array(
@@ -51,15 +51,16 @@ trait uiKitPeopleList
             ))
         ), array(
             'style' => 'uikit_people_list_person_wrapper',
-            'onclick' => $this->getOnclickShowDiv('email', array(
-                'background' => 'blur',
-                'tap_to_close' => 1,
-                'transition' => 'from-bottom',
-                'layout' => $divLayout
-            ))
+            'onclick' => $this->getRowClick()
         ));
     }
 
+    /**
+     * Returns person name markup
+     *
+     * @param $name
+     * @return mixed
+     */
     protected function getPersonName($name)
     {
         return $this->getComponentText($name, array(
@@ -67,6 +68,12 @@ trait uiKitPeopleList
         ));
     }
 
+    /**
+     * Returns person information markup
+     *
+     * @param $info
+     * @return mixed
+     */
     protected function getPersonInfo($info)
     {
         return $this->getComponentText(strtoupper($info), array(
@@ -74,10 +81,37 @@ trait uiKitPeopleList
         ));
     }
 
+    /**
+     * Returns person contact info markup
+     *
+     * @param $contact
+     * @return mixed
+     */
     protected function getPersonContact($contact)
     {
         return $this->getComponentText($contact, array(
             'style' => 'uikit_people_list_person_contact'
+        ));
+    }
+
+    /**
+     * Returns row onclick open div action
+     *
+     * @return mixed
+     */
+    protected function getRowClick()
+    {
+        $layout = new \stdClass();
+        $layout->top = 80;
+        $layout->bottom = 0;
+        $layout->left = 0;
+        $layout->right = 0;
+
+        return $this->getOnclickShowDiv('email', array(
+            'background' => 'blur',
+            'tap_to_close' => 1,
+            'transition' => 'from-bottom',
+            'layout' => $layout
         ));
     }
 }
