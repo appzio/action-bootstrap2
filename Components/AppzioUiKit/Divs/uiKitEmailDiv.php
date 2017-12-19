@@ -11,6 +11,12 @@ trait uiKitEmailDiv
     public function uiKitEmailDiv($params = array())
     {
         /** @var BootstrapComponent $this */
+        $to = $this->model->getSubmittedVariableByName('to_email');
+
+        if (empty($to)) {
+            $to = '';
+        }
+
         return $this->getComponentColumn(array(
             $this->getComponentRow(array(
                 $this->getComponentImage('cloud_upload_dev.png'),
@@ -28,8 +34,9 @@ trait uiKitEmailDiv
                 'shadow-offset' => '0 3',
                 'margin' => '0 0 20 0'
             )),
-            $this->getComponentFormFieldText('', array(
-                'hint' => 'To:'
+            $this->getComponentFormFieldText($to, array(
+                'hint' => 'To:',
+                'variable' => 'to_email',
             ), array(
                 'margin' => '0 20 0 20'
             )),

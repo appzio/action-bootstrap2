@@ -51,7 +51,7 @@ trait uiKitPeopleList
             ))
         ), array(
             'style' => 'uikit_people_list_person_wrapper',
-            'onclick' => $this->getRowClick()
+            'onclick' => $this->getRowClick($person['contact'])
         ));
     }
 
@@ -97,9 +97,10 @@ trait uiKitPeopleList
     /**
      * Returns row onclick open div action
      *
+     * @param $contact string
      * @return mixed
      */
-    protected function getRowClick()
+    protected function getRowClick($contact)
     {
         $layout = new \stdClass();
         $layout->top = 80;
@@ -107,11 +108,20 @@ trait uiKitPeopleList
         $layout->left = 0;
         $layout->right = 0;
 
-        return $this->getOnclickShowDiv('email', array(
+        $onclick[] = $this->getOnclickShowDiv('email', array(
             'background' => 'blur',
             'tap_to_close' => 1,
             'transition' => 'from-bottom',
             'layout' => $layout
         ));
+
+        $onclick[] = $this->getOnclickSetVariables(array('to_email' => $contact));
+
+        return $onclick;
+    }
+
+    public function getDivs()
+    {
+
     }
 }
