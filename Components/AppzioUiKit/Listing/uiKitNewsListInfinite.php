@@ -110,7 +110,7 @@ trait uiKitNewsListInfinite {
         	$out[] = $this->getPlaceInfo( $place_info, $item );
         }
 
-        $out[] = $this->getComponentText('View news', array(), array(
+        $out[] = $this->getComponentText('{#view_news#}', array(), array(
 			'color' => '#545050',
 			'font-size' => '15',
 			'padding' => '7 5 7 5'
