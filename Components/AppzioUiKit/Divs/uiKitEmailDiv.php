@@ -46,7 +46,8 @@ trait uiKitEmailDiv
                 'margin' => '0 20 0 20'
             )),
             $this->getComponentFormFieldTextArea('', array(
-                'hint' => 'Message:'
+                'hint' => 'Message:',
+                'variable' => 'message'
             ), array(
                 'margin' => '0 20 0 20'
             )),
@@ -59,7 +60,9 @@ trait uiKitEmailDiv
                 $this->getComponentText('{#send_copy_to_myself#}', array(), array(
                     'color' => '#7b7b7b',
                 )),
-                $this->getComponentFormFieldOnoff(array(), array(
+                $this->getComponentFormFieldOnoff(array(
+                    'variable' => 'send_copy'
+                ), array(
                     'floating' => 1,
                     'float' => 'right',
                     'margin' => '0 10 0 0'
@@ -69,9 +72,20 @@ trait uiKitEmailDiv
                 'vertical-align' => 'middle'
             )),
             $this->getComponentSpacer(250),
-            $this->uiKitWideButton('{#send_mail#}')
+            $this->uiKitWideButton('{#send_mail#}', array(
+                'onclick' => $this->sendEmailToPerson()
+            ))
         ), array(), array(
             'background-color' => '#ffffff'
         ));
+    }
+
+    protected function sendEmailToPerson()
+    {
+        $onclick = $this->getOnclickRoute('Publiclisting/email', false);
+
+        $onclick[] = $this->getOnclickHideDiv('email');
+
+        return $onclick;
     }
 }
