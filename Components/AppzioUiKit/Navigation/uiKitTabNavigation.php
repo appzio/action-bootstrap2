@@ -27,6 +27,7 @@ trait uiKitTabNavigation
             return $this->getComponentText($tab['text'], array(
                 'onclick' => $tab['onclick'],
             ), array(
+                'color' => '#323232',
                 'padding' => '20 0 20 0',
                 'text-align' => 'center',
                 'background-color' => '#ffffff',

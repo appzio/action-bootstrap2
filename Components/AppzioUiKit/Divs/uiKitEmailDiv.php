@@ -34,9 +34,15 @@ trait uiKitEmailDiv
                 'shadow-offset' => '0 3',
                 'margin' => '0 0 20 0'
             )),
+            $this->getComponentText($to, array(
+                'variable' => 'to_email'
+            ), array(
+                'margin' => '10 20 10 20'
+            )),
             $this->getComponentFormFieldText($to, array(
                 'hint' => 'To:',
                 'variable' => 'to_email',
+                'visibility' => 'hidden'
             ), array(
                 'margin' => '0 20 0 20'
             )),
