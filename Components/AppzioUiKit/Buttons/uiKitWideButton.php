@@ -21,7 +21,8 @@ trait uiKitWideButton
                 'padding' => '12 0 12 0',
                 'text-align' => 'center',
                 'font-ios' => 'OpenSans',
-                'font-android' => 'OpenSans'
+                'font-android' => 'OpenSans',
+                'use_clipping' => '0'
             ))
         ), array(), array(
             'text-align' => 'center',
