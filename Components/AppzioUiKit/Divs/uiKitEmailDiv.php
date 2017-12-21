@@ -19,16 +19,19 @@ trait uiKitEmailDiv
 
         return $this->getComponentColumn(array(
             $this->getComponentRow(array(
-                $this->getComponentImage('cloud_upload_dev.png'),
+                $this->getComponentImage('cloud_upload_dev.png', array(), array(
+                    'width' => '20',
+                    'margin' => '0 10 0 0'
+                )),
                 $this->getComponentText('Send Email', array(), array(
-                    'background-color' => '#4a4a4a',
                     'color' => '#ffffff',
-                    'padding' => '10 20 10 20',
                     'font-ios' => 'OpenSans',
                     'font-size' => '14',
                     'width' => '100%',
                 ))
             ), array(), array(
+                'padding' => '10 20 10 20',
+                'background-color' => '#4a4a4a',
                 'shadow-color' => '#33000000',
                 'shadow-radius' => '1',
                 'shadow-offset' => '0 3',
