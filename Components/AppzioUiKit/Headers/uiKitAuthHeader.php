@@ -33,10 +33,6 @@ trait uiKitAuthHeader
     {
         /** @var BootstrapComponent $this */
 
-        if (!$text) {
-            return;
-        }
-
         return $this->getComponentText($text, array(
             'style' => 'uikit_auth_header_text'
         ));
