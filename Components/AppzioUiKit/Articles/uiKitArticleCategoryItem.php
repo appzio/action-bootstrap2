@@ -17,7 +17,8 @@ trait uiKitArticleCategoryItem {
 	    $path = ( $parent_id ? 'materialscategorylisting' : 'materialslisting' );
 	    $onclick = $this->getOnclickOpenAction($path,false,
 		    array(
-			    'id' => 'category-' . ( $parent_id ? $parent_id : $category_item->id ),
+			    // 'id' => 'category-' . ( $parent_id ? $parent_id : $category_item->id ),
+			    'id' => ( $parent_id ? $parent_id : $category_item->id ),
 			    'sync_open' => 1,
 			    'back_button' => 1
 		    ));

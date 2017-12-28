@@ -4,7 +4,7 @@ namespace Bootstrap\Components\AppzioUiKit\Articles;
 
 trait uiKitArticleItem {
 
-    public function uiKitArticleItem( $item, $i ){
+    public function uiKitArticleItem( $article, $category_data ){
 
 	    $stack = array(
 		    '1.jpg', '2.jpg', '3.jpg', '4.jpg',
@@ -15,7 +15,7 @@ trait uiKitArticleItem {
 
 	    $onclick = $this->getOnclickOpenAction('article',false,
 		    array(
-			    'id' => 'article-' . $i,
+			    'id' => $article->id,
 			    'sync_open' => 1,
 			    'back_button' => 1
 		    ));
@@ -37,19 +37,21 @@ trait uiKitArticleItem {
 		        'height' => $this->screen_height / 5,
 	        )),
 	        $this->getComponentColumn(array(
-		        $this->getComponentText($item, array(), array(
+		        $this->getComponentText($article->title, array(), array(
 		        	'font-size' => '21',
 		        	'font-weight' => 'bold',
 		        	'margin' => '0 0 0 0',
 		        )),
 		        $this->getComponentRow(array(
-			        $this->getComponentText('Category 1', array(), array(
+			        $this->getComponentText(strtoupper($category_data->title), array(), array(
 				        'color' => '#777d81',
+				        'font-size' => '13',
 				        'margin' => '0 0 0 0',
 			        )),
 			        $this->getComponentVerticalSpacer('20'),
-			        $this->getComponentText('APRIL 2, 2017', array(), array(
+			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article->article_date))), array(), array(
 				        'color' => '#777d81',
+				        'font-size' => '13',
 				        'margin' => '0 0 0 0',
 			        )),
 		        ))

@@ -4,9 +4,15 @@ namespace Bootstrap\Components\AppzioUiKit\Articles;
 
 trait uiKitArticleHeading {
 
-    public function uiKitArticleHeading( $params ){
+	public $article;
+	public $category_data;
 
-	    $filename = $this->getImageFileName($params['image_id'], array(
+    public function uiKitArticleHeading( $article, $category_data = false ){
+
+    	$this->article = $article;
+    	$this->category_data = $category_data;
+
+	    $filename = $this->getImageFileName('main-bg-2.jpg', array(
 		    'imgwidth' => '1440',
 		    'imgheight' => '2560',
 		    'priority' => 9,
@@ -14,7 +20,7 @@ trait uiKitArticleHeading {
 
 	    return $this->getComponentRow(array(
 		    $this->getNavigationBar(),
-		    $this->getArticleTitle( $params['title'] ),
+		    $this->getArticleInfo(),
 	    ), array(), array(
 		    'vertical-align' => 'top',
 		    'background-image' => $filename,
@@ -33,12 +39,14 @@ trait uiKitArticleHeading {
 			    ), array(
 				    'width' => '30',
 			    )),
+			    /*
 			    $this->getComponentText('Header here', array(), array(
 				    'width' => $this->screen_width - (2 * 30),
 				    'color' => '#ffffff',
 				    'font-size' => '20',
 				    'text-align' => 'center',
 			    )),
+			    */
 		    ))
 	    ), array(), array(
 		    'width' => '100%',
@@ -52,35 +60,11 @@ trait uiKitArticleHeading {
 	    ));
     }
 
-    public function getArticleTitle( $title ) {
-	    return $this->getComponentColumn(array(
-		    $this->getComponentRow(array(
-			    $this->getComponentText('APRIP 2, 2017', array(), array(
-				    'width' => '100%',
-				    'color' => '#cecece',
-				    'font-size' => '16',
-				    'text-align' => 'left',
-				    'padding' => '10 10 10 10',
-			    )),
-		    )),
-		    $this->getComponentRow(array(
-			    $this->getComponentText('Three lined Header Finibus Bonorum et Malorum', array(), array(
-				    'width' => '100%',
-				    'color' => '#ffffff',
-				    'font-size' => '28',
-				    'text-align' => 'left',
-				    'padding' => '10 10 10 10',
-			    )),
-		    )),
-		    $this->getComponentRow(array(
-			    $this->getComponentText('CATEGORY 2', array(), array(
-				    'width' => '100%',
-				    'color' => '#e0dfdf',
-				    'font-size' => '16',
-				    'text-align' => 'left',
-				    'padding' => '10 10 10 10',
-			    )),
-		    )),
+    public function getArticleInfo() {
+	    return $this->getComponentColumn(array_merge(
+			$this->getArticleDate(),
+			$this->getArticleTitle(),
+			$this-> getArticleCategory()
 	    ), array(), array(
 		    'width' => '100%',
 		    'height' => $this->screen_height - 100,
@@ -93,6 +77,53 @@ trait uiKitArticleHeading {
 		    )),
 		    'background-size' => 'cover',
 	    ));
+    }
+
+    public function getArticleDate() {
+    	return array(
+		    $this->getComponentRow(array(
+			    $this->getComponentText(strtoupper(date('F j, Y', strtotime($this->article->article_date))), array(), array(
+				    'width' => '100%',
+				    'color' => '#cecece',
+				    'font-size' => '16',
+				    'text-align' => 'left',
+				    'padding' => '10 10 10 10',
+			    )),
+		    ))
+	    );
+    }
+
+    public function getArticleTitle() {
+	    return array(
+		    $this->getComponentRow(array(
+			    $this->getComponentText($this->article->title, array(), array(
+				    'width' => '100%',
+				    'color' => '#ffffff',
+				    'font-size' => '28',
+				    'text-align' => 'left',
+				    'padding' => '10 10 10 10',
+			    )),
+		    ))
+	    );
+    }
+
+    public function getArticleCategory() {
+
+    	if ( empty($this->category_data) ) {
+    		return array();
+	    }
+
+	    return array(
+		    $this->getComponentRow(array(
+			    $this->getComponentText(strtoupper($this->category_data->title), array(), array(
+				    'width' => '100%',
+				    'color' => '#e0dfdf',
+				    'font-size' => '16',
+				    'text-align' => 'left',
+				    'padding' => '10 10 10 10',
+			    )),
+		    ))
+	    );
     }
 
 }
