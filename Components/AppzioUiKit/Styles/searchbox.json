@@ -6,7 +6,8 @@
     "padding": "0 0 0 10"
   },
   "akit_loader": {
-    "color": "#00000",
+    "color": "#000000",
+    "height": "20",
     "text-align": "center",
     "margin": "0 10 0 0"
   }

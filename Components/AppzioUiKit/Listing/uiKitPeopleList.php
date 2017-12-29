@@ -31,7 +31,13 @@ trait uiKitPeopleList
             $items[] = $this->uiKitDivider();
         }
 
-        return $this->getInfiniteScroll($items, array('next_page_id' => (int)$page + 1));
+        if ( count($people) < 20 ) {
+        	return $this->getComponentColumn($items);
+        }
+
+        return $this->getInfiniteScroll($items, array(
+	        'next_page_id' => (int)$page + 1
+        ));
     }
 
     /**

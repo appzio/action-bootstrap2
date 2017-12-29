@@ -18,7 +18,7 @@ trait uiKitWideButton
                 'border-color' => '#9b9b9b',
                 'border-radius' => '25',
                 'width' => '75%',
-                'padding' => '12 0 12 0',
+                'height' => '50',
                 'text-align' => 'center',
                 'font-ios' => 'OpenSans',
                 'font-android' => 'OpenSans',
@@ -26,6 +26,7 @@ trait uiKitWideButton
             ))
         ), array(), array(
             'text-align' => 'center',
+            'vertical-align' => 'middle',
             'margin' => '0 0 15 0'
         ));
     }
