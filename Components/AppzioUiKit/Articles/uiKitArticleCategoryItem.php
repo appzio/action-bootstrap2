@@ -6,13 +6,6 @@ trait uiKitArticleCategoryItem {
 
     public function uiKitArticleCategoryItem( $category_item ){
     	
-    	$stack = array(
-    	    'bg1.png', 'bg2.png', 'bg3.png', 'bg6.png',
-	    );
-
-    	$rand = rand( 0, 3 );
-    	$image = $stack[$rand];
-    	
     	$parent_id = $category_item->parent_id;
 	    $path = ( $parent_id ? 'materialscategorylisting' : 'materialslisting' );
 	    $onclick = $this->getOnclickOpenAction($path,false,
@@ -23,7 +16,7 @@ trait uiKitArticleCategoryItem {
 			    'back_button' => 1
 		    ));
 
-	    $filename = $this->getImageFileName($image, array(
+	    $filename = $this->getImageFileName($category_item->picture, array(
 		    'imgwidth' => '1440',
 		    'imgheight' => '400',
 		    'priority' => 9,
@@ -34,12 +27,12 @@ trait uiKitArticleCategoryItem {
 		        $this->getComponentColumn(array(
 			        $this->getComponentText(strtoupper($category_item->title), array(), array(
 				        'color' => '#ffffff',
-				        'font-size' => '23',
+				        'font-size' => '22',
 				        'margin' => '0 0 0 0'
 			        )),
 			        $this->getComponentText(strtoupper($category_item->headertext), array(), array(
 				        'color' => '#ffffff',
-				        'font-size' => '13',
+				        'font-size' => '12',
 				        'margin' => '0 0 0 0'
 			        )),
 		        ), array(), array(

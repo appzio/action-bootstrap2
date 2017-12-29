@@ -6,7 +6,7 @@ trait uiKitArticleNextentry {
 
     public function uiKitArticleNextentry( $article_data, $category_data ){
     	
-	    $filename = $this->getImageFileName('2.jpg', array(
+	    $filename = $this->getImageFileName('2.png', array(
 		    'imgwidth' => '800',
 		    'imgheight' => '800',
 		    'priority' => 9,
@@ -21,12 +21,6 @@ trait uiKitArticleNextentry {
 
         return $this->getComponentRow(array(
         	$this->getComponentColumn(array(
-		        /*$this->getComponentImage('2.jpg', array(
-			        'imgwidth' => '800',
-			        'imgheight' => '800',
-		        ), array(
-			        'height' => 'auto',
-		        )),*/
 	        ), array(), array(
 		        'width' => $this->screen_width / 3,
 		        'height' => '100%',
@@ -41,22 +35,25 @@ trait uiKitArticleNextentry {
 				)),
 		        $this->getComponentText($article_data->title, array(), array(
 			        'color' => '1d1d1d',
-			        'font-size' => '22',
+			        'font-size' => '20',
 			        'font-weight' => 'bold',
-			        'padding' => '0 0 20 0',
+			        'padding' => '0 0 10 0',
 		        )),
 		        $this->getComponentRow(array(
 		        	$this->getComponentText(strtoupper($category_data->title), array(), array(
 		        		'color' => '#777d81',
-		        		'font-size' => '15',
-			        )),
-		        	$this->getComponentVerticalSpacer('20'),
-			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article_data->article_date))), array(), array(
-				        'color' => '#bbbbbb',
-				        'font-size' => '15',
+		        		'font-size' => '14',
 			        )),
 		        ), array(), array(
-		        	'padding' => '0 0 10 0',
+		        	'padding' => '0 0 5 0',
+		        )),
+		        $this->getComponentRow(array(
+			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article_data->article_date))), array(), array(
+				        'color' => '#bbbbbb',
+				        'font-size' => '12',
+			        )),
+		        ), array(), array(
+			        'padding' => '0 0 10 0',
 		        )),
 	        ), array(), array(
 		        'width' => 'auto',

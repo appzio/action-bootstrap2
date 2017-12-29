@@ -12,7 +12,7 @@ trait uiKitArticleHeading {
     	$this->article = $article;
     	$this->category_data = $category_data;
 
-	    $filename = $this->getImageFileName('main-bg-2.jpg', array(
+	    $filename = $this->getImageFileName('main-bg-3.png', array(
 		    'imgwidth' => '1440',
 		    'imgheight' => '2560',
 		    'priority' => 9,

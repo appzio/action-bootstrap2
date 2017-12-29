@@ -7,7 +7,7 @@ trait uiKitArticleItem {
     public function uiKitArticleItem( $article, $category_data ){
 
 	    $stack = array(
-		    '1.jpg', '2.jpg', '3.jpg', '4.jpg',
+		    '1.jpg', '2.png', '3.jpg', '4.jpg',
 	    );
 
 	    $rand = rand( 0, 3 );
@@ -33,7 +33,7 @@ trait uiKitArticleItem {
 			        'crop' => 'yes',
 		        ))
 	        ), array(), array(
-		        'width' => '40%',
+		        'width' => '35%',
 		        'height' => $this->screen_height / 5,
 	        )),
 	        $this->getComponentColumn(array(
@@ -46,20 +46,20 @@ trait uiKitArticleItem {
 			        $this->getComponentText(strtoupper($category_data->title), array(), array(
 				        'color' => '#777d81',
 				        'font-size' => '13',
-				        'margin' => '0 0 0 0',
+				        'margin' => '5 0 0 0',
 			        )),
-			        $this->getComponentVerticalSpacer('20'),
+		        )),
+		        $this->getComponentRow(array(
 			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article->article_date))), array(), array(
 				        'color' => '#777d81',
-				        'font-size' => '13',
-				        'margin' => '0 0 0 0',
+				        'font-size' => '11',
+				        'margin' => '5 0 0 0',
 			        )),
 		        ))
 	        ), array(), array(
 		        'width' => 'auto',
 		        'height' => $this->screen_height / 5,
-		        'padding' => '20 0 0 10',
-		        // 'vertical-align' => 'middle',
+		        'padding' => '10 10 0 10',
 	        )),
         ), array(
 	        'onclick' => $onclick,
