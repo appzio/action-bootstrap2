@@ -8,12 +8,16 @@ trait uiKitTopbar
 
 	public $corner_size = 6;
 
-	public function uiKitTopbar($image, $title, $custom_styles = array()) {
+	public function uiKitTopbar($image, $title, $onclick = false, $custom_styles = array()) {
         /** @var BootstrapComponent $this */
+
+        if ( empty($onclick) ) {
+	        $onclick = $this->getOnclickGoHome();
+        }
 
         $styles = array(
 			'width' => $this->screen_width,
-			'padding' => '10 10 10 10',
+			'padding' => '15 15 15 15',
 			'vertical-align' => 'middle',
 		);
 
@@ -27,7 +31,7 @@ trait uiKitTopbar
 			        'width' => '30'
 		        )),
 	        ), array(
-		        'onclick' => $this->getOnclickGoHome(),
+		        'onclick' => $onclick,
 	        ), array(
 		        'width' => $this->screen_width / $this->corner_size
 	        )),

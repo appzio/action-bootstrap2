@@ -4,6 +4,8 @@ namespace Bootstrap\Components\AppzioUiKit\Articles;
 
 trait uiKitArticleItem {
 
+	private $height_propertion = 5.5;
+
     public function uiKitArticleItem( $article, $category_data ){
 
 	    $stack = array(
@@ -34,7 +36,7 @@ trait uiKitArticleItem {
 		        ))
 	        ), array(), array(
 		        'width' => '35%',
-		        'height' => $this->screen_height / 5,
+		        'height' => $this->screen_height / $this->height_propertion,
 	        )),
 	        $this->getComponentColumn(array(
 		        $this->getComponentText($article->title, array(), array(
@@ -58,15 +60,15 @@ trait uiKitArticleItem {
 		        ))
 	        ), array(), array(
 		        'width' => 'auto',
-		        'height' => $this->screen_height / 5,
+		        'height' => $this->screen_height / $this->height_propertion,
 		        'padding' => '10 10 0 10',
 	        )),
         ), array(
 	        'onclick' => $onclick,
         ), array(
-	        'margin' => '0 10 0 10',
-	        'width' => $this->screen_width,
-	        'height' => $this->screen_height / 5,
+	        'margin' => '0 15 0 15',
+	        'width' => 'auto',
+	        'height' => $this->screen_height / $this->height_propertion,
         ));
     }
 

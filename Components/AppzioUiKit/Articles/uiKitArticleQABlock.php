@@ -8,7 +8,7 @@ trait uiKitArticleQABlock {
         return $this->getComponentText(strtoupper($params['question']) . ': ' . $params['answer'], array(), array(
 	        'color' => '#676b6f',
 	        'font-size' => '17',
-        	'padding' => '10 10 10 10'
+        	'padding' => '10 15 10 15'
         ));
     }
 

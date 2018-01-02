@@ -16,7 +16,7 @@ trait uiKitArticleBlockquote {
 	        ))
         ), array(), array(
         	'vertical-align' => 'top',
-        	'padding' => '10 10 10 10',
+        	'padding' => '10 15 10 15',
         ));
     }
 

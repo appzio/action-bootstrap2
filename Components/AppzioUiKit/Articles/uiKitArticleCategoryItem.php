@@ -4,19 +4,19 @@ namespace Bootstrap\Components\AppzioUiKit\Articles;
 
 trait uiKitArticleCategoryItem {
 
-    public function uiKitArticleCategoryItem( $category_item ){
+    public function uiKitArticleCategoryItem( array $category_item ){
     	
-    	$parent_id = $category_item->parent_id;
-	    $path = ( $parent_id ? 'materialscategorylisting' : 'materialslisting' );
+    	$has_direct_ascendants = $category_item['children'];
+	    $path = ( $has_direct_ascendants ? 'materialscategorylisting' : 'materialslisting' );
 	    $onclick = $this->getOnclickOpenAction($path,false,
 		    array(
-			    // 'id' => 'category-' . ( $parent_id ? $parent_id : $category_item->id ),
-			    'id' => ( $parent_id ? $parent_id : $category_item->id ),
+			    'id' => $category_item['id'],
 			    'sync_open' => 1,
+			    'sync_close' => 1,
 			    'back_button' => 1
 		    ));
 
-	    $filename = $this->getImageFileName($category_item->picture, array(
+	    $filename = $this->getImageFileName($category_item['picture'], array(
 		    'imgwidth' => '1440',
 		    'imgheight' => '400',
 		    'priority' => 9,
@@ -25,12 +25,12 @@ trait uiKitArticleCategoryItem {
         return $this->getComponentRow(array(
         	$this->getComponentColumn(array(
 		        $this->getComponentColumn(array(
-			        $this->getComponentText(strtoupper($category_item->title), array(), array(
+			        $this->getComponentText(strtoupper($category_item['title']), array(), array(
 				        'color' => '#ffffff',
 				        'font-size' => '22',
 				        'margin' => '0 0 0 0'
 			        )),
-			        $this->getComponentText(strtoupper($category_item->headertext), array(), array(
+			        $this->getComponentText(strtoupper($category_item['headertext']), array(), array(
 				        'color' => '#ffffff',
 				        'font-size' => '12',
 				        'margin' => '0 0 0 0'

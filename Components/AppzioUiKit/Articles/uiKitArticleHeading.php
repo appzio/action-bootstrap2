@@ -25,6 +25,7 @@ trait uiKitArticleHeading {
 		    'vertical-align' => 'top',
 		    'background-image' => $filename,
 		    'background-size' => 'cover',
+		    'margin' => '0 0 5 0',
 		    'width' => $this->screen_width,
 		    'height' => $this->screen_height,
 	    ));
@@ -39,19 +40,11 @@ trait uiKitArticleHeading {
 			    ), array(
 				    'width' => '30',
 			    )),
-			    /*
-			    $this->getComponentText('Header here', array(), array(
-				    'width' => $this->screen_width - (2 * 30),
-				    'color' => '#ffffff',
-				    'font-size' => '20',
-				    'text-align' => 'center',
-			    )),
-			    */
 		    ))
 	    ), array(), array(
 		    'width' => '100%',
 		    'height' => '100',
-		    'padding' => '10 10 10 10',
+		    'padding' => '15 15 15 15',
 		    'background-image' => $this->getImageFileName('shadow-image-wide-inverted.png', array(
 			    'imgwidth' => '1366',
 			    'imgheight' => '768',

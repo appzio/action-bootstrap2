@@ -8,7 +8,7 @@ trait uiKitArticleText {
         return $this->getComponentText($params['content'], array(), array(
 			'color' => '#676b6f',
 			'font-size' => '17',
-			'padding' => '15 10 15 10',
+			'padding' => '10 15 10 15',
         ));
     }
 
