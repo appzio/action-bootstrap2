@@ -49,6 +49,10 @@ trait uiKitAccordion
                 $item['id'] = 'line_'.$key;
             }
             $stack[] = $this->uiKitAccordionItem($item);
+            $stack[] = $this->getComponentSpacer('1', array(), array(
+                'background-color' => '#dadada',
+                'opacity' => '0.5'
+            ));
         }
 
         if ($stack) {
@@ -67,7 +71,9 @@ trait uiKitAccordion
 
         $actionShow[] = $this->getOnclickShowElement("hide_" .$item['id']);
         $actionShow[] = $this->getOnclickShowElement("hidden_" .$item['id']);
-        $actionShow[] = $this->getOnclickHideElement("show_" .$item['id']);
+        $actionShow[] = $this->getOnclickHideElement("show_" .$item['id'], array(
+            'transition' => 'none'
+        ));
         $output[] = $this->getComponentRow(
             $this->getVisibleRow($item['show']),
             array(
@@ -76,8 +82,12 @@ trait uiKitAccordion
                 "onclick" => $actionShow));
 
         $actionHide[] = $this->getOnclickShowElement("show_" .$item['id']);
-        $actionHide[] = $this->getOnclickHideElement("hide_" .$item['id']);
-        $actionHide[] = $this->getOnclickHideElement("hidden_" .$item['id']);
+        $actionHide[] = $this->getOnclickHideElement("hide_" .$item['id'], array(
+            'transition' => 'none'
+        ));
+        $actionHide[] = $this->getOnclickHideElement("hidden_" .$item['id'], array(
+            'transition' => 'none'
+        ));
         $output[] = $this->getComponentRow(
             $this->getVisibleRow($item['hide'], "ui_accordion_line_hide"),
             array(
@@ -106,9 +116,9 @@ trait uiKitAccordion
             $this->getComponentText($item['description'],array("style" => $stylePrefix . "_description"))
         ], array(array("style" => $stylePrefix . "_middle_container")));
 
-        if ($item['icon-back']) {
-            $row[] = $this->getComponentImage($item['icon-back'],array("style" => $stylePrefix . "_icon-back"));
-        }
+//        if ($item['icon-back']) {
+//            $row[] = $this->getComponentImage($item['icon-back'],array("style" => $stylePrefix . "_icon-back"));
+//        }
 
         return $row;
     }
@@ -118,7 +128,13 @@ trait uiKitAccordion
 
         $row = [];
         if (isset($item['input'])) {
-            $row[] = $this->uiKitHintedTextField($item['description'], $item['variable'], $item['input']);
+            $row[] = $this->getComponentFormFieldTextArea('', array(
+                'hint' => 'Lorem ipsum dolor sit amet...',
+                'variable' => $item['variable']
+            ), array(
+                'padding' => '0 0 0 30'
+            ));
+//            $row[] = $this->uiKitHintedTextField($item['description'], $item['variable'], $item['input']);
         } else {
             $row[] = $this->getComponentText($item['description'], array("style" => "ui_accordion_hidden_description"));
         }
