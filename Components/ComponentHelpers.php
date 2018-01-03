@@ -144,5 +144,56 @@ trait ComponentHelpers {
 
     }
 
+	/**
+	 * @param $content
+	 * @return array
+	 */
+    public function getParsedContent( $content, $styles = array() ) {
+
+    	$tags = array(
+    	    'row' => 'getComponentRow',
+	    );
+
+	    $text = str_replace(array("\r\n", "\r"), "\n", $content);
+	    $text = trim($text, "\n");
+	    $lines = explode("\n", $text);
+
+	    $output = [];
+
+	    $args = array(
+		    'width' => 'auto',
+		    'color' => ( $styles['color'] ? $styles['color'] : '#676b6f' ),
+		    'font-size' => '17',
+		    'padding' => '10 15 10 15',
+	    );
+
+	    foreach ( $lines as $line ) {
+		    foreach ( $tags as $tag => $element ) {
+			    if ( preg_match("<$tag>", $line) ) {
+
+			    	// As we use HTML like tags, we could simply put everything through strip_tags
+				    $text = strip_tags($line);
+
+				    if ( stristr($text, '**') ) {
+				    	$text = str_replace('**', '', $text);
+				    	$args['font-weight'] = 'bold';
+				    }
+
+					$output[] = $this->{$element}(array(
+						$this->getComponentText($text, array(), $args)
+					), array(), array(
+						'width' => '100%'
+					));
+
+					unset($args['font-weight']);
+
+			    } else {
+				    $output[] = $this->getComponentText($line, array(), $args);
+			    }
+		    }
+	    }
+
+	    return $output;
+    }
 
 }
