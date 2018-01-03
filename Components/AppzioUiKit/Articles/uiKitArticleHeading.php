@@ -12,7 +12,7 @@ trait uiKitArticleHeading {
     	$this->article = $article;
     	$this->category_data = $category_data;
 
-	    $filename = $this->getImageFileName('main-bg-3.png', array(
+	    $filename = $this->getImageFileName($this->getFeaturedImage( $article->photos ), array(
 		    'imgwidth' => '1440',
 		    'imgheight' => '2560',
 		    'priority' => 9,
@@ -75,12 +75,8 @@ trait uiKitArticleHeading {
     public function getArticleDate() {
     	return array(
 		    $this->getComponentRow(array(
-			    $this->getComponentText(strtoupper(date('F j, Y', strtotime($this->article->article_date))), array(), array(
-				    'width' => '100%',
-				    'color' => '#cecece',
-				    'font-size' => '16',
-				    'text-align' => 'left',
-				    'padding' => '10 10 10 10',
+			    $this->getComponentText(strtoupper(date('F j, Y', strtotime($this->article->article_date))), array(
+				    'style' => 'article-uikit-date'
 			    )),
 		    ))
 	    );
@@ -89,12 +85,8 @@ trait uiKitArticleHeading {
     public function getArticleTitle() {
 	    return array(
 		    $this->getComponentRow(array(
-			    $this->getComponentText($this->article->title, array(), array(
-				    'width' => '100%',
-				    'color' => '#ffffff',
-				    'font-size' => '28',
-				    'text-align' => 'left',
-				    'padding' => '10 10 10 10',
+			    $this->getComponentText($this->article->title, array(
+			    	'style' => 'article-uikit-title'
 			    )),
 		    ))
 	    );
@@ -108,15 +100,26 @@ trait uiKitArticleHeading {
 
 	    return array(
 		    $this->getComponentRow(array(
-			    $this->getComponentText(strtoupper($this->category_data->title), array(), array(
-				    'width' => '100%',
-				    'color' => '#e0dfdf',
-				    'font-size' => '16',
-				    'text-align' => 'left',
-				    'padding' => '10 10 10 10',
+			    $this->getComponentText(strtoupper($this->category_data->title), array(
+				    'style' => 'article-uikit-category'
 			    )),
 		    ))
 	    );
     }
+
+	public function getFeaturedImage( $images ) {
+
+		if ( empty($images) ) {
+			return 'article-uikit-featured-placeholder.png';
+		}
+
+		foreach ( $images as $image ) {
+			if ( $image->position == 'featured' ) {
+				return $image->photo;
+			}
+		}
+
+		return 'article-uikit-featured-placeholder.png';
+	}
 
 }

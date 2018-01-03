@@ -6,9 +6,9 @@ trait uiKitArticleNextentry {
 
     public function uiKitArticleNextentry( $article_data, $category_data ){
     	
-	    $filename = $this->getImageFileName('2.png', array(
-		    'imgwidth' => '800',
-		    'imgheight' => '800',
+	    $filename = $this->getImageFileName($this->getListingImage( $article_data->photos ), array(
+		    'imgwidth' => '400',
+		    'imgheight' => '400',
 		    'priority' => 9,
 	    ));
 
@@ -28,38 +28,28 @@ trait uiKitArticleNextentry {
 		        'background-size' => 'cover',
 	        )),
 	        $this->getComponentColumn(array(
-				$this->getComponentText('READ NEXT', array(), array(
-					'color' => '777d81',
-					'font-size' => '17',
-					'padding' => '10 0 10 0',
+				$this->getComponentText(strtoupper('{#read_next#}'), array(
+					'style' => 'article-uikit-related-heading'
 				)),
-		        $this->getComponentText($article_data->title, array(), array(
-			        'color' => '1d1d1d',
-			        'font-size' => '20',
-			        'font-weight' => 'bold',
-			        'padding' => '0 0 10 0',
+		        $this->getComponentText($article_data->title, array(
+			        'style' => 'article-uikit-related-title'
 		        )),
 		        $this->getComponentRow(array(
-		        	$this->getComponentText(strtoupper($category_data->title), array(), array(
-		        		'color' => '#777d81',
-		        		'font-size' => '14',
+		        	$this->getComponentText(strtoupper($category_data->title), array(
+				        'style' => 'article-uikit-related-category'
 			        )),
 		        ), array(), array(
 		        	'padding' => '0 0 5 0',
 		        )),
 		        $this->getComponentRow(array(
-			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article_data->article_date))), array(), array(
-				        'color' => '#bbbbbb',
-				        'font-size' => '12',
+			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article_data->article_date))), array(
+				        'style' => 'article-uikit-related-date'
 			        )),
 		        ), array(), array(
 			        'padding' => '0 0 10 0',
 		        )),
-	        ), array(), array(
-		        'width' => 'auto',
-		        'padding' => '0 10 0 10',
-		        'border-width' => 1,
-		        'border-color' => '#d9d9d9',
+	        ), array(
+	        	'style' => 'article-uikit-related-item'
 	        ))
         ), array(
         	'onclick' => $onclick

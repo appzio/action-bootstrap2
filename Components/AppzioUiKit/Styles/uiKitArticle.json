@@ -1,0 +1,93 @@
+{
+  "article-uikit-error": {
+    "margin": "15 15 15 15",
+    "font-size": "16",
+    "text-align": "center"
+  },
+  "article-uikit-divider": {
+    "width": "100%",
+    "height": "1",
+    "margin": "10 0 10 0",
+    "background-color": "#e9e9e9"
+  },
+  "article-uikit-category-title": {
+    "color": "#ffffff",
+    "font-size": "22",
+    "margin": "0 0 0 0"
+  },
+  "article-uikit-category-description": {
+    "color": "#ffffff",
+    "font-size": "12",
+    "margin": "0 0 0 0"
+  },
+  "article-uikit-text": {
+    "color": "#676b6f",
+    "font-size": "17",
+    "padding": "10 15 10 15"
+  },
+  "article-uikit-listing-image": {
+    "width": "400",
+    "height": "400"
+  },
+  "article-uikit-listing-title": {
+    "font-size": "21",
+    "font-weight": "bold",
+    "margin": "0 0 0 0"
+  },
+  "article-uikit-listing-subtitle": {
+    "font-size": "13",
+    "color": "#777d81",
+    "margin": "5 0 0 0"
+  },
+  "article-uikit-listing-date": {
+    "font-size": "11",
+    "color": "#777d81",
+    "margin": "5 0 0 0"
+  },
+  "article-uikit-title": {
+    "width": "100%",
+    "font-size": "28",
+    "color": "#ffffff",
+    "text-align": "left",
+    "padding": "10 10 10 10"
+  },
+  "article-uikit-category": {
+    "width": "100%",
+    "font-size": "16",
+    "color": "#e0dfdf",
+    "text-align": "left",
+    "padding": "10 10 10 10"
+  },
+  "article-uikit-date": {
+    "width": "100%",
+    "font-size": "16",
+    "color": "#cecece",
+    "text-align": "left",
+    "padding": "10 10 10 10"
+  },
+  "article-uikit-related-item": {
+    "width": "auto",
+    "padding": "0 10 0 10",
+    "border-width": "1",
+    "border-color": "#d9d9d9"
+  },
+  "article-uikit-related-heading": {
+    "font-size": "17",
+    "color": "#777d81",
+    "padding": "10 0 10 0"
+  },
+  "article-uikit-related-title": {
+    "font-size": "20",
+    "font-weight": "bold",
+    "color": "#1d1d1d",
+    "padding": "0 0 10 0"
+  },
+  "article-uikit-related-category": {
+    "font-size": "14",
+    "color": "#777d81"
+  },
+  "article-uikit-related-date": {
+    "font-size": "12",
+    "color": "#bbbbbb"
+  }
+}

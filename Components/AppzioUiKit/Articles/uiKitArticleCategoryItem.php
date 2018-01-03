@@ -8,6 +8,7 @@ trait uiKitArticleCategoryItem {
     	
     	$has_direct_ascendants = $category_item['children'];
 	    $path = ( $has_direct_ascendants ? 'materialscategorylisting' : 'materialslisting' );
+
 	    $onclick = $this->getOnclickOpenAction($path,false,
 		    array(
 			    'id' => $category_item['id'],
@@ -25,15 +26,11 @@ trait uiKitArticleCategoryItem {
         return $this->getComponentRow(array(
         	$this->getComponentColumn(array(
 		        $this->getComponentColumn(array(
-			        $this->getComponentText(strtoupper($category_item['title']), array(), array(
-				        'color' => '#ffffff',
-				        'font-size' => '22',
-				        'margin' => '0 0 0 0'
+			        $this->getComponentText(strtoupper($category_item['title']), array(
+			        	'style' => 'article-uikit-category-title'
 			        )),
-			        $this->getComponentText(strtoupper($category_item['headertext']), array(), array(
-				        'color' => '#ffffff',
-				        'font-size' => '12',
-				        'margin' => '0 0 0 0'
+			        $this->getComponentText(strtoupper($category_item['headertext']), array(
+				        'style' => 'article-uikit-category-description'
 			        )),
 		        ), array(), array(
 			        'text-align' => 'center',

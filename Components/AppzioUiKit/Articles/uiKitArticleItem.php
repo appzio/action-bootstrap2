@@ -8,13 +8,6 @@ trait uiKitArticleItem {
 
     public function uiKitArticleItem( $article, $category_data ){
 
-	    $stack = array(
-		    '1.jpg', '2.png', '3.jpg', '4.jpg',
-	    );
-
-	    $rand = rand( 0, 3 );
-	    $image = $stack[$rand];
-
 	    $onclick = $this->getOnclickOpenAction('article',false,
 		    array(
 			    'id' => $article->id,
@@ -24,14 +17,13 @@ trait uiKitArticleItem {
 
         return $this->getComponentRow(array(
 	        $this->getComponentColumn(array(
-		        $this->getComponentImage($image, array(
+		        $this->getComponentImage($this->getListingImage( $article->photos ), array(
+			        'style' => 'article-uikit-listing-image',
 			        'imgwidth' => '400',
 			        'imgheight' => '400',
 			        'lazy' => 1,
 			        'priority' => 9,
 		        ), array(
-			        'width' => '400',
-			        'height' => '400',
 			        'crop' => 'yes',
 		        ))
 	        ), array(), array(
@@ -39,23 +31,17 @@ trait uiKitArticleItem {
 		        'height' => $this->screen_height / $this->height_propertion,
 	        )),
 	        $this->getComponentColumn(array(
-		        $this->getComponentText($article->title, array(), array(
-		        	'font-size' => '21',
-		        	'font-weight' => 'bold',
-		        	'margin' => '0 0 0 0',
+		        $this->getComponentText($article->title, array(
+			        'style' => 'article-uikit-listing-title',
 		        )),
 		        $this->getComponentRow(array(
-			        $this->getComponentText(strtoupper($category_data->title), array(), array(
-				        'color' => '#777d81',
-				        'font-size' => '13',
-				        'margin' => '5 0 0 0',
+			        $this->getComponentText(strtoupper($category_data->title), array(
+				        'style' => 'article-uikit-listing-subtitle',
 			        )),
 		        )),
 		        $this->getComponentRow(array(
-			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article->article_date))), array(), array(
-				        'color' => '#777d81',
-				        'font-size' => '11',
-				        'margin' => '5 0 0 0',
+			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article->article_date))), array(
+				        'style' => 'article-uikit-listing-date',
 			        )),
 		        ))
 	        ), array(), array(
@@ -70,6 +56,21 @@ trait uiKitArticleItem {
 	        'width' => 'auto',
 	        'height' => $this->screen_height / $this->height_propertion,
         ));
+    }
+
+	public function getListingImage( $images ) {
+    	
+    	if ( empty($images) ) {
+    		return 'article-uikit-listing-placeholder.png';
+	    }
+
+	    foreach ( $images as $image ) {
+			if ( $image->position == 'listing' ) {
+				return $image->photo;
+			}
+	    }
+
+	    return 'article-uikit-listing-placeholder.png';
     }
 
 }
