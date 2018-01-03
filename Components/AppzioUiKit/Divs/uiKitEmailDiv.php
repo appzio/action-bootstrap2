@@ -85,7 +85,7 @@ trait uiKitEmailDiv
                 'margin' => '10 10 0 20',
                 'vertical-align' => 'middle'
             )),
-            $this->getComponentSpacer(250),
+            $this->getComponentSpacer(150),
             $this->uiKitWideButton('{#send_mail#}', array(
                 'onclick' => $this->sendEmailToPerson()
             ))
@@ -96,13 +96,20 @@ trait uiKitEmailDiv
 
     protected function getAttachedImagesRow($images)
     {
+        $width = $this->screen_width - 30 - 24;
+        $width = $width / 3;
         $imagesList = array();
 
         foreach ($images as $image) {
-            $imagesList[] = $this->getComponentImage($image, array(), array(
-                'width' => '50',
-                'border-radius' => '5',
-                'margin' => '0 10 0 0'
+            $imagesList[] = $this->getComponentImage($image, array(
+                'imgwidth' => '250',
+                'imgheight' => '250',
+            ), array(
+                'width' => $width,
+                'height' => $width,
+                'crop' => 'yes',
+                'margin' => '0 8 0 0',
+                'border-radius' => '3',
             ));
         }
 
