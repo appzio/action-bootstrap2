@@ -7,13 +7,12 @@ use Bootstrap\Components\BootstrapComponent;
 trait uiKitIconButton
 {
 
-    public function uiKitIconButton(string $content)
+    public function uiKitIconButton(string $content, $params = array(), $styles = array())
     {
         /** @var BootstrapComponent $this */
+
         return $this->getComponentRow(array(
-            $this->getComponentText($content, array(
-                'onclick' => new \stdClass()
-            ), array(
+            $this->getComponentText($content, $params, array(
                 'color' => '#5a3a3a',
                 'border-color' => '#9b9b9b',
                 'border-radius' => '25',

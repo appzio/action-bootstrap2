@@ -17,6 +17,8 @@ trait uiKitEmailDiv
             $to = '';
         }
 
+        $images = isset($params['images']) ? $params['images'] : array();
+
         return $this->getComponentColumn(array(
             $this->getComponentRow(array(
                 $this->getComponentImage('cloud_upload_dev.png', array(), array(
@@ -37,15 +39,17 @@ trait uiKitEmailDiv
                 'shadow-offset' => '0 3',
                 'margin' => '0 0 20 0'
             )),
+            $this->getAttachedImagesRow($images),
             $this->getComponentText($to, array(
-                'variable' => 'to_email'
+                'variable' => 'to_email',
+                'visibility' => empty($to) ? 'hidden' : ''
             ), array(
                 'margin' => '10 20 10 20'
             )),
             $this->getComponentFormFieldText($to, array(
                 'hint' => 'To:',
                 'variable' => 'to_email',
-                'visibility' => 'hidden'
+                'visibility' => !empty($to) ? 'hidden' : ''
             ), array(
                 'margin' => '0 20 0 20'
             )),
@@ -77,6 +81,7 @@ trait uiKitEmailDiv
                     'margin' => '0 10 0 0'
                 ))
             ), array(), array(
+                'height' => '50',
                 'margin' => '10 10 0 20',
                 'vertical-align' => 'middle'
             )),
@@ -86,6 +91,23 @@ trait uiKitEmailDiv
             ))
         ), array(), array(
             'background-color' => '#ffffff'
+        ));
+    }
+
+    protected function getAttachedImagesRow($images)
+    {
+        $imagesList = array();
+
+        foreach ($images as $image) {
+            $imagesList[] = $this->getComponentImage($image, array(), array(
+                'width' => '50',
+                'border-radius' => '5',
+                'margin' => '0 10 0 0'
+            ));
+        }
+
+        return $this->getComponentRow($imagesList, array(), array(
+            'margin' => '0 20 0 20'
         ));
     }
 
