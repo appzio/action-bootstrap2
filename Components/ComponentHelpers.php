@@ -144,5 +144,69 @@ trait ComponentHelpers {
 
     }
 
+	/**
+	 * @param $content
+	 * @return array
+	 */
+    public function getParsedContent( $content, $styles = array() ) {
+
+    	$tags = array(
+    	    'row' => 'getComponentRow',
+    	    'column' => 'getComponentColumn',
+	    );
+
+	    $text = str_replace(array("\r\n", "\r"), "\n", $content);
+	    $text = trim($text, "\n");
+	    $lines = explode("\n", $text);
+
+	    $output = [];
+
+	    $args = array(
+		    'width' => 'auto',
+		    'color' => '#676b6f',
+		    'font-size' => '17',
+		    'padding' => '10 15 10 15',
+	    );
+
+	    $args = array_merge($args, $styles);
+
+	    foreach ( $lines as $i => $line ) {
+
+	    	if ( $i )
+			    $args['padding'] = '0 15 10 15';
+
+		    if ( stristr($line, '**') ) {
+			    $line = str_replace('**', '', $line);
+			    $args['font-weight'] = 'bold';
+		    }
+
+		    $has_tag = false;
+
+		    foreach ( $tags as $tag => $element ) {
+		    	if ( preg_match("<$tag>", $line) ) {
+
+			    	// As we use HTML like tags, we could simply put everything through strip_tags
+				    $text = strip_tags($line);
+
+					$output[] = $this->{$element}(array(
+						$this->getComponentText($text, array(), $args)
+					), array(), array(
+						'width' => '100%'
+					));
+
+					$has_tag = true;
+			    }
+
+		    }
+
+		    if ( !$has_tag ) {
+			    $output[] = $this->getComponentText($line, array(), $args);
+		    }
+
+		    unset($args['font-weight']);
+	    }
+
+	    return $output;
+    }
 
 }

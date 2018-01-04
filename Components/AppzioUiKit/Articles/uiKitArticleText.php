@@ -4,10 +4,10 @@ namespace Bootstrap\Components\AppzioUiKit\Articles;
 
 trait uiKitArticleText {
 
-    public function uiKitArticleText( $params ) {
-        return $this->getComponentText($params['content'], array(
-        	'style' => 'article-uikit-text'
-        ));
+    public function uiKitArticleText( $params, $styles = array() ) {
+        return $this->getComponentColumn(
+	        $this->getParsedContent($params['content'], $styles)
+        );
     }
 
 }
