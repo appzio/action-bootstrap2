@@ -14,15 +14,16 @@ trait uiKitWideButton
             $this->getComponentText($content, array(
                 'onclick' => isset($params['onclick']) ? $params['onclick'] : new \stdClass()
             ), array(
-                'color' => '#5a3a3a',
-                'border-color' => '#9b9b9b',
+                'color' => '#323232',
+//                'border-color' => '#9b9b9b',
                 'border-radius' => '25',
                 'width' => '75%',
                 'height' => '50',
                 'text-align' => 'center',
                 'font-ios' => 'OpenSans',
                 'font-android' => 'OpenSans',
-                'use_clipping' => '0'
+                'use_clipping' => '0',
+                'background-color' => '#FFCC00'
             ))
         ), array(), array(
             'text-align' => 'center',
