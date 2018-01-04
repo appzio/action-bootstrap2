@@ -4,7 +4,7 @@ namespace Bootstrap\Components\AppzioUiKit\Articles;
 
 trait uiKitArticleBlockquote {
 
-    public function uiKitArticleBlockquote( $params ){
+    public function uiKitArticleBlockquote( $params, $styles = array() ){
         return $this->getComponentRow(array(
         	$this->getComponentImage('quotes.png', array(), array(
         		'width' => 30

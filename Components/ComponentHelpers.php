@@ -152,6 +152,7 @@ trait ComponentHelpers {
 
     	$tags = array(
     	    'row' => 'getComponentRow',
+    	    'column' => 'getComponentColumn',
 	    );
 
 	    $text = str_replace(array("\r\n", "\r"), "\n", $content);
@@ -162,22 +163,30 @@ trait ComponentHelpers {
 
 	    $args = array(
 		    'width' => 'auto',
-		    'color' => ( $styles['color'] ? $styles['color'] : '#676b6f' ),
+		    'color' => '#676b6f',
 		    'font-size' => '17',
 		    'padding' => '10 15 10 15',
 	    );
 
-	    foreach ( $lines as $line ) {
+	    $args = array_merge($args, $styles);
+
+	    foreach ( $lines as $i => $line ) {
+
+	    	if ( $i )
+			    $args['padding'] = '0 15 10 15';
+
+		    if ( stristr($line, '**') ) {
+			    $line = str_replace('**', '', $line);
+			    $args['font-weight'] = 'bold';
+		    }
+
+		    $has_tag = false;
+
 		    foreach ( $tags as $tag => $element ) {
-			    if ( preg_match("<$tag>", $line) ) {
+		    	if ( preg_match("<$tag>", $line) ) {
 
 			    	// As we use HTML like tags, we could simply put everything through strip_tags
 				    $text = strip_tags($line);
-
-				    if ( stristr($text, '**') ) {
-				    	$text = str_replace('**', '', $text);
-				    	$args['font-weight'] = 'bold';
-				    }
 
 					$output[] = $this->{$element}(array(
 						$this->getComponentText($text, array(), $args)
@@ -185,12 +194,16 @@ trait ComponentHelpers {
 						'width' => '100%'
 					));
 
-					unset($args['font-weight']);
-
-			    } else {
-				    $output[] = $this->getComponentText($line, array(), $args);
+					$has_tag = true;
 			    }
+
 		    }
+
+		    if ( !$has_tag ) {
+			    $output[] = $this->getComponentText($line, array(), $args);
+		    }
+
+		    unset($args['font-weight']);
 	    }
 
 	    return $output;

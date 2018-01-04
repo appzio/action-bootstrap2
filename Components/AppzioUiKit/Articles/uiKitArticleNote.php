@@ -4,16 +4,16 @@ namespace Bootstrap\Components\AppzioUiKit\Articles;
 
 trait uiKitArticleNote {
 
-    public function uiKitArticleNote( $params ){
+    public function uiKitArticleNote( $params, $styles = array() ){
 
-	    $color = $params['color'] ? $params['color'] : '#676b6f';
-	    $background = $params['background-color'] ? $params['background-color'] : '#ffe88c';
+	    if ( !isset($styles['color']) ) {
+			$styles['color'] = '#676b6f';
+	    }
 
-        return $this->getComponentColumn($this->getParsedContent($params['content'], array(
-        	'color' => $color
-        )), array(), array(
-        	'background-color' => $background
+        return $this->getComponentColumn($this->getParsedContent($params['content'], $styles), array(), array(
+        	'background-color' => ( isset($styles['background-color']) ? $styles['background-color'] : '#ffe88c' )
         ));
+
     }
 
 }
