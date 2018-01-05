@@ -96,25 +96,63 @@ trait uiKitEmailDiv
 
     protected function getAttachedImagesRow($images)
     {
-        $width = $this->screen_width - 30 - 24;
-        $width = $width / 3;
         $imagesList = array();
+        $index = 1;
 
         foreach ($images as $image) {
-            $imagesList[] = $this->getComponentImage($image, array(
-                'imgwidth' => '250',
-                'imgheight' => '250',
-            ), array(
-                'width' => $width,
-                'height' => $width,
-                'crop' => 'yes',
-                'margin' => '0 8 0 0',
+//            $imagesList[] = $this->getComponentImage($image, array(
+//                'imgwidth' => '250',
+//                'imgheight' => '250',
+//            ), array(
+//                'width' => $width,
+//                'height' => $width,
+//                'crop' => 'yes',
+//                'margin' => '0 8 0 0',
+//                'border-radius' => '3',
+//            ));
+            $selectedState = array(
+                'border-color' => '#00ff00',
+                'allow_unselect' => 1,
+                'variable_value' => 1,
+                'background-color' => '#ff0000',
+                'background-size' => 'cover',
+                'height' => '100',
+                'width' => '100',
                 'border-radius' => '3',
+                'margin' => '0 5 0 5',
+            );
+
+            $imagesList[] = $this->getComponentText(' asdf', array(
+                'variable' => 'send_visit_pic_' . $index,
+                'selected_state' => array(
+                    'style_content' => array(
+                        'background-image' => $this->getImageFileName($image),
+                        'background-size' => 'cover',
+                        'height' => '100',
+                        'width' => '100',
+                        'border-color' => '#006400',
+                        'border-width' => '4',
+                        'border-radius' => '4',
+                        'margin' => '0 5 0 5',
+                    ),
+                    'allow_unselect' => 1,
+                    'variable_value' => 1
+                ),
+            ), array(
+                'background-image' => $this->getImageFileName($image),
+                'background-size' => 'cover',
+                'height' => '100',
+                'width' => '100',
+                'border-radius' => '4',
+                'margin' => '0 5 0 5',
             ));
+
+            $index++;
         }
 
         return $this->getComponentRow($imagesList, array(), array(
-            'margin' => '0 20 0 20'
+            'padding' => '10 0 10 0',
+            'text-align' => 'center'
         ));
     }
 
