@@ -182,6 +182,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\RangeSlider;
     use ClientComponents\Row;
     use ClientComponents\Text;
+    use ClientComponents\RichText;
     use ClientComponents\Video;
     use ClientComponents\Fieldlist;
 
