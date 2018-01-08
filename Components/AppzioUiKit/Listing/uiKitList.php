@@ -22,9 +22,7 @@ trait uiKitList {
 
         foreach ($content as $item) {
             $items[] = $this->getListRow($item);
-            $items[] = $this->getComponentSpacer(1, array(), array(
-                'background-color' => '#fafafa'
-            ));
+            $items[] = $this->uiKitDivider();
         }
 
         return $this->getComponentColumn($items);
@@ -32,30 +30,55 @@ trait uiKitList {
 
     protected function getListRow($item)
     {
+
         return $this->getComponentColumn(array(
             $this->getComponentText($item['text'], array(), array(
-                'font-size' => 20,
+                'font-size' => 16,
                 'font-weight' => 'bold',
                 'width' => '200',
                 'margin' => '0 0 10 0',
+                'font-ios' => 'OpenSans',
+                'font-android' => 'OpenSans'
             )),
             $this->getComponentRow(array(
                 $this->getComponentText($item['info'], array(), array(
-                    'font-size' => '12',
+                    'font-size' => '11',
                     'color' => '#9f9f9f',
+                    'font-ios' => 'OpenSans',
+                    'font-android' => 'OpenSans'
                 )),
                 $this->getComponentText($item['additional_info'], array(), array(
-                    'font-size' => '12',
+                    'font-size' => '11',
                     'color' => '#9f9f9f',
                     'floating' => 1,
-                    'float' => 'right'
+                    'float' => 'right',
+                    'font-ios' => 'OpenSans',
+                    'font-android' => 'OpenSans'
                 ))
             ), array(), array(
                 'width' => '180',
             ))
-        ), array(), array(
+        ), array(
+            'id' => 'row_' . $item['id'],
+            'swipe_right' => array(
+                $this->getComponentRow(array(
+                    $this->getComponentImage('icons8-trash.png', array(), array(
+                        'width' => '30'
+                    ))
+                ), array(
+                    'onclick' => array(
+                        $this->getOnclickHideElement('row_' . $item['id'])
+                    )
+                ), array(
+                    'padding' => '0 20 0 20',
+                    'background-color' => '#fc4944',
+                    'vertical-align' => 'middle'
+                ))
+            )
+        ), array(
             'padding' => '20 0 20 15',
-            'height' => '110'
+            'height' => 100,
+            'width' => '100%'
         ));
     }
 
