@@ -21,12 +21,17 @@ trait uiKitHintedTextField {
 
         $parameters['variable'] = $variablename;
 
+        $title_params['style'] = 'steps_hint';
+	    if ( isset($parameters['uppercase']) AND $parameters['uppercase'] ) {
+	        $title_params['uppercase'] = true;
+        }
+
         if($this->model->getValidationError($variablename)) {
-            $error[] = $this->getComponentText($hint .' ', array('style' => 'steps_hint','uppercase' => true));
+            $error[] = $this->getComponentText($hint .' ', $title_params);
             $error[] = $this->getComponentText($this->model->getValidationError($variablename),array('style' => 'steps_error'));
             $out[] = $this->getComponentRow($error,array(),array('width' => '100%'));
         } else {
-            $out[] = $this->getComponentText($hint, array('style' => 'steps_hint','uppercase' => true));
+            $out[] = $this->getComponentText($hint, $title_params);
         }
 
         if(!isset($parameters['value'])){
@@ -38,20 +43,20 @@ trait uiKitHintedTextField {
         switch($type){
             case 'text':
                 $out[] = $this->getComponentFormFieldText($val,
-                    array_merge($parameters,array('style' => 'steps_field')
-                ));
+                    array_merge(array('style' => 'steps_field'), $parameters)
+                );
                 break;
 
             case 'textarea':
                 $out[] = $this->getComponentFormFieldTextArea($val,
-                    array_merge($parameters,array('style' => 'steps_field_textarea')
-                    ));
+	                array_merge(array('style' => 'steps_field_textarea'), $parameters)
+                );
                 break;
 
             case 'password':
                 $out[] = $this->getComponentFormFieldPassword($val,
-                    array_merge($parameters,array('style' => 'steps_field')
-                    ));
+                    array_merge(array('style' => 'steps_field'), $parameters)
+                );
                 break;
 
             case 'noedit':
@@ -73,7 +78,6 @@ trait uiKitHintedTextField {
 
             $out[] = $this->getComponentRow($err,array('style' => 'email_exists_row'));
         }
-
 
         return $this->getComponentColumn($out);
 	}

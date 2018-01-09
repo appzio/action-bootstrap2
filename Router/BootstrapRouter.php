@@ -352,29 +352,22 @@ class BootstrapRouter implements BootstrapRouterInterface {
      * @return void
      */
     public function prepareView(){
-
+    	
         $name = 'action'.ucfirst($this->action_name);
         $default = 'actionDefault';
 
         if(method_exists($this->controller, $name)){
             $viewinfo = $this->controller->$name();
-            $this->view_name = $viewinfo[0];
-            $this->view_data = $viewinfo[1];
         } elseif(method_exists($this->controller, $default)) {
             $this->error[] = 'Unknown controller method '.$default .' @ controller: ' .$this->controller_name;
             $viewinfo = $this->controller->$default();
-            $this->view_name = $viewinfo[0];
-            $this->view_data = $viewinfo[1];
         } else {
             $this->error[] = 'No controller methods found';
             $viewinfo = $this->view->actionViewerror();
-            $this->view_name = $viewinfo[0];
-            $this->view_data = $viewinfo[1];
         }
 
+	    $this->view_name = $viewinfo[0];
+	    $this->view_data = ( isset($viewinfo[1]) ? $viewinfo[1] : [] );
     }
-
-
-
 
 }

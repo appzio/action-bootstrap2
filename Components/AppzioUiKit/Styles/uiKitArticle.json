@@ -89,5 +89,16 @@
   "article-uikit-related-date": {
     "font-size": "12",
     "color": "#bbbbbb"
+  },
+  "article-uikit-textarea": {
+    "font-size": "15",
+    "color": "#777d81",
+    "padding": "5 15 5 15",
+    "height": "110"
+  },
+  "steps_hint": {
+    "font-size": "16",
+    "color": "#777d81",
+    "padding": "0 15 0 15"
   }
 }
