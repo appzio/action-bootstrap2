@@ -134,7 +134,6 @@ trait uiKitAccordion
             ), array(
                 'padding' => '0 0 0 30'
             ));
-//            $row[] = $this->uiKitHintedTextField($item['description'], $item['variable'], $item['input']);
         } else {
             $row[] = $this->getComponentText($item['description'], array("style" => "ui_accordion_hidden_description"));
         }

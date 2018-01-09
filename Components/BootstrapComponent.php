@@ -244,6 +244,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Listing\uiKitItemListInfinite;
 	use AppzioUiKit\Listing\uiKitNewsListInfinite;
 	use AppzioUiKit\Listing\uiKitItemListPlain;
+	use AppzioUiKit\Listing\uiKitListItem;
 
     use AppzioUiKit\Divs\uiKitBlockButtonsDiv;
     use AppzioUiKit\Divs\uiKitReportItemDiv;
