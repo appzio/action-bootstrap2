@@ -35,9 +35,15 @@ trait uiKitPeopleList
         	return $this->getComponentColumn($items);
         }
 
-        return $this->getInfiniteScroll($items, array(
-	        'next_page_id' => (int)$page + 1
-        ));
+        if (isset($params['infinite'])) {
+            return $this->getInfiniteScroll($items, array(
+                'next_page_id' => (int)$page + 1
+            ));
+        }
+
+        // In certain conditions we don't want to use infinite lists.
+        // Sometimes they cause UI issues on android after filtering.
+        return $this->getComponentColumn($items);
     }
 
     /**
