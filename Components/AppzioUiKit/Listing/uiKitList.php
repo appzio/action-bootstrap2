@@ -67,7 +67,8 @@ trait uiKitList {
                     ))
                 ), array(
                     'onclick' => array(
-                        $this->getOnclickHideElement('row_' . $item['id'])
+                        $this->getOnclickHideElement('row_' . $item['id']),
+                        $this->getOnclickSubmit('Controller/delete/' . $item['id'])
                     )
                 ), array(
                     'padding' => '0 20 0 20',
