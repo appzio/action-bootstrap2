@@ -11,11 +11,7 @@ trait uiKitEmailDiv
     public function uiKitEmailDiv($params = array())
     {
         /** @var BootstrapComponent $this */
-        $to = $this->model->getSubmittedVariableByName('to_email');
-
-        if (empty($to)) {
-            $to = '';
-        }
+        $to = $this->model->getSubmittedVariableByName('recipient_email');
 
         $images = isset($params['images']) ? $params['images'] : array();
 
@@ -40,16 +36,16 @@ trait uiKitEmailDiv
                 'margin' => '0 0 20 0'
             )),
             $this->getAttachedImagesRow($images),
-            $this->getComponentText($to, array(
-                'variable' => 'to_email',
-                'visibility' => empty($to) ? 'hidden' : ''
+            $this->getComponentText('', array(
+                'variable' => 'recipient_email',
+//                'visibility' => empty($to) ? 'hidden' : ''
             ), array(
                 'margin' => '10 20 10 20'
             )),
-            $this->getComponentFormFieldText($to, array(
+            $this->getComponentFormFieldText('', array(
                 'hint' => 'To:',
-                'variable' => 'to_email',
-                'visibility' => !empty($to) ? 'hidden' : ''
+                'variable' => 'recipient_email',
+                'visibility' => 'hidden',
             ), array(
                 'margin' => '0 20 0 20'
             )),

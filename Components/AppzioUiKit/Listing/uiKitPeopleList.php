@@ -127,7 +127,7 @@ trait uiKitPeopleList
             'layout' => $layout
         ));
 
-        $onclick[] = $this->getOnclickSetVariables(array('to_email' => $contact));
+        $onclick[] = $this->getOnclickSetVariables(array('recipient_email' => $contact));
 
         return $onclick;
     }
