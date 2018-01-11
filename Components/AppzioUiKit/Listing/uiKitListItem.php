@@ -19,28 +19,54 @@ trait uiKitListItem {
         /** @var BootstrapView $this */
 
 	    $events = [];
-        $title_row[] = $this->getComponentText($title, array(), array(
-	        'color' => '#777d81',
-	        'font-size' => '16',
-        ));
+	    $title_row = [];
+	    $text_params = [];
 
-        if ( isset($parameters['onclick']) AND $parameters['onclick'] ) {
-        	$events['onclick'] = $parameters['onclick'];
-        	$title_row[] = $this->getComponentImage('beak-icon.png', array(), array(
-		        'height' => '20',
-		        'floating' => '1',
-		        'float' => 'right',
-	        ));
-        }
+	    if ( isset($parameters['variable']) AND $variable = $parameters['variable'] ) {
+	    	$text_params['variable'] = $variable;
+		    if ( $value = $this->model->getSubmittedVariableByName( $variable ) ) {
+				$text_params['value'] = $value;
+				$title = $value;
 
-        $data[] = $this->getComponentRow($title_row, $events, array(
+				if ( isset($parameters['time_format']) AND $parameters['time_format'] AND is_numeric($value) ) {
+					$title = date( $parameters['time_format'], $value );
+				}
+
+		    }
+	    }
+
+	    if ( isset($parameters['left_icon']) AND $parameters['left_icon'] ) {
+		    $title_row[] = $this->getComponentImage($parameters['left_icon'], array(), array(
+			    'width' => '25',
+			    'margin' => '0 10 0 0',
+		    ));
+	    }
+
+	    $title_row[] = $this->getComponentText($title, $text_params, array(
+		    'color' => '#777d81',
+		    'font-size' => '16',
+	    ));
+
+	    if ( isset($parameters['right_icon']) AND $parameters['right_icon'] ) {
+		    $title_row[] = $this->getComponentImage($parameters['right_icon'], array(), array(
+			    'height' => '20',
+			    'floating' => '1',
+			    'float' => 'right',
+		    ));
+	    }
+
+	    if ( isset($parameters['onclick']) AND $parameters['onclick'] ) {
+		    $events['onclick'] = $parameters['onclick'];
+	    }
+
+	    $data[] = $this->getComponentRow($title_row, $events, array(
 	        'padding' => '0 15 0 15',
 	        'vertical-align' => 'middle',
         ));
 
-        if ( $date AND isset($parameters['icon']) ) {
+	    if ( $date AND isset($parameters['date_icon']) ) {
         	$data[] = $this->getComponentRow(array(
-        		$this->getComponentImage($parameters['icon'], array(), array(
+        		$this->getComponentImage($parameters['date_icon'], array(), array(
         			'width' => '25',
         			'margin' => '0 15 0 0',
 		        )),
