@@ -30,6 +30,14 @@ trait uiKitList {
 
     protected function getListRow($item)
     {
+        /** @var BootstrapView $this */
+
+        $onclick = new \stdClass();
+        $onclick->id = $item['id'];
+        $onclick->action = 'open-action';
+        $onclick->action_config = $this->model->getActionidByPermaname('viewvisit');
+        $onclick->back_button = 1;
+        $onclick->sync_open = true;
 
         return $this->getComponentColumn(array(
             $this->getComponentText($item['text'], array(), array(
@@ -75,7 +83,8 @@ trait uiKitList {
                     'background-color' => '#fc4944',
                     'vertical-align' => 'middle'
                 ))
-            )
+            ),
+            'onclick' => $onclick
         ), array(
             'padding' => '20 0 20 15',
             'height' => 100,
