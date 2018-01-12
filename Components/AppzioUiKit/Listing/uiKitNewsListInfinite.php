@@ -82,27 +82,13 @@ trait uiKitNewsListInfinite {
             'crop' => 'yes',
         ));
 
-        $out[] = $this->getComponentRow(array(
-	        $this->getComponentText($item->name, array(), array(
-		        'color' => '#545050',
-		        'font-size' => '20',
-		        'font-weight' => 'bold',
-		        'padding' => '5 5 5 5'
-	        )),
-	        /*$this->getComponentImage('icon-item-share.png', array(
-	        	'onclick' => $this->getOnclickShare(),
-	        ), array(
-	        	'float' => 'right',
-	        	'floating' => '1',
-	        	'margin' => '0 5 0 0',
-	        	'width' => '20',
-	        )),*/
-        ),array(), array(
-            'padding' => '5 0 0 0',
-            'background-color' => '#ffffff',
-            'width' => $width,
-            'text-align' => 'left',
-            'font-size' => '13',
+        $out[] = $this->getComponentText($item->name, array(), array(
+	        'width' => 'auto',
+	        'color' => '#545050',
+	        'font-size' => '20',
+	        'font-weight' => 'bold',
+	        'padding' => '10 5 5 5',
+	        'background-color' => '#ffffff',
         ));
 
         $place_info = $this->getRelatedPlace( $item->club_id );
@@ -113,7 +99,7 @@ trait uiKitNewsListInfinite {
         $out[] = $this->getComponentText('{#view_news#}', array(), array(
 			'color' => '#545050',
 			'font-size' => '15',
-			'padding' => '7 5 7 5'
+			'padding' => '7 5 7 5',
         ));
 
         return $this->getComponentColumn($out, array(
@@ -123,6 +109,7 @@ trait uiKitNewsListInfinite {
 		        'sync_open' => 1,
 	        ))
         ), array(
+            'width' => 'auto',
             'border-radius' => '4',
             'margin' => '0 7 0 7',
             'background-color' => '#ffffff',
