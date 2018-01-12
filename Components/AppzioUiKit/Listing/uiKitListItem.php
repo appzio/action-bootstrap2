@@ -15,7 +15,7 @@ trait uiKitListItem {
      * @param array $styles
      * @return \stdClass
      */
-    public function uiKitListItem(string $title, string $date = '', array $parameters=array(), array $styles=array()) {
+    public function uiKitListItem(string $title, string $discription = '', array $parameters=array(), array $styles=array()) {
         /** @var BootstrapView $this */
 
 	    $events = [];
@@ -64,13 +64,13 @@ trait uiKitListItem {
 	        'vertical-align' => 'middle',
         ));
 
-	    if ( $date AND isset($parameters['date_icon']) ) {
+	    if ( $discription AND isset($parameters['date_icon']) ) {
         	$data[] = $this->getComponentRow(array(
         		$this->getComponentImage($parameters['date_icon'], array(), array(
         			'width' => '25',
         			'margin' => '0 15 0 0',
 		        )),
-        		$this->getComponentText($date, array(), array(
+        		$this->getComponentText($discription, array(), array(
         			'color' => '#777d81',
         			'font-size' => '15',
 		        )),
