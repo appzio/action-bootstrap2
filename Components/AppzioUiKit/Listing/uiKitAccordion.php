@@ -128,7 +128,9 @@ trait uiKitAccordion
 
         $row = [];
         if (isset($item['input'])) {
-            $row[] = $this->getComponentFormFieldTextArea('', array(
+            $input = isset($item['value']) ? $item['value'] : '';
+
+            $row[] = $this->getComponentFormFieldTextArea($input, array(
                 'hint' => 'Lorem ipsum dolor sit amet...',
                 'variable' => $item['variable']
             ), array(
