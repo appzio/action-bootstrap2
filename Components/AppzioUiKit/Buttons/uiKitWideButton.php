@@ -20,8 +20,6 @@ trait uiKitWideButton
                 'width' => '75%',
                 'height' => '50',
                 'text-align' => 'center',
-                'font-ios' => 'OpenSans',
-                'font-android' => 'OpenSans',
                 'use_clipping' => '0',
                 'background-color' => '#FFCC00'
             ))

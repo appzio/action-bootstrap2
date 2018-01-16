@@ -23,7 +23,6 @@ trait uiKitEmailDiv
                 )),
                 $this->getComponentText('Send Email', array(), array(
                     'color' => '#ffffff',
-                    'font-ios' => 'OpenSans',
                     'font-size' => '14',
                     'width' => '100%',
                 ))

@@ -5,23 +5,17 @@
   },
   "uikit_people_list_person_name": {
     "padding": "0 0 0 0",
-    "font-ios": "OpenSans",
-    "font-android": "OpenSans",
     "font-size": "14",
     "color": "#323232"
   },
   "uikit_people_list_person_info": {
     "padding": "0 0 0 0",
     "color": "#B5B5B5",
-    "font-size": "12",
-    "font-ios": "OpenSans",
-    "font-android": "OpenSans"
+    "font-size": "12"
   },
   "uikit_people_list_person_contact": {
     "padding": "0 0 0 0",
     "color": "#B5B5B5",
-    "font-size": "12",
-    "font-ios": "OpenSans",
-    "font-android": "OpenSans"
+    "font-size": "12"
   }
 }

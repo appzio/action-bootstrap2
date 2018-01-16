@@ -45,23 +45,17 @@ trait uiKitList {
                 'font-weight' => 'bold',
                 'width' => '200',
                 'margin' => '0 0 10 0',
-                'font-ios' => 'OpenSans',
-                'font-android' => 'OpenSans'
             )),
             $this->getComponentRow(array(
                 $this->getComponentText($item['info'], array(), array(
                     'font-size' => '11',
                     'color' => '#9f9f9f',
-                    'font-ios' => 'OpenSans',
-                    'font-android' => 'OpenSans'
                 )),
                 $this->getComponentText($item['additional_info'], array(), array(
                     'font-size' => '11',
                     'color' => '#9f9f9f',
                     'floating' => 1,
                     'float' => 'right',
-                    'font-ios' => 'OpenSans',
-                    'font-android' => 'OpenSans'
                 ))
             ), array(), array(
                 'width' => '180',

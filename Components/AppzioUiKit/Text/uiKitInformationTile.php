@@ -41,7 +41,6 @@ trait uiKitInformationTile
             'text-align' => 'center',
             'font-weight' => 'bold',
             'font-size' => 24,
-            'font-ios' => 'OpenSans',
             'margin' => '0 0 10 0'
         ));
     }
@@ -51,7 +50,6 @@ trait uiKitInformationTile
         return $this->getComponentText($subtitle, array(), array(
             'text-align' => 'center',
             'color' => '#969a9d',
-            'font-ios' => 'OpenSans',
             'font-size' => '14'
         ));
     }
