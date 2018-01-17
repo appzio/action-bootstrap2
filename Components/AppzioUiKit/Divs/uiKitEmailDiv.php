@@ -117,7 +117,7 @@ trait uiKitEmailDiv
                 'margin' => '0 5 0 5',
             );
 
-            $imagesList[] = $this->getComponentText(' asdf', array(
+            $imagesList[] = $this->getComponentText(' ', array(
                 'variable' => 'send_visit_pic_' . $index,
                 'selected_state' => array(
                     'style_content' => array(
