@@ -19,8 +19,6 @@ trait uiKitIconButton
                 'width' => '75%',
                 'padding' => '12 0 12 0',
                 'text-align' => 'center',
-                'font-ios' => 'OpenSans',
-                'font-android' => 'OpenSans'
             ))
         ), array(), array(
             'text-align' => 'center',

@@ -1,37 +1,25 @@
 {
-
   "uikit_intro_icon":{
     "height" : "110",
     "margin": "50 0 0 0"
   },
-
   "uikit_intro_icon_small":{
     "height" : "60",
     "margin": "0 0 0 0"
   },
-
   "uikit_intro_title":{
     "font-size": "42",
     "text-align" : "center",
-    "font-ios":"OpenSans-ExtraBold",
-    "margin": "10 40 10 40",
-    "font-android":"OpenSans-ExtraBold"
+    "margin": "10 40 10 40"
   },
-
   "uikit_intro_title_small":{
     "font-size": "32",
     "text-align" : "center",
-    "font-ios":"OpenSans-ExtraBold",
-    "margin": "10 40 10 40",
-    "font-android":"OpenSans-ExtraBold"
+    "margin": "10 40 10 40"
   },
-
   "uikit_intro_description":{
     "font-size": "16",
     "text-align" : "center",
-    "margin": "0 40 10 40",
-    "font-ios":"OpenSans",
-    "font-android":"OpenSans"
+    "margin": "0 40 10 40"
   }
-
 }

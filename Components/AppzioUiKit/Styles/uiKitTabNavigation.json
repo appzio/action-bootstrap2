@@ -9,9 +9,7 @@
     "border-width": "1",
     "border-color": "#fafafa",
     "font-size": "14",
-    "width": "50%",
-    "font-ios": "OpenSans",
-    "font-android": "OpenSans"
+    "width": "50%"
   },
   "uikit_tab_navigation_line": {
     "background-color": "#fecb2f"

@@ -11,8 +11,6 @@
     "color": "#ffffff",
     "font-size": "24",
     "text-align": "center",
-    "margin": "0 0 50 0",
-    "font-ios": "OpenSans-ExtraBold",
-    "font-android": "OpenSans-ExtraBold"
+    "margin": "0 0 50 0"
   }
 }
