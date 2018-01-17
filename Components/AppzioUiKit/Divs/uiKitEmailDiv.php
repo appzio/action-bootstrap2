@@ -80,7 +80,7 @@ trait uiKitEmailDiv
                 'margin' => '10 10 0 20',
                 'vertical-align' => 'middle'
             )),
-            $this->getComponentSpacer(150),
+            $this->getComponentSpacer(50),
             $this->uiKitWideButton('{#send_mail#}', array(
                 'onclick' => $this->sendEmailToPerson()
             ))
@@ -95,28 +95,6 @@ trait uiKitEmailDiv
         $index = 1;
 
         foreach ($images as $image) {
-//            $imagesList[] = $this->getComponentImage($image, array(
-//                'imgwidth' => '250',
-//                'imgheight' => '250',
-//            ), array(
-//                'width' => $width,
-//                'height' => $width,
-//                'crop' => 'yes',
-//                'margin' => '0 8 0 0',
-//                'border-radius' => '3',
-//            ));
-            $selectedState = array(
-                'border-color' => '#00ff00',
-                'allow_unselect' => 1,
-                'variable_value' => 1,
-                'background-color' => '#ff0000',
-                'background-size' => 'cover',
-                'height' => '100',
-                'width' => '100',
-                'border-radius' => '3',
-                'margin' => '0 5 0 5',
-            );
-
             $imagesList[] = $this->getComponentText(' ', array(
                 'variable' => 'send_visit_pic_' . $index,
                 'selected_state' => array(

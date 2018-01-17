@@ -11,18 +11,31 @@ trait uiKitIconButton
     {
         /** @var BootstrapComponent $this */
 
+        $icon = isset($params['icon']) ? $params['icon'] : '';
+
         return $this->getComponentRow(array(
+            $this->getIconButtonImage($icon),
             $this->getComponentText($content, $params, array(
                 'color' => '#5a3a3a',
-                'border-color' => '#9b9b9b',
-                'border-radius' => '25',
-                'width' => '75%',
-                'padding' => '12 0 12 0',
-                'text-align' => 'center',
             ))
         ), array(), array(
+            'margin' => '0 25 15 25',
+            'border-color' => '#9b9b9b',
+            'border-radius' => '20',
+            'padding' => '12 0 12 0',
             'text-align' => 'center',
-            'margin' => '0 0 15 0'
+        ));
+    }
+
+    public function getIconButtonImage(string $icon)
+    {
+        if (empty($icon)) {
+            return;
+        }
+
+        return $this->getComponentImage($icon, array(), array(
+            'width' => '20',
+            'margin' => '0 10 0 0'
         ));
     }
 

@@ -71,7 +71,7 @@ trait uiKitEmailWithInputDiv
                 'margin' => '10 10 0 20',
                 'vertical-align' => 'middle'
             )),
-            $this->getComponentSpacer(150),
+            $this->getComponentSpacer(50),
             $this->uiKitWideButton('{#send_mail#}', array(
                 'onclick' => $this->sendEmailToPersonOnclick()
             ))
