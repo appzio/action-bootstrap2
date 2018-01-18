@@ -103,7 +103,7 @@ trait uiKitEmailDiv
                         'background-size' => 'cover',
                         'height' => '100',
                         'width' => '100',
-                        'border-color' => '#006400',
+                        'border-color' => '#fdca42',
                         'border-width' => '4',
                         'border-radius' => '4',
                         'margin' => '0 5 0 5',
