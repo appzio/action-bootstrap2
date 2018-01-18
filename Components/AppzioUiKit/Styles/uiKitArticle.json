@@ -51,6 +51,13 @@
     "text-align": "left",
     "padding": "10 10 10 10"
   },
+  "article-uikit-title-dark": {
+    "width": "100%",
+    "font-size": "28",
+    "color": "#000000",
+    "text-align": "left",
+    "padding": "10 10 10 10"
+  },
   "article-uikit-category": {
     "width": "100%",
     "font-size": "16",

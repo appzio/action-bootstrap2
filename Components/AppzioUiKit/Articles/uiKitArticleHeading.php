@@ -12,7 +12,32 @@ trait uiKitArticleHeading {
     	$this->article = $article;
     	$this->category_data = $category_data;
 
-	    $filename = $this->getImageFileName($this->getFeaturedImage( $article->photos ), array(
+    	$image = $this->getFeaturedImage( $article->photos );
+
+    	if ( empty($image) ) {
+		    return $this->getComponentColumn(array_merge(
+			    array(
+				    $this->getComponentRow(array(
+					    $this->getComponentImage('arrow-back-black.png', array(
+						    'onclick' => $this->getOnclickGoHome()
+					    ), array(
+						    'width' => '30',
+					    )),
+				    ), array(), array(
+					    'padding' => '15 15 15 15',
+				    ))
+			    ),
+			    $this->getArticleDate(),
+			    $this->getArticleTitle('article-uikit-title-dark'),
+			    $this->getArticleCategory()
+		    ), array(), array(
+			    'vertical-align' => 'top',
+			    'margin' => '0 0 5 0',
+			    'width' => $this->screen_width,
+		    ));
+	    }
+
+	    $filename = $this->getImageFileName($image, array(
 		    'imgwidth' => '1440',
 		    'imgheight' => '2560',
 		    'priority' => 9,
@@ -57,7 +82,7 @@ trait uiKitArticleHeading {
 	    return $this->getComponentColumn(array_merge(
 			$this->getArticleDate(),
 			$this->getArticleTitle(),
-			$this-> getArticleCategory()
+			$this->getArticleCategory()
 	    ), array(), array(
 		    'width' => '100%',
 		    'height' => $this->screen_height - 100,
@@ -82,11 +107,11 @@ trait uiKitArticleHeading {
 	    );
     }
 
-    public function getArticleTitle() {
+    public function getArticleTitle( $style_class = 'article-uikit-title' ) {
 	    return array(
 		    $this->getComponentRow(array(
 			    $this->getComponentText($this->article->title, array(
-			    	'style' => 'article-uikit-title'
+			    	'style' => $style_class
 			    )),
 		    ))
 	    );
@@ -110,7 +135,7 @@ trait uiKitArticleHeading {
 	public function getFeaturedImage( $images ) {
 
 		if ( empty($images) ) {
-			return 'article-uikit-featured-placeholder.png';
+			return false;
 		}
 
 		foreach ( $images as $image ) {
@@ -119,7 +144,7 @@ trait uiKitArticleHeading {
 			}
 		}
 
-		return 'article-uikit-featured-placeholder.png';
+		return false;
 	}
 
 }
