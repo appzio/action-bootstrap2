@@ -4,10 +4,11 @@ namespace Bootstrap\Components\AppzioUiKit\Articles;
 
 trait uiKitArticleCategoryItem {
 
-    public function uiKitArticleCategoryItem( array $category_item ){
+    public function uiKitArticleCategoryItem( array $category_item, $parameters = array() ){
     	
     	$has_direct_ascendants = $category_item['children'];
 	    $path = ( $has_direct_ascendants ? 'materialscategorylisting' : 'materialslisting' );
+	    $box_ratio = ( isset($parameters['box_ratio']) ? $parameters['box_ratio'] : 3 );
 
 	    $onclick = $this->getOnclickOpenAction($path,false,
 		    array(
@@ -19,7 +20,7 @@ trait uiKitArticleCategoryItem {
 
 	    $filename = $this->getImageFileName($category_item['picture'], array(
 		    'imgwidth' => '1440',
-		    'imgheight' => '400',
+		    'imgheight' => ( $box_ratio == 2 ? '800' : '600' ),
 		    'priority' => 9,
 	    ));
 
@@ -33,14 +34,15 @@ trait uiKitArticleCategoryItem {
 				        'style' => 'article-uikit-category-description'
 			        )),
 		        ), array(), array(
+			        'vertical-align' => 'top',
+			        'margin' => '20 0 0 0',
 			        'text-align' => 'center',
 			        'width' => '100%',
 		        )),
 	        ), array(), array(
-		        'vertical-align' => 'middle',
 		        'width' => $this->screen_width,
-		        'height' => $this->screen_height / 4,
-		        'background-image' => $this->getImageFileName('shadow-image-wide.png'),
+		        'height' => ($this->screen_height / $box_ratio) - 25,
+		        'background-image' => $this->getImageFileName('shadow-image-wide-inverted.png'),
 		        'background-size' => 'cover',
 	        )),
         ), array(
@@ -50,7 +52,7 @@ trait uiKitArticleCategoryItem {
 	        'background-image' => $filename,
 	        'background-size' => 'cover',
 	        'width' => $this->screen_width,
-	        'height' => $this->screen_height / 4,
+	        'height' => ($this->screen_height / $box_ratio) - 25,
         ));
     }
 

@@ -17,7 +17,8 @@ trait uiKitTopbar
 
         $styles = array(
 			'width' => $this->screen_width,
-			'padding' => '15 15 15 15',
+			'padding' => '0 15 0 15',
+			'height' => '50',
 			'vertical-align' => 'middle',
 		);
 
