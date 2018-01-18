@@ -4,15 +4,13 @@ namespace Bootstrap\Components\AppzioUiKit\Divs;
 
 use Bootstrap\Components\BootstrapComponent;
 
-trait uiKitEmailDiv
+trait uiKitEmailWithInputDiv
 {
     public $isLiked;
 
-    public function uiKitEmailDiv($params = array())
+    public function uiKitEmailWithInputDiv($params = array())
     {
         /** @var BootstrapComponent $this */
-        $to = $this->model->getSubmittedVariableByName('recipient_email');
-
         $images = isset($params['images']) ? $params['images'] : array();
 
         return $this->getComponentColumn(array(
@@ -34,17 +32,10 @@ trait uiKitEmailDiv
                 'shadow-offset' => '0 3',
                 'margin' => '0 0 20 0'
             )),
-            $this->getAttachedImagesRow($images),
-            $this->getComponentText('', array(
-                'variable' => 'recipient_email',
-//                'visibility' => empty($to) ? 'hidden' : ''
-            ), array(
-                'margin' => '10 20 10 20'
-            )),
+            $this->getEmailAttachedImages($images),
             $this->getComponentFormFieldText('', array(
                 'hint' => 'To:',
                 'variable' => 'recipient_email',
-                'visibility' => 'hidden',
             ), array(
                 'margin' => '0 20 0 20'
             )),
@@ -82,20 +73,20 @@ trait uiKitEmailDiv
             )),
             $this->getComponentSpacer(50),
             $this->uiKitWideButton('{#send_mail#}', array(
-                'onclick' => $this->sendEmailToPerson()
+                'onclick' => $this->sendEmailToPersonOnclick()
             ))
         ), array(), array(
             'background-color' => '#ffffff'
         ));
     }
 
-    protected function getAttachedImagesRow($images)
+    protected function getEmailAttachedImages($images)
     {
         $imagesList = array();
         $index = 1;
 
         foreach ($images as $image) {
-            $imagesList[] = $this->getComponentText(' ', array(
+            $imagesList[] = $this->getComponentText(' asdf', array(
                 'variable' => 'send_visit_pic_' . $index,
                 'selected_state' => array(
                     'style_content' => array(
@@ -129,7 +120,7 @@ trait uiKitEmailDiv
         ));
     }
 
-    protected function sendEmailToPerson()
+    protected function sendEmailToPersonOnclick()
     {
         $onclick = $this->getOnclickRoute('Publiclisting/email', false);
 

@@ -12,6 +12,7 @@ trait uiKitAccordion
      * array(
      *      0 => array (
      *          'id' => optional,
+     *          'expanded' => 'should this item be expanded in advance' - optional - false by default
      *          'show' => array (
      *              'icon' => 'name of image' - optional,
      *              'title' => 'string',
@@ -79,6 +80,7 @@ trait uiKitAccordion
             array(
                 "id" => "show_" .$item['id'],
                 "style" => "ui_accordion_line_show_row",
+                'visibility' => isset($item['expanded']) ? 'hidden' : '',
                 "onclick" => $actionShow));
 
         $actionHide[] = $this->getOnclickShowElement("show_" .$item['id']);
@@ -92,13 +94,17 @@ trait uiKitAccordion
             $this->getVisibleRow($item['hide'], "ui_accordion_line_hide"),
             array(
                 "id" => "hide_" .$item['id'],
-                "visibility" => "hidden",
+                "visibility" => isset($item['expanded']) ? '' : 'hidden',
                 "style" => "ui_accordion_line_hide_row",
                 "onclick" => $actionHide));
 
         $output[] = $this->getComponentRow(
             $this->getHiddenRow($item['hidden']),
-            array("id" => "hidden_" .$item['id'], "visibility" => "hidden", "style" => "ui_accordion_line_hidden_row"));
+            array(
+                "id" => "hidden_" .$item['id'],
+                "visibility" => isset($item['expanded']) ? '' : 'hidden',
+                "style" => "ui_accordion_line_hidden_row"
+            ));
 
         return $this->getComponentColumn($output, array("style" => 'ui_accordion_line_container'));
     }
@@ -113,7 +119,7 @@ trait uiKitAccordion
 
         $row[] = $this->getComponentColumn([
             $this->getComponentText($item['title'],array("style" => $stylePrefix . "_title")),
-            $this->getComponentText($item['description'],array("style" => $stylePrefix . "_description"))
+            $this->getComponentColumn($item['description'])
         ], array(array("style" => $stylePrefix . "_middle_container")));
 
 //        if ($item['icon-back']) {
@@ -137,7 +143,9 @@ trait uiKitAccordion
                 'padding' => '0 0 0 30'
             ));
         } else {
-            $row[] = $this->getComponentText($item['description'], array("style" => "ui_accordion_hidden_description"));
+            $row[] = $this->getComponentText($item['description'], array(), array(
+                'padding' => '10 0 10 10'
+            ));
         }
 
         if (isset($item['button'])) {
