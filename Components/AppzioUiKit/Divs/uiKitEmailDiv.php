@@ -11,33 +11,13 @@ trait uiKitEmailDiv
     public function uiKitEmailDiv($params = array())
     {
         /** @var BootstrapComponent $this */
-        $to = $this->model->getSubmittedVariableByName('recipient_email');
-
         $images = isset($params['images']) ? $params['images'] : array();
 
         return $this->getComponentColumn(array(
-            $this->getComponentRow(array(
-                $this->getComponentImage('cloud_upload_dev.png', array(), array(
-                    'width' => '20',
-                    'margin' => '0 10 0 0'
-                )),
-                $this->getComponentText('Send Email', array(), array(
-                    'color' => '#ffffff',
-                    'font-size' => '14',
-                    'width' => '100%',
-                ))
-            ), array(), array(
-                'padding' => '10 20 10 20',
-                'background-color' => '#4a4a4a',
-                'shadow-color' => '#33000000',
-                'shadow-radius' => '1',
-                'shadow-offset' => '0 3',
-                'margin' => '0 0 20 0'
-            )),
+            $this->uiKitDivHeader('Send Email', array('image' => 'cloud_upload_dev.png')),
             $this->getAttachedImagesRow($images),
             $this->getComponentText('', array(
                 'variable' => 'recipient_email',
-//                'visibility' => empty($to) ? 'hidden' : ''
             ), array(
                 'margin' => '10 20 10 20'
             )),
