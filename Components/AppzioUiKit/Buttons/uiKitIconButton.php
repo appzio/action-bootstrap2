@@ -15,10 +15,10 @@ trait uiKitIconButton
 
         return $this->getComponentRow(array(
             $this->getIconButtonImage($icon),
-            $this->getComponentText($content, $params, array(
+            $this->getComponentText($content, array(), array(
                 'color' => '#5a3a3a',
             ))
-        ), array(), array(
+        ), $params, array(
             'margin' => '0 25 15 25',
             'border-color' => '#9b9b9b',
             'border-radius' => '20',

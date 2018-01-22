@@ -30,7 +30,7 @@ trait uiKitInformationTile
     protected function getTileIcon($icon)
     {
         return $this->getComponentImage($icon, array(), array(
-            'width' => 30,
+            'width' => 40,
             'margin' => '0 0 20 0'
         ));
     }
