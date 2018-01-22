@@ -83,11 +83,11 @@ trait uiKitEmailWithInputDiv
     protected function getEmailAttachedImages($images)
     {
         $imagesList = array();
-        $index = 1;
+        $index = 0;
 
         foreach ($images as $image) {
-            $imagesList[] = $this->getComponentText(' asdf', array(
-                'variable' => 'send_visit_pic_' . $index,
+            $imagesList[] = $this->getComponentText(' ', array(
+                'variable' => 'send_pic_' . $index,
                 'selected_state' => array(
                     'style_content' => array(
                         'background-image' => $this->getImageFileName($image),
@@ -100,7 +100,7 @@ trait uiKitEmailWithInputDiv
                         'margin' => '0 5 0 5',
                     ),
                     'allow_unselect' => 1,
-                    'variable_value' => 1
+                    'variable_value' => $this->getImageFileName($image)
                 ),
             ), array(
                 'background-image' => $this->getImageFileName($image),
@@ -122,7 +122,7 @@ trait uiKitEmailWithInputDiv
 
     protected function sendEmailToPersonOnclick()
     {
-        $onclick = $this->getOnclickRoute('Publiclisting/email', false);
+        $onclick = $this->getOnclickRoute('Controller/email', false);
 
         $onclick[] = $this->getOnclickHideDiv('email');
 
