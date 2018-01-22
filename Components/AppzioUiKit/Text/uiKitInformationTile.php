@@ -29,28 +29,22 @@ trait uiKitInformationTile
 
     protected function getTileIcon($icon)
     {
-        return $this->getComponentImage($icon, array(), array(
-            'width' => 40,
-            'margin' => '0 0 20 0'
+        return $this->getComponentImage($icon, array(
+            'style' => 'uikit_information_title_image'
         ));
     }
 
     protected function getTileTitle($title)
     {
-        return $this->getComponentText($title, array(), array(
-            'text-align' => 'center',
-            'font-weight' => 'bold',
-            'font-size' => 24,
-            'margin' => '0 0 10 0'
+        return $this->getComponentText($title, array(
+            'style' => 'uikit_information_title_title'
         ));
     }
 
     protected function getTileSubtitle($subtitle)
     {
-        return $this->getComponentText($subtitle, array(), array(
-            'text-align' => 'center',
-            'color' => '#969a9d',
-            'font-size' => '14'
+        return $this->getComponentText($subtitle, array(
+            'style' => 'uikit_information_title_subtitle'
         ));
     }
 }
