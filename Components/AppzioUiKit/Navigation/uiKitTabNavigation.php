@@ -33,11 +33,11 @@ trait uiKitTabNavigation
 
         } else if (!$tab['active']) {
 
-            return $this->getSelectedTab($text, $width);
+            return $this->getNormalTab($text, $width, $onclick);
 
         } else {
 
-            return $this->getActiveTab($text, $width, $onclick);
+            return $this->getActiveTab($text, $width);
 
         }
     }
@@ -56,12 +56,10 @@ trait uiKitTabNavigation
         ));
     }
 
-    protected function getActiveTab($text, $width, $onclick)
+    protected function getActiveTab($text, $width)
     {
         return $this->getComponentColumn(array(
-            $this->getComponentText($text, array(
-                'onclick' => $onclick
-            ), array(
+            $this->getComponentText($text, array(), array(
                 'padding' => '20 0 17 0',
                 'text-align' => 'center',
                 'background-color' => '#ffffff',
@@ -77,9 +75,11 @@ trait uiKitTabNavigation
         ));
     }
 
-    protected function getSelectedTab($text, $width)
+    protected function getNormalTab($text, $width, $onclick)
     {
-        return $this->getComponentText($text, array(), array(
+        return $this->getComponentText($text, array(
+            'onclick' => $onclick
+        ), array(
             'color' => '#323232',
             'padding' => '20 0 20 0',
             'text-align' => 'center',

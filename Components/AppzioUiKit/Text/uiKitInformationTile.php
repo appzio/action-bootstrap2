@@ -30,21 +30,21 @@ trait uiKitInformationTile
     protected function getTileIcon($icon)
     {
         return $this->getComponentImage($icon, array(
-            'style' => 'uikit_information_title_image'
+            'style' => 'uikit_information_tile_image'
         ));
     }
 
     protected function getTileTitle($title)
     {
         return $this->getComponentText($title, array(
-            'style' => 'uikit_information_title_title'
+            'style' => 'uikit_information_tile_title'
         ));
     }
 
     protected function getTileSubtitle($subtitle)
     {
         return $this->getComponentText($subtitle, array(
-            'style' => 'uikit_information_title_subtitle'
+            'style' => 'uikit_information_tile_subtitle'
         ));
     }
 }
