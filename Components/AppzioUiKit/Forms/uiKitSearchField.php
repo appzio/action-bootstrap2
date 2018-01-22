@@ -31,7 +31,7 @@ trait uiKitSearchField {
         $row[] = $this->getComponentFormFieldText($val,array(
             'style' => 'akit_searchbox_text',
             'value' => $val,
-            'hint' => '{#search#}',
+            'hint' => ( isset($parameters['hint']) ? $parameters['hint'] : '{#search#}' ),
             'variable' => 'searchterm',
 //            'id' => 1,
             'submit_menu_id' => $submit,
