@@ -12,6 +12,18 @@ trait uiKitList {
      *
      * @param array $content
      * @param array $parameters
+     * [id]
+     * Some sort of identifier; Used for the list item animations on delete.
+     *
+     * [text]
+     * The main text in the list item.
+     *
+     * [info]
+     * Information displayed underneath the main text.
+     *
+     * [additional_info]
+     * Additional info which is displayed on the second row next to the info text.
+     *
      * @param array $styles
      * @return \stdClass
      */
@@ -40,49 +52,31 @@ trait uiKitList {
         $onclick->sync_open = true;
 
         return $this->getComponentColumn(array(
-            $this->getComponentText($item['text'], array(), array(
-                'font-size' => 16,
-                'font-weight' => 'bold',
-                'width' => '200',
-                'margin' => '0 0 10 0',
+            $this->getComponentText($item['text'], array(
+                'style' => 'uikit_list_row_text'
             )),
-            $this->getComponentRow(array(
-                $this->getComponentText($item['info'], array(), array(
-                    'font-size' => '11',
-                    'color' => '#9f9f9f',
-                )),
-                $this->getComponentText($item['additional_info'], array(), array(
-                    'font-size' => '11',
-                    'color' => '#9f9f9f',
-                    'floating' => 1,
-                    'float' => 'right',
-                ))
-            ), array(), array(
-                'width' => '180',
-            ))
+            $this->getListRowSecondary($item)
         ), array(
             'id' => 'row_' . $item['id'],
             'swipe_right' => array(
-                $this->getComponentRow(array(
-                    $this->getComponentImage('icons8-trash.png', array(), array(
-                        'width' => '30'
-                    ))
-                ), array(
-                    'onclick' => array(
-                        $this->getOnclickHideElement('row_' . $item['id']),
-                        $this->getOnclickSubmit('Controller/delete/' . $item['id'])
-                    )
-                ), array(
-                    'padding' => '0 20 0 20',
-                    'background-color' => '#fc4944',
-                    'vertical-align' => 'middle'
-                ))
+                $this->uiKitSwipeDeleteButton(array('identifier' => $item['id']))
             ),
-            'onclick' => $onclick
+            'onclick' => $onclick,
+            'style' => 'uikit_list_row'
+        ));
+    }
+
+    protected function getListRowSecondary($item)
+    {
+        return $this->getComponentRow(array(
+            $this->getComponentText($item['info'], array(
+                'style' => 'uikit_list_row_info'
+            )),
+            $this->getComponentText($item['additional_info'], array(
+                'style' => 'uikit_list_row_additional_info'
+            ))
         ), array(
-            'padding' => '20 0 20 15',
-            'height' => 100,
-            'width' => '100%'
+            'style' => 'uikit_list_row_info_wrapper'
         ));
     }
 

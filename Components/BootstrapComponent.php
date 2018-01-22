@@ -281,6 +281,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Navigation\uiKitTopbar;
 	use AppzioUiKit\Divs\uiKitDivHeader;
 	use AppzioUiKit\Forms\uiKitTimeInput;
+	use AppzioUiKit\Buttons\uiKitSwipeDeleteButton;
 
     use ViewGetters;
     use ViewHelpers;

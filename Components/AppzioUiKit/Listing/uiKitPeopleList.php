@@ -8,7 +8,7 @@ trait uiKitPeopleList
     /**
      * @param array $people
      * array(
-     *     0 => array(
+     *     array(
      *         'name' - the name of the person - required,
      *         'info' - additional information - required,
      *         'contact' - contact information for the person - required,

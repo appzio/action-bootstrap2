@@ -137,7 +137,7 @@ trait uiKitAccordion
             $input = isset($item['value']) ? $item['value'] : '';
 
             $row[] = $this->getComponentFormFieldTextArea($input, array(
-                'hint' => 'Lorem ipsum dolor sit amet...',
+                'hint' => 'Enter text here',
                 'variable' => $item['variable']
             ), array(
                 'padding' => '0 0 0 30'

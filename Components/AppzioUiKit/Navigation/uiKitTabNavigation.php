@@ -23,48 +23,71 @@ trait uiKitTabNavigation
     {
         /** @var BootstrapComponent $this */
 
+        $text = $tab['text'];
+        $onclick = $tab['onclick'];
+        $width = $this->screen_width / $count;
+
         if (isset($tab['disabled']) && $tab['disabled']) {
-            return $this->getComponentText($tab['text'], array(), array(
-                'color' => '#e3e1e1',
-                'padding' => '20 0 20 0',
-                'text-align' => 'center',
-                'background-color' => '#ffffff',
-                'border-width' => '1',
-                'border-color' => '#fafafa',
-                'font-size' => '14',
-                'width' => $this->screen_width / $count,
-            ));
+
+            return $this->getDisabledTab($text, $width);
+
         } else if (!$tab['active']) {
-            return $this->getComponentText($tab['text'], array(
-                'onclick' => $tab['onclick'],
+
+            return $this->getSelectedTab($text, $width);
+
+        } else {
+
+            return $this->getActiveTab($text, $width, $onclick);
+
+        }
+    }
+
+    protected function getDisabledTab($text, $width)
+    {
+        return $this->getComponentText($text, array(), array(
+            'color' => '#e3e1e1',
+            'padding' => '20 0 20 0',
+            'text-align' => 'center',
+            'background-color' => '#ffffff',
+            'border-width' => '1',
+            'border-color' => '#fafafa',
+            'font-size' => '14',
+            'width' => $width,
+        ));
+    }
+
+    protected function getActiveTab($text, $width, $onclick)
+    {
+        return $this->getComponentColumn(array(
+            $this->getComponentText($text, array(
+                'onclick' => $onclick
             ), array(
-                'color' => '#323232',
-                'padding' => '20 0 20 0',
+                'padding' => '20 0 17 0',
                 'text-align' => 'center',
                 'background-color' => '#ffffff',
                 'border-width' => '1',
                 'border-color' => '#fafafa',
                 'font-size' => '14',
-                'width' => $this->screen_width / $count,
-            ));
-        } else {
-            return $this->getComponentColumn(array(
-                $this->getComponentText($tab['text'], array(
-                    'onclick' => $tab['onclick']
-                ), array(
-                    'padding' => '20 0 17 0',
-                    'text-align' => 'center',
-                    'background-color' => '#ffffff',
-                    'border-width' => '1',
-                    'border-color' => '#fafafa',
-                    'font-size' => '14',
-                )),
-                $this->getComponentSpacer('3', array(), array(
-                    'background-color' => "#FFCC00"
-                ))
-            ), array(), array(
-                'width' => $this->screen_width / $count,
-            ));
-        }
+            )),
+            $this->getComponentSpacer('3', array(), array(
+                'background-color' => "#FFCC00"
+            ))
+        ), array(), array(
+            'width' => $width,
+        ));
+    }
+
+    protected function getSelectedTab($text, $width)
+    {
+        return $this->getComponentText($text, array(), array(
+            'color' => '#323232',
+            'padding' => '20 0 20 0',
+            'text-align' => 'center',
+            'background-color' => '#ffffff',
+            'border-width' => '1',
+            'border-color' => '#fafafa',
+            'font-size' => '14',
+            'width' => $width,
+        ));
     }
 }

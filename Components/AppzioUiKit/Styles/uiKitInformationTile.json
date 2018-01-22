@@ -1,12 +1,4 @@
 {
-  "uikit_information_tile": {
-    "background-color": "#f6f6f6",
-    "text-align": "center",
-    "padding": "20 10 20 10",
-    "margin": "10 5 10 5",
-    "height": "170",
-    "width": "170"
-  },
   "uikit_information_tile_title": {
     "text-align": "center",
     "font-weight": "bold",
@@ -15,6 +7,11 @@
   },
   "uikit_information_tile_subtitle": {
     "text-align": "center",
-    "color": "#9a9fa2"
+    "color": "#9a9fa2",
+    "font-size": "14"
+  },
+  "uikit_information_tile_image": {
+    "width": 30,
+    "margin": "0 0 20 0"
   }
 }

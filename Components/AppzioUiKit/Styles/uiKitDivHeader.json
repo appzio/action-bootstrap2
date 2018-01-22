@@ -1,0 +1,19 @@
+{
+  "uikit_div_header": {
+    "padding": "10 20 10 20",
+    "background-color": "#4a4a4a",
+    "shadow-color": "#33000000",
+    "shadow-radius": "1",
+    "shadow-offset": "0 3",
+    "margin": "0 0 20 0"
+  },
+  "uikit_div_header_text": {
+    "color": "#ffffff",
+    "font-size": "14",
+    "width": "100%"
+  },
+  "uikit_div_header_image": {
+    "width": "20",
+    "margin": "0 10 0 0"
+  }
+}

@@ -88,20 +88,7 @@ trait uiKitEmailWithInputDiv
         foreach ($images as $image) {
             $imagesList[] = $this->getComponentText(' ', array(
                 'variable' => 'send_pic_' . $index,
-                'selected_state' => array(
-                    'style_content' => array(
-                        'background-image' => $this->getImageFileName($image),
-                        'background-size' => 'cover',
-                        'height' => '100',
-                        'width' => '100',
-                        'border-color' => '#fdca42',
-                        'border-width' => '4',
-                        'border-radius' => '4',
-                        'margin' => '0 5 0 5',
-                    ),
-                    'allow_unselect' => 1,
-                    'variable_value' => $this->getImageFileName($image)
-                ),
+                'selected_state' => $this->getImageSelectedState($image),
             ), array(
                 'background-image' => $this->getImageFileName($image),
                 'background-size' => 'cover',
@@ -118,6 +105,24 @@ trait uiKitEmailWithInputDiv
             'padding' => '10 0 10 0',
             'text-align' => 'center'
         ));
+    }
+
+    protected function getImageSelectedState($image)
+    {
+        return array(
+            'style_content' => array(
+                'background-image' => $this->getImageFileName($image),
+                'background-size' => 'cover',
+                'height' => '100',
+                'width' => '100',
+                'border-color' => '#fdca42',
+                'border-width' => '4',
+                'border-radius' => '4',
+                'margin' => '0 5 0 5',
+            ),
+            'allow_unselect' => 1,
+            'variable_value' => $this->getImageFileName($image)
+        );
     }
 
     protected function sendEmailToPersonOnclick()
