@@ -1,7 +1,7 @@
 {
   "uikit_swipe_delete_button": {
     "padding": "0 20 0 20",
-    "background-color": "#fc4944",
+    "background-color": "#D40511",
     "vertical-align": "middle"
   },
   "uikit_swipe_delete_button_image": {
