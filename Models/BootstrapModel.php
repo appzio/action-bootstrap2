@@ -596,4 +596,9 @@ class BootstrapModel extends CActiveRecord {
 
         return false;
     }
+
+    private function toPascalCase($string)
+    {
+        return str_replace('_', '', ucwords($string, '_'));
+    }
 }

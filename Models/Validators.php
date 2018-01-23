@@ -7,6 +7,101 @@ trait Validators {
     /* @var $this BootstrapModel */
 
     /**
+     * Validates input variables by a set of rules.
+     * If variables are not explicitly passed it will default to the
+     * currently submitted ones.
+     *
+     * Validation depends on the rules and each of them passing.
+     * The validation rules are passed as key value pairs where the key
+     * is the name of the variable in the input and the value is the ruleset.
+     *
+     * The ruleset is a string that can define multiple validation rules.
+     * Each rule in the string is separated using '|' as a delimeter.
+     * Additional parameters can be passed to the rule using ':'
+     *
+     * Each rule depends on the trait having defined a method with the
+     * appropriate name.
+     *
+     * Example ruleset:
+     * aray(
+     *     'name' => 'empty|length:3',
+     *     'age' => 'empty|greater_than:18',
+     *     'email' => 'empty|email'
+     * )
+     *
+     * @param array $rules
+     * @param array $variables
+     * @return bool
+     */
+    public function validateByRules(array $rules, $variables = array()): bool
+    {
+        if (empty($variables)) {
+            $variables = $this->getAllSubmittedVariablesByName();
+        }
+
+        foreach ($rules as $variable => $ruleset) {
+
+            $value = $variables[$variable];
+
+            // Split ruleset in subrules and loop through the results
+            foreach (explode('|', $ruleset) as $rule) {
+
+                $rule = explode(':', $rule);
+                $methodName = 'validate' . $this->toPascalCase($rule[0], true);
+
+                if (count($rule) === 1) {
+                    // If there are no parameters after the ':' call the method with the current value
+                    $isValid = $this->{$methodName}($value);
+
+                } else {
+                    // Else call it with the parameter added for the current rule
+                    $isValid = $this->{$methodName}($value, $rule[1]);
+
+                }
+
+                if (!$isValid) {
+                    return false;
+                }
+
+            }
+
+        }
+
+        return true;
+    }
+
+    /**
+     * Validates whether the given value is not empty.
+     *
+     * @param $value
+     * @return bool
+     */
+    public function validateEmpty($value)
+    {
+        return !empty($value);
+    }
+
+    public function validateLength($value, $length)
+    {
+        return strlen($value) > $length;
+    }
+
+    public function validateCount($value, $length)
+    {
+        return count($value) > $length;
+    }
+
+    public function validateGreaterThan($value, $number)
+    {
+        return $value > $number;
+    }
+
+    public function validateLessThan($value, $number)
+    {
+        return $value < $number;
+    }
+
+    /**
      * Email validation
      *
      * @param $email
