@@ -87,7 +87,7 @@ trait uiKitListItem {
         }
 
         $behaviour = [];
-        $bhv_params = ['id', 'visibility'];
+        $bhv_params = ['id', 'visibility', 'swipe_right'];
 
 	    foreach ( $bhv_params as $bhv_param ) {
 		    if ( isset($parameters[$bhv_param]) ) {
