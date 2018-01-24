@@ -232,6 +232,14 @@ trait Onclick {
 
     }
 
+    public function getOnclickOpenApp($server,$api_key){
+        $open = new \stdClass();
+        $open->action = 'open-appzio-app';
+        $open->server = $server;
+        $open->api_key = $api_key;
+        return $open;
+    }
+
     /**
      * Clicking the component to which the returned value is attached will open a particular action.
      * This is used to have one screen "on top" of the other.
