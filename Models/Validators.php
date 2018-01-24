@@ -29,11 +29,13 @@ trait Validators {
      *     'email' => 'empty|email'
      * )
      *
+     * Supported rules: empty, length, greater_than, less_than, email, website, password
+     *
      * @param array $rules
      * @param array $variables
-     * @return bool
+     * @return void
      */
-    public function validateByRules(array $rules, $variables = array()): bool
+    public function validateByRules(array $rules, $variables = array()): void
     {
         if (empty($variables)) {
             $variables = $this->getAllSubmittedVariablesByName();
@@ -43,31 +45,65 @@ trait Validators {
 
             $value = $variables[$variable];
 
-            // Split ruleset in subrules and loop through the results
+            // Split ruleset in subrules and loop through the results.
             foreach (explode('|', $ruleset) as $rule) {
 
                 $rule = explode(':', $rule);
                 $methodName = 'validate' . $this->toPascalCase($rule[0], true);
 
                 if (count($rule) === 1) {
-                    // If there are no parameters after the ':' call the method with the current value
+                    // If there are no parameters after the ':' call the method with the current value.
                     $isValid = $this->{$methodName}($value);
 
                 } else {
-                    // Else call it with the parameter added for the current rule
+                    // Else call it with the parameter added for the current rule.
                     $isValid = $this->{$methodName}($value, $rule[1]);
 
                 }
 
                 if (!$isValid) {
-                    return false;
+                    // Populate the validation_errors property with the error message for this rule.
+                    $this->validation_errors[$variable] = $this->getValidationErrorMessage($rule[0], $variable, $rule[1]);
                 }
-
             }
-
         }
+    }
 
-        return true;
+    /**
+     * Fill a validation error based on the provided rule and variable name.
+     * Different rules have different validation error formatting.
+     *
+     * The errors are filled in the $validation_errors property and are then
+     * used in the controller or view to signal the user.
+     *
+     * If you defined a new validation rule you should add a validation message
+     * for it here. Otherwise it will display the default one.
+     *
+     * @param string $rule
+     * @param string $variable
+     * @param mixed $param
+     * @return string
+     */
+    protected function getValidationErrorMessage(string $rule, string $variable, mixed $param): string
+    {
+        switch ($rule) {
+            case 'empty':
+                return '{#the_#}' . $variable . '{#_is_required#}';
+            case 'length':
+                return '{#the_#}' . $variable . '{#_must_be_at_least_#}' . $param . '{#_characters_long#}';
+            case 'greater_than':
+                return '';
+            case 'less_than':
+                return '';
+            case 'email':
+                return '';
+            case 'website':
+                return '';
+            case 'password':
+                return '';
+            default:
+                return '{#the_#}' . $variable . '{#_field_is_incorrect#}';
+        }
     }
 
     /**
@@ -84,11 +120,6 @@ trait Validators {
     public function validateLength($value, $length)
     {
         return strlen($value) > $length;
-    }
-
-    public function validateCount($value, $length)
-    {
-        return count($value) > $length;
     }
 
     public function validateGreaterThan($value, $number)
