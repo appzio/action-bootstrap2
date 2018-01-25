@@ -3,7 +3,8 @@
     "border-radius" : "19",
     "height" : "40",
     "font-size": "16",
-    "text-align" : "center"
+    "text-align" : "center",
+    "vertical-align" : "middle"
   },
   "uikit_block_btn_icon": {
     "width": "30",
