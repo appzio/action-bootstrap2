@@ -12,6 +12,7 @@ trait uiKitEmailWithInputDiv
     {
         /** @var BootstrapComponent $this */
         $images = isset($params['images']) ? $params['images'] : array();
+        $action = isset($params['action']) ? $params['action'] : 'Controller/email';
 
         return $this->getComponentColumn(array(
             $this->getComponentRow(array(
@@ -73,7 +74,7 @@ trait uiKitEmailWithInputDiv
             )),
             $this->getComponentSpacer(50),
             $this->uiKitWideButton('{#send_mail#}', array(
-                'onclick' => $this->sendEmailToPersonOnclick()
+                'onclick' => $this->sendEmailToPersonOnclick($action)
             ))
         ), array(), array(
             'background-color' => '#ffffff'
@@ -125,9 +126,9 @@ trait uiKitEmailWithInputDiv
         );
     }
 
-    protected function sendEmailToPersonOnclick()
+    protected function sendEmailToPersonOnclick($action = 'Controller/email')
     {
-        $onclick = $this->getOnclickRoute('Controller/email', false);
+        $onclick = $this->getOnclickRoute($action, false);
 
         $onclick[] = $this->getOnclickHideDiv('email');
 
