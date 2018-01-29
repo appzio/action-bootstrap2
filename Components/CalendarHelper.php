@@ -68,10 +68,8 @@ PRODID:Appzio
 METHOD:REQUEST
 BEGIN:VEVENT
 ";
-        $template .= 'DTSTART;TZID="Europe/London":'.$starttime.chr(10);
-        $template .= 'DTEND;TZID="Europe/London":'.$endtime.chr(10);
-        $template .= 'DTSTART":'.$starttime.chr(10);
-        $template .= 'DTEND":'.$endtime.chr(10);
+        $template .= 'DTSTART:'.$starttime.chr(10);
+        $template .= 'DTEND:'.$endtime.chr(10);
         $template .=
 "DTSTAMP:".$this->convertUnixTimeToCalendar(time()) ."
 ORGANIZER;CN=$organizer:mailto:$organizer_email
