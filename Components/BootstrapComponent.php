@@ -162,6 +162,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ComponentHelpers;
     use ComponentParameters;
     use ComponentStyles;
+    use CalendarHelper;
 
     /* all component traits need to be defined here */
     use ClientComponents\Banner;

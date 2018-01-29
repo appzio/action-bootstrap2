@@ -591,6 +591,40 @@ trait Onclick {
     }
 
     /**
+     * Clicking the component to which the returned object is attached will open the given url in the browser
+     *
+     * @param $url // valid url (can be also tel://3391282822 for example)
+     * @param array $parameters
+     * <code>
+     * $array = array(
+     * );
+
+     * @return \stdClass
+     */
+    public function getOnclickCalendarEvent($parameters){
+        /** @var BootstrapView $this */
+
+        $calpath = 'documents/games/' . $this->model->appid .'/calendars/';
+        $path = $_SERVER['DOCUMENT_ROOT'] .dirname($_SERVER['PHP_SELF']) .$calpath;
+
+        if(!is_dir($path)){
+            mkdir($path,0777);
+        }
+
+        $template = $this->getCalendarTemplate($parameters);
+        $filename = time() .\Helper::generateShortcode(5) .'.ics';
+        file_put_contents($path.$filename,$template);
+
+        $obj = new \stdClass();
+        $obj->action = 'open-url';
+        $obj->action_config = \Yii::app()->params['siteURLssl'] .'/'.$calpath.$filename;
+        $obj = $this->attachParameters($obj,$parameters);
+
+        return $obj;
+    }
+
+
+    /**
      * TODO
      * @param $title
      * @param $message
