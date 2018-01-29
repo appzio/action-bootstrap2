@@ -604,7 +604,12 @@ trait Onclick {
      *
      * // optional
      * 'description' => 'Event description',
-     * 'location' => 'Event location'
+     * 'location' => 'Event location',
+     * 'repeat_daily_until' => unixtime,
+     * 'repeat_weekly_until' =>  unixtime,
+     * 'repeat_monthly_until' =>  unixtime,
+     * 'repeat_yearly_until' =>  unixtime,
+     * 'url' =>  'https://appzio.com',
      *
      * );
 

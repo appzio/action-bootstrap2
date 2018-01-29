@@ -77,13 +77,34 @@ UID:".\Helper::generateShortcode('15')."@appzio.com
 CREATED:".$this->convertUnixTimeToCalendar(time());
 
         if(isset($parameters['description'])){
-            $template .= chr(10).'DESCRIPTION:'.$parameters['description'].chr(10);
+            $template .= chr(10).'DESCRIPTION:'.$parameters['description'];
         }
         if(isset($parameters['location'])){
-            $template .= chr(10).'LOCATION:'.$parameters['location'].chr(10);
+            $template .= chr(10).'LOCATION:'.$parameters['location'];
         }
 
-        $template .= "LAST-MODIFIED:".$this->convertUnixTimeToCalendar(time()) ."
+        if(isset($parameters['repeat_daily_until'])){
+            $template .= chr(10).'RRULE:FREQ=DAILY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_daily_until']);
+        }
+
+        if(isset($parameters['repeat_weekly_until'])){
+            $template .= chr(10).'RRULE:FREQ=WEEKLY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_weekly_until']);
+        }
+
+        if(isset($parameters['repeat_monthly_until'])){
+            $template .= chr(10).'RRULE:FREQ=MONTHLY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_monthly_until']);
+        }
+
+        if(isset($parameters['repeat_yearly_until'])){
+            $template .= chr(10).'RRULE:FREQ=YEARLY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_yearly_until']);
+        }
+
+        if(isset($parameters['url'])){
+            $template .= chr(10).'URL:'.$parameters['url'];
+        }
+
+        $template .= "
+LAST-MODIFIED:".$this->convertUnixTimeToCalendar(time()) ."
 SEQUENCE:0
 STATUS:CONFIRMED
 X-MICROSOFT-CDO-BUSYSTATUS:BUSY
