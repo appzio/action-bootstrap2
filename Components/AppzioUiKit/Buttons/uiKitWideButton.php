@@ -11,9 +11,7 @@ trait uiKitWideButton
     {
         /** @var BootstrapComponent $this */
         return $this->getComponentRow(array(
-            $this->getComponentText($content, array(
-                'onclick' => isset($params['onclick']) ? $params['onclick'] : new \stdClass()
-            ), array(
+            $this->getComponentText($content, $params, array(
                 'color' => '#323232',
 //                'border-color' => '#9b9b9b',
                 'border-radius' => '25',

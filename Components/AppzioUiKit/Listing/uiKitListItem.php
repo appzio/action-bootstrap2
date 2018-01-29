@@ -43,8 +43,8 @@ trait uiKitListItem {
 	    }
 
 	    $title_row[] = $this->getComponentText($title, $text_params, array(
-		    'color' => '#777d81',
 		    'font-size' => '16',
+		    'font-weight' => 'bold',
 	    ));
 
 	    if ( isset($parameters['right_icon']) AND $parameters['right_icon'] ) {
@@ -71,7 +71,7 @@ trait uiKitListItem {
         			'margin' => '0 15 0 0',
 		        )),
         		$this->getComponentText($discription, array(), array(
-        			'color' => '#777d81',
+        			'color' => '#9f9f9f',
         			'font-size' => '15',
 		        )),
 	        ), array(), array(

@@ -44,6 +44,16 @@ trait uiKitList {
     {
         /** @var BootstrapView $this */
 
+        if ( !isset($item['text']) ) {
+	        return $this->getComponentColumn(array(
+		        $this->getComponentText('{#missing_text_item#}', array(
+			        'style' => 'uikit_list_row_text'
+		        )),
+	        ), array(
+		        'style' => 'uikit_list_row'
+	        ));
+        }
+
         $onclick = new \stdClass();
         $onclick->id = $item['id'];
         $onclick->action = 'open-action';

@@ -52,9 +52,14 @@ trait uiKitSearchItem {
 	    ));
 
 	    if ( $date ) {
-		    $title_row[] = $this->getComponentText($date, $text_params, array(
-			    'color' => '#777d81',
-			    'font-size' => '12',
+		    $title_row[] = $this->getComponentColumn(array(
+			    $this->getComponentText($date, $text_params, array(
+				    'color' => '#777d81',
+				    'font-size' => '12',
+				    'text-align' => 'right'
+			    )),
+		    ), array(), array(
+		    	'width' => '40%'
 		    ));
 	    }
 
@@ -63,6 +68,7 @@ trait uiKitSearchItem {
 	    }
 
 	    $data[] = $this->getComponentRow($title_row, $events, array(
+		    'width' => 'auto',
 	        'padding' => '0 15 0 15',
 	        'vertical-align' => 'middle',
         ));
