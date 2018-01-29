@@ -67,9 +67,13 @@ CALSCALE:GREGORIAN
 PRODID:Appzio
 METHOD:REQUEST
 BEGIN:VEVENT
-DTSTART:$starttime
-DTEND:$endtime
-DTSTAMP:".$this->convertUnixTimeToCalendar(time()) ."
+";
+        $template .= 'DTSTART;TZID="Europe/London":'.$starttime.chr(10);
+        $template .= 'DTEND;TZID="Europe/London":'.$endtime.chr(10);
+        $template .= 'DTSTART":'.$starttime.chr(10);
+        $template .= 'DTEND":'.$endtime.chr(10);
+        $template .=
+"DTSTAMP:".$this->convertUnixTimeToCalendar(time()) ."
 ORGANIZER;CN=$organizer:mailto:$organizer_email
 UID:".\Helper::generateShortcode('15')."@appzio.com
 CREATED:".$this->convertUnixTimeToCalendar(time());
@@ -80,13 +84,11 @@ CREATED:".$this->convertUnixTimeToCalendar(time());
         if(isset($parameters['location'])){
             $template .= chr(10).'LOCATION:'.$parameters['location'].chr(10);
         }
-        if(isset($parameters['description'])){
-            $template .= chr(10).'DESCRIPTION:'.$parameters['description'].chr(10);
-        }
 
         $template .= "LAST-MODIFIED:".$this->convertUnixTimeToCalendar(time()) ."
 SEQUENCE:0
 STATUS:CONFIRMED
+X-MICROSOFT-CDO-BUSYSTATUS:BUSY
 SUMMARY:$subject
 TRANSP:OPAQUE
 END:VEVENT

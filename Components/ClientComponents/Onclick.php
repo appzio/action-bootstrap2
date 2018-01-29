@@ -591,12 +591,21 @@ trait Onclick {
     }
 
     /**
-     * Clicking the component to which the returned object is attached will open the given url in the browser
+     * Will create a button for adding a calendar event
      *
-     * @param $url // valid url (can be also tel://3391282822 for example)
      * @param array $parameters
      * <code>
      * $array = array(
+     * 'starttime' => time()+700
+     * 'endtime' => time()+1400,
+     * 'organizer' => 'My Name',
+     * 'organizer_email' => 'myemail@domain.com',
+     * 'subject' => 'Checkup',
+     *
+     * // optional
+     * 'description' => 'Event description',
+     * 'location' => 'Event location'
+     *
      * );
 
      * @return \stdClass
