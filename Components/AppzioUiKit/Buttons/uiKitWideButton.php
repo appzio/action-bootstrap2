@@ -11,20 +11,9 @@ trait uiKitWideButton
     {
         /** @var BootstrapComponent $this */
         return $this->getComponentRow(array(
-            $this->getComponentText($content, $params, array(
-                'color' => '#323232',
-//                'border-color' => '#9b9b9b',
-                'border-radius' => '25',
-                'width' => '75%',
-                'height' => '50',
-                'text-align' => 'center',
-                'use_clipping' => '0',
-                'background-color' => '#FFCC00'
-            ))
-        ), array(), array(
-            'text-align' => 'center',
-            'vertical-align' => 'middle',
-            'margin' => '0 0 15 0'
+            $this->getComponentText($content, array_merge($params, array('style' => 'uikit_wide_button_text')))
+        ), array(
+            'style' => 'uikit_wide_button'
         ));
     }
 

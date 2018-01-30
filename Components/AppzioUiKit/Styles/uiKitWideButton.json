@@ -1,0 +1,16 @@
+{
+  "uikit_wide_button": {
+    "text-align": "center",
+    "vertical-align": "middle",
+    "margin": "0 0 15 0"
+  },
+  "uikit_wide_button_text": {
+    "color": "#323232",
+    "border-radius": "25",
+    "width": "75%",
+    "height": "50",
+    "text-align": "center",
+    "use_clipping": "0",
+    "background-color": "#FFCC00"
+  }
+}
