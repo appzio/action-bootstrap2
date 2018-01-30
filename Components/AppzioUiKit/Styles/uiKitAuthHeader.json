@@ -4,8 +4,8 @@
     "text-align": "center"
   },
   "uikit_auth_header_image": {
-    "width": 120,
-    "margin": "40 0 60 0"
+    "width": "200",
+    "margin": "20 0 20 0"
   },
   "uikit_auth_header_text": {
     "color": "#ffffff",
