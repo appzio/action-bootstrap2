@@ -14,7 +14,7 @@ trait uiKitIconButton
         $icon = isset($params['icon']) ? $params['icon'] : '';
 
         return $this->getComponentRow(array(
-            $this->getIconButtonImage($icon),
+//            $this->getIconButtonImage($icon),
             $this->getComponentText($content, array(), array(
                 'color' => '#5a3a3a',
             ))
