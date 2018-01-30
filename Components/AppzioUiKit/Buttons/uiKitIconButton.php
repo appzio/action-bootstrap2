@@ -18,13 +18,13 @@ trait uiKitIconButton
             $this->getComponentText($content, array(), array(
                 'color' => '#5a3a3a',
             ))
-        ), $params, array(
+        ), $params, array_merge(array(
             'margin' => '0 25 15 25',
             'border-color' => '#9b9b9b',
             'border-radius' => '20',
             'padding' => '12 0 12 0',
             'text-align' => 'center',
-        ));
+        ), $styles));
     }
 
     public function getIconButtonImage(string $icon)
