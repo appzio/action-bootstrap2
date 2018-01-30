@@ -49,7 +49,9 @@ trait uiKitEmailWithInputDiv
                 'hint' => 'Message:',
                 'variable' => 'message'
             ), array(
-                'margin' => '0 20 0 20'
+                'margin' => '0 20 0 20',
+                'height' => '75'
+
             )),
             $this->getComponentSpacer('1', array(), array(
                 'background-color' => '#dadada',
@@ -75,6 +77,19 @@ trait uiKitEmailWithInputDiv
             $this->getComponentSpacer(50),
             $this->uiKitWideButton('{#send_mail#}', array(
                 'onclick' => $this->sendEmailToPersonOnclick($action)
+            )),
+            $this->getComponentRow(array(
+                $this->uiKitIconButton('{#go_back#}', array(
+                    'onclick' => $this->getOnclickHideDiv('email')
+                ), array(
+                    'width' => '75%',
+                    'padding' => '15 0 15 0',
+                    'border-radius' => '25',
+                    'color' => '#323232',
+                    'border-color' => '#323232'
+                ))
+            ), array(), array(
+                'text-align' => 'center'
             ))
         ), array(), array(
             'background-color' => '#ffffff'
