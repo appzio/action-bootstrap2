@@ -1,11 +1,15 @@
 <?php
 
 namespace Bootstrap\Components\AppzioUiKit\Forms;
-use Bootstrap\Models\BootstrapModel;
+
+use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitPriceSelector {
 
     public function uiKitPriceSelector(array $parameters=array()){
+
+	    /** @var BootstrapComponent $this */
+
         $price[] = $this->getComponentText(strtoupper('{#Distance#}'), array(
             'style' => 'mitems_filter_label'
         ));

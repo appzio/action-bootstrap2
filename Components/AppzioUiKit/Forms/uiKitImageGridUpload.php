@@ -3,6 +3,7 @@
 namespace Bootstrap\Components\AppzioUiKit\Forms;
 
 use Bootstrap\Models\BootstrapModel;
+use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitImageGridUpload {
 

@@ -10,12 +10,13 @@ trait uiKitListItem {
      * model and its associated tables. Note that you need to have the paging in place for the controller & model
      * for it to work as expected.
      *
-     * @param string $content
+     * @param string $title
+     * @param array $discription
      * @param array $parameters
      * @param array $styles
      * @return \stdClass
      */
-    public function uiKitListItem(string $title, string $discription = '', array $parameters=array(), array $styles=array()) {
+    public function uiKitListItem(string $title, array $discription = array(), array $parameters=array(), array $styles=array()) {
         /** @var BootstrapView $this */
 
 	    $events = [];
@@ -65,14 +66,14 @@ trait uiKitListItem {
         ));
 
 	    if ( $discription AND isset($parameters['date_icon']) ) {
+	    	
         	$data[] = $this->getComponentRow(array(
         		$this->getComponentImage($parameters['date_icon'], array(), array(
         			'width' => '25',
         			'margin' => '0 15 0 0',
 		        )),
-        		$this->getComponentText($discription, array(), array(
-        			'color' => '#9f9f9f',
-        			'font-size' => '15',
+        		$this->getComponentColumn($this->uiKitListDescriptionItems($discription), array(), array(
+					'width' => 'auto'
 		        )),
 	        ), array(), array(
 	        	'padding' => '10 15 0 15',
@@ -99,6 +100,20 @@ trait uiKitListItem {
         	'width' => 'auto',
         	'padding' => ( isset($parameters['divider']) ? '0 0 0 0' : '10 0 10 0' ),
         ));
+	}
+
+	public function uiKitListDescriptionItems( $description ) {
+
+    	$items = [];
+
+		foreach ( $description as $item ) {
+			$items[] = $this->getComponentText($item, array(), array(
+				'color' => '#9f9f9f',
+				'font-size' => '14',
+			));
+		}
+
+		return $items;
 	}
 
 }

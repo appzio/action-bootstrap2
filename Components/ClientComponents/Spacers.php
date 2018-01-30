@@ -21,19 +21,20 @@ trait Spacers {
 
     public function getComponentSpacer($height = 10, array $parameters=array(),array $styles=array()) {
 
-        $obj = $this->getComponentText('', $parameters, array_merge(array('height' => $height), $styles));
+    	$obj = $this->getComponentText('', $parameters,
+	        array_merge(array('height' => $height), $styles)
+        );
 
         return $obj;
 	}
 
     public function getComponentVerticalSpacer($width = 10, array $parameters=array(),array $styles=array()) {
 
-        $obj = $this->getComponentText('', array(), array(
-            'width' => $width
-        ));
+	    $obj = $this->getComponentText('', $parameters,
+		    array_merge(array('width' => $width), $styles)
+	    );
 
         return $obj;
     }
-
 
 }

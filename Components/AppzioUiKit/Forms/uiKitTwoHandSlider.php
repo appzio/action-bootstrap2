@@ -1,11 +1,13 @@
 <?php
 
 namespace Bootstrap\Components\AppzioUiKit\Forms;
-use Bootstrap\Models\BootstrapModel;
+
+use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitTwoHandSlider {
 
     public function uiKitTwoHandSlider(array $parameters=array()){
+	    /** @var BootstrapComponent $this */
 
         $max = isset($parameters['max']) ? $parameters['max'] : 20000;
         $min = isset($parameters['min']) ? $parameters['min'] : 50;
@@ -47,7 +49,5 @@ trait uiKitTwoHandSlider {
         $output[] = $this->getComponentRow($slider,array('style' => 'uikit_slider_background'));
         return $this->getComponentColumn($output, array());
     }
-
-
 
 }
