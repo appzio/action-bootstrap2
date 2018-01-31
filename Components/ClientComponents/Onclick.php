@@ -610,6 +610,10 @@ trait Onclick {
      * 'repeat_monthly_until' =>  unixtime,
      * 'repeat_yearly_until' =>  unixtime,
      * 'url' =>  'https://appzio.com',
+     * 'invitees' => array('invitee1@appzio.com','invitee2@appzio.com'),
+     *
+     * // if this is set to true, we won't email the invitations to invited people
+     * 'dont_send_invites' => true
      *
      * );
 
@@ -628,6 +632,14 @@ trait Onclick {
         $template = $this->getCalendarTemplate($parameters);
         $filename = time() .\Helper::generateShortcode(5) .'.ics';
         file_put_contents($path.$filename,$template);
+
+        if(isset($parameters['invitees']) AND is_array($parameters['invitees']) AND $parameters['invitees']){
+            if(!isset($parameters['dont_send_invites'])){
+                foreach($parameters['invitees'] as $invitee){
+                    // this should add the email to be sent using the generated file as an attachment
+                }
+            }
+        }
 
         $obj = new \stdClass();
         $obj->action = 'open-url';

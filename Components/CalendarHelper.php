@@ -54,15 +54,28 @@ trait CalendarHelper {
             $this->errors[] = 'Missing organizer email';
         }
 
+        if(isset($parameters['invitees']) AND is_array($parameters['invitees']) AND $parameters['invitees']) {
+            $invitees = true;
+        } else {
+            $invitees = false;
+        }
+
+
+
         $starttime = $this->convertUnixTimeToCalendar($parameters['starttime']);
         $endtime = $this->convertUnixTimeToCalendar($parameters['endtime']);
         $subject = $parameters['subject'];
         $organizer = $parameters['organizer'];
         $organizer_email = $parameters['organizer_email'];
 
-        $template =
-"BEGIN:VCALENDAR
-VERSION:2.0
+        $template = "BEGIN:VCALENDAR";
+
+        if($invitees) {
+            $template .= chr(10) .'METHOD:REQUEST';
+        }
+
+        $template .= chr(10).
+"VERSION:2.0
 CALSCALE:GREGORIAN
 PRODID:Appzio
 METHOD:REQUEST
@@ -75,6 +88,16 @@ BEGIN:VEVENT
 ORGANIZER;CN=$organizer:mailto:$organizer_email
 UID:".\Helper::generateShortcode('15')."@appzio.com
 CREATED:".$this->convertUnixTimeToCalendar(time());
+
+        if($invitees){
+            foreach ($parameters['invitees'] as $invitee){
+                $part = "ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=$invitee:MAILTO:$invitee";
+                $part = chunk_split($part,73,chr(10).'  ');
+                $part = substr($part,0,-3);
+                $template .= chr(10) .$part;
+                //$template .= chr(10) ."ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=$invitee:MAILTO:$invitee";
+            }
+        }
 
         if(isset($parameters['description'])){
             $template .= chr(10).'DESCRIPTION:'.$parameters['description'];
@@ -107,9 +130,30 @@ CREATED:".$this->convertUnixTimeToCalendar(time());
 LAST-MODIFIED:".$this->convertUnixTimeToCalendar(time()) ."
 SEQUENCE:0
 STATUS:CONFIRMED
-X-MICROSOFT-CDO-BUSYSTATUS:BUSY
 SUMMARY:$subject
 TRANSP:OPAQUE
+CLASS:PUBLIC
+PRIORITY:5";
+
+        if($invitees){
+            $template .= "
+X-MICROSOFT-CDO-APPT-SEQUENCE:0
+X-MICROSOFT-CDO-OWNERAPPTID:2116155342
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INSTTYPE:1
+X-MICROSOFT-DONOTFORWARDMEETING:FALSE
+X-MICROSOFT-DISALLOW-COUNTER:FALSE";
+        }
+
+        $template .= "
+BEGIN:VALARM
+DESCRIPTION:REMINDER
+TRIGGER;RELATED=START:-PT15M
+ACTION:DISPLAY
+END:VALARM
 END:VEVENT
 END:VCALENDAR
 ";
