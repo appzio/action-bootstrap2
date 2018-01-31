@@ -200,4 +200,60 @@ trait DataHelpers {
             }
         }
     }
+
+    /**
+     * Will create a button for adding a calendar event
+     *
+     * @param array $parameters
+     * <code>
+     * $array = array(
+     * 'starttime' => time()+700
+     * 'endtime' => time()+1400,
+     * 'organizer' => 'My Name',
+     * 'organizer_email' => 'myemail@domain.com',
+     * 'subject' => 'Checkup',
+     *
+     * // optional
+     * 'description' => 'Event description',
+     * 'location' => 'Event location',
+     * 'repeat_daily_until' => unixtime,
+     * 'repeat_weekly_until' =>  unixtime,
+     * 'repeat_monthly_until' =>  unixtime,
+     * 'repeat_yearly_until' =>  unixtime,
+     * 'url' =>  'https://appzio.com',
+     * 'invitees' => array('invitee1@appzio.com','invitee2@appzio.com'),
+     *
+     * // if this is set to true, we won't email the invitations to invited people
+     * 'dont_send_invites' => true
+     *
+     * );
+
+     * @return \string
+     */
+    public function getCalendarFile($parameters){
+        /** @var BootstrapView $this */
+
+        $calpath = 'documents/games/' . $this->model->appid .'/calendars/';
+        $path = $_SERVER['DOCUMENT_ROOT'] .dirname($_SERVER['PHP_SELF']) .$calpath;
+
+        if(!is_dir($path)){
+            mkdir($path,0777);
+        }
+
+        $template = $this->getCalendarTemplate($parameters);
+        $filename = time() .\Helper::generateShortcode(5) .'.ics';
+        file_put_contents($path.$filename,$template);
+
+        if(isset($parameters['invitees']) AND is_array($parameters['invitees']) AND $parameters['invitees']){
+            if(!isset($parameters['dont_send_invites'])){
+                foreach($parameters['invitees'] as $invitee){
+                    // this should add the email to be sent using the generated file as an attachment
+                }
+            }
+        }
+
+        return $path.$filename;
+
+    }
+
 }

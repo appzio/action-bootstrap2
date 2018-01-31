@@ -3,6 +3,7 @@
 
 namespace Bootstrap\Models;
 
+use Bootstrap\Components\CalendarHelper;
 use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
 use Aevariable;
@@ -21,6 +22,7 @@ class BootstrapModel extends CActiveRecord {
     use DataHelpers;
     use Validators;
     use Mobilematching;
+    use CalendarHelper;
 
     /**
      * Actions configuration as defined in the web admin. All these can be overriden using $this->rewriteActionConfigField()
