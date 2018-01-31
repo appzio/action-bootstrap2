@@ -119,7 +119,9 @@ trait uiKitAccordion
 
         $row[] = $this->getComponentColumn([
             $this->getComponentText($item['title'],array("style" => $stylePrefix . "_title")),
-            $this->getComponentColumn($item['description'])
+            $this->getComponentColumn($item['description'], array(), array(
+                'height' => '150'
+            ))
         ], array(array("style" => $stylePrefix . "_middle_container")));
 
 //        if ($item['icon-back']) {
@@ -144,7 +146,7 @@ trait uiKitAccordion
             ));
         } else {
             $row[] = $this->getComponentText($item['description'], array(), array(
-                'padding' => '10 0 10 10'
+                'padding' => '10 0 10 10',
             ));
         }
 
