@@ -80,7 +80,6 @@ trait uiKitAccordion
             array(
                 "id" => "show_" .$item['id'],
                 "style" => "ui_accordion_line_show_row",
-                'visibility' => isset($item['expanded']) ? 'hidden' : '',
                 "onclick" => $actionShow));
 
         $actionHide[] = $this->getOnclickShowElement("show_" .$item['id']);
@@ -94,7 +93,7 @@ trait uiKitAccordion
             $this->getVisibleRow($item['hide'], "ui_accordion_line_hide"),
             array(
                 "id" => "hide_" .$item['id'],
-                "visibility" => isset($item['expanded']) ? '' : 'hidden',
+                "visibility" => 'hidden',
                 "style" => "ui_accordion_line_hide_row",
                 "onclick" => $actionHide));
 
@@ -133,7 +132,6 @@ trait uiKitAccordion
 
     public function getHiddenRow($item) {
         /** @var BootstrapComponent $this */
-
         $row = [];
         if (isset($item['input'])) {
             $input = isset($item['value']) ? $item['value'] : '';
