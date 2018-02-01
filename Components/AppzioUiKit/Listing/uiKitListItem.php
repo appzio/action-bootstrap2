@@ -19,7 +19,6 @@ trait uiKitListItem {
     public function uiKitListItem(string $title, array $discription = array(), array $parameters=array(), array $styles=array()) {
         /** @var BootstrapView $this */
 
-	    $events = [];
 	    $title_row = [];
 	    $text_params = [];
 
@@ -56,11 +55,7 @@ trait uiKitListItem {
 		    ));
 	    }
 
-	    if ( isset($parameters['onclick']) AND $parameters['onclick'] ) {
-		    $events['onclick'] = $parameters['onclick'];
-	    }
-
-	    $data[] = $this->getComponentRow($title_row, $events, array(
+	    $data[] = $this->getComponentRow($title_row, array(), array(
 	        'padding' => '0 15 0 15',
 	        'vertical-align' => 'middle',
         ));
@@ -88,7 +83,7 @@ trait uiKitListItem {
         }
 
         $behaviour = [];
-        $bhv_params = ['id', 'visibility', 'swipe_right'];
+        $bhv_params = ['id', 'visibility', 'swipe_right', 'onclick'];
 
 	    foreach ( $bhv_params as $bhv_param ) {
 		    if ( isset($parameters[$bhv_param]) ) {
