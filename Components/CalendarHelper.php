@@ -46,7 +46,7 @@ trait CalendarHelper {
             $this->errors[] = 'Missing subject time';
         }
 
-        if(!isset($parameters['organizer'])){
+				        if(!isset($parameters['organizer'])){
             $this->errors[] = 'Missing organizer';
         }
 

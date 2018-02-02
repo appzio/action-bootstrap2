@@ -122,19 +122,28 @@ class BootstrapController implements BootstrapControllerInterface {
     /**
      * Collects location once
      *
-     * @return bool
+     * @return mixed
      */
-    public function collectLocation(){
+    public function collectLocation( $timetolive = false, $return_timezone = false ){
         $cache = \Appcaching::getGlobalCache('location-asked'.$this->playid);
 
         if(!$cache){
-            $menu2 = new \stdClass();
-            $menu2->action = 'ask-location';
-            \Appcaching::setGlobalCache('location-asked'.$this->playid,true);
-            $this->onloads[] = $menu2;
+            $task = new \stdClass();
+	        $task->action = 'ask-location';
+            \Appcaching::setGlobalCache('location-asked'.$this->playid,true, $timetolive);
+            $this->onloads[] = $task;
+
+            if ( $return_timezone ) {
+				return $this->getTimezone(
+					$this->model->getSavedVariable( 'lat' )	,
+					$this->model->getSavedVariable( 'lon' )
+				);
+            }
+
         } else {
             return false;
         }
+
     }
 
     /* this is a special action you can call to flush routes */
@@ -144,5 +153,51 @@ class BootstrapController implements BootstrapControllerInterface {
         return ['Blank',array()];
     }
 
+    public function getTimezone($cur_lat, $cur_long, $country_code = '') {
+	    $timezone_ids = ($country_code) ? \DateTimeZone::listIdentifiers(\DateTimeZone::PER_COUNTRY, $country_code)
+		    : \DateTimeZone::listIdentifiers();
+
+	    if ($timezone_ids && is_array($timezone_ids) && isset($timezone_ids[0])) {
+
+		    $time_zone = array();
+		    $tz_distance = 0;
+
+		    if (count($timezone_ids) == 1) {
+			    $time_zone = $timezone_ids[0];
+		    } else {
+
+			    foreach($timezone_ids as $timezone_id) {
+				    $timezone = new \DateTimeZone($timezone_id);
+				    $location = $timezone->getLocation();
+				    $tz_lat = $location['latitude'];
+				    $tz_long = $location['longitude'];
+
+				    $theta = $cur_long - $tz_long;
+				    $distance = (sin(deg2rad($cur_lat)) * sin(deg2rad($tz_lat)))
+				                + (cos(deg2rad($cur_lat)) * cos(deg2rad($tz_lat)) * cos(deg2rad($theta)));
+				    $distance = acos($distance);
+				    $distance = abs(rad2deg($distance));
+
+				    if (!$time_zone || $tz_distance > $distance) {
+
+					    $dateTime = new \DateTime("now", $timezone);
+					    $offset = $timezone->getOffset( $dateTime );
+
+					    $time_zone = array(
+						    'timezone_id' => $timezone_id,
+						    'offset_in_seconds' => $offset,
+					    );
+
+					    $tz_distance = $distance;
+				    }
+			    }
+
+		    }
+
+		    return $time_zone;
+	    }
+
+	    return false;
+    }
 
 }
