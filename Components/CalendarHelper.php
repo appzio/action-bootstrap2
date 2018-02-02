@@ -161,8 +161,9 @@ END:VCALENDAR
     }
 
     public function convertUnixTimeToCalendar($time){
-        $difference = $this->get_timezone_offset('Europe/London');
-        $time = $time-$difference;
+//        $difference = $this->get_timezone_offset('Europe/London');
+//        $time = $time + $difference;
+        $time = $time + 3600;
         $time = date('Y-m-d H:i',$time);
         $time = new DateTime($time, new DateTimeZone('Europe/London'));
         $output = $time->format('Ymd') .'T' .$time->format('Hi') .'00Z';
@@ -182,7 +183,5 @@ END:VCALENDAR
         $offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
         return $offset;
     }
-
-
 
 }
