@@ -12,39 +12,39 @@ trait uiKitInformationTile
         $onclick = isset($params['onclick']) ? $params['onclick'] : null;
 
         return $this->getComponentColumn(array(
-            $this->getTileIcon($icon),
-            $this->getTileTitle($content),
-            $this->getTileSubtitle($subtitle)
+            $this->uiKitInfoTileIcon($icon),
+            $this->uiKitInfoTileTitle($content),
+            $this->uiKitInfoTileSubtitle($subtitle)
         ), array(
             'onclick' => $onclick
         ), array_merge(array(
             'background-color' => '#f6f6f6',
             'text-align' => 'center',
             'padding' => '20 10 20 10',
-            'margin' => '10 5 10 5',
+            'width' => '50%',
             'height' => '170',
-            'width' => '170'
         ), $style));
     }
 
-    protected function getTileIcon($icon)
+    protected function uiKitInfoTileIcon($icon)
     {
         return $this->getComponentImage($icon, array(
             'style' => 'uikit_information_tile_image'
         ));
     }
 
-    protected function getTileTitle($title)
+    protected function uiKitInfoTileTitle($title)
     {
         return $this->getComponentText($title, array(
             'style' => 'uikit_information_tile_title'
         ));
     }
 
-    protected function getTileSubtitle($subtitle)
+    protected function uiKitInfoTileSubtitle($subtitle)
     {
         return $this->getComponentText($subtitle, array(
             'style' => 'uikit_information_tile_subtitle'
         ));
     }
+
 }
