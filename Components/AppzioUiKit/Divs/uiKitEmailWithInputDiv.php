@@ -15,23 +15,10 @@ trait uiKitEmailWithInputDiv
         $action = isset($params['action']) ? $params['action'] : 'Controller/email';
 
         return $this->getComponentColumn(array(
-            $this->getComponentRow(array(
-                $this->getComponentImage('cloud_upload_dev.png', array(), array(
-                    'width' => '20',
-                    'margin' => '0 10 0 0'
-                )),
-                $this->getComponentText('Send Email', array(), array(
-                    'color' => '#ffffff',
-                    'font-size' => '14',
-                    'width' => '100%',
-                ))
-            ), array(), array(
-                'padding' => '10 20 10 20',
-                'background-color' => '#4a4a4a',
-                'shadow-color' => '#33000000',
-                'shadow-radius' => '1',
-                'shadow-offset' => '0 3',
-                'margin' => '0 0 20 0'
+            $this->uiKitDivHeader('Send Email', array(
+                'image' => 'cloud_upload_dev.png',
+                'close_icon' => 'cross-sign.png',
+                'div_id' => 'email'
             )),
             $this->getEmailAttachedImages($images),
             $this->getComponentFormFieldText('', array(
@@ -77,19 +64,6 @@ trait uiKitEmailWithInputDiv
             $this->getComponentSpacer(50),
             $this->uiKitWideButton('{#send_mail#}', array(
                 'onclick' => $this->sendEmailToPersonOnclick($action)
-            )),
-            $this->getComponentRow(array(
-                $this->uiKitIconButton('{#go_back#}', array(
-                    'onclick' => $this->getOnclickHideDiv('email')
-                ), array(
-                    'width' => '75%',
-                    'padding' => '15 0 15 0',
-                    'border-radius' => '25',
-                    'color' => '#323232',
-                    'border-color' => '#323232'
-                ))
-            ), array(), array(
-                'text-align' => 'center'
             ))
         ), array(), array(
             'background-color' => '#ffffff'
