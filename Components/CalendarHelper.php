@@ -60,8 +60,6 @@ trait CalendarHelper {
             $invitees = false;
         }
 
-
-
         $starttime = $this->convertUnixTimeToCalendar($parameters['starttime']);
         $endtime = $this->convertUnixTimeToCalendar($parameters['endtime']);
         $subject = $parameters['subject'];
@@ -112,10 +110,26 @@ CREATED:".$this->convertUnixTimeToCalendar(time());
 
         if(isset($parameters['repeat_weekly_until'])){
             $template .= chr(10).'RRULE:FREQ=WEEKLY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_weekly_until']);
+
+	        if ( isset($parameters['BYDAY']) ) {
+		        $template .= ';BYDAY=' . $parameters['BYDAY'];
+	        }
+
+            if ( isset($parameters['interval']) ) {
+            	$template .= ';INTERVAL=' . $parameters['interval'];
+            }
         }
 
         if(isset($parameters['repeat_monthly_until'])){
             $template .= chr(10).'RRULE:FREQ=MONTHLY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_monthly_until']);
+
+	        if ( isset($parameters['BYMONTHDAY']) ) {
+		        $template .= ';BYMONTHDAY=' . $parameters['BYMONTHDAY'];
+	        }
+
+	        if ( isset($parameters['interval']) ) {
+		        $template .= ';INTERVAL=' . $parameters['interval'];
+	        }
         }
 
         if(isset($parameters['repeat_yearly_until'])){
