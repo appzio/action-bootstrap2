@@ -223,13 +223,34 @@ trait ComponentHelpers {
 	    $input = preg_replace("~<$tag>(.*?)<\/$tag>~", '$1', $input);
 
 	    $nodes = $this->extractTags( $input, 'text' );
-	    
+
 	    foreach($nodes as $node){
+	    	$params = $this->getNodeParams( $node );
 	    	$styles = $this->getNodeStyles( $node );
-	    	$data[] = $this->getComponentText($node['contents'], array(), $styles);
+	    	$data[] = $this->getComponentText($node['contents'], $params, $styles);
 	    }
 
 	    return $output[] = $this->{$element}($data, array(), $args);
+    }
+
+    public function getNodeParams( $node ) {
+
+	    if ( !isset($node['attributes']['link']) ) {
+		    return array();
+	    }
+
+	    $link = $node['attributes']['link'];
+
+	    if ( preg_match('~action~', $link) ) {
+	    	$action_path = str_replace('action:', '', $link);
+	    	return array(
+	    		'onclick' => $this->getOnclickOpenAction( $action_path )
+		    );
+	    }
+
+	    return array(
+		    'onclick' => $this->getOnclickOpenUrl( $link )
+	    );
     }
 
     public function getNodeStyles( $node ) {

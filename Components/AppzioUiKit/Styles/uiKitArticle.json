@@ -54,28 +54,28 @@
     "font-size": "28",
     "color": "#ffffff",
     "text-align": "left",
-    "padding": "10 10 10 10"
+    "padding": "10 15 20 15"
   },
   "article-uikit-title-dark": {
     "width": "100%",
     "font-size": "28",
     "color": "#000000",
     "text-align": "left",
-    "padding": "10 10 10 10"
+    "padding": "10 15 20 15"
   },
   "article-uikit-category": {
     "width": "100%",
     "font-size": "16",
     "color": "#e0dfdf",
     "text-align": "left",
-    "padding": "10 10 10 10"
+    "padding": "10 15 10 15"
   },
   "article-uikit-date": {
     "width": "100%",
     "font-size": "16",
     "color": "#cecece",
     "text-align": "left",
-    "padding": "10 10 10 10"
+    "padding": "10 15 10 15"
   },
   "article-uikit-related-item": {
     "width": "auto",

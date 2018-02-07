@@ -29,12 +29,13 @@ trait uiKitTopbar
         return $this->getComponentRow(array(
 	        $this->getComponentColumn(array(
 		        $this->getComponentImage($image, array(), array(
-			        'width' => '30'
+			        'height' => '25',
 		        )),
 	        ), array(
 		        'onclick' => $onclick,
 	        ), array(
-		        'width' => $this->screen_width / $this->corner_size
+		        'width' => $this->screen_width / $this->corner_size,
+	        	'text-align' => 'left',
 	        )),
 	        $this->getComponentColumn(array(
 	        	$this->getComponentText($title, array(), array(
