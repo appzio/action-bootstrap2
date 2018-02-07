@@ -42,10 +42,12 @@ trait uiKitListItem {
 		    ));
 	    }
 
-	    $title_row[] = $this->getComponentText($title, $text_params, array(
+	    $text_styles = array_merge(array(
 		    'font-size' => '16',
 		    'font-weight' => 'bold',
-	    ));
+	    ), $styles);
+
+	    $title_row[] = $this->getComponentText($title, $text_params, $text_styles);
 
 	    if ( isset($parameters['right_icon']) AND $parameters['right_icon'] ) {
 		    $title_row[] = $this->getComponentImage($parameters['right_icon'], array(), array(
