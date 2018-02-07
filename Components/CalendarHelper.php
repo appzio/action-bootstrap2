@@ -76,7 +76,7 @@ trait CalendarHelper {
 "VERSION:2.0
 CALSCALE:GREGORIAN
 PRODID:Appzio
-METHOD:REQUEST
+METHOD:PUBLISH
 BEGIN:VEVENT
 ";
         $template .= 'DTSTART:'.$starttime.chr(10);
