@@ -16,7 +16,7 @@ trait uiKitIconButton
         return $this->getComponentRow(array(
 //            $this->getIconButtonImage($icon),
             $this->getComponentText($content, array(), array(
-                'color' => '#5a3a3a',
+                'color' => '#D40511',
             ))
         ), $params, array_merge(array(
             'margin' => '0 25 15 25',
