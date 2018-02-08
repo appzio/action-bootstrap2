@@ -31,16 +31,18 @@ trait uiKitArticleNextentry {
 				$this->getComponentText(strtoupper('{#read_next#}'), array(
 					'style' => 'article-uikit-related-heading'
 				)),
-		        $this->getComponentText($article_data->title, array(
-			        'style' => 'article-uikit-related-title'
-		        )),
 		        $this->getComponentRow(array(
-		        	$this->getComponentText(strtoupper($category_data->title), array(
+			        $this->getComponentText(strtoupper($category_data->title), array(
 				        'style' => 'article-uikit-related-category'
 			        )),
 		        ), array(), array(
-		        	'padding' => '0 0 5 0',
+			        'padding' => '0 0 5 0',
 		        )),
+		        $this->getComponentText($article_data->title, array(
+			        'style' => 'article-uikit-related-title'
+		        )),
+		        $this->getComponentSpacer( 10 ),
+		        /*
 		        $this->getComponentRow(array(
 			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article_data->article_date))), array(
 				        'style' => 'article-uikit-related-date'
@@ -48,6 +50,7 @@ trait uiKitArticleNextentry {
 		        ), array(), array(
 			        'padding' => '0 0 10 0',
 		        )),
+		        */
 	        ), array(
 	        	'style' => 'article-uikit-related-item'
 	        ))

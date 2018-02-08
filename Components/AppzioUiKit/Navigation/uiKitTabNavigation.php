@@ -68,7 +68,7 @@ trait uiKitTabNavigation
                 'font-size' => '14',
             )),
             $this->getComponentSpacer('3', array(), array(
-                'background-color' => "#FFCC00"
+                'background-color' => "#d30410"
             ))
         ), array(), array(
             'width' => $width,

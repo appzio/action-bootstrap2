@@ -39,11 +39,13 @@ trait uiKitArticleItem {
 				        'style' => 'article-uikit-listing-subtitle',
 			        )),
 		        )),
+		        /*
 		        $this->getComponentRow(array(
 			        $this->getComponentText(strtoupper(date('F j, Y', strtotime($article->article_date))), array(
 				        'style' => 'article-uikit-listing-date',
 			        )),
 		        ))
+		        */
 	        ), array(), array(
 		        'width' => 'auto',
 		        'height' => $this->screen_height / $this->height_proportion,

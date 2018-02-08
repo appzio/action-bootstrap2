@@ -21,15 +21,14 @@ trait uiKitArticleHeading {
 					    $this->getComponentImage('arrow-back-black.png', array(
 						    'onclick' => $this->getOnclickGoHome()
 					    ), array(
-						    'width' => '30',
+						    'height' => '30',
 					    )),
 				    ), array(), array(
 					    'padding' => '15 15 15 15',
 				    ))
 			    ),
-			    $this->uiKitArticleDate(),
-			    $this->uiKitArticleTitle('article-uikit-title-dark'),
-			    $this->uiKitArticleCategory()
+			    $this->uiKitArticleCategory(),
+			    $this->uiKitArticleTitle('article-uikit-title-dark')
 		    ), array(), array(
 			    'vertical-align' => 'top',
 			    'margin' => '0 0 5 0',
@@ -63,7 +62,7 @@ trait uiKitArticleHeading {
 			    $this->getComponentImage('arrow-back-white.png', array(
 			    	'onclick' => $this->getOnclickGoHome()
 			    ), array(
-				    'width' => '30',
+				    'height' => '30',
 			    )),
 		    ))
 	    ), array(), array(
@@ -80,9 +79,8 @@ trait uiKitArticleHeading {
 
     public function uiKitArticleInfo() {
 	    return $this->getComponentColumn(array_merge(
-			$this->uiKitArticleDate(),
-			$this->uiKitArticleTitle(),
-			$this->uiKitArticleCategory()
+		    $this->uiKitArticleCategory(),
+			$this->uiKitArticleTitle()
 	    ), array(), array(
 		    'width' => '100%',
 		    'height' => $this->screen_height - 100,
