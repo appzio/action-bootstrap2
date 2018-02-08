@@ -6,7 +6,6 @@ use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitEmailDiv
 {
-    public $isLiked;
 
     public function uiKitEmailDiv($params = array())
     {

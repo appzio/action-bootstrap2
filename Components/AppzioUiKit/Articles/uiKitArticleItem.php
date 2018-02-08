@@ -15,6 +15,10 @@ trait uiKitArticleItem {
 			    'back_button' => 1
 		    ));
 
+	    if ( $article->link ) {
+		    $onclick = $this->getOnclickShowDiv('video-article-' . $article->id, $this->uiKitArticleDivLayout());
+	    }
+
         return $this->getComponentRow(array(
 	        $this->getComponentColumn(array(
 		        $this->getComponentImage($this->getListingImage( $article->photos ), array(
@@ -74,5 +78,20 @@ trait uiKitArticleItem {
 
 	    return 'article-uikit-listing-placeholder.png';
     }
+
+	public function uiKitArticleDivLayout() {
+		$layout = new \stdClass();
+		$layout->top = 80;
+		$layout->bottom = 0;
+		$layout->left = 0;
+		$layout->right = 0;
+
+		return array(
+			'background' => 'blur',
+			'tap_to_close' => 1,
+			'transition' => 'from-bottom',
+			'layout' => $layout
+		);
+	}
 
 }

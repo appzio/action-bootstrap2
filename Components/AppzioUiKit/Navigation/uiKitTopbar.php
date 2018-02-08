@@ -16,7 +16,7 @@ trait uiKitTopbar
         }
 
         $styles = array(
-			'width' => $this->screen_width,
+			'width' => 'auto',
 			'padding' => '0 15 0 15',
 			'height' => '50',
 			'vertical-align' => 'middle',
@@ -40,6 +40,7 @@ trait uiKitTopbar
 	        $this->getComponentColumn(array(
 	        	$this->getComponentText($title, array(), array(
 			        'font-size' => '20',
+			        'color' => '#ffffff',
 		        )),
 	        ), array(), array(
 		        'text-align' => 'center',
