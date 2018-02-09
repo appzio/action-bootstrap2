@@ -45,8 +45,8 @@ trait uiKitVideoDiv
 			    $this->getComponentText('{#close#}', array('style' => 'uikit_wide_button_text'))
 		    ), array(
 			    'onclick' => $closeDiv,
-			    'style' => 'uikit_wide_button'
 		    ), array(
+			    'width' => '75%',
 			    'text-align' => 'center',
 			    'vertical-align' => 'bottom',
 			    'margin' => '0 0 15 0',

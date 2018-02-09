@@ -124,7 +124,7 @@ class BootstrapController implements BootstrapControllerInterface {
      *
      * @return mixed
      */
-    public function collectLocation( $timetolive = false, $return_timezone = false ){
+    public function collectLocation( $timetolive = false ){
         $cache = \Appcaching::getGlobalCache('location-asked'.$this->playid);
 
         if(!$cache){
@@ -132,14 +132,6 @@ class BootstrapController implements BootstrapControllerInterface {
 	        $task->action = 'ask-location';
             \Appcaching::setGlobalCache('location-asked'.$this->playid,true, $timetolive);
             $this->onloads[] = $task;
-
-            if ( $return_timezone ) {
-				return $this->getTimezone(
-					$this->model->getSavedVariable( 'lat' )	,
-					$this->model->getSavedVariable( 'lon' )
-				);
-            }
-
         } else {
             return false;
         }
@@ -153,7 +145,14 @@ class BootstrapController implements BootstrapControllerInterface {
         return ['Blank',array()];
     }
 
-    public function getTimezone($cur_lat, $cur_long, $country_code = '') {
+    public function getTimezone($cur_lat, $cur_long, $country_code = '', $timetolive) {
+
+	    $cache = \Appcaching::getGlobalCache('timezone-asked'.$this->playid);
+
+	    if ( $cache ) {
+	        return false;
+	    }
+
 	    $timezone_ids = ($country_code) ? \DateTimeZone::listIdentifiers(\DateTimeZone::PER_COUNTRY, $country_code)
 		    : \DateTimeZone::listIdentifiers();
 
@@ -193,6 +192,8 @@ class BootstrapController implements BootstrapControllerInterface {
 			    }
 
 		    }
+
+		    \Appcaching::setGlobalCache('timezone-asked'.$this->playid,true, $timetolive);
 
 		    return $time_zone;
 	    }
