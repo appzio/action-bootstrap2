@@ -34,25 +34,7 @@ trait CalendarHelper {
     /* 20180129T123000Z */
     public function getCalendarTemplate($parameters){
 
-        if(!isset($parameters['starttime'])){
-            $this->errors[] = 'Missing start time';
-        }
-
-        if(!isset($parameters['endtime'])){
-            $this->errors[] = 'Missing end time';
-        }
-
-        if(!isset($parameters['subject'])){
-            $this->errors[] = 'Missing subject time';
-        }
-
-				        if(!isset($parameters['organizer'])){
-            $this->errors[] = 'Missing organizer';
-        }
-
-        if(!isset($parameters['organizer_email'])){
-            $this->errors[] = 'Missing organizer email';
-        }
+        $this->getCalendarErrors( $parameters );
 
         if(isset($parameters['invitees']) AND is_array($parameters['invitees']) AND $parameters['invitees']) {
             $invitees = true;
@@ -79,8 +61,10 @@ PRODID:Appzio
 METHOD:REQUEST
 BEGIN:VEVENT
 ";
-        $template .= 'DTSTART:'.$starttime.chr(10);
+
+        $template .= 'DTSTART;TZID=Europe/Berlin:'.$starttime.chr(10);
         $template .= 'DTEND:'.$endtime.chr(10);
+
         $template .=
 "DTSTAMP:".$this->convertUnixTimeToCalendar(time()) ."
 ORGANIZER;CN=$organizer:mailto:$organizer_email
@@ -104,6 +88,10 @@ CREATED:".$this->convertUnixTimeToCalendar(time());
             $template .= chr(10).'LOCATION:'.$parameters['location'];
         }
 
+        if(isset($parameters['url'])){
+            $template .= chr(10).'URL:'.$parameters['url'];
+        }
+
         if(isset($parameters['repeat_daily_until'])){
             $template .= chr(10).'RRULE:FREQ=DAILY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_daily_until']);
         }
@@ -111,33 +99,29 @@ CREATED:".$this->convertUnixTimeToCalendar(time());
         if(isset($parameters['repeat_weekly_until'])){
             $template .= chr(10).'RRULE:FREQ=WEEKLY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_weekly_until']);
 
-	        if ( isset($parameters['BYDAY']) ) {
-		        $template .= ';BYDAY=' . $parameters['BYDAY'];
-	        }
+            if ( isset($parameters['BYDAY']) ) {
+                $template .= ';BYDAY=' . $parameters['BYDAY'];
+            }
 
             if ( isset($parameters['interval']) ) {
-            	$template .= ';INTERVAL=' . $parameters['interval'];
+                $template .= ';INTERVAL=' . $parameters['interval'];
             }
         }
 
         if(isset($parameters['repeat_monthly_until'])){
             $template .= chr(10).'RRULE:FREQ=MONTHLY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_monthly_until']);
 
-	        if ( isset($parameters['BYMONTHDAY']) ) {
-		        $template .= ';BYMONTHDAY=' . $parameters['BYMONTHDAY'];
-	        }
+            if ( isset($parameters['BYMONTHDAY']) ) {
+                $template .= ';BYMONTHDAY=' . $parameters['BYMONTHDAY'];
+            }
 
-	        if ( isset($parameters['interval']) ) {
-		        $template .= ';INTERVAL=' . $parameters['interval'];
-	        }
+            if ( isset($parameters['interval']) ) {
+                $template .= ';INTERVAL=' . $parameters['interval'];
+            }
         }
 
         if(isset($parameters['repeat_yearly_until'])){
             $template .= chr(10).'RRULE:FREQ=YEARLY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_yearly_until']);
-        }
-
-        if(isset($parameters['url'])){
-            $template .= chr(10).'URL:'.$parameters['url'];
         }
 
         $template .= "
@@ -172,6 +156,28 @@ END:VEVENT
 END:VCALENDAR";
 
         return $template;
+    }
+
+    public function getCalendarErrors( $parameters ) {
+
+        $errors = [
+            'starttime' => 'Missing start time',
+            'endtime' => 'Missing end time',
+            'subject' => 'Missing subject',
+            'organizer' => 'Missing organizer',
+            'organizer_email' => 'Missing organizer email',
+        ];
+
+        foreach ($errors as $key => $error) {
+            if ( !isset($parameters[$key]) ) {
+                $this->errors[] = $error;
+            }
+        }
+
+        if(!isset($parameters['starttime'])){
+            $this->errors[] = 'Missing start time';
+        }
+
     }
 
     public function convertUnixTimeToCalendar($time){
