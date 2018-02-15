@@ -174,10 +174,13 @@ trait Variables {
     public function getSubmittedVariableByName($varname,$default=false) {
         /* @var $this BootstrapModel */
 
-        if (isset($this->submitvariables[$this->getVariableId($varname)])) {
-            return $this->submitvariables[$this->getVariableId($varname)];
-        } elseif(isset($this->submitvariables[$varname])){
-            return $this->submitvariables[$varname];
+        $data = $this->submitvariables;
+        $var_id = $this->getVariableId($varname);
+
+        if (isset($data[$var_id]) AND $data[$var_id] !== 'false') {
+            return $data[$var_id];
+        } elseif (isset($data[$varname]) AND $data[$varname] !== 'false') {
+            return $data[$varname];
         } elseif ($default) {
             return $default;
         }

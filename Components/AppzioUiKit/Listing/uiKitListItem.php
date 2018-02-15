@@ -2,6 +2,7 @@
 
 namespace Bootstrap\Components\AppzioUiKit\Listing;
 use Bootstrap\Views\BootstrapView;
+use Bootstrap\Models\BootstrapModel;
 
 trait uiKitListItem {
 
@@ -17,6 +18,7 @@ trait uiKitListItem {
      * @return \stdClass
      */
     public function uiKitListItem(string $title, array $discription = array(), array $parameters=array(), array $styles=array()) {
+        /** @var BootstrapModel $this->model */
         /** @var BootstrapView $this */
 
 	    $title_row = [];
@@ -29,11 +31,19 @@ trait uiKitListItem {
 				$title = $value;
 
 				if ( isset($parameters['time_format']) AND $parameters['time_format'] AND is_numeric($value) ) {
-					$title = date( $parameters['time_format'], $value );
-				}
+                    $title = date( $parameters['time_format'], $value );
+                }
 
 		    }
 	    }
+
+	    if ( isset($parameters['title']) ) {
+	        $title = $parameters['title'];
+        }
+
+        if ( isset($parameters['value']) ) {
+            $text_params['value'] = $parameters['value'];
+        }
 
 	    if ( isset($parameters['left_icon']) AND $parameters['left_icon'] ) {
 		    $title_row[] = $this->getComponentImage($parameters['left_icon'], array(), array(
