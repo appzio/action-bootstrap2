@@ -13,13 +13,15 @@ trait uiKitEmailWithInputDiv
         /** @var BootstrapComponent $this */
         $images = isset($params['images']) ? $params['images'] : array();
         $action = isset($params['action']) ? $params['action'] : 'Controller/email';
+        $subtitle = isset($params['subtitle']) ? $params['subtitle'] : '';
 
         return $this->getComponentColumn(array(
             $this->uiKitDivHeader('Send Email', array(
                 'image' => 'cloud_upload_dev.png',
                 'close_icon' => 'cross-sign.png',
-                'div_id' => 'email'
+                'div_id' => 'email',
             )),
+            $this->getEmailDivSubtitle($subtitle),
             $this->getEmailAttachedImages($images),
             $this->getComponentFormFieldText('', array(
                 'hint' => 'To:',
@@ -67,6 +69,15 @@ trait uiKitEmailWithInputDiv
             ))
         ), array(), array(
             'background-color' => '#ffffff'
+        ));
+    }
+
+    protected function getEmailDivSubtitle($subtitle)
+    {
+        return $this->getComponentText($subtitle, array(), array(
+            'text-align' => 'center',
+            'color' => '#797f82',
+            'font-size' => '14'
         ));
     }
 
