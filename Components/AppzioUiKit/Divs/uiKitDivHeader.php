@@ -25,7 +25,7 @@ trait uiKitDivHeader
 
     protected function getDivHeaderImage($image)
     {
-        if ($image) {
+        if (false) {
             return $this->getComponentImage('cloud_upload_dev.png', array(
                 'style' => 'uikit_div_header_image'
             ));
