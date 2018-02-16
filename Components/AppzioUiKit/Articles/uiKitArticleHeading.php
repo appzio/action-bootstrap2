@@ -18,7 +18,7 @@ trait uiKitArticleHeading {
 		    return $this->getComponentColumn(array_merge(
 			    array(
 				    $this->getComponentRow(array(
-					    $this->getComponentImage('arrow-back-black.png', array(
+					    $this->getComponentImage('arrow-back-black-v2.png', array(
 						    'onclick' => $this->getOnclickGoHome()
 					    ), array(
 						    'height' => '30',
@@ -59,7 +59,7 @@ trait uiKitArticleHeading {
     public function uiKitArticleNavigationBar() {
     	return $this->getComponentColumn(array(
 		    $this->getComponentRow(array(
-			    $this->getComponentImage('arrow-back-white.png', array(
+			    $this->getComponentImage('arrow-back-white-v2.png', array(
 			    	'onclick' => $this->getOnclickGoHome()
 			    ), array(
 				    'height' => '30',
