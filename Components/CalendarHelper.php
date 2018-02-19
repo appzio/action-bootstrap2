@@ -65,9 +65,10 @@ BEGIN:VEVENT
         $template .= 'DTSTART;TZID=Europe/Berlin:'.$starttime.chr(10);
         $template .= 'DTEND:'.$endtime.chr(10);
 
+        // ORGANIZER;CN=$organizer:mailto:$organizer_email
+
         $template .=
 "DTSTAMP:".$this->convertUnixTimeToCalendar(time()) ."
-ORGANIZER;CN=$organizer:mailto:$organizer_email
 UID:".\Helper::generateShortcode('15')."@appzio.com
 CREATED:".$this->convertUnixTimeToCalendar(time());
 
