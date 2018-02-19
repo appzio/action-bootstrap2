@@ -116,12 +116,25 @@ trait uiKitAccordion
             $row[] = $this->getComponentImage($item['icon'], array("style" => $stylePrefix . "_icon"));
         }
 
-        $row[] = $this->getComponentColumn([
+        $content = array(
             $this->getComponentText($item['title'],array("style" => $stylePrefix . "_title")),
             $this->getComponentColumn($item['description'], array(), array(
                 'height' => '150'
             ))
-        ], array(array("style" => $stylePrefix . "_middle_container")));
+        );
+
+        if ($stylePrefix == 'ui_accordion_line_show') {
+            $content[] = $this->getComponentRow(array(
+                $this->getComponentImage('arrow_pd.png', array(), array(
+                    'width' => '20'
+                ))
+            ), array(), array(
+                'text-align' => 'right',
+                'margin' => '0 20 20 0'
+            ));
+        }
+
+        $row[] = $this->getComponentColumn($content, array(array("style" => $stylePrefix . "_middle_container")));
 
 //        if ($item['icon-back']) {
 //            $row[] = $this->getComponentImage($item['icon-back'],array("style" => $stylePrefix . "_icon-back"));
