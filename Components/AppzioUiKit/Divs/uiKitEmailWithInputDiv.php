@@ -91,7 +91,9 @@ trait uiKitEmailWithInputDiv
                 'variable' => 'send_pic_' . $index,
                 'selected_state' => $this->getImageSelectedState($image),
             ), array(
-                'background-image' => $this->getImageFileName($image),
+                'background-image' => $this->getImageFileName($image, array(
+                    'priority' => 9,
+                )),
                 'background-size' => 'cover',
                 'height' => '100',
                 'width' => '100',
@@ -112,7 +114,9 @@ trait uiKitEmailWithInputDiv
     {
         return array(
             'style_content' => array(
-                'background-image' => $this->getImageFileName($image),
+                'background-image' => $this->getImageFileName($image, array(
+                    'priority' => 9,
+                )),
                 'background-size' => 'cover',
                 'height' => '100',
                 'width' => '100',
@@ -122,7 +126,11 @@ trait uiKitEmailWithInputDiv
                 'margin' => '0 5 0 5',
             ),
             'allow_unselect' => 1,
-            'variable_value' => $this->getImageFileName($image)
+            'variable_value' => $this->getImageFileName($image, array(
+                'priority' => 9,
+                'imgwidth' => 2000,
+                'imgheight' => 'auto',
+            )),
         );
     }
 
