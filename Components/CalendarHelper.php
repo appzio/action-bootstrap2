@@ -42,6 +42,9 @@ trait CalendarHelper {
             $invitees = false;
         }
 
+        // Fix is turned on by default
+        $outlook_fix = isset($parameters['outlook_fix']) ? $parameters['outlook_fix'] : true;
+
         $starttime = $this->convertUnixTimeToCalendar($parameters['starttime']);
         $endtime = $this->convertUnixTimeToCalendar($parameters['endtime']);
         $subject = $parameters['subject'];
@@ -57,7 +60,7 @@ trait CalendarHelper {
         $template .= chr(10).
 "VERSION:2.0
 CALSCALE:GREGORIAN
-PRODID:Appzio
+PRODID:-//Microsoft Corporation//Outlook 12.0 MIMEDIR//EN
 METHOD:REQUEST
 BEGIN:VEVENT
 ";
@@ -134,6 +137,17 @@ TRANSP:OPAQUE
 CLASS:PUBLIC
 PRIORITY:5";
 
+        if($outlook_fix){
+            $template .= " 
+X-MS-OLK-FORCEINSPECTOROPEN:TRUE
+X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+X-MS-OLK-ALLOWEXTERNCHECK:TRUE
+X-MS-OLK-AUTOFILLLOCATION:FALSE
+X-MS-OLK-CONFTYPE:0";
+        }
+
         if($invitees){
             $template .= "
 X-MICROSOFT-CDO-APPT-SEQUENCE:0
@@ -154,7 +168,8 @@ TRIGGER;RELATED=START:-PT15M
 ACTION:DISPLAY
 END:VALARM
 END:VEVENT
-END:VCALENDAR";
+END:VCALENDAR
+";
 
         return $template;
     }
