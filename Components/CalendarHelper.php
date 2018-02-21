@@ -36,6 +36,10 @@ trait CalendarHelper {
 
         $this->getCalendarErrors( $parameters );
 
+        if ( $this->errors ) {
+            return false;
+        }
+
         if(isset($parameters['invitees']) AND is_array($parameters['invitees']) AND $parameters['invitees']) {
             $invitees = true;
         } else {
@@ -50,6 +54,40 @@ trait CalendarHelper {
         $subject = $parameters['subject'];
         $organizer = $parameters['organizer'];
         $organizer_email = $parameters['organizer_email'];
+
+        $template = 'BEGIN:VCALENDAR' . chr(10);
+        $template .= 'PRODID:-//Microsoft Corporation//Outlook 12.0 MIMEDIR//EN' . chr(10);
+        $template .= 'VERSION:2.0' . chr(10);
+        $template .= 'METHOD:PUBLISH' . chr(10);
+        $template .= 'X-MS-OLK-FORCEINSPECTOROPEN:TRUE' . chr(10);
+        $template .= 'BEGIN:VEVENT' . chr(10);
+        $template .= 'CLASS:PUBLIC' . chr(10);
+        $template .= 'DESCRIPTION:' . $parameters['description'] . chr(10);
+        $template .= 'DTEND:' . $endtime . chr(10);
+        $template .= 'DTSTART:' . $starttime . chr(10);
+        $template .= 'LOCATION:' . chr(10);
+        $template .= 'PRIORITY:5' . chr(10);
+        $template .= 'SEQUENCE:0' . chr(10);
+        $template .= 'SUMMARY;LANGUAGE=en-us:' . $subject . chr(10);
+        $template .= 'TRANSP:OPAQUE' . chr(10);
+        $template .= 'UID:' . \Helper::generateShortcode('15') . '@appzio.com' . chr(10);
+        $template .= 'X-MICROSOFT-CDO-BUSYSTATUS:BUSY' . chr(10);
+        $template .= 'X-MICROSOFT-CDO-IMPORTANCE:1' . chr(10);
+        $template .= 'X-MICROSOFT-DISALLOW-COUNTER:FALSE' . chr(10);
+        $template .= 'X-MS-OLK-ALLOWEXTERNCHECK:TRUE' . chr(10);
+        $template .= 'X-MS-OLK-AUTOFILLLOCATION:FALSE' . chr(10);
+        $template .= 'X-MS-OLK-CONFTYPE:0' . chr(10);
+        $template .= 'BEGIN:VALARM' . chr(10);
+        $template .= 'TRIGGER:-PT1440M' . chr(10);
+        $template .= 'ACTION:DISPLAY' . chr(10);
+        $template .= 'DESCRIPTION:Reminder' . chr(10);
+        $template .= 'END:VALARM' . chr(10);
+        $template .= 'END:VEVENT' . chr(10);
+        $template .= 'END:VCALENDAR' . chr(10);
+
+        return $template;
+
+        // Leaving the other generator for now
 
         $template = "BEGIN:VCALENDAR";
 
