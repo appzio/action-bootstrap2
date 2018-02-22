@@ -55,7 +55,8 @@ trait uiKitSearchItem {
 		    $title_row[] = $this->getComponentColumn(array(
 			    $this->getComponentText($date, $text_params, array(
 				    'color' => '#777d81',
-				    'font-size' => '12'
+				    'font-size' => '12',
+				    'text-align' => 'right',
 			    )),
 		    ), array(), array(
 		    	'width' => '35%'
