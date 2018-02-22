@@ -40,7 +40,7 @@ trait uiKitEmailDiv
                 'hint' => 'Message:',
                 'variable' => 'message'
             ), array(
-                'margin' => '0 20 0 20'
+                'margin' => '5 10 5 10'
             )),
             $this->getComponentSpacer('1', array(), array(
                 'background-color' => '#dadada',

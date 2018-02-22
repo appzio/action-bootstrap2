@@ -38,9 +38,8 @@ trait uiKitEmailWithInputDiv
                 'hint' => 'Message:',
                 'variable' => 'message'
             ), array(
-                'margin' => '0 20 0 20',
+                'margin' => '5 10 5 10',
                 'height' => '75'
-
             )),
             $this->getComponentSpacer('1', array(), array(
                 'background-color' => '#dadada',
