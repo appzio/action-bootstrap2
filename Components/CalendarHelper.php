@@ -60,6 +60,7 @@ trait CalendarHelper {
         $template .= 'VERSION:2.0' . chr(10);
         $template .= 'METHOD:PUBLISH' . chr(10);
         $template .= 'X-MS-OLK-FORCEINSPECTOROPEN:TRUE' . chr(10);
+        $template .= 'TZ:+00' . chr(10);
         $template .= 'BEGIN:VEVENT' . chr(10);
         $template .= 'CLASS:PUBLIC' . chr(10);
         $template .= 'DESCRIPTION:' . $parameters['description'] . chr(10);
@@ -235,9 +236,13 @@ END:VCALENDAR
     }
 
     public function convertUnixTimeToCalendar($time){
-//        $difference = $this->get_timezone_offset('Europe/London');
+
+        // Set the default timezone to UTC
+        date_default_timezone_set('UTC');
+
 //        $time = $time + $difference;
-        $time = $time + 3600;
+//        $difference = $this->get_timezone_offset('Europe/London');
+
         $time = date('Y-m-d H:i',$time);
         $time = new DateTime($time, new DateTimeZone('Europe/London'));
         $output = $time->format('Ymd') .'T' .$time->format('Hi') .'00Z';
