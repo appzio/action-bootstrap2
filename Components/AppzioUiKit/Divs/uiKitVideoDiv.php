@@ -15,19 +15,24 @@ trait uiKitVideoDiv
 
 	    /** @var BootstrapComponent $this */
 	    $title = isset($params['title']) ? $params['title'] : 'Video';
+	    $div_id = isset($params['div_id']) ? $params['div_id'] : '';
 
 	    return $this->getComponentColumn(array(
 		    $this->getComponentRow(array(
-			    $this->getComponentImage('cloud_upload_dev.png', array(), array(
-				    'width' => '20',
-				    'margin' => '0 10 0 0'
-			    )),
 			    $this->getComponentText($title, array(), array(
 				    'color' => '#ffffff',
 				    'font-size' => '14',
 				    'width' => '100%',
-			    ))
-		    ), array(), array(
+			    )),
+                $this->getComponentImage('cross-sign.png', array(), array(
+                    'width' => '15',
+                    'floating' => '1',
+                    'float' => 'right',
+                    'margin' => '2 0 0 0'
+                )),
+		    ), array(
+                'onclick' => $this->getOnclickHideDiv($div_id)
+            ), array(
 			    'padding' => '10 20 10 20',
 			    'background-color' => '#4a4a4a',
 			    'shadow-color' => '#33000000',
