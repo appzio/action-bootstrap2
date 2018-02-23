@@ -61,10 +61,7 @@ trait uiKitAccordion
         }
 
         return $this->getComponentText('no items');
-
-
     }
-
 
     public function uiKitAccordionItem($item)
     {
@@ -75,12 +72,6 @@ trait uiKitAccordion
         $actionShow[] = $this->getOnclickHideElement("show_" .$item['id'], array(
             'transition' => 'none'
         ));
-        $output[] = $this->getComponentRow(
-            $this->getVisibleRow($item['show']),
-            array(
-                "id" => "show_" .$item['id'],
-                "style" => "ui_accordion_line_show_row",
-                "onclick" => $actionShow));
 
         $actionHide[] = $this->getOnclickShowElement("show_" .$item['id']);
         $actionHide[] = $this->getOnclickHideElement("hide_" .$item['id'], array(
@@ -89,6 +80,14 @@ trait uiKitAccordion
         $actionHide[] = $this->getOnclickHideElement("hidden_" .$item['id'], array(
             'transition' => 'none'
         ));
+
+        $output[] = $this->getComponentRow(
+            $this->getVisibleRow($item['show']),
+            array(
+                "id" => "show_" .$item['id'],
+                "style" => "ui_accordion_line_show_row",
+                "onclick" => $actionShow));
+
         $output[] = $this->getComponentRow(
             $this->getVisibleRow($item['hide'], "ui_accordion_line_hide"),
             array(
@@ -113,15 +112,30 @@ trait uiKitAccordion
 
         $row = [];
         if ($item['icon']) {
-            $row[] = $this->getComponentImage($item['icon'], array("style" => $stylePrefix . "_icon"));
+            // $row[] = $this->getComponentImage($item['icon'], array("style" => $stylePrefix . "_icon"));
+            $row[] = $this->getComponentColumn(array(
+                $this->getComponentImage($item['icon'], array(), array(
+                    'width' => '100%',
+                ))
+            ), array(), array(
+                'width' => 100,
+                'padding' => '5 0 0 0',
+                'vertical-align' => 'top',
+            ));
         }
 
-        $content = array(
-            $this->getComponentText($item['title'],array("style" => $stylePrefix . "_title")),
-            $this->getComponentColumn($item['description'], array(), array(
+        $content = [];
+
+        if ( isset($item['title']) AND $item['title'] ) {
+            $content[] = $this->getComponentText($item['title'],array("style" => $stylePrefix . "_title"));
+        }
+
+        if ( isset($item['description']) AND $item['description'] ) {
+            $content[] = $this->getComponentColumn($item['description'], array(), array(
+                'padding' => '0 0 0 0',
                 'height' => '150'
-            ))
-        );
+            ));
+        }
 
         if ($stylePrefix == 'ui_accordion_line_show') {
             $content[] = $this->getComponentRow(array(
@@ -129,12 +143,15 @@ trait uiKitAccordion
                     'width' => '20'
                 ))
             ), array(), array(
+                'width' => 'auto',
                 'text-align' => 'right',
                 'margin' => '0 20 20 0'
             ));
         }
 
-        $row[] = $this->getComponentColumn($content, array(array("style" => $stylePrefix . "_middle_container")));
+        $row[] = $this->getComponentColumn($content, array(
+            "style" => $stylePrefix . "_middle_container"
+        ), array());
 
 //        if ($item['icon-back']) {
 //            $row[] = $this->getComponentImage($item['icon-back'],array("style" => $stylePrefix . "_icon-back"));
@@ -153,11 +170,16 @@ trait uiKitAccordion
                 'hint' => 'Enter text here',
                 'variable' => $item['variable']
             ), array(
-                'padding' => '0 0 0 30'
+                'padding' => '8 10 8 10',
+                'border-width' => '1',
+                'border-color' => '#cccccc',
             ));
         } else {
-            $row[] = $this->getComponentText($item['description'], array(), array(
-                'padding' => '10 0 10 10',
+            $row[] = $this->getComponentText('Current entry: ' . $item['description'], array(), array(
+                'width' => 'auto',
+                'padding' => '8 10 8 10',
+                'border-width' => '1',
+                'border-color' => '#cccccc',
             ));
         }
 

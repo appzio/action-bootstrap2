@@ -4,7 +4,6 @@
     "border-color": "#777777",
     "color": "#777777"
   },
-
   "ui_accordion_line_hide_row": {
     "background-color": "#94af7b",
     "border-color": "#777777",
@@ -13,8 +12,6 @@
   "ui_accordion_line_hidden_row": {
     "background-color": "#ffffff"
   },
-
-
   "ui_accordion_line_show_icon": {
     "width" : "30",
     "margin": "10 10 10 10"
@@ -48,7 +45,6 @@
   "ui_accordion_line_hide_middle_container": {
     "margin": "5 5 5 5"
   },
-
   "ui_accordion_hidden_button": {
     "background-color": "#ffffff",
     "border-color": "#777777",
@@ -58,7 +54,6 @@
     "text-align": "center",
     "padding": "5 5 5 5"
   },
-
   "ui_accordion_hidden_description": {
     "padding": "10 20 10 20"
   }
