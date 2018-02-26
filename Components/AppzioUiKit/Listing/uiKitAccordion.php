@@ -175,7 +175,7 @@ trait uiKitAccordion
                 'border-color' => '#cccccc',
             ));
         } else {
-            $row[] = $this->getComponentText('Current entry: ' . $item['description'], array(), array(
+            $row[] = $this->getComponentText($item['description'], array(), array(
                 'width' => 'auto',
                 'padding' => '8 10 8 10',
                 'border-width' => '1',

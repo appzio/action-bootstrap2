@@ -79,7 +79,7 @@ trait CalendarHelper {
         $template .= 'X-MS-OLK-AUTOFILLLOCATION:FALSE' . chr(10);
         $template .= 'X-MS-OLK-CONFTYPE:0' . chr(10);
         $template .= 'BEGIN:VALARM' . chr(10);
-        $template .= 'TRIGGER:-PT1440M' . chr(10);
+        $template .= 'TRIGGER:-PT15M' . chr(10);
         $template .= 'ACTION:DISPLAY' . chr(10);
         $template .= 'DESCRIPTION:Reminder' . chr(10);
         $template .= 'END:VALARM' . chr(10);
