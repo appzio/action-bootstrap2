@@ -119,6 +119,7 @@ class BootstrapModel extends CActiveRecord {
      * @var
      */
     public $actionid;
+    public $playtaskid;
 
     /**
      * Array containing all of the application menus.
@@ -290,6 +291,10 @@ class BootstrapModel extends CActiveRecord {
         $this->notifications->playid = $this->playid;
         $this->notifications->app_id = $this->appid;
         $this->notifications->model = $this;
+
+        if(isset($this->actionobj->playtaskid)){
+            $this->actionid = $this->actionobj->playtaskid;
+        }
 
 
     }

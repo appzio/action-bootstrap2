@@ -205,6 +205,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\ConfirmationDialog;
     use ClientComponents\SwipeAreaNavigation;
     use ClientComponents\Timer;
+    use ClientComponents\SwipeStack;
 
     use ClientComponents\ImageGrid;
 
@@ -288,6 +289,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
 	use AppzioUiKit\Buttons\uiKitSwipeDeleteButton;
 	use AppzioUiKit\Buttons\uiKitSwipeUpdateButton;
+
+	use AppzioUiKit\Swiper\uiKitUserSwiper;
 
     use ViewGetters;
     use ViewHelpers;
