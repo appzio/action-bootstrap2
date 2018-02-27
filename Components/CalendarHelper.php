@@ -52,6 +52,7 @@ trait CalendarHelper {
         $starttime = $this->convertUnixTimeToCalendar($parameters['starttime']);
         $endtime = $this->convertUnixTimeToCalendar($parameters['endtime']);
         $subject = $parameters['subject'];
+        $location = isset($parameters['location']) ? $parameters['location'] : '';
         $organizer = $parameters['organizer'];
         $organizer_email = $parameters['organizer_email'];
 
@@ -66,7 +67,7 @@ trait CalendarHelper {
         $template .= 'DESCRIPTION:' . $parameters['description'] . chr(10);
         $template .= 'DTEND:' . $endtime . chr(10);
         $template .= 'DTSTART:' . $starttime . chr(10);
-        $template .= 'LOCATION:' . chr(10);
+        $template .= 'LOCATION:' . $location . chr(10);
         $template .= 'PRIORITY:5' . chr(10);
         $template .= 'SEQUENCE:0' . chr(10);
         $template .= 'SUMMARY;LANGUAGE=en-us:' . $subject . chr(10);

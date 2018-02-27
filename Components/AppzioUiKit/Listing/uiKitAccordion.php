@@ -41,7 +41,7 @@ trait uiKitAccordion
     {
 
         /** @var BootstrapComponent $this */
-
+        
         $stack = array();
 
         foreach ($items as $key => $item) {
@@ -72,8 +72,12 @@ trait uiKitAccordion
         $actionShow[] = $this->getOnclickHideElement("show_" .$item['id'], array(
             'transition' => 'none'
         ));
+        $actionShow[] = $this->getOnclickHideElement("hidden_arrow_" .$item['id'], array(
+            'transition' => 'none'
+        ));
 
         $actionHide[] = $this->getOnclickShowElement("show_" .$item['id']);
+        $actionHide[] = $this->getOnclickShowElement("hidden_arrow_" .$item['id']);
         $actionHide[] = $this->getOnclickHideElement("hide_" .$item['id'], array(
             'transition' => 'none'
         ));
@@ -81,28 +85,27 @@ trait uiKitAccordion
             'transition' => 'none'
         ));
 
-        $output[] = $this->getComponentRow(
-            $this->getVisibleRow($item['show']),
-            array(
-                "id" => "show_" .$item['id'],
-                "style" => "ui_accordion_line_show_row",
-                "onclick" => $actionShow));
+        $item['show']['id'] = $item['id'];
+        $item['show']['expanded'] = ( isset($item['show']['description']) AND $item['show']['description'] AND isset($item['expanded']) ) ? true : false;
 
-        $output[] = $this->getComponentRow(
-            $this->getVisibleRow($item['hide'], "ui_accordion_line_hide"),
-            array(
-                "id" => "hide_" .$item['id'],
-                "visibility" => 'hidden',
-                "style" => "ui_accordion_line_hide_row",
-                "onclick" => $actionHide));
+        $output[] = $this->getComponentRow($this->getVisibleRow($item['show']), array(
+            "id" => "show_" .$item['id'],
+            "style" => "ui_accordion_line_show_row",
+            "onclick" => $actionShow
+        ));
 
-        $output[] = $this->getComponentRow(
-            $this->getHiddenRow($item['hidden']),
-            array(
-                "id" => "hidden_" .$item['id'],
-                "visibility" => isset($item['expanded']) ? '' : 'hidden',
-                "style" => "ui_accordion_line_hidden_row"
-            ));
+        $output[] = $this->getComponentRow($this->getVisibleRow($item['hide'], "ui_accordion_line_hide"), array(
+            "id" => "hide_" .$item['id'],
+            "visibility" => 'hidden',
+            "style" => "ui_accordion_line_hide_row",
+            "onclick" => $actionHide
+        ));
+
+        $output[] = $this->getComponentRow($this->getHiddenRow($item['hidden']), array(
+            "id" => "hidden_" .$item['id'],
+            "visibility" => isset($item['expanded']) ? '' : 'hidden',
+            "style" => "ui_accordion_line_hidden_row"
+        ));
 
         return $this->getComponentColumn($output, array("style" => 'ui_accordion_line_container'));
     }
@@ -142,7 +145,10 @@ trait uiKitAccordion
                 $this->getComponentImage('arrow_pd.png', array(), array(
                     'width' => '20'
                 ))
-            ), array(), array(
+            ), array(
+                "id" => "hidden_arrow_" . $item['id'],
+                "visibility" => (isset($item['expanded']) AND $item['expanded']) ? 'hidden' : '',
+            ), array(
                 'width' => 'auto',
                 'text-align' => 'right',
                 'margin' => '0 20 20 0'
@@ -163,6 +169,7 @@ trait uiKitAccordion
     public function getHiddenRow($item) {
         /** @var BootstrapComponent $this */
         $row = [];
+
         if (isset($item['input'])) {
             $input = isset($item['value']) ? $item['value'] : '';
 
