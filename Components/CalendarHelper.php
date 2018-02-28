@@ -82,7 +82,7 @@ trait CalendarHelper {
         $template .= 'BEGIN:VALARM' . chr(10);
         $template .= 'TRIGGER:-PT15M' . chr(10);
         $template .= 'ACTION:DISPLAY' . chr(10);
-        $template .= 'DESCRIPTION:Reminder' . chr(10);
+        $template .= 'DESCRIPTION:' . $parameters['description'] . chr(10);
         $template .= 'END:VALARM' . chr(10);
         $template .= 'END:VEVENT' . chr(10);
         $template .= 'END:VCALENDAR' . chr(10);

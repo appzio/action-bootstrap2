@@ -256,4 +256,65 @@ trait DataHelpers {
 
     }
 
+    /**
+     * Return the user's timezone based on his current location
+     *
+     * @return array
+     */
+    public function getTimezone($cur_lat, $cur_long, $country_code = '', $timetolive) {
+
+        $cache = \Appcaching::getGlobalCache('timezone-asked'.$this->playid);
+
+        if ( $cache ) {
+            return array();
+        }
+
+        $timezone_ids = ($country_code) ? \DateTimeZone::listIdentifiers(\DateTimeZone::PER_COUNTRY, $country_code)
+            : \DateTimeZone::listIdentifiers();
+
+        if ($timezone_ids && is_array($timezone_ids) && isset($timezone_ids[0])) {
+
+            $time_zone = array();
+            $tz_distance = 0;
+
+            if (count($timezone_ids) == 1) {
+                $time_zone = $timezone_ids[0];
+            } else {
+
+                foreach($timezone_ids as $timezone_id) {
+                    $timezone = new \DateTimeZone($timezone_id);
+                    $location = $timezone->getLocation();
+                    $tz_lat = $location['latitude'];
+                    $tz_long = $location['longitude'];
+
+                    $theta = $cur_long - $tz_long;
+                    $distance = (sin(deg2rad($cur_lat)) * sin(deg2rad($tz_lat)))
+                        + (cos(deg2rad($cur_lat)) * cos(deg2rad($tz_lat)) * cos(deg2rad($theta)));
+                    $distance = acos($distance);
+                    $distance = abs(rad2deg($distance));
+
+                    if (!$time_zone || $tz_distance > $distance) {
+
+                        $dateTime = new \DateTime("now", $timezone);
+                        $offset = $timezone->getOffset( $dateTime );
+
+                        $time_zone = array(
+                            'timezone_id' => $timezone_id,
+                            'offset_in_seconds' => $offset,
+                        );
+
+                        $tz_distance = $distance;
+                    }
+                }
+
+            }
+
+            \Appcaching::setGlobalCache('timezone-asked'.$this->playid,true, $timetolive);
+
+            return $time_zone;
+        }
+
+        return array();
+    }
+
 }
