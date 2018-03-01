@@ -55,6 +55,7 @@ trait CalendarHelper {
         $location = isset($parameters['location']) ? $parameters['location'] : '';
         $organizer = $parameters['organizer'];
         $organizer_email = $parameters['organizer_email'];
+        $timezone_offset = isset($parameters['timezone_offset']) ? $parameters['timezone_offset'] : '';
 
         $template = 'BEGIN:VCALENDAR' . chr(10);
         $template .= 'PRODID:-//Microsoft Corporation//Outlook 12.0 MIMEDIR//EN' . chr(10);
@@ -65,8 +66,15 @@ trait CalendarHelper {
         $template .= 'BEGIN:VEVENT' . chr(10);
         $template .= 'CLASS:PUBLIC' . chr(10);
         $template .= 'DESCRIPTION:' . $parameters['description'] . chr(10);
-        $template .= 'DTEND:' . $endtime . chr(10);
-        $template .= 'DTSTART:' . $starttime . chr(10);
+
+        if ( $timezone_offset ) {
+            $template .= 'DTEND;TZID=' . $timezone_offset . ':' . $endtime . chr(10);
+            $template .= 'DTSTART;TZID=' . $timezone_offset . ':' . $starttime . chr(10);
+        } else {
+            $template .= 'DTEND:' . $endtime . chr(10);
+            $template .= 'DTSTART:' . $starttime . chr(10);
+        }
+
         $template .= 'LOCATION:' . $location . chr(10);
 
         if (isset($parameters['repeat_daily_until'])) {
