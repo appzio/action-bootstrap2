@@ -65,23 +65,43 @@ trait uiKitAccordion
 
     public function uiKitAccordionItem($item)
     {
-        /** @var BootstrapComponent $this */
 
-        $actionShow[] = $this->getOnclickShowElement("hide_" .$item['id']);
-        $actionShow[] = $this->getOnclickShowElement("hidden_" .$item['id']);
-        $actionShow[] = $this->getOnclickHideElement("show_" .$item['id'], array(
+        // In case there aren't any hidden Item elements
+        // We show the visible items only
+        if ( !isset($item['hide']) ) {
+
+            $item['show']['id'] = $item['id'];
+            $item['show']['expanded'] = ( isset($item['show']['description']) AND $item['show']['description'] AND isset($item['expanded']) ) ? true : false;
+
+            $output[] = $this->getComponentRow($this->getVisibleRow($item['show']), array(
+                'id' => 'show_' . $item['id'],
+                'style' => 'ui_accordion_line_show_row',
+            ));
+
+            $output[] = $this->getComponentRow($this->getHiddenRow($item['hidden']), array(
+                'id' => 'hidden_' . $item['id'],
+                'visibility' => isset($item['expanded']) ? '' : 'hidden',
+                'style' => 'ui_accordion_line_hidden_row'
+            ));
+
+            return $this->getComponentColumn($output, array('style' => 'ui_accordion_line_container'));
+        }
+
+        $actionShow[] = $this->getOnclickShowElement('hide_' . $item['id']);
+        $actionShow[] = $this->getOnclickShowElement('hidden_' . $item['id']);
+        $actionShow[] = $this->getOnclickHideElement('show_' . $item['id'], array(
             'transition' => 'none'
         ));
-        $actionShow[] = $this->getOnclickHideElement("hidden_arrow_" .$item['id'], array(
+        $actionShow[] = $this->getOnclickHideElement('hidden_arrow_' . $item['id'], array(
             'transition' => 'none'
         ));
 
-        $actionHide[] = $this->getOnclickShowElement("show_" .$item['id']);
-        $actionHide[] = $this->getOnclickShowElement("hidden_arrow_" .$item['id']);
-        $actionHide[] = $this->getOnclickHideElement("hide_" .$item['id'], array(
+        $actionHide[] = $this->getOnclickShowElement('show_' . $item['id']);
+        $actionHide[] = $this->getOnclickShowElement('hidden_arrow_' . $item['id']);
+        $actionHide[] = $this->getOnclickHideElement('hide_' . $item['id'], array(
             'transition' => 'none'
         ));
-        $actionHide[] = $this->getOnclickHideElement("hidden_" .$item['id'], array(
+        $actionHide[] = $this->getOnclickHideElement('hidden_' . $item['id'], array(
             'transition' => 'none'
         ));
 
@@ -89,28 +109,28 @@ trait uiKitAccordion
         $item['show']['expanded'] = ( isset($item['show']['description']) AND $item['show']['description'] AND isset($item['expanded']) ) ? true : false;
 
         $output[] = $this->getComponentRow($this->getVisibleRow($item['show']), array(
-            "id" => "show_" .$item['id'],
-            "style" => "ui_accordion_line_show_row",
-            "onclick" => $actionShow
+            'id' => 'show_' . $item['id'],
+            'style' => 'ui_accordion_line_show_row',
+            'onclick' => $actionShow
         ));
 
-        $output[] = $this->getComponentRow($this->getVisibleRow($item['hide'], "ui_accordion_line_hide"), array(
-            "id" => "hide_" .$item['id'],
-            "visibility" => 'hidden',
-            "style" => "ui_accordion_line_hide_row",
-            "onclick" => $actionHide
+        $output[] = $this->getComponentRow($this->getVisibleRow($item['hide'], 'ui_accordion_line_hide'), array(
+            'id' => 'hide_' . $item['id'],
+            'visibility' => 'hidden',
+            'style' => 'ui_accordion_line_hide_row',
+            'onclick' => $actionHide
         ));
 
         $output[] = $this->getComponentRow($this->getHiddenRow($item['hidden']), array(
-            "id" => "hidden_" .$item['id'],
-            "visibility" => isset($item['expanded']) ? '' : 'hidden',
-            "style" => "ui_accordion_line_hidden_row"
+            'id' => 'hidden_' . $item['id'],
+            'visibility' => isset($item['expanded']) ? '' : 'hidden',
+            'style' => 'ui_accordion_line_hidden_row'
         ));
 
-        return $this->getComponentColumn($output, array("style" => 'ui_accordion_line_container'));
+        return $this->getComponentColumn($output, array('style' => 'ui_accordion_line_container'));
     }
 
-    public function getVisibleRow($item, $stylePrefix = "ui_accordion_line_show") {
+    public function getVisibleRow($item, $stylePrefix = 'ui_accordion_line_show') {
         /** @var BootstrapComponent $this */
 
         $row = [];
