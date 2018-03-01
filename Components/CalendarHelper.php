@@ -68,6 +68,39 @@ trait CalendarHelper {
         $template .= 'DTEND:' . $endtime . chr(10);
         $template .= 'DTSTART:' . $starttime . chr(10);
         $template .= 'LOCATION:' . $location . chr(10);
+
+        if (isset($parameters['repeat_daily_until'])) {
+            $template .= 'RRULE:FREQ=DAILY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_daily_until']) . chr(10);
+        }
+
+        if (isset($parameters['repeat_weekly_until'])) {
+            $template .= 'RRULE:FREQ=WEEKLY';
+
+            if ( isset($parameters['interval']) ) {
+                $template .= ';INTERVAL=' . $parameters['interval'];
+            }
+
+            if ( isset($parameters['BYDAY']) ) {
+                $template .= ';BYDAY=' . $parameters['BYDAY'];
+            }
+
+            $template .= chr(10);
+        }
+
+        if (isset($parameters['repeat_monthly_until'])) {
+            $template .= 'RRULE:FREQ=MONTHLY';
+
+            if ( isset($parameters['interval']) ) {
+                $template .= ';INTERVAL=' . $parameters['interval'];
+            }
+
+            if ( isset($parameters['BYMONTHDAY']) ) {
+                $template .= ';BYMONTHDAY=' . $parameters['BYMONTHDAY'];
+            }
+
+            $template .= chr(10);
+        }
+
         $template .= 'PRIORITY:5' . chr(10);
         $template .= 'SEQUENCE:0' . chr(10);
         $template .= 'SUMMARY;LANGUAGE=en-us:' . $subject . chr(10);
