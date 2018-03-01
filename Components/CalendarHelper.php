@@ -76,6 +76,7 @@ trait CalendarHelper {
         }
 
         $template .= 'LOCATION:' . $location . chr(10);
+        $template .= 'PRIORITY:5' . chr(10);
 
         if (isset($parameters['repeat_daily_until'])) {
             $template .= 'RRULE:FREQ=DAILY;UNTIL='.$this->convertUnixTimeToCalendar($parameters['repeat_daily_until']) . chr(10);
@@ -109,7 +110,6 @@ trait CalendarHelper {
             $template .= chr(10);
         }
 
-        $template .= 'PRIORITY:5' . chr(10);
         $template .= 'SEQUENCE:0' . chr(10);
         $template .= 'SUMMARY;LANGUAGE=en-us:' . $subject . chr(10);
         $template .= 'TRANSP:OPAQUE' . chr(10);
