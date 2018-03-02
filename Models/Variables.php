@@ -267,6 +267,12 @@ trait Variables {
      * @param $value
      */
     public function saveVariable($variable,$value){
+
+        /* added March 2018, will not save if its already of this value */
+        if($this->getSavedVariable($variable) == $value){
+            return true;
+        }
+
         if ( !is_numeric($variable) ) {
             $varid = $this->getVariableId($variable);
 
