@@ -29,6 +29,13 @@ trait uiKitHierarchicalCategories
     public function uiKitHierarchicalCategories($categories,$onclick_save_route=false,$tab=false)
     {
 
+        $cachename = $this->model->appid .'-hierarchical-categories';
+        $cache = \Appcaching::getGlobalCache($cachename);
+
+        if(isset($cache['time']) AND $cache['time'] + 1200 > time()){
+            return $cache['contents'];
+        }
+
         $this->submit_click = $onclick_save_route;
         $this->tab = $tab;
 
@@ -76,7 +83,11 @@ trait uiKitHierarchicalCategories
 
 
         if(isset($out)){
-            return $this->getComponentColumn($out);
+            $output = $this->getComponentColumn($out);
+            $cache['contents'] = $output;
+            $cache['time'] = time();
+            \Appcaching::setGlobalCache($cachename,$cache,1200);
+            return $output;
         } else {
             return $this->getComponentText('{#no_categories_found#}',array('style' => 'ukit_hierarchical_firstlevel'));
         }
