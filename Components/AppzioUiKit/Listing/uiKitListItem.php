@@ -7,17 +7,36 @@ use Bootstrap\Models\BootstrapModel;
 trait uiKitListItem {
 
     /**
-     * This will return a view with items and provides infinite scrolling. This is compatible with ae_ext_items
-     * model and its associated tables. Note that you need to have the paging in place for the controller & model
-     * for it to work as expected.
+     * This component would return a generic and highly customizable listing item.
+     * Using the $parameters array you could customize the component in several ways
+     * [time_format]
+     * Use this if passing a timestamp to the component
+     *
+     * [left_icon]
+     * Define a left image
+     *
+     * [right_icon]
+     * Define a right image ( this is especially useful in case you need to indicate that the item is clickable )
+     *
+     * [date_icon]
+     * If a $description is passed, when set, the "date_icon" image would appear in front if
+     *
+     * [divider] ( true / false )
+     * Visualize a bottom border for the component
+     *
+     * The component support several controls
+     * - "id" - useful in case you would need to hide and show the element in certain cases
+     * - "visibility" - hidden / visible
+     * - "onclick" - assign a click event for your component
+     * - "swipe_right" - add an array items, which would appear as you swipe the component to the right
      *
      * @param string $title
-     * @param array $discription
+     * @param array $description
      * @param array $parameters
      * @param array $styles
      * @return \stdClass
      */
-    public function uiKitListItem(string $title, array $discription = array(), array $parameters=array(), array $styles=array()) {
+    public function uiKitListItem(string $title, array $description = array(), array $parameters=array(), array $styles=array()) {
         /** @var BootstrapModel $this->model */
         /** @var BootstrapView $this */
 
@@ -72,14 +91,14 @@ trait uiKitListItem {
 	        'vertical-align' => 'middle',
         ));
 
-	    if ( $discription AND isset($parameters['date_icon']) ) {
+	    if ( $description AND isset($parameters['date_icon']) ) {
 	    	
         	$data[] = $this->getComponentRow(array(
         		$this->getComponentImage($parameters['date_icon'], array(), array(
         			'width' => '25',
         			'margin' => '0 15 0 0',
 		        )),
-        		$this->getComponentColumn($this->uiKitListDescriptionItems($discription), array(), array(
+        		$this->getComponentColumn($this->uiKitListDescriptionItems($description), array(), array(
 					'width' => 'auto'
 		        )),
 	        ), array(), array(
