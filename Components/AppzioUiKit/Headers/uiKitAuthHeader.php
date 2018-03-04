@@ -7,12 +7,16 @@ trait uiKitAuthHeader
 {
     public function uiKitAuthHeader(string $image, string $text, $params = array(), $styles = array())
     {
+
         /** @var BootstrapComponent $this */
         return $this->getComponentRow(array(
             $this->getHeaderImage($image),
             $this->getHeaderText($text)
         ), array(
-            'style' => 'uikit_auth_header'
+            'parent_style' => 'uikit_auth_header'
+        ),array(
+            'background-color' => $this->color_top_bar_color,
+            'text-align' => 'center'
         ));
     }
 
@@ -25,7 +29,9 @@ trait uiKitAuthHeader
         }
 
         return $this->getComponentImage($image, array(
-            'style' => 'uikit_auth_header_image'
+            'parent_style' => 'uikit_auth_header_image'
+        ),array(
+            'background-color' => $this->color_top_bar_color,
         ));
     }
 
@@ -34,7 +40,9 @@ trait uiKitAuthHeader
         /** @var BootstrapComponent $this */
 
         return $this->getComponentText($text, array(
-            'style' => 'uikit_auth_header_text'
+            'parent_style' => 'uikit_auth_header_text'
+        ),array(
+            'background-color' => $this->color_top_bar_color,
         ));
     }
 }
