@@ -39,7 +39,7 @@ trait uiKitTopbar
 	        )),
 	        $this->getComponentColumn(array(
 	        	$this->getComponentText($title, array(), array(
-			        'font-size' => '20',
+			        'font-size' => '17',
 			        'color' => '#ffffff',
 			        'text-align' => 'center',
 		        )),
