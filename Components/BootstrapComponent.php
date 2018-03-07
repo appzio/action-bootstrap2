@@ -311,11 +311,13 @@ class BootstrapComponent implements BootstrapComponentInterface {
         }
 
         /* set colors */
-        foreach($this->colors as $name=>$color){
-            $name = 'color_'.$name;
+        if(isset($this->colors)){
+            foreach($this->colors as $name=>$color){
+                $name = 'color_'.$name;
 
-            if(property_exists($this,$name)){
-                $this->$name = $color;
+                if(property_exists($this,$name)){
+                    $this->$name = $color;
+                }
             }
         }
 
