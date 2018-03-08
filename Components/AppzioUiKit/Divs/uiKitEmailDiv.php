@@ -14,7 +14,6 @@ trait uiKitEmailDiv
 
         return $this->getComponentColumn(array(
             $this->uiKitDivHeader('Send Email', array(
-                'image' => 'cloud_upload_dev.png',
                 'close_icon' => 'cross-sign.png',
                 'div_id' => 'email'
             )),
