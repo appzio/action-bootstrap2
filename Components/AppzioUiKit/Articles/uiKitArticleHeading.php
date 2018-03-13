@@ -56,7 +56,7 @@ trait uiKitArticleHeading {
 
     }
 
-    public function uiKitArticleNavigationBar() {
+    private function uiKitArticleNavigationBar() {
     	return $this->getComponentColumn(array(
 		    $this->getComponentRow(array(
 			    $this->getComponentImage('arrow-back-white-v2.png', array(
@@ -77,7 +77,7 @@ trait uiKitArticleHeading {
 	    ));
     }
 
-    public function uiKitArticleInfo() {
+    private function uiKitArticleInfo() {
 	    return $this->getComponentColumn(array_merge(
 		    $this->uiKitArticleCategory(),
 			$this->uiKitArticleTitle()
@@ -95,7 +95,7 @@ trait uiKitArticleHeading {
 	    ));
     }
 
-    public function uiKitArticleDate() {
+    private function uiKitArticleDate() {
     	return array(
 		    $this->getComponentRow(array(
 			    $this->getComponentText(strtoupper(date('F j, Y', strtotime($this->article->article_date))), array(
@@ -105,7 +105,7 @@ trait uiKitArticleHeading {
 	    );
     }
 
-    public function uiKitArticleTitle( $style_class = 'article-uikit-title' ) {
+    private function uiKitArticleTitle( $style_class = 'article-uikit-title' ) {
 	    return array(
 		    $this->getComponentRow(array(
 			    $this->getComponentText($this->article->title, array(
@@ -115,7 +115,7 @@ trait uiKitArticleHeading {
 	    );
     }
 
-    public function uiKitArticleCategory() {
+    private function uiKitArticleCategory() {
 
     	if ( empty($this->category_data) ) {
     		return array();
@@ -130,7 +130,7 @@ trait uiKitArticleHeading {
 	    );
     }
 
-	public function uiKitArticleFeaturedImage( $images ) {
+    private function uiKitArticleFeaturedImage( $images ) {
 
 		if ( empty($images) ) {
 			return false;

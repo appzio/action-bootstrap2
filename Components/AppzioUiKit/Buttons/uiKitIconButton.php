@@ -27,7 +27,7 @@ trait uiKitIconButton
         ), $styles));
     }
 
-    public function getIconButtonImage(string $icon)
+    private function getIconButtonImage(string $icon)
     {
         if (empty($icon)) {
             return;

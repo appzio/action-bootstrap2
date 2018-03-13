@@ -64,7 +64,7 @@ trait uiKitArticleItem {
         ));
     }
 
-	public function getListingImage( $images ) {
+	private function getListingImage( $images ) {
     	
     	if ( empty($images) ) {
     		return 'article-uikit-listing-placeholder.png';
@@ -79,7 +79,7 @@ trait uiKitArticleItem {
 	    return 'article-uikit-listing-placeholder.png';
     }
 
-	public function uiKitArticleDivLayout() {
+    private function uiKitArticleDivLayout() {
 		$layout = new \stdClass();
 		$layout->top = 80;
 		$layout->bottom = 0;

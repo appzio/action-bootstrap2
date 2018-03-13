@@ -128,7 +128,7 @@ trait uiKitListItem {
         ));
 	}
 
-	public function uiKitListDescriptionItems( $description ) {
+	private function uiKitListDescriptionItems( $description ) {
 
     	$items = [];
 

@@ -63,14 +63,14 @@ trait uiKitImageGridUpload {
         return $this->getComponentColumn($response);
     }
 
-    public function setGridWidths1()
+    private function setGridWidths1()
     {
         $width = $this->screen_width ? $this->screen_width : 320;
         $this->grid = $width - ($this->margin * 4);
         $this->grid = round($this->grid / 3, 0);
     }
 
-    public function getProfileImage1($name, $mainimage = false)
+    private function getProfileImage1($name, $mainimage = false)
     {
         /** @var BootstrapModel $this->model */
         if ($mainimage) {
