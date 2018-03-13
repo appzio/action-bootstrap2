@@ -74,6 +74,7 @@ trait ComponentHelpers {
         $debug = $this->addParam('debug',$params,false);
         $width = $this->addParam('imgwidth',$params,640);
         $height = $this->addParam('imgheight',$params,640);
+        $lossless = $this->addParam('lossless',$params,false);
 
         if($this->addParam('imgcrop',$params,false)){
             $crop = $this->addParam('imgcrop',$params,false);
@@ -84,6 +85,7 @@ trait ComponentHelpers {
         $params['crop'] = $crop;
         $params['width'] = $width;
         $params['height'] = $height;
+        $params['lossless'] = $lossless;
         $params['actionid'] = $this->addParam('actionid',$params,$this->actionid);
 
         if(isset($this->branchobj->id)){

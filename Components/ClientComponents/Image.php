@@ -25,7 +25,6 @@ trait Image {
         if(isset($parameters['use_filename']) AND $parameters['use_filename'] == 1){
             $file = $filename;
         } else {
-            $file = false;
             $file = $this->getImageFileName($filename,$parameters);
         }
 
@@ -53,8 +52,4 @@ trait Image {
 
     }
 
-
-
 }
-
-
