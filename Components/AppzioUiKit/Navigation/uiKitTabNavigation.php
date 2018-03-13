@@ -11,15 +11,15 @@ trait uiKitTabNavigation
         $tabs = array();
 
         foreach ($content as $tab) {
-            $tabs[] = $this->getTab($tab, count($content));
+            $tabs[] = $this->getTab($tab, count($content), $styles);
         }
 
-        return $this->getComponentRow($tabs, array(
+        return $this->getComponentRow($tabs, $parameters, array(
             'width' => '100%'
         ));
     }
 
-    protected function getTab($tab, $count)
+    protected function getTab($tab, $count, $styles)
     {
         /** @var BootstrapComponent $this */
 
@@ -29,22 +29,25 @@ trait uiKitTabNavigation
 
         if (isset($tab['disabled']) && $tab['disabled']) {
 
-            return $this->getDisabledTab($text, $width);
+            return $this->getDisabledTab($text, $width, $styles);
 
         } else if (!$tab['active']) {
 
-            return $this->getNormalTab($text, $width, $onclick);
+            return $this->getNormalTab($text, $width, $onclick, $styles);
 
         } else {
 
-            return $this->getActiveTab($text, $width);
+            return $this->getActiveTab($text, $width, $styles);
 
         }
     }
 
-    protected function getDisabledTab($text, $width)
+    protected function getDisabledTab($text, $width, $styles)
     {
-        return $this->getComponentText($text, array(), array(
+        $tab_styles = $this->uiKitTabStyles($styles, array(
+            'font-size',
+            'text-align'
+        ), array(
             'color' => '#e3e1e1',
             'padding' => '20 0 20 0',
             'text-align' => 'center',
@@ -54,19 +57,27 @@ trait uiKitTabNavigation
             'font-size' => '14',
             'width' => $width,
         ));
+
+        return $this->getComponentText($text, array(),$tab_styles);
     }
 
-    protected function getActiveTab($text, $width)
+    protected function getActiveTab($text, $width, $styles)
     {
+
+        $tab_styles = $this->uiKitTabStyles($styles, array(
+            'font-size',
+            'text-align'
+        ), array(
+            'padding' => '20 0 17 0',
+            'text-align' => 'center',
+            'background-color' => '#ffffff',
+            'border-width' => '1',
+            'border-color' => '#fafafa',
+            'font-size' => '14',
+        ));
+
         return $this->getComponentColumn(array(
-            $this->getComponentText($text, array(), array(
-                'padding' => '20 0 17 0',
-                'text-align' => 'center',
-                'background-color' => '#ffffff',
-                'border-width' => '1',
-                'border-color' => '#fafafa',
-                'font-size' => '14',
-            )),
+            $this->getComponentText($text, array(), $tab_styles),
             $this->getComponentSpacer('3', array(), array(
                 'background-color' => $this->color_top_bar_color
             ))
@@ -75,10 +86,12 @@ trait uiKitTabNavigation
         ));
     }
 
-    protected function getNormalTab($text, $width, $onclick)
+    protected function getNormalTab($text, $width, $onclick, $styles)
     {
-        return $this->getComponentText($text, array(
-            'onclick' => $onclick
+
+        $tab_styles = $this->uiKitTabStyles($styles, array(
+            'font-size',
+            'text-align'
         ), array(
             'color' => '#323232',
             'padding' => '20 0 20 0',
@@ -89,5 +102,27 @@ trait uiKitTabNavigation
             'font-size' => '14',
             'width' => $width,
         ));
+
+        return $this->getComponentText($text, array(
+            'onclick' => $onclick
+        ), $tab_styles);
     }
+
+    protected function uiKitTabStyles( $styles, array $allowed, array $default = array() ) {
+
+        $allowed_styles = [];
+
+        foreach ($allowed as $item) {
+
+            foreach ($styles as $style_key => $style_value) {
+                if ( $item === $style_key ) {
+                    $allowed_styles[$style_key] = $style_value;
+                }
+            }
+
+        }
+
+        return array_merge($default, $allowed_styles);
+    }
+
 }
