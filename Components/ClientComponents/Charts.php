@@ -33,6 +33,10 @@ trait Charts {
         $obj->label = 'My usage';
         $obj->sets = $data;
 
+        if(isset($parameters['names'])){
+            $obj->x_names = $parameters['names'];
+        }
+
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
         $obj = $this->configureDefaults($obj);
@@ -51,7 +55,11 @@ trait Charts {
         $obj->type = 'chart-bar';
         $obj->label = 'My usage';
         $obj->sets = $data;
-        
+
+        if(isset($parameters['names'])){
+            $obj->x_names = $parameters['names'];
+        }
+
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
         $obj = $this->configureDefaults($obj);
