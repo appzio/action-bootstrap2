@@ -223,6 +223,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Headers\uiKitTitlePriceLocation;
     use AppzioUiKit\Headers\uiKitHeaderWithImage;
     use AppzioUiKit\Headers\uiKitTwoColumnHeader;
+    use AppzioUiKit\Headers\uiKitDefaultHeader;
 
     use AppzioUiKit\Buttons\uiKitButtonFilled;
     use AppzioUiKit\Buttons\uiKitButtonHollow;

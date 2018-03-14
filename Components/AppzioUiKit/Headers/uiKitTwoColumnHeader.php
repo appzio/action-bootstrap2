@@ -16,8 +16,7 @@ trait uiKitTwoColumnHeader {
     public function uiKitTwoColumnHeader(string $text, $column2 = false, $parameters = array(), $styles = array()){
 
         $row[] = $this->getComponentText($text,array(),array(
-            'vertical-align' => 'middle',
-            'font-size' => '12'
+            'font-size' => '12',
         ));
 
         if ( $column2 ) {
@@ -32,13 +31,17 @@ trait uiKitTwoColumnHeader {
         }
 
         $output[] = $this->getComponentRow($row,array(),array(
-            'vertical-align' => 'middle',
             'padding' => '8 15 8 15',
             'background-color' => '#F6F6F6',
         ));
 
         $output[] = $this->uiKitDivider();
-        return $this->getComponentColumn($output, $parameters, $styles);
+        return $this->getComponentColumn($output, $parameters, array_merge(
+            array(
+                'vertical-align' => 'middle',
+            ),
+            $styles
+        ));
     }
 
 }
