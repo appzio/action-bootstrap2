@@ -207,7 +207,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\Timer;
     use ClientComponents\SwipeStack;
     use ClientComponents\ImageGrid;
-    use ClientComponents\Linechart;
+    use ClientComponents\Charts;
 
     use Snippets\Forms\formHintedField;
 
