@@ -47,6 +47,7 @@ trait uiKitTimer{
             'height' => $this->screen_height / 3,
             'background-image' => $this->getImageFileName('uikit-timer-background.png'),
             'background-size' => 'contain',
+            'vertical-align' => 'middle',
             'text-align' => 'center',
         ]);
 
