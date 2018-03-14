@@ -60,4 +60,18 @@ trait Session {
             return false;
         }
     }
+
+    /**
+     * Unset a session variable
+     *
+     * @param $key
+     */
+    public function sessionUnset($key){
+
+        if ( isset($this->session_storage[$key]) ) {
+            unset( $this->session_storage[$key] );
+        }
+
+    }
+
 }
