@@ -35,9 +35,12 @@ trait FormFieldText {
         $obj = new \stdClass;
         $obj->type = 'field-text';
 
-        if(empty($field_content) AND isset($parameters['variable']) AND !isset($parameters['empty']) AND !isset($parameters['value'])){
-            $this->model->getSubmittedVariableByName($parameters['variable']);
+        if($this->model){
+            if(empty($field_content) AND isset($parameters['variable']) AND !isset($parameters['empty']) AND !isset($parameters['value'])){
+                $this->model->getSubmittedVariableByName($parameters['variable']);
+            }
         }
+
 
         $obj->content = $field_content;
 
@@ -46,7 +49,11 @@ trait FormFieldText {
         $obj = $this->configureDefaults($obj);
 
         if(isset($parameters['uppercase']) AND isset($parameters['hint'])){
-            $content = $this->model->localize($parameters['hint']);
+            if($this->model){
+                $content = $this->model->localize($parameters['hint']);
+            } else {
+                $content = $parameters['hint'];
+            }
             $obj->hint = strtoupper($content);
         }
 
