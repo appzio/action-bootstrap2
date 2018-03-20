@@ -48,7 +48,6 @@ trait uiKitSearchItem {
 		    ))
 	    ), array(), array(
 	    	'width' => '65%',
-	    	'padding' => '0 5 0 0'
 	    ));
 
 	    if ( $date ) {
@@ -59,7 +58,7 @@ trait uiKitSearchItem {
 				    'text-align' => 'right',
 			    )),
 		    ), array(), array(
-		    	'width' => '35%'
+		    	'width' => '35%',
 		    ));
 	    }
 
@@ -69,7 +68,7 @@ trait uiKitSearchItem {
 
 	    $data[] = $this->getComponentRow($title_row, $events, array(
 		    'width' => 'auto',
-	        'padding' => '0 15 0 15',
+	        'margin' => '0 15 0 15',
 	        'vertical-align' => 'middle',
         ));
 
