@@ -53,9 +53,11 @@ trait ComponentParameters {
         }
 
         /* client understands id's rather than names, so it gets converted to id here */
-        if(isset($obj->variable) AND is_string($obj->variable) AND !is_numeric($obj->variable)){
-            if($this->model->getVariableId($obj->variable)){
-                $obj->variable = $this->model->getVariableId($obj->variable);
+        if($this->model){
+            if(isset($obj->variable) AND is_string($obj->variable) AND !is_numeric($obj->variable)){
+                if($this->model->getVariableId($obj->variable)){
+                    $obj->variable = $this->model->getVariableId($obj->variable);
+                }
             }
         }
 
