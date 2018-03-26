@@ -15,7 +15,7 @@ trait uiKitSearchItem {
      * @param array $styles
      * @return \stdClass
      */
-    public function uiKitSearchItem (string $icon, string $title, string $date = '', array $parameters=array(), array $styles=array()) {
+    public function uiKitSearchItem (string $icon, string $title, string $side_content = '', array $parameters=array(), array $styles=array()) {
         /** @var BootstrapView $this */
 
 	    $events = [];
@@ -36,7 +36,7 @@ trait uiKitSearchItem {
 	    }
 
 	    $title_row[] = $this->getComponentImage($icon, array(), array(
-		    'width' => '5%',
+		    'width' => '6%',
 		    'margin' => '0 10 0 0',
 	    ));
 
@@ -51,9 +51,9 @@ trait uiKitSearchItem {
 	    	'padding' => '0 5 0 0'
 	    ));
 
-	    if ( $date ) {
+	    if ( $side_content ) {
 		    $title_row[] = $this->getComponentColumn(array(
-			    $this->getComponentText($date, $text_params, array(
+			    $this->getComponentText($side_content, $text_params, array(
 				    'color' => '#777d81',
 				    'font-size' => '12',
 				    'text-align' => 'right',
@@ -90,6 +90,7 @@ trait uiKitSearchItem {
 
         return $this->getComponentColumn($data, $behaviour, array(
         	'width' => 'auto',
+            'padding' => ( isset($parameters['divider']) ? '0 0 0 0' : '10 0 10 0' ),
         ));
 	}
 

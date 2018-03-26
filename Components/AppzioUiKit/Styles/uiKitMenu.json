@@ -1,0 +1,16 @@
+{
+  "uikit_menu_item_row": {
+    "width": "100%",
+    "vertical-align": "middle",
+    "padding": "10 15 10 15"
+  },
+  "uikit_menu_item_image": {
+    "width": "25",
+    "vertical-align": "middle",
+    "margin": "0 15 0 0"
+  },
+  "uikit_menu_item_label": {
+    "font-size": "16",
+    "color": "#000000"
+  }
+}
