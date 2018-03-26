@@ -75,14 +75,18 @@ trait uiKitGeneralListDiv
 
     private function getCloseButton( $closeDiv, $refresh_on_close ) {
 
+/*        if($select_action){
+            $click[] = $this->getOnclickSubmit($select_action);
+        }*/
+
         if ( !$refresh_on_close ) {
-            return $closeDiv;
+            $click = $closeDiv;
+            return $click;
         }
 
-        return [
-            $closeDiv,
-            $this->getOnclickSubmit( 'div-closed' )
-        ];
+        $click[] = $closeDiv;
+        $click[] = $this->getOnclickSubmit( 'div-closed' );
+        return $click;
     }
 
 }
