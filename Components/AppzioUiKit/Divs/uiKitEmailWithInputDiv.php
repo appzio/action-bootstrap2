@@ -25,8 +25,18 @@ trait uiKitEmailWithInputDiv
             $this->getComponentFormFieldText('', array(
                 'hint' => 'To:',
                 'variable' => 'recipient_email',
+                'id' => 'send_email_to',
+                'suggestions_update_method' => 'getemails',
+                'suggestions' => [],
+                'suggestions_placeholder' => $this->getComponentText('$value', array(), array(
+                    'font-size' => 15,
+                    'color' => '#333333',
+                    'background-color' => '#ffffff',
+                    'padding' => '12 10 12 10',
+                )),
             ), array(
-                'margin' => '0 20 0 20'
+                'padding' => '0 0 0 0',
+                'margin' => '0 20 0 20',
             )),
             $this->getComponentSpacer('1', array(), array(
                 'background-color' => '#dadada',
