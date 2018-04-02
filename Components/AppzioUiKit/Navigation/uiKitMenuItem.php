@@ -8,8 +8,8 @@ trait uiKitMenuItem
 
     public function uiKitMenuItem($item = [], $parameters = [], $styles = []) {
 
-        if ( !isset($item['label']) ) {
-            return $this->getComponentText('{#missing_label#}', [
+        if ( !isset($item['name']) ) {
+            return $this->getComponentText('{#missing_name#}', [
                 'style' => 'article-uikit-error'
             ]);
         }
@@ -20,7 +20,7 @@ trait uiKitMenuItem
             ]);
         }
 
-        $menu_content[] = $this->getComponentText($item['label'], [
+        $menu_content[] = $this->getComponentText($item['name'], [
             'style' => 'uikit_menu_item_label'
         ]);
 
@@ -37,7 +37,11 @@ trait uiKitMenuItem
             return $parameters;
         }
 
-        $click['onclick'] = $this->getOnclickOpenAction( $item['link'] );
+        if ( is_numeric($item['link']) ) {
+            $click['onclick'] = $this->getOnclickOpenAction(false, $item['link']);
+        } else {
+            $click['onclick'] = $this->getOnclickOpenAction( $item['link'] );
+        }
 
         return array_merge($parameters, $click);
     }
