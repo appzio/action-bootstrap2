@@ -88,9 +88,11 @@ trait uiKitSearchItem {
 		    }
         }
 
-        return $this->getComponentColumn($data, $behaviour, array(
-        	'width' => 'auto',
-            'padding' => ( isset($parameters['divider']) ? '0 0 0 0' : '10 0 10 0' ),
+        return $this->getComponentColumn($data, $behaviour, array_merge(array(
+                'width' => 'auto',
+                'padding' => ( isset($parameters['divider']) ? '0 0 0 0' : '10 0 10 0' )
+            ),
+            $styles
         ));
 	}
 
