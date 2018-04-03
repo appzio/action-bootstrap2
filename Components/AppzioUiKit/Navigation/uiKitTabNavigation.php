@@ -63,12 +63,19 @@ trait uiKitTabNavigation
 
     protected function getActiveTab($text, $width, $styles)
     {
+        
+        if ( isset($styles['active_marker']) ) {
+            $active_marker = $styles['active_marker'];
+        } else {
+            $active_marker = 'bottom';
+        }
 
         $tab_styles = $this->uiKitTabStyles($styles, array(
             'font-size',
-            'text-align'
+            'text-align',
         ), array(
-            'padding' => '20 0 17 0',
+            'padding' => '20 0 20 0',
+            'height' => '100%',
             'text-align' => 'center',
             'background-color' => '#ffffff',
             'border-width' => '1',
@@ -79,8 +86,10 @@ trait uiKitTabNavigation
         return $this->getComponentColumn(array(
             $this->getComponentText($text, array(), $tab_styles),
             $this->getComponentSpacer('3', array(), array(
-                'background-color' => $this->color_top_bar_color
-            ))
+                'background-color' => $this->color_top_bar_color,
+                'floating' => '1',
+                'vertical-align' => $active_marker,
+            )),
         ), array(), array(
             'width' => $width,
         ));
