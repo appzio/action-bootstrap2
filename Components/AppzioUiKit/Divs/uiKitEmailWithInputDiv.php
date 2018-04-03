@@ -75,7 +75,9 @@ trait uiKitEmailWithInputDiv
             $this->uiKitWideButton('{#send_mail#}', array(
                 'onclick' => $this->sendEmailToPersonOnclick($action)
             ))
-        ), array(), array(
+        ), array(
+            'scrollable' => 1
+        ), array(
             'background-color' => '#ffffff'
         ));
     }
