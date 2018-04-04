@@ -47,8 +47,8 @@ trait uiKitSearchItem {
 			    'font-weight' => 'bold',
 		    ))
 	    ), array(), array(
-	    	'width' => '50%',
-	    	'padding' => '0 5 0 0'
+	    	'width' => ( $side_content ? '50%' : 'auto' ),
+	    	'padding' => ( $side_content ? '0 5 0 0' : '0 15 0 0 ' ),
 	    ));
 
 	    if ( $side_content ) {
