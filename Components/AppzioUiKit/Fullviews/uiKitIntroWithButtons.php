@@ -25,28 +25,35 @@ trait uiKitIntroWithButtons {
     public function uiKitIntroWithButtonsGetItem($item){
 
         $ratio = $this->screen_width / $this->screen_height;
+        $col = [];
+        $data = [];
 
         if(isset($item['icon'])){
             if($ratio < 0.57) {
                 $icon[] = $this->getComponentImage($item['icon'], array('style' => 'uikit_intro_icon'));
-                $col[] = $this->getComponentColumn($icon, array(), array('text-align' => 'center', 'margin' => '40 0 20 0'));
+                $data[] = $this->getComponentColumn($icon, array(), array('text-align' => 'center', 'margin' => '40 0 20 0'));
             } else {
                 $icon[] = $this->getComponentImage($item['icon'], array('style' => 'uikit_intro_icon_small'));
-                $col[] = $this->getComponentColumn($icon, array(), array('text-align' => 'center', 'margin' => '20 0 10 0'));
+                $data[] = $this->getComponentColumn($icon, array(), array('text-align' => 'center', 'margin' => '20 0 10 0'));
             }
         }
 
         if(isset($item['title'])){
             if($ratio < 0.57){
-                $col[] = $this->getComponentText($item['title'],array('style' => 'uikit_intro_title'));
+                $data[] = $this->getComponentText($item['title'],array('style' => 'uikit_intro_title'));
             } else {
-                $col[] = $this->getComponentText($item['title'],array('style' => 'uikit_intro_title_small'));
+                $data[] = $this->getComponentText($item['title'],array('style' => 'uikit_intro_title_small'));
             }
         }
 
         if(isset($item['description'])){
-            $col[] = $this->getComponentText($item['description'],array('style' => 'uikit_intro_description'));
+            $data[] = $this->getComponentText($item['description'],array('style' => 'uikit_intro_description'));
         }
+
+        // Content layer
+         $col[] = $this->getComponentColumn($data, array(
+            'scrollable' => 1
+        ));
 
         if(isset($item['buttons'])){
 
@@ -95,13 +102,7 @@ trait uiKitIntroWithButtons {
                         'border-color' => '#000000',
                         'border-width' => '1'
                     ));
-
-/*                $btns[] = $this->uiKitDoubleButtons($item['buttons'][0]['title'],$item['buttons'][1]['title'],
-                    array('onclick' => $item['buttons'][0]['onclick'],'back_button' => 1),
-                    array('onclick' => $item['buttons'][1]['onclick'],'back_button' => 1),
-                    array(),array(),'#F0F3F8');*/
             }
-
 
             if(isset($btns)){
                 $col[] = $this->getComponentColumn($btns,array(),array(
@@ -114,18 +115,12 @@ trait uiKitIntroWithButtons {
 
         }
 
-            if(isset($col)){
+        if($col){
             return $this->getComponentColumn($col,array(),array('height' => $this->screen_height - 50,'margin' => '0 0 0 0'));
         } else {
             return $this->getComponentText('no info');
         }
-        
-        
 
     }
-
-
-
-
 
 }
