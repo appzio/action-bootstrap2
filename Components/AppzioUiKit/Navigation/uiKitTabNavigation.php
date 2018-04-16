@@ -75,7 +75,7 @@ trait uiKitTabNavigation
             'text-align',
         ), array(
             'padding' => '20 0 20 0',
-            'height' => '100%',
+            'height' => 'auto',
             'text-align' => 'center',
             'background-color' => '#ffffff',
             'border-width' => '1',
