@@ -12,5 +12,18 @@
   "uikit_menu_item_label": {
     "font-size": "16",
     "color": "#000000"
+  },
+  "uikit_menu_profile_image": {
+    "width": "70",
+    "crop": "round",
+    "border-width": "2",
+    "border-color": "#eeeeee",
+    "border-radius": "35",
+    "margin": "0 5 0 0"
+  },
+  "uikit_menu_profile_label": {
+    "font-size": "18",
+    "padding": "12 8 12 10",
+    "color": "#000000"
   }
 }

@@ -6,7 +6,7 @@ use Bootstrap\Components\BootstrapComponent;
 trait uiKitMenuItem
 {
 
-    public function uiKitMenuItem($item = [], $parameters = [], $styles = []) {
+    public function uiKitMenuItem($item = [], array $parameters = [], array $styles = []) {
 
         if ( !isset($item['name']) ) {
             return $this->getComponentText('{#missing_name#}', [
@@ -35,10 +35,15 @@ trait uiKitMenuItem
 
         if ( !isset($item['link']) OR empty($item['link']) ) {
             return $parameters;
+
         }
 
         if ( is_numeric($item['link']) ) {
             $click['onclick'] = $this->getOnclickOpenAction(false, $item['link']);
+        } else if ( stristr($item['link'], 'http') ) {
+            $click['onclick'] = $this->getOnclickOpenUrl($item['link']);
+        } else if ( $item['link'] == 'go-home' ) {
+            $click['onclick'] = $this->getOnclickGoHome();
         } else {
             $click['onclick'] = $this->getOnclickOpenAction( $item['link'] );
         }
