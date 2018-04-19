@@ -14,7 +14,6 @@ trait uiKitBackgroundHeader {
             array(
                 'color' => '#000000',
                 'font-size' => '16',
-                'font-weight' => 'bold',
                 'width' => '100%',
                 'padding' => '10 15 10 15',
                 'margin' => '0 0 10 0',
