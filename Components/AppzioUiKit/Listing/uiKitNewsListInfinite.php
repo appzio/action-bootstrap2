@@ -134,12 +134,12 @@ trait uiKitNewsListInfinite {
     private function getPlaceInfo( $place_info, $item ) {
 
 	    return $this->getComponentRow(array(
-		    $this->getComponentImage($place_info->logo, array(), array(
+		    /*$this->getComponentImage($place_info->logo, array(), array(
 			    'width' => 20,
 			    'height' => 20,
 			    'crop' => 'round',
 			    'margin' => '0 5 0 0'
-		    )),
+		    )),*/
 		    $this->getComponentText($place_info->name, array(), array(
 			    'font-size' => '16',
 			    'color' => ( isset($place_info->hex_color) AND $place_info->hex_color ) ? $place_info->hex_color : '#70ce92',
