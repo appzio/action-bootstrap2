@@ -27,7 +27,7 @@ trait WrapRow {
 
 		$obj = new \StdClass;
         $obj->type = 'wrap-row';
-        $obj->row_content = $content;
+        $obj->items = $content;
 
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
