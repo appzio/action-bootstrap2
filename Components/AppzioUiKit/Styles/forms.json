@@ -42,7 +42,7 @@
   },
   "uikit-general-field-error": {
     "text-align": "center",
-    "background-color": "#e93f33",
+    "background-color": "#D40511",
     "font-size": "14",
     "color": "#ffffff",
     "padding": "4 3 4 3"
