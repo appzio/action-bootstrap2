@@ -1,39 +1,50 @@
 {
-
-
-  "akit_form":{
+  "akit_form": {
     "background-color": "#66000000",
     "width": "100%",
     "border-radius": "3"
   },
-
-  "uikit_divider":{
+  "uikit_divider": {
     "height": "1",
     "background-color": "#CDD0D0",
     "width": "100%",
     "opacity": "0.5"
   },
-
-  "ukit_form_field_select_icon":{
+  "ukit_form_field_select_icon": {
     "width": "30",
     "floating": "1",
     "float": "right",
     "vertical-align": "middle",
     "margin": "0 15 0 0"
   },
-
-  "uikit_formsection_header":{
+  "uikit_formsection_header": {
     "padding": "15 15 15 15",
     "font-size": "14",
     "background-color": "#F9F9F9"
   },
-
-  "steps_field_divider_small":{
+  "steps_field_divider_small": {
     "height": "1",
     "background-color": "#E4E7E9"
+  },
+  "uikit-general-field-text": {
+    "padding": "15 20 15 20",
+    "margin": "0 0 0 0",
+    "font-size": "16",
+    "width": "100%",
+    "color": "#80828b",
+    "cursor-color": "#80828b"
+  },
+  "uikit-general-field-icon": {
+    "width": "25",
+    "height": "25",
+    "margin": "15 0 15 15",
+    "opacity": "0.6"
+  },
+  "uikit-general-field-error": {
+    "text-align": "center",
+    "background-color": "#e93f33",
+    "font-size": "14",
+    "color": "#ffffff",
+    "padding": "4 3 4 3"
   }
-
-
-
-
 }

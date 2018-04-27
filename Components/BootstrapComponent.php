@@ -223,6 +223,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
     use AppzioUiKit\Headers\uiKitTitlePriceLocation;
     use AppzioUiKit\Headers\uiKitHeaderWithImage;
+    use AppzioUiKit\Headers\uiKitHeaderBlock;
     use AppzioUiKit\Headers\uiKitTwoColumnHeader;
     use AppzioUiKit\Headers\uiKitDefaultHeader;
     use AppzioUiKit\Headers\uiKitAuthHeader;
@@ -243,6 +244,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Forms\uiKitSlider;
     use AppzioUiKit\Forms\uiKitTwoHandSlider;
     use AppzioUiKit\Forms\uiKitFormSectionHeader;
+    use AppzioUiKit\Forms\uiKitGeneralField;
 
     use AppzioUiKit\Listing\uiKitTagList;
     use AppzioUiKit\Listing\uiKitThreeColumnImageSwiper;
