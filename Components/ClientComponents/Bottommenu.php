@@ -44,8 +44,11 @@ trait Bottommenu {
 
         $count = count($menudata);
         $counter = 1;
+        $background = $this->bottom_menu_background_color;
 
-        $background = isset($this->model->bottom_menu_config['background_color']) ? $this->model->bottom_menu_config['background_color'] : $this->color_top_bar_color;
+        if(strlen($background) > 7){
+            $background = '#' .substr($background, -6);
+        }
 
         $colorhelp = new \Color($background);
         $hilite = $colorhelp->darken();
@@ -79,7 +82,7 @@ trait Bottommenu {
             $height = 60;
         }
 
-        $output[] = $this->getComponentColumn($row,array(),array('height' => $height));
+        $output[] = $this->getComponentColumn($row,array(),array('height' => $height,'background-color' => '#000000'));
         return $output;
     }
 
@@ -94,7 +97,7 @@ trait Bottommenu {
     {
         /** @var BootstrapView $this */
 
-        $text_color = isset($this->model->bottom_menu_config['text_color']) ? $this->model->bottom_menu_config['text_color'] : $this->color_top_bar_text_color;
+        $text_color = $this->bottom_menu_text_color;
 
         if($current == $count){
             $width = round($this->screen_width / $count,0);
@@ -107,7 +110,7 @@ trait Bottommenu {
         if ($item['action_config'] == $this->model->action_id AND $item['action'] == 'open-action' AND isset($item['icon_active']) AND $item['icon_active']) {
              $row[] = $this->getComponentImage($item['icon_active'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
         } elseif($item['action_config'] == $this->model->branchobj->id AND $item['action'] == 'open-branch' AND isset($item['icon_active']) AND $item['icon_active']) {
-             $row[] = $this->getComponentImage($item['icon_active'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
+             $row[] = $this->getComponentImage($item['icon_active'], array(),array('height' => 25,'margin' => '8 0 5 0'));
         } else {
             if ($item['icon']) $row[] = $this->getComponentImage($item['icon'], array(),array('height' => 25, 'margin' => '8 0 5 0'));
         }

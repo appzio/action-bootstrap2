@@ -159,6 +159,10 @@ class BootstrapComponent implements BootstrapComponentInterface {
      */
     public $color_topbar_hilite;
 
+    public $bottom_menu_text_color;
+    public $bottom_menu_background_color;
+
+
     use ComponentHelpers;
     use ComponentParameters;
     use ComponentStyles;

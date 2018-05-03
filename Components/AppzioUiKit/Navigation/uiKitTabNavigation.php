@@ -36,7 +36,6 @@ trait uiKitTabNavigation
             return $this->getNormalTab($text, $width, $onclick, $styles);
 
         } else {
-
             return $this->getActiveTab($text, $width, $styles);
 
         }
@@ -74,7 +73,7 @@ trait uiKitTabNavigation
             'font-size',
             'text-align',
         ), array(
-            'padding' => '20 0 20 0',
+            'padding' => '23 0 20 0',
             'height' => 'auto',
             'text-align' => 'center',
             'background-color' => '#ffffff',
@@ -87,8 +86,7 @@ trait uiKitTabNavigation
             $this->getComponentText($text, array(), $tab_styles),
             $this->getComponentSpacer('3', array(), array(
                 'background-color' => $this->color_top_bar_color,
-                'floating' => '1',
-                'vertical-align' => $active_marker,
+                'vertical-align' => $active_marker
             )),
         ), array(), array(
             'width' => $width,
