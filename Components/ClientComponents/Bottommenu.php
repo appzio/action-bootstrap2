@@ -181,9 +181,9 @@ trait Bottommenu {
         }
 
         if ($item['action_config'] == $this->model->action_id AND $item['action'] == 'open-action') {
-            return $this->getComponentColumn($row, array('onclick' => $onclick),array('width' => $width, 'text-align' => 'center', 'background-color' => $this->color_topbar_hilite,'height' => $height));
+            return $this->getComponentColumn($row, array('onclick' => $onclick),array('width' => $width, 'text-align' => 'center', 'background-color' => $hilite,'height' => $height));
         } elseif($item['action_config'] == $this->model->branchobj->id AND $item['action'] == 'open-branch'){
-            return $this->getComponentColumn($row, array('onclick' => $onclick),array('width' => $width, 'text-align' => 'center', 'background-color' => $this->color_topbar_hilite,'height' => $height));
+            return $this->getComponentColumn($row, array('onclick' => $onclick),array('width' => $width, 'text-align' => 'center', 'background-color' => $hilite,'height' => $height));
         } else {
             return $this->getComponentColumn($row,array('onclick' => $onclick),array('width' => $width,'text-align' => 'center','height' => $height));
         }
