@@ -222,8 +222,12 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Controls\uiKitHintedTime;
     use AppzioUiKit\Controls\uiKitHierarchicalCategories;
 
+    /* text elements */
     use AppzioUiKit\Text\uiKitTextHeader;
     use AppzioUiKit\Text\uiKitTextBlock;
+    use AppzioUiKit\Text\uiKitInformationTile;
+    use AppzioUiKit\Text\uiKitTextCollapsableHeader;
+    use AppzioUiKit\Text\uiKitSectionLabel;
 
     use AppzioUiKit\Headers\uiKitTitlePriceLocation;
     use AppzioUiKit\Headers\uiKitHeaderWithImage;
@@ -280,14 +284,16 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Articles\uiKitArticleGallery;
 	use AppzioUiKit\Articles\uiKitArticleNextentry;
 
-	use AppzioUiKit\Text\uiKitInformationTile;
-	use AppzioUiKit\Listing\uiKitIconList;
+    use AppzioUiKit\Listing\uiKitIconList;
 	use AppzioUiKit\Listing\uiKitPeopleList;
 	use AppzioUiKit\Listing\uiKitList;
 	use AppzioUiKit\Listing\uiKitAccordion;
+	use AppzioUiKit\Listing\uiKitTextAccordion;
+	use AppzioUiKit\Listing\uiKitTableData;
+	use AppzioUiKit\Listing\uiKitDownloads;
+
 	use AppzioUiKit\Buttons\uiKitIconButton;
 	use AppzioUiKit\Buttons\uiKitWideButton;
-	use AppzioUiKit\Text\uiKitSectionLabel;
 	use AppzioUiKit\Divs\uiKitEmailDiv;
 	use AppzioUiKit\Divs\uiKitEmailWithInputDiv;
 	use AppzioUiKit\Divs\uiKitGeneralListDiv;
