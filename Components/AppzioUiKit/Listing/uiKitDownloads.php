@@ -58,11 +58,13 @@ trait uiKitDownloads
                         break;
                 }
 
-                $row[] = $this->getComponentImage($icon,[],['width' => '30','margin' => '0 10 0 0']);
-                $row[] = $this->getComponentText($title,[],['color' => $this->color_top_bar_color,'font-size' => '12']);
-                $row[] = $this->getComponentText(' (' .$size .')',[],['color' => $this->color_top_bar_color,'font-size' => '12']);
+                $row[] = $this->getComponentImage($icon,[],['width' => '10%','margin' => '0 10 0 0']);
+                $row[] = $this->getComponentText($title,[],['color' => $this->color_top_bar_color,'font-size' => '12','width' => '60%']);
+                $row[] = $this->getComponentText(' (' .$size .')',[],[
+                    'color' => $this->color_top_bar_color,'font-size' => '12', 'width' => '30%',
+                    'floating' => 1,'float' => 'right','text-align' => 'right','vertical-aling' => 'top']);
                 
-                $output[] = $this->getComponentRow($row,['onclick' => $onclick],['margin' => '10 20 0 20']);
+                $output[] = $this->getComponentRow($row,['onclick' => $onclick],['margin' => '10 20 0 20','vertical-align' => 'top']);
                 $output[] = $this->getComponentText($description,[],['margin' => '5 20 10 60','font-size' => '12']);
                 $output[] = $this->getComponentDivider();
 
