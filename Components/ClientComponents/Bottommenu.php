@@ -129,6 +129,8 @@ trait Bottommenu {
         $onclick->action = $item['action'];
         $onclick->action_config = $item['action_config'];
         $onclick->transition = 'fade';
+        $onclick->back_button = true;
+
         if ($item['open_popup'] == 1) $onclick->open_popup = 1;
         if ($item['sync_open'] == 1) $onclick->sync_open = 1;
         if ($item['sync_close'] == 1) $onclick->sync_close = 1;
