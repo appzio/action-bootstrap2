@@ -31,12 +31,22 @@ trait uiKitItemListInfinite {
 
             if(!empty($featured_item) AND $counter < 2){
                 $first = array_shift($featured_item);
-                $col[] = $this->getItemBoxWide($first,$parameters);
-                $col[] = $this->getItemBox($item,$parameters);
+
+                if($this->getItemBoxWide($first,$parameters) AND $this->getItemBox($item,$parameters) ){
+                    $col[] = $this->getItemBoxWide($first,$parameters);
+                    $col[] = $this->getItemBox($item,$parameters);
+                } else {
+                    continue;
+                }
+
                 $counter++;
                 $counter++;
             } elseif($item->featured AND $counter < 2){
-                $col[] = $this->getItemBoxWide($item,$parameters);
+                if($this->getItemBoxWide($item,$parameters)){
+                    $col[] = $this->getItemBoxWide($item,$parameters);
+                } else {
+                    continue;
+                }
                 $featured_counter++;
                 $counter++;
                 $counter++;
@@ -44,7 +54,11 @@ trait uiKitItemListInfinite {
                 $featured_item[] = $item;
                 continue;
             } else {
-                $col[] = $this->getItemBox($item,$parameters);
+                if($this->getItemBox($item,$parameters)){
+                    $col[] = $this->getItemBox($item,$parameters);
+                } else {
+                    continue;
+                }
                 $counter++;
             }
 
@@ -93,6 +107,10 @@ trait uiKitItemListInfinite {
         $onclick->id = $item->id;
 
         $width = ($this->screen_width / 3) - 19;
+
+        if(!$featured_image){
+            return false;
+        }
 
         $out[] = $this->getComponentImage($featured_image, array(
             'imgwidth' => '200',

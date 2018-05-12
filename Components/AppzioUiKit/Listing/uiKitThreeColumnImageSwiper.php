@@ -20,19 +20,22 @@ trait uiKitThreeColumnImageSwiper {
             $onclick->sync_open = 1;
             $onclick->id = $item['id'];
 
-            $otherItemsRow[] = $this->getComponentImage($item['image'], array(
-                'onclick' => $onclick,
-                'imgwidth' => '250',
-                'imgheight' => '250',
-                'priority' => '9',
-                'lazy' => '1'
-            ), array(
-                'width' => $width,
-                'height' => $width,
-                'crop' => 'yes',
-                'margin' => '0 8 0 0',
-                'border-radius' => '3',
-            ));
+            if($item['image']){
+                $otherItemsRow[] = $this->getComponentImage($item['image'], array(
+                    'onclick' => $onclick,
+                    'imgwidth' => '250',
+                    'imgheight' => '250',
+                    'priority' => '9',
+                    'lazy' => '1'
+                ), array(
+                    'width' => $width,
+                    'height' => $width,
+                    'crop' => 'yes',
+                    'margin' => '0 8 0 0',
+                    'border-radius' => '3',
+                ));
+            }
+
 
             $count++;
             if($count == 3){
