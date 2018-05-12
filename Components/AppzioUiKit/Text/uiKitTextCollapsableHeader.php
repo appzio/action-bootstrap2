@@ -93,7 +93,7 @@ trait uiKitTextCollapsableHeader {
                 [],
                 ['color' => $this->color_top_bar_color]);
 
-            $col[] = $this->getComponentRow($row,['onclick' => $onclick, 'id' => 'uikch_show_more'],['margin' => '0 20 20 20']);
+            $col[] = $this->getComponentRow($row,['onclick' => $onclick, 'id' => 'uikch_show_more'],['margin' => '20 20 20 20']);
 
             /* hidden part */
             $row2[] = $this->getComponentImage('icon-minus.png',[],['width' => '20','margin' => '0 5 0 0']);
@@ -102,7 +102,7 @@ trait uiKitTextCollapsableHeader {
                 ['color' => $this->color_top_bar_color]);
 
             $col[] = $this->getComponentRow($row2,['onclick' => $onclick2, 'id' => 'uikch_show_less','visibility'=>'hidden'],
-                ['margin' => '0 20 20 20']);
+                ['margin' => '20 20 20 20']);
 
         } else {
             $col[] = $this->getComponentText($headertext);
