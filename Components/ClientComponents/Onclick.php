@@ -240,6 +240,15 @@ trait Onclick {
         return $open;
     }
 
+    public function getOnclickGooglePlaces($variableid,$paramters=array()){
+        $open_maps = new \StdClass;
+        $open_maps->action = 'choose-google-place';
+        $open_maps->custom_dialog = 0;
+        $open_maps->variable = $variableid;
+        $open_maps = $this->attachParameters($open_maps,$paramters);
+        return $open_maps;
+    }
+
     /**
      * Clicking the component to which the returned value is attached will open a particular action.
      * This is used to have one screen "on top" of the other.
