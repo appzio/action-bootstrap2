@@ -128,7 +128,7 @@ trait Bottommenu {
         $onclick = new \stdClass();
         $onclick->action = $item['action'];
         $onclick->action_config = $item['action_config'];
-        $onclick->transition = 'fade';
+        $onclick->transition = 'none';
         $onclick->back_button = true;
 
         if ($item['open_popup'] == 1) $onclick->open_popup = 1;

@@ -608,4 +608,27 @@ class BootstrapModel extends CActiveRecord {
     {
         return str_replace('_', '', ucwords($string, '_'));
     }
+
+
+    /**
+     * This will check whether user should be asked for touch login or not
+     * @return bool
+     */
+    public function touchLoginCheck(){
+        if(isset($_REQUEST['touchid_result'])){
+            $this->sessionSet('touch_asked', 1);
+            return false;
+        } elseif($this->getSavedVariable('touchid_supported') AND
+            $this->getSavedVariable('deviceid') AND
+            !$this->getSavedVariable('touchid') AND
+            !$this->sessionGet('touch_asked')
+        ) {
+            return true;
+        } elseif(md5($this->getSavedVariable('deviceid')) != $this->getSavedVariable('touchid')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

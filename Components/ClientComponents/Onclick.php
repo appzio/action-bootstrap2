@@ -125,6 +125,16 @@ trait Onclick {
         return $obj;
     }
 
+
+    public function getOnclickTouchId($text='{#login_with_touch_id#}',$clickparameters=array()){
+        $obj = new \StdClass();
+        $obj->action = 'request-touchid';
+        $obj->action_config = $text;
+        $obj = $this->attachParameters($obj,$clickparameters);
+        return $obj;
+
+    }
+
     /**
      * Clicking the component to which this is attached will trigger a submit action
      *
