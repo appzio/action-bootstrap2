@@ -298,6 +298,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Divs\uiKitEmailWithInputDiv;
 	use AppzioUiKit\Divs\uiKitGeneralListDiv;
 
+	use AppzioUiKit\Navigation\uiKitBottomNavigation;
 	use AppzioUiKit\Navigation\uiKitTabNavigation;
 	use AppzioUiKit\Navigation\uiKitTopbar;
 	use AppzioUiKit\Navigation\uiKitMenuItem;

@@ -71,16 +71,12 @@ trait uiKitUserSwiper {
             array('id' => '-currentprofileview' .$content['play_id'])*/
         );
 
-        return
-            $this->getComponentColumn(
-                $col,
-                array(
-                    'onclick' => $action,
-                    'leftswipeid' => 'left' . $content['play_id'],
-                    'rightswipeid' => 'right' . $content['play_id'],
-                    'style' => 'matching_featured_column'
-                )
-            );
+        return $this->getComponentColumn($col, array(
+            'onclick' => $action,
+            'leftswipeid' => 'left' . $content['play_id'],
+            'rightswipeid' => 'right' . $content['play_id'],
+            'style' => 'matching_featured_column'
+        ));
     }
 
 }
