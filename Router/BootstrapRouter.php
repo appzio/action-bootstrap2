@@ -289,7 +289,6 @@ class BootstrapRouter implements BootstrapRouterInterface {
         $backup = $this->getMainPath() ."\Views\\".ucfirst($this->view_name);
         $backup2 = $this->getMainPath() .'\Views\View';
 
-
         if(classExists($defined)){
             return $defined;
         } elseif(classExists($backup)) {

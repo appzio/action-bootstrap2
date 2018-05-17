@@ -259,6 +259,8 @@ class BootstrapModel extends CActiveRecord {
         /* this exist to make the referencing of
         passed objects & variables easier */
 
+        \Yii::import('application.modules.aechat.models.*');
+
         while($n = each($this)){
             $key = $n['key'];
             if(isset($obj->$key) AND !$this->$key){

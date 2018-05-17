@@ -43,11 +43,6 @@ trait Mobilematching {
         }
 
         return $chatid;
-
     }
-
-
-
-
 
 }
