@@ -51,7 +51,7 @@ trait uiKitMatchItem
             'margin' => '0 0 0 0',
         ]);
 
-        if ( isset($content['chat_data']) AND $chat_data = $content['chat_data'] ) {
+        if ( isset($content['chat_data']['message']) AND $chat_data = $content['chat_data'] ) {
 
             $top_row_data = [];
 
@@ -93,14 +93,14 @@ trait uiKitMatchItem
 
         $bottom_row = [];
 
-        if ( isset($content['profile_comment']) AND $content['profile_comment'] ) {
+        if ( isset($chat_data['message']) ) {
             $bottom_row[] = $this->getComponentText($chat_data['message'], [], [
                 'color' => '#6b7175',
                 'font-size' => '14',
                 'margin' => '5 0 0 0',
                 'font-weight' => ( $chat_data['is_message_read'] != '1' ? 'bold' : 'normal' ),
             ]);
-        } else if ( isset($chat_data) ) {
+        } else if ( isset($content['profile_comment']) AND $content['profile_comment'] ) {
             $bottom_row[] = $this->getComponentText($content['profile_comment'], [], [
                 'color' => '#6b7175',
                 'font-size' => '14',
