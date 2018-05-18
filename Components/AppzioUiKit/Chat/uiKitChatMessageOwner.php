@@ -7,18 +7,23 @@ trait uiKitChatMessageOwner {
     public function uiKitChatMessageOwner(array $message, $parameters=array(), $styles=array()){
         $data = [];
 
+        $attachment_width = 'auto';
+
         if ( !empty($message['msg']) ) {
             $data[] = $this->getComponentText($message['msg'], [], [
                 'padding' => '12 12 12 12',
+                'text-align' => 'right',
                 'font-size' => '14',
                 'font-style' => 'normal',
                 'color' => '#ffffff',
                 'vertical-align' => 'middle'
             ]);
+
+            $attachment_width = '100%';
         }
 
         if ( isset($message['attachment']) ) {
-            $data[] = $this->uiKitChatMessageAttachment( $message['attachment'] );
+            $data[] = $this->uiKitChatMessageAttachment( $message['attachment'], $attachment_width );
         }
 
         return $this->getComponentRow([
@@ -55,7 +60,7 @@ trait uiKitChatMessageOwner {
         return $message['profilepic'];
     }
 
-    public function uiKitChatMessageAttachment( $attachment ) {
+    public function uiKitChatMessageAttachment( $attachment, $width ) {
 
         $image = $this->getComponentImage($attachment, [
             'imgwidth' => '900',
@@ -77,7 +82,7 @@ trait uiKitChatMessageOwner {
         }
 
         return $this->getComponentImage($attachment, $img_params, [
-            'width' => 'auto',
+            'width' => $width,
             'border-radius' => 8,
             'margin' => '4 4 4 4',
         ]);
@@ -92,7 +97,7 @@ trait uiKitChatMessageOwner {
         if ( $message['msg'] ) {
             $length = strlen($message['msg']);
 
-            if ( $length < 10 ) {
+            if ( $length < 50 ) {
                 return '40%';
             } else if ( $length > 100 ) {
                 return '70%';

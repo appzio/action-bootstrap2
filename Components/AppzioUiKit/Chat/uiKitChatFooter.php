@@ -71,10 +71,16 @@ trait uiKitChatFooter {
     }
 
     protected function uiKitChatFooterSubmit(){
-        $onclick = $this->getOnclickSubmit('submit-msg', [
-            'sync_upload' => 1,
-            'viewport' => 'bottom',
-        ]);
+
+        $onclick = $this->getOnclickRoute(
+            'Chat/SaveMessage',
+            false,
+            [],
+            true,
+            [
+                'viewport' => 'bottom',
+            ]
+        );
 
         if($this->model->getConfigParam('actionimage4')){
             $btn = $this->model->getConfigParam('actionimage4');

@@ -7,6 +7,8 @@ trait uiKitChatMessageUser {
     public function uiKitChatMessageUser(array $message, $parameters=array(), $styles=array()){
         $data = [];
 
+        $attachment_width = 'auto';
+
         if ( !empty($message['msg']) ) {
             $data[] = $this->getComponentText($message['msg'], [], [
                 'padding' => '12 12 12 12',
@@ -15,10 +17,12 @@ trait uiKitChatMessageUser {
                 'color' => '#676d77',
                 'vertical-align' => 'middle'
             ]);
+
+            $attachment_width = '100%';
         }
 
         if ( isset($message['attachment']) ) {
-            $data[] = $this->uiKitChatMessageAttachment( $message['attachment'] );
+            $data[] = $this->uiKitChatMessageAttachment( $message['attachment'], $attachment_width );
         }
 
         return $this->getComponentRow([
