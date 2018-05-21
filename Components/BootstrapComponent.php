@@ -319,6 +319,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Chat\uiKitChatFooter;
     use AppzioUiKit\Chat\uiKitChatMessageOwner;
     use AppzioUiKit\Chat\uiKitChatMessageUser;
+    use AppzioUiKit\Chat\uiKitChatMeta;
 
     use ViewGetters;
     use ViewHelpers;
