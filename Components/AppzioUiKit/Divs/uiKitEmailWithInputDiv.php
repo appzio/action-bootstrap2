@@ -14,7 +14,7 @@ trait uiKitEmailWithInputDiv
         $images = isset($params['images']) ? $params['images'] : array();
         $action = isset($params['action']) ? $params['action'] : 'Controller/email';
         $subtitle = isset($params['subtitle']) ? $params['subtitle'] : '';
-
+        
         return $this->getComponentColumn(array(
             $this->uiKitDivHeader('Send Email', array(
                 'close_icon' => 'cross-sign.png',
@@ -34,9 +34,20 @@ trait uiKitEmailWithInputDiv
                     'background-color' => '#ffffff',
                     'padding' => '12 10 12 10',
                 )),
+                'token_placeholder' => $this->getComponentRow([
+                    $this->getComponentText('$value', [], [
+                        'color' => '#000000',
+                        'padding' => '3 5 3 5',
+                    ])
+                ], [], [
+                    'background-color' => '#f6f6f6',
+                    'padding' => '3 3 3 3',
+                    'margin' => '3 0 3 0',
+                    'border-radius' => '5',
+                ]),
             ), array(
                 'padding' => '0 0 0 0',
-                'margin' => '0 20 0 20',
+                'margin' => '10 20 10 20',
             )),
             $this->getComponentSpacer('1', array(), array(
                 'background-color' => '#dadada',
