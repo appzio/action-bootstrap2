@@ -267,7 +267,7 @@ END:VCALENDAR
     public function convertUnixTimeToCalendar($time){
 
         // Set the default timezone to UTC
-        date_default_timezone_set('UTC');
+        // date_default_timezone_set('UTC');
 
 //        $time = $time + $difference;
 //        $difference = $this->get_timezone_offset('Europe/London');
