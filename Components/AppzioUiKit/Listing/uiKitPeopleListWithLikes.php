@@ -52,13 +52,13 @@ trait uiKitPeopleListWithLikes
         }
 
         if(isset($parameters['icon_bookmark']) AND isset($parameters['icon_bookmark_active']) AND $parameters['bookmark_route']){
-            $like[] = $this->getOnclickHideElement('unliked');
-            $like[] = $this->getOnclickShowElement('liked');
-            $like[] = $this->getOnclickSubmit($parameters['bookmark_route'].'bookmark/'.$user['play_id']);
+            $like[] = $this->getOnclickHideElement('unliked',['transition' => 'none']);
+            $like[] = $this->getOnclickShowElement('liked',['transition' => 'none']);
+            $like[] = $this->getOnclickSubmit($parameters['bookmark_route'].'bookmark/'.$user['play_id'],['loader_off' => true]);
 
-            $unlike[] = $this->getOnclickHideElement('liked');
-            $unlike[] = $this->getOnclickShowElement('unliked');
-            $unlike[] = $this->getOnclickSubmit($parameters['bookmark_route'].'unbookmark/'.$user['play_id']);
+            $unlike[] = $this->getOnclickHideElement('liked',['transition' => 'none']);
+            $unlike[] = $this->getOnclickShowElement('unliked',['transition' => 'none']);
+            $unlike[] = $this->getOnclickSubmit($parameters['bookmark_route'].'unbookmark/'.$user['play_id'],['loader_off' => true]);
 
             $icons[] = $this->getComponentImage($parameters['icon_bookmark'],['style' => 'uikit_ukp_iconpic','onclick' => $like,'id' => 'unliked']);
             $icons[] = $this->getComponentImage($parameters['icon_bookmark_active'],['style' => 'uikit_ukp_iconpic','onclick' => $unlike,'id' => 'liked','visibility' => 'hidden']);

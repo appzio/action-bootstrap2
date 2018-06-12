@@ -1,6 +1,6 @@
 {
   "uikit_ukp_profilepic": {
-    "width": "30",
+    "width": "40",
     "crop": "round"
   },
   "uikit_ukp_name":{
@@ -16,7 +16,7 @@
   },
 
   "uikit_ukp_iconpic": {
-    "width": "40",
+    "width": "50",
     "margin": "0 0 0 8"
   }
 }
