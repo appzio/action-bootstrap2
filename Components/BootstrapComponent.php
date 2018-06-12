@@ -264,6 +264,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Listing\uiKitListItem;
 	use AppzioUiKit\Listing\uiKitMatchItem;
 	use AppzioUiKit\Listing\uiKitSearchItem;
+	use AppzioUiKit\Listing\uiKitPeopleListWithLikes;
 
     use AppzioUiKit\Divs\uiKitBlockButtonsDiv;
     use AppzioUiKit\Divs\uiKitReportItemDiv;
@@ -314,6 +315,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Buttons\uiKitSwipeUpdateButton;
 
 	use AppzioUiKit\Swiper\uiKitUserSwiper;
+	use AppzioUiKit\Swiper\uiKitUserSwiperControls;
 
 	use AppzioUiKit\Timer\uiKitTimer;
 

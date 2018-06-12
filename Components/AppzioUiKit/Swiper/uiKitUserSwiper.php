@@ -38,8 +38,10 @@ trait uiKitUserSwiper {
                 array(
                     'id' => 'swipe_container',
                     'transition' => 'tablet',
-                    'world_ending' => 'refill_items'
-                ));
+                    'world_ending' => 'refill_items',
+                    'overlay_left' => $this->getComponentImage('uikit_swipe_nope_overlay.png',array('text-align' => 'right','width'=> '350','height'=> '350')),
+                    'overlay_right' => $this->getComponentImage('uikit_swipe_like_overlay.png',array('text-align' => 'left','width'=> '350','height'=> '350'))
+                ),[]);
             return $this->getComponentColumn($out);
         }
 
@@ -50,33 +52,47 @@ trait uiKitUserSwiper {
 	private function getFeaturedUser($content){
         $icon = $content['profilepic'] ? $content['profilepic'] : 'icon_camera-grey.png';
 
-        $col[] = $this->getComponentImage($icon,array(
-            'style' => 'matching_featured_image','imgwidth' => '600','imgheight' => '600',
-            'widht' => '300', 'height' => '300'));
+        $width = $this->screen_width - 60;
+        $height = $width*1.1;
 
-        $swipeRight[]  = $this->getOnclickSwipeStackControl('swipe_container', 'right');
-        $swipeLeft[] = $this->getOnclickSwipeStackControl('swipe_container', 'left');
-
-        $col[] = $this->getComponentRow([
-            $this->getComponentText('Dislike', array('onclick' => $swipeLeft), array('color' => "#FFFFFF")),
-            $this->getComponentText('Like', array('onclick' => $swipeRight), array('color' => "#FFFFFF")),
-        ]);
-
-        $action = $this->getOnclickOpenAction(
+        $open_profile = $this->getOnclickOpenAction(
             'userinfo',
             false,
-            array('sync_open' => 1, 'back_button' => 1, 'id' => $content['play_id'].'-currentprofileview')
-/*            'Profile/default/open_match-' . $content['play_id'],
-            false,
-            array('id' => '-currentprofileview' .$content['play_id'])*/
+            array('sync_open' => 1, 'back_button' => 1, 'id' => $content['play_id'])
         );
 
-        return $this->getComponentColumn($col, array(
-            'onclick' => $action,
+        $col[] = $this->getComponentImage($icon,[
+            'imgwidth' => '800',
+            'imgheight' => '900',
+            'onclick' => $open_profile,
+            'priority' => '9'],[
+                'crop' => 'yes',
+                'width' => $width,
+                'height' => $height]);
+
+        $name = isset($content['firstname']) ? $content['firstname'] : '{#anonymous#}';
+
+        if(isset($content['age']) AND $content['age']){
+            $name .= ', '.$content['age'];
+        }
+
+        $row[] = $this->getComponentText($name,['style'=>'ukit_user_swiper_name']);
+
+        if(isset($content['instagram_username']) AND $content['instagram_username']){
+            $row[] = $this->getComponentImage('uikit_swipe_insta.png',['style' => 'ukit_user_swiper_insta',
+                'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username'])]);
+        }
+
+        $col[] = $this->getComponentRow($row,[],['margin' => '7 0 2 0']);
+
+
+        $out[] = $this->getComponentColumn($col, array(
             'leftswipeid' => 'left' . $content['play_id'],
             'rightswipeid' => 'right' . $content['play_id'],
-            'style' => 'matching_featured_column'
+            'style' => 'ukit_user_swiper'
         ));
+        
+        return $this->getComponentColumn($out,[],['text-align' => 'center','width' => '100%','padding' => '10 20 20 20']);
     }
 
 }

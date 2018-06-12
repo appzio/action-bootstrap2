@@ -1,0 +1,29 @@
+{
+  "ukit_user_swiper": {
+    "margin": "10 20 20 20",
+    "vertical-align": "middle",
+    "width": "100%",
+    "padding": "10 10 10 10",
+    "background-color": "#ffffff",
+    "shadow-color" : "#B2B4B3",
+    "shadow-radius": "1",
+    "shadow-offset": "0 0",
+    "border-radius": "3"
+  },
+
+  "matching_featured_image":{
+    "crop": "yes"
+  },
+
+  "ukit_user_swiper_name":{
+    "font-size": "19"
+  },
+
+  "ukit_user_swiper_insta":{
+    "floating": "1",
+    "float": "right",
+    "height": "20"
+  }
+
+
+}
