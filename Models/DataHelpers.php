@@ -91,6 +91,10 @@ trait DataHelpers {
         return $vars;
     }
 
+    public function findClosestVenue($lat,$lon){
+        return ThirdpartyServices::findClosestVenue($lat, $lon, $this->appid);
+    }
+
     /**
      * Find play based on two different variables
      *

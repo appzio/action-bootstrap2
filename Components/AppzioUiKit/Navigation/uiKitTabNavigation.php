@@ -5,10 +5,15 @@ use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitTabNavigation
 {
+
+    public $font_size;
+
     public function uiKitTabNavigation($content = array(), $parameters = array(), $styles = array())
     {
         /** @var BootstrapComponent $this */
         $tabs = array();
+
+        $this->font_size = isset($styles['font-size']) ? $styles['font-size'] : 14;
 
         foreach ($content as $tab) {
             $tabs[] = $this->getTab($tab, count($content), $styles);
@@ -53,7 +58,7 @@ trait uiKitTabNavigation
             'background-color' => '#ffffff',
             'border-width' => '1',
             'border-color' => '#fafafa',
-            'font-size' => '14',
+            'font-size' => $this->font_size,
             'width' => $width,
         ));
 
@@ -79,7 +84,7 @@ trait uiKitTabNavigation
             'background-color' => '#ffffff',
             'border-width' => '1',
             'border-color' => '#fafafa',
-            'font-size' => '14',
+            'font-size' => $this->font_size,
         ));
 
         return $this->getComponentColumn(array(
@@ -106,7 +111,7 @@ trait uiKitTabNavigation
             'background-color' => '#ffffff',
             'border-width' => '1',
             'border-color' => '#fafafa',
-            'font-size' => '14',
+            'font-size' => $this->font_size,
             'width' => $width,
         ));
 
