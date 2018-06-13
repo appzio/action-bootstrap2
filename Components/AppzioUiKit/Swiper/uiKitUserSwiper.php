@@ -58,7 +58,7 @@ trait uiKitUserSwiper {
         $profilepic = $content['profilepic'] ? $content['profilepic'] : 'icon_camera-grey.png';
 
         $width = $this->screen_width - 100;
-        $height = $width*1.1;
+        $height = round($width*1.1,0);
 
         $col[] = $this->getComponentImage($profilepic,[
             'imgwidth' => '800',
@@ -73,9 +73,9 @@ trait uiKitUserSwiper {
 
         if(isset($content['age']) AND $content['age']){
             $name .= ', '.$content['age'];
+        } elseif(isset($content['birth_year'])){
+            $name .= ', ' .date('Y') - $content['birth_year'];
         }
-
-        $name .= $id;
 
         $row[] = $this->getComponentText($name,['style'=>'ukit_user_swiper_name']);
 

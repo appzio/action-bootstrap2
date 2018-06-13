@@ -90,7 +90,7 @@ trait uiKitPeopleListWithLikes
             $icons[] = $this->getComponentImage($parameters['icon_like'],['style' => 'uikit_ukp_iconpic','onclick' => $click]);
         }
         
-        $row[] = $this->getComponentRow($icons,[],['float' => 'right','floating' => '1','width' => 'auto', 'text-align' => 'right']);
+        $row[] = $this->getComponentRow($icons,[],['float' => 'right','floating' => '1', 'text-align' => 'right']);
 
         $col[] = $this->getComponentRow($row,[],['padding' => '20 20 10 20','width' => '100%']);
         $col[] = $this->getComponentDivider();
