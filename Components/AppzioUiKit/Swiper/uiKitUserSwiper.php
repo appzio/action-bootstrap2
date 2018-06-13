@@ -37,8 +37,6 @@ trait uiKitUserSwiper {
                 $swiper,
                 array(
                     'id' => 'swipe_container',
-                    'transition' => 'tablet',
-                    'world_ending' => 'refill_items',
                     'overlay_left' => $this->getComponentImage('uikit_swipe_nope_overlay.png',array('text-align' => 'right','width'=> '350','height'=> '350')),
                     'overlay_right' => $this->getComponentImage('uikit_swipe_like_overlay.png',array('text-align' => 'left','width'=> '350','height'=> '350'))
                 ),[]);
@@ -57,22 +55,15 @@ trait uiKitUserSwiper {
             return $this->getComponentText('Missing user play_id');
         }
 
-        $icon = $content['profilepic'] ? $content['profilepic'] : 'icon_camera-grey.png';
+        $profilepic = $content['profilepic'] ? $content['profilepic'] : 'icon_camera-grey.png';
 
-
-        $width = $this->screen_width - 60;
+        $width = $this->screen_width - 100;
         $height = $width*1.1;
 
-        $open_profile = $this->getOnclickOpenAction(
-            'userinfo',
-            false,
-            array('sync_open' => 1, 'back_button' => 1, 'id' => $id)
-        );
-
-        $col[] = $this->getComponentImage($icon,[
+        $col[] = $this->getComponentImage($profilepic,[
             'imgwidth' => '800',
             'imgheight' => '900',
-            'onclick' => $open_profile,
+            'onclick' => $this->uiKitOpenProfile($id),
             'priority' => '9'],[
                 'crop' => 'yes',
                 'width' => $width,
@@ -105,7 +96,7 @@ trait uiKitUserSwiper {
             'rightswipeid' => 'right' . $id,
         ],['text-align' => 'center','width' => '100%','padding' => '10 20 20 20']);
 
-        if($content['bookmark']){
+        if(isset($content['bookmark']) AND $content['bookmark']){
             $params['is_bookmarked'] = true;
         }
 

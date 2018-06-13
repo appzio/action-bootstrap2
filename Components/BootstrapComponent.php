@@ -221,6 +221,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Controls\uiKitHintedCalendar;
     use AppzioUiKit\Controls\uiKitHintedTime;
     use AppzioUiKit\Controls\uiKitHierarchicalCategories;
+    use AppzioUiKit\Controls\uiKitOpenProfile;
 
     /* text elements */
     use AppzioUiKit\Text\uiKitTextHeader;

@@ -22,9 +22,11 @@ trait uiKitUserSwiperControls {
         /** @var BootstrapComponent $this */
 
         $id = isset($parameters['id']) ? $parameters['id'] : false;
-        $is_bookmarked = isset($parameters['is_bookmarked']) ? $parameters['bookmarked'] : false;
-        $is_liked = isset($parameters['is_liked']) ? $parameters['liked'] : false;
-        $is_unliked = isset($parameters['is_unliked']) ? $parameters['unliked'] : false;
+        $is_bookmarked = isset($parameters['is_bookmarked']) ? $parameters['is_bookmarked'] : false;
+        $is_liked = isset($parameters['is_liked']) ? $parameters['is_liked'] : false;
+        $is_unliked = isset($parameters['is_unliked']) ? $parameters['is_unliked'] : false;
+        $right_click = isset($parameters['right_click']) ? $parameters['right_click'] : false;
+        $left_click = isset($parameters['left_click']) ? $parameters['left_click'] : false;
 
         if(!$id){
             return $this->getComponentText('Missing id for uiKitUserSwiperControls!');
@@ -35,8 +37,13 @@ trait uiKitUserSwiperControls {
         $bookmark = isset($parameters['bookmark']) ? $parameters['bookmark'] : 'uikit_swipe_bookmark_active.png';
         $bookmark_inactive = isset($parameters['bookmark_inactive']) ? $parameters['bookmark_inactive'] : 'uikit_swipe_bookmark.png';
 
-        $swipeRight[]  = $this->getOnclickSwipeStackControl('swipe_container', 'right');
-        $swipeLeft[] = $this->getOnclickSwipeStackControl('swipe_container', 'left');
+        if(!$right_click){
+            $right_click = $this->getOnclickSwipeStackControl('swipe_container', 'right');
+        }
+
+        if(!$left_click){
+            $left_click = $this->getOnclickSwipeStackControl('swipe_container', 'left');
+        }
 
         $bookmark_inactive_click[] = $this->getOnclickShowElement('bookmark_active'.$id,['transition' => 'none']);
         $bookmark_inactive_click[] = $this->getOnclickHideElement('bookmark_inactive'.$id,['transition' => 'none']);
@@ -47,7 +54,7 @@ trait uiKitUserSwiperControls {
         $bookmark_active_click[] = $this->getOnclickSubmit('controller/removebookmark/'.$id);
 
         $left = $this->getComponentColumn([
-            $this->getComponentImage($nope, array('onclick' => $swipeLeft), ['width' => '70','vertical-align' => 'top']),
+            $this->getComponentImage($nope, array('onclick' => $left_click), ['width' => '70','vertical-align' => 'top']),
         ],[],['height' => '90','vertical-align' => 'top','margin' => '0 15 0 0']);
 
         if($is_bookmarked){
@@ -69,7 +76,7 @@ trait uiKitUserSwiperControls {
         }
 
         $right = $this->getComponentColumn([
-            $this->getComponentImage($yes, array('onclick' => $swipeRight), ['width' => '70','vertical-align' => 'top']),
+            $this->getComponentImage($yes, array('onclick' => $right_click), ['width' => '70','vertical-align' => 'top']),
         ],[],['height' => '90','vertical-align' => 'top','margin' => '0 0 0 15']);
 
         $col[] = $this->getComponentRow([

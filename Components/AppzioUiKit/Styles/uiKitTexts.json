@@ -1,0 +1,36 @@
+{
+  "uikit_profileview_title": {
+    "font-size": "24",
+    "text-align": "left",
+    "color": "#545050",
+    "margin": "20 0 0 15"
+  },
+
+  "uikit_profileview_smalltext": {
+    "font-size": "14",
+    "text-align": "left",
+    "color": "#545050"
+  },
+
+  "uikit_profileview_icon": {
+    "height": "25",
+    "margin": "0 3 0 10"
+  },
+
+  "uikit_profileview_icon_right": {
+    "height": "25",
+    "margin": "0 3 0 10",
+    "floating": "1",
+    "float": "right"
+  },
+
+  "uikit_profileview_bodytext": {
+    "height": "16",
+    "color": "#545050",
+    "margin": "20 15 10 15",
+    "text-align": "left"
+  }
+
+
+
+}
