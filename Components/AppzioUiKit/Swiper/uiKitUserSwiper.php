@@ -66,7 +66,7 @@ trait uiKitUserSwiper {
         $open_profile = $this->getOnclickOpenAction(
             'userinfo',
             false,
-            array('sync_open' => 1, 'back_button' => 1, 'id' => $content['play_id'])
+            array('sync_open' => 1, 'back_button' => 1, 'id' => $id)
         );
 
         $col[] = $this->getComponentImage($icon,[
@@ -83,6 +83,8 @@ trait uiKitUserSwiper {
         if(isset($content['age']) AND $content['age']){
             $name .= ', '.$content['age'];
         }
+
+        $name .= $id;
 
         $row[] = $this->getComponentText($name,['style'=>'ukit_user_swiper_name']);
 
@@ -103,7 +105,13 @@ trait uiKitUserSwiper {
             'rightswipeid' => 'right' . $id,
         ],['text-align' => 'center','width' => '100%','padding' => '10 20 20 20']);
 
-        $out2[] = $this->uiKitUserSwiperControls(['id' => $id]);
+        if($content['bookmark']){
+            $params['is_bookmarked'] = true;
+        }
+
+        $params['id'] = $id;
+
+        $out2[] = $this->uiKitUserSwiperControls($params);
 
         return $this->getComponentColumn($out2);
 

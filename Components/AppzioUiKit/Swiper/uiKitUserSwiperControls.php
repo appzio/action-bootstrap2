@@ -22,6 +22,9 @@ trait uiKitUserSwiperControls {
         /** @var BootstrapComponent $this */
 
         $id = isset($parameters['id']) ? $parameters['id'] : false;
+        $is_bookmarked = isset($parameters['is_bookmarked']) ? $parameters['bookmarked'] : false;
+        $is_liked = isset($parameters['is_liked']) ? $parameters['liked'] : false;
+        $is_unliked = isset($parameters['is_unliked']) ? $parameters['unliked'] : false;
 
         if(!$id){
             return $this->getComponentText('Missing id for uiKitUserSwiperControls!');
@@ -37,23 +40,33 @@ trait uiKitUserSwiperControls {
 
         $bookmark_inactive_click[] = $this->getOnclickShowElement('bookmark_active'.$id,['transition' => 'none']);
         $bookmark_inactive_click[] = $this->getOnclickHideElement('bookmark_inactive'.$id,['transition' => 'none']);
-        $bookmark_inactive_click[] = $this->getOnclickSwipeStackControl('swipe_container', 'top');
+        $bookmark_inactive_click[] = $this->getOnclickSubmit('controller/bookmark/'.$id);
 
         $bookmark_active_click[] = $this->getOnclickHideElement('bookmark_active'.$id,['transition' => 'none']);
         $bookmark_active_click[] = $this->getOnclickShowElement('bookmark_inactive'.$id,['transition' => 'none']);
-        $bookmark_active_click[] = $this->getOnclickSwipeStackControl('swipe_container', 'bottom');
+        $bookmark_active_click[] = $this->getOnclickSubmit('controller/removebookmark/'.$id);
 
         $left = $this->getComponentColumn([
             $this->getComponentImage($nope, array('onclick' => $swipeLeft), ['width' => '70','vertical-align' => 'top']),
         ],[],['height' => '90','vertical-align' => 'top','margin' => '0 15 0 0']);
 
-        $bm = $this->getComponentColumn([
-            $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40'])
-        ],['id' => 'bookmark_inactive'.$id],['height' => '90','vertical-align' => 'bottom']);
+        if($is_bookmarked){
+            $bm = $this->getComponentColumn([
+                $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40'])
+            ],['id' => 'bookmark_inactive'.$id,'visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom']);
 
-        $bm2 = $this->getComponentColumn([
-            $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40'])
-        ],['id' => 'bookmark_active'.$id,'visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom']);
+            $bm2 = $this->getComponentColumn([
+                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40'])
+            ],['id' => 'bookmark_active'.$id],['height' => '90','vertical-align' => 'bottom']);
+        } else {
+            $bm = $this->getComponentColumn([
+                $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40'])
+            ],['id' => 'bookmark_inactive'.$id],['height' => '90','vertical-align' => 'bottom']);
+
+            $bm2 = $this->getComponentColumn([
+                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40'])
+            ],['id' => 'bookmark_active'.$id,'visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom']);
+        }
 
         $right = $this->getComponentColumn([
             $this->getComponentImage($yes, array('onclick' => $swipeRight), ['width' => '70','vertical-align' => 'top']),
