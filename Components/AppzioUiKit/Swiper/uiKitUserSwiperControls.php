@@ -21,6 +21,12 @@ trait uiKitUserSwiperControls {
     public function uiKitUserSwiperControls(array $parameters=array(),array $styles=array()) {
         /** @var BootstrapComponent $this */
 
+        $id = isset($parameters['id']) ? $parameters['id'] : false;
+
+        if(!$id){
+            return $this->getComponentText('Missing id for uiKitUserSwiperControls!');
+        }
+
         $nope = isset($parameters['nope']) ? $parameters['nope'] : 'uikit_swipe_nope.png';
         $yes = isset($parameters['yes']) ? $parameters['yes'] : 'uikit_swipe_like.png';
         $bookmark = isset($parameters['bookmark']) ? $parameters['bookmark'] : 'uikit_swipe_bookmark_active.png';
@@ -29,13 +35,13 @@ trait uiKitUserSwiperControls {
         $swipeRight[]  = $this->getOnclickSwipeStackControl('swipe_container', 'right');
         $swipeLeft[] = $this->getOnclickSwipeStackControl('swipe_container', 'left');
 
-        $bookmark_inactive_click[] = $this->getOnclickShowElement('bookmark_active',['transition' => 'none']);
-        $bookmark_inactive_click[] = $this->getOnclickHideElement('bookmark_inactive',['transition' => 'none']);
-        $bookmark_inactive_click[] = $this->getOnclickSubmit('bookmark');
+        $bookmark_inactive_click[] = $this->getOnclickShowElement('bookmark_active'.$id,['transition' => 'none']);
+        $bookmark_inactive_click[] = $this->getOnclickHideElement('bookmark_inactive'.$id,['transition' => 'none']);
+        $bookmark_inactive_click[] = $this->getOnclickSwipeStackControl('swipe_container', 'top');
 
-        $bookmark_active_click[] = $this->getOnclickHideElement('bookmark_active',['transition' => 'none']);
-        $bookmark_active_click[] = $this->getOnclickShowElement('bookmark_inactive',['transition' => 'none']);
-        $bookmark_active_click[] = $this->getOnclickSubmit('unbookmark');
+        $bookmark_active_click[] = $this->getOnclickHideElement('bookmark_active'.$id,['transition' => 'none']);
+        $bookmark_active_click[] = $this->getOnclickShowElement('bookmark_inactive'.$id,['transition' => 'none']);
+        $bookmark_active_click[] = $this->getOnclickSwipeStackControl('swipe_container', 'bottom');
 
         $left = $this->getComponentColumn([
             $this->getComponentImage($nope, array('onclick' => $swipeLeft), ['width' => '70','vertical-align' => 'top']),
@@ -43,11 +49,11 @@ trait uiKitUserSwiperControls {
 
         $bm = $this->getComponentColumn([
             $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40'])
-        ],['id' => 'bookmark_inactive'],['height' => '90','vertical-align' => 'bottom']);
+        ],['id' => 'bookmark_inactive'.$id],['height' => '90','vertical-align' => 'bottom']);
 
         $bm2 = $this->getComponentColumn([
             $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40'])
-        ],['id' => 'bookmark_active','visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom']);
+        ],['id' => 'bookmark_active'.$id,'visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom']);
 
         $right = $this->getComponentColumn([
             $this->getComponentImage($yes, array('onclick' => $swipeRight), ['width' => '70','vertical-align' => 'top']),

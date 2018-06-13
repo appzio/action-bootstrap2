@@ -23,6 +23,11 @@ trait uiKitPeopleListWithLikes
 
     public function getUserRowListingWithLikes($user,$parameters){
 
+        if(!isset($user['play_id'])){
+            return $this->getComponentText('');
+        }
+
+        $id = $user['play_id'];
         $profilepic = isset($user['profilepic']) ? $user['profilepic'] : 'anonymous-person.png';
         $firstname = isset($user['firstname']) ? $user['firstname'] : '{#anonymous#}';
         $age = isset($user['age']) ? $user['age'] : false;
@@ -52,16 +57,22 @@ trait uiKitPeopleListWithLikes
         }
 
         if(isset($parameters['icon_bookmark']) AND isset($parameters['icon_bookmark_active']) AND $parameters['bookmark_route']){
-            $like[] = $this->getOnclickHideElement('unliked',['transition' => 'none']);
-            $like[] = $this->getOnclickShowElement('liked',['transition' => 'none']);
-            $like[] = $this->getOnclickSubmit($parameters['bookmark_route'].'bookmark/'.$user['play_id'],['loader_off' => true]);
+            $like[] = $this->getOnclickHideElement('unliked'.$id,['transition' => 'none']);
+            $like[] = $this->getOnclickShowElement('liked'.$id,['transition' => 'none']);
+            $like[] = $this->getOnclickSubmit($parameters['bookmark_route'].'bookmark/'.$id,['loader_off' => true]);
 
-            $unlike[] = $this->getOnclickHideElement('liked',['transition' => 'none']);
-            $unlike[] = $this->getOnclickShowElement('unliked',['transition' => 'none']);
-            $unlike[] = $this->getOnclickSubmit($parameters['bookmark_route'].'unbookmark/'.$user['play_id'],['loader_off' => true]);
+            $unlike[] = $this->getOnclickHideElement('liked'.$id,['transition' => 'none']);
+            $unlike[] = $this->getOnclickShowElement('unliked'.$id,['transition' => 'none']);
+            $unlike[] = $this->getOnclickSubmit($parameters['bookmark_route'].'removebookmark/'.$id,['loader_off' => true]);
 
-            $icons[] = $this->getComponentImage($parameters['icon_bookmark'],['style' => 'uikit_ukp_iconpic','onclick' => $like,'id' => 'unliked']);
-            $icons[] = $this->getComponentImage($parameters['icon_bookmark_active'],['style' => 'uikit_ukp_iconpic','onclick' => $unlike,'id' => 'liked','visibility' => 'hidden']);
+            if(isset($user['bookmark']) AND $user['bookmark']){
+                $icons[] = $this->getComponentImage($parameters['icon_bookmark'],['style' => 'uikit_ukp_iconpic','onclick' => $like,'id' => 'unliked'.$id,'visibility' => 'hidden']);
+                $icons[] = $this->getComponentImage($parameters['icon_bookmark_active'],['style' => 'uikit_ukp_iconpic','onclick' => $unlike,'id' => 'liked'.$id]);
+            } else {
+                $icons[] = $this->getComponentImage($parameters['icon_bookmark'],['style' => 'uikit_ukp_iconpic','onclick' => $like,'id' => 'unliked'.$id]);
+                $icons[] = $this->getComponentImage($parameters['icon_bookmark_active'],['style' => 'uikit_ukp_iconpic','onclick' => $unlike,'id' => 'liked'.$id,'visibility' => 'hidden']);
+            }
+
         }elseif(isset($parameters['icon_bookmark'])){
             $icons[] = $this->getComponentImage($parameters['icon_bookmark'],['style' => 'uikit_ukp_iconpic']);
         }

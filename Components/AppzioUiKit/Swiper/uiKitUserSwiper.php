@@ -50,7 +50,15 @@ trait uiKitUserSwiper {
     }
 
 	private function getFeaturedUser($content){
+
+        $id = isset($content['play_id']) ? $content['play_id'] : false;
+
+        if(!$id){
+            return $this->getComponentText('Missing user play_id');
+        }
+
         $icon = $content['profilepic'] ? $content['profilepic'] : 'icon_camera-grey.png';
+
 
         $width = $this->screen_width - 60;
         $height = $width*1.1;
@@ -87,12 +95,18 @@ trait uiKitUserSwiper {
 
 
         $out[] = $this->getComponentColumn($col, array(
-            'leftswipeid' => 'left' . $content['play_id'],
-            'rightswipeid' => 'right' . $content['play_id'],
             'style' => 'ukit_user_swiper'
         ));
-        
-        return $this->getComponentColumn($out,[],['text-align' => 'center','width' => '100%','padding' => '10 20 20 20']);
+
+        $out2[] = $this->getComponentColumn($out,[
+            'leftswipeid' => 'left' . $id,
+            'rightswipeid' => 'right' . $id,
+        ],['text-align' => 'center','width' => '100%','padding' => '10 20 20 20']);
+
+        $out2[] = $this->uiKitUserSwiperControls(['id' => $id]);
+
+        return $this->getComponentColumn($out2);
+
     }
 
 }
