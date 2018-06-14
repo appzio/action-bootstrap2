@@ -303,6 +303,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Navigation\uiKitBottomNavigation;
 	use AppzioUiKit\Navigation\uiKitTabNavigation;
 	use AppzioUiKit\Navigation\uiKitTopbar;
+    use AppzioUiKit\Navigation\uiKitTopbarWithButtons;
 	use AppzioUiKit\Navigation\uiKitMenuItem;
 	use AppzioUiKit\Navigation\uiKitMenuProfilebox;
 	use AppzioUiKit\Navigation\uiKitFloatingButtons;
