@@ -366,6 +366,25 @@ class BootstrapModel extends CActiveRecord {
         return false;
     }
 
+
+    /**
+     * @param $param -- parameter to look for
+     * @param mixed $obj -- takes either array or object
+     * @param bool $default -- default value
+     * @return mixed
+     */
+    public function getParam($param, $obj, $default=false){
+
+        if (isset($obj->$param)) {
+            return $obj->$param;
+        } elseif (isset($obj['param'])) {
+            return $obj['param'];
+        } else {
+            return $default;
+        }
+    }
+
+
     /**
      * Get an array of validation errors.
      * Errors are usually filled in from the model upon form validation.

@@ -1,0 +1,22 @@
+{
+  "uikit_ukp_profilepic": {
+    "width": "30",
+    "crop": "round"
+  },
+  "uikit_ukp_name":{
+    "font-size": "21",
+    "font-ios": "Lato-Light",
+    "font-android": "Lato-Light",
+    "margin": "0 0 0 20"
+  },
+
+  "uikit_ukp_extraicon":{
+    "margin": "2 0 0 20",
+    "height": "30"
+  },
+
+  "uikit_ukp_iconpic": {
+    "width": "30",
+    "margin": "0 0 0 8"
+  }
+}

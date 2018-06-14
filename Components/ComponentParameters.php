@@ -41,6 +41,14 @@ trait ComponentParameters {
             }
         }
 
+        if(isset($obj->imgwidth)){
+            unset($obj->imgwidth);
+        }
+
+        if(isset($obj->imgheight)){
+            unset($obj->imgheight);
+        }
+
 
         /* outputs an error if a required parameter is missing */
         if(!empty($required)){

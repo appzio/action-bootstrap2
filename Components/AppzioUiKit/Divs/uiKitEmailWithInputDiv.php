@@ -58,7 +58,8 @@ trait uiKitEmailWithInputDiv
                 'hint' => 'Message:',
                 'variable' => 'message'
             ), array(
-                'margin' => '5 10 5 10',
+                'padding' => '5 0 5 0',
+                'margin' => '5 20 5 20',
                 'height' => '75'
             )),
             $this->getComponentSpacer('1', array(), array(

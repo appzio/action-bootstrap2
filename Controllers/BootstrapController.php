@@ -91,6 +91,11 @@ class BootstrapController implements BootstrapControllerInterface {
             }
         }
 
+        // Adjust the user's timezone
+        if ( $timezone = $this->model->getSavedVariable('timezone_id') ) {
+            date_default_timezone_set($timezone);
+        }
+
         $this->action_name = $this->router->getActionName();
     }
 

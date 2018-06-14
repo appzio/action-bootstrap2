@@ -22,6 +22,7 @@ trait uiKitFullWidthImageSwiper {
         $image_styles['height'] = $height;
         $image_styles['not_to_assetlist'] = true;
         $image_styles['priority'] = '9';
+        $image_styles['crop'] = 'yes';
 
         $navi_styles['margin'] = '-60 0 0 0';
         $navi_styles['text-align'] = 'center';
