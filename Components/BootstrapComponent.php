@@ -317,6 +317,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
 	use AppzioUiKit\Swiper\uiKitUserSwiper;
 	use AppzioUiKit\Swiper\uiKitUserSwiperControls;
+	use AppzioUiKit\Swiper\uiKitUserMatch;
 
 	use AppzioUiKit\Timer\uiKitTimer;
 

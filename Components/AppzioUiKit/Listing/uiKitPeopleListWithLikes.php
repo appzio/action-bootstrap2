@@ -61,6 +61,13 @@ trait uiKitPeopleListWithLikes
 
         $icons = array();
 
+        if(isset($parameters['icon_chat']) AND isset($parameters['play_id'])){
+            $click = $this->getOnclickOpenAction('chat',false,[
+                'id' => $this->model->getTwoWayChatId($parameters['play_id'],$id)
+            ]);
+            $icons[] = $this->getComponentImage($parameters['icon_chat'],['style' => 'uikit_ukp_iconpic','onclick' => $click]);
+        }
+
         if(isset($parameters['icon_dont_like']) AND $parameters['like_route']){
             $click = $this->getOnclickSubmit($parameters['like_route'].'unlike/'.$user['play_id']);
             $icons[] = $this->getComponentImage($parameters['icon_dont_like'],['style' => 'uikit_ukp_iconpic','onclick' => $click]);

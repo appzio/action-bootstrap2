@@ -23,7 +23,35 @@
     "floating": "1",
     "float": "right",
     "height": "20"
+  },
+
+  "uikit_usermatch_image":{
+    "crop" : "round",
+    "width": "60",
+    "margin":"0 10 0 10"
+  },
+
+  "uikit_usermatch_images":{
+    "margin": "50 50 20 50",
+    "text-align":"center",
+    "width": "100%"
+  },
+
+  "uikit_usermatch_title":{
+    "font-size": "27",
+    "text-align": "center",
+    "color": "#545050",
+    "margin":"60 40 4 40"
+  },
+
+  "uikit_usermatch_subtext":{
+    "color": "#B2B4B3",
+    "text-align":"center",
+    "font-size": "14",
+    "margin":"5 40 20 40"
   }
+
+
 
 
 }
