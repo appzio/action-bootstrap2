@@ -63,7 +63,8 @@ trait uiKitPeopleListWithLikes
 
         if(isset($parameters['icon_chat']) AND isset($parameters['play_id'])){
             $click = $this->getOnclickOpenAction('chat',false,[
-                'id' => $this->model->getTwoWayChatId($parameters['play_id'],$id)
+                'id' => $this->model->getTwoWayChatId($parameters['play_id'],$id),
+                'sync_open' => 1,'back_button' => 1
             ]);
             $icons[] = $this->getComponentImage($parameters['icon_chat'],['style' => 'uikit_ukp_iconpic','onclick' => $click]);
         }
