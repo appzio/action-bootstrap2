@@ -31,6 +31,7 @@ trait uiKitTopbarWithButtons
         $config_error = false;
 
         foreach ($params as $item_key => $item_params) {
+
             if ( $item_params['required'] AND !isset($configs[$item_key]) ) {
                 $config_error = true;
                 break;
@@ -71,11 +72,11 @@ trait uiKitTopbarWithButtons
             'text-align' => 'center',
             'width' => $this->screen_width - (2 * ($this->screen_width / $this->corner_size))
         ]);
-
+        $rightSection = (isset($configs['rightSection']))?$configs['rightSection']:'';;
         $rightComponent = $this->getComponentColumn([
-            $this->getComponent($configs['rightSection'])
+            $this->getComponent($rightSection)
             ],
-            $this->getAction($configs['rightSection']),
+            $this->getAction($rightSection),
             [
                 'width' => $this->screen_width / $this->corner_size,
                 'text-align' => 'right',
@@ -83,22 +84,24 @@ trait uiKitTopbarWithButtons
             ]);
 
         return $this->getComponentRow([
-                $leftComponent,
-                $centerComponent,
-                $rightComponent
+               $leftComponent,
+               $centerComponent,
+               $rightComponent
            ],[],$styles);
     }
 
     private function getComponent($content){
-        if ($content['title']){
+
+        if (isset($content['title'])){
             return $this->getComponentText($content['title'], [],[
                 'font-size' => '17',
                 'color' => '#ffffff',
                 'text-align' => 'center',
             ]);
+
         }
 
-	    if ($content['image']){
+	    if (isset($content['image'])&&!empty($content['image'])){
             return $this->getComponentImage($content['image'], [],[
                 'height' => '25',
             ]);
@@ -108,7 +111,7 @@ trait uiKitTopbarWithButtons
     }
 
     private function getAction($content){
-        if ($content['onclick']){
+        if (isset($content['onclick'])&&!empty( $content['onclick'])){
             return array('onclick'=>$content['onclick']);
         }
         return array();
