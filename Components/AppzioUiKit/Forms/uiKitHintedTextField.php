@@ -21,7 +21,7 @@ trait uiKitHintedTextField {
 
         $parameters['variable'] = $variablename;
 
-        $title_params['style'] = 'steps_hint';
+        $title_params['style'] = 'uikit_steps_hint';
 	    if ( isset($parameters['uppercase']) AND $parameters['uppercase'] ) {
 	        $title_params['uppercase'] = true;
         }
@@ -43,32 +43,53 @@ trait uiKitHintedTextField {
         switch($type){
             case 'text':
                 $out[] = $this->getComponentFormFieldText($val,
-                    array_merge(array('style' => 'steps_field'), $parameters)
+                    array_merge(array('style' => 'uikit_hinted_text'), $parameters)
+                );
+                break;
+
+            case 'email':
+                $parameters['input_type'] = 'email';
+                $out[] = $this->getComponentFormFieldText($val,
+                    array_merge(array('style' => 'uikit_hinted_text'), $parameters)
+                );
+                break;
+
+            case 'phone':
+                $parameters['input_type'] = 'phone';
+                $out[] = $this->getComponentFormFieldText($val,
+                    array_merge(array('style' => 'uikit_hinted_text'), $parameters)
+                );
+                break;
+
+            case 'number':
+                $parameters['input_type'] = 'number';
+                $out[] = $this->getComponentFormFieldText($val,
+                    array_merge(array('style' => 'uikit_hinted_text'), $parameters)
                 );
                 break;
 
             case 'textarea':
                 $out[] = $this->getComponentFormFieldTextArea($val,
-	                array_merge(array('style' => 'steps_field_textarea'), $parameters)
+	                array_merge(array('style' => 'uikit_hinted_textarea'), $parameters)
                 );
                 break;
 
             case 'password':
                 $out[] = $this->getComponentFormFieldPassword($val,
-                    array_merge(array('style' => 'steps_field'), $parameters)
+                    array_merge(array('style' => 'uikit_hinted_text'), $parameters)
                 );
                 break;
 
             case 'noedit':
-                $out[] = $this->getComponentText($val,array('style' => 'steps_field_noedit'));
+                $out[] = $this->getComponentText($val,array('style' => 'uikit_hinted_text_noedit'));
                 break;
 
         }
 
         if($this->model->getValidationError($variablename)){
-            $out[] = $this->getComponentText('',array('style' => 'steps_field_divider_error'));
+            $out[] = $this->getComponentText('',array('style' => 'uikit_hinted_text_divider_error'));
         } else {
-            $out[] = $this->getComponentText('',array('style' => 'steps_field_divider'));
+            $out[] = $this->getComponentText('',array('style' => 'uikit_hinted_text_divider'));
         }
 
         if($this->model->getValidationError($variablename.'_exists')){

@@ -4,9 +4,9 @@ namespace Bootstrap\Components\AppzioUiKit\Divs;
 
 use Bootstrap\Components\BootstrapComponent;
 
-trait uiKitRemoveItemDiv
+trait uiKitRemoveUserDiv
 {
-    public function uiKitRemoveItemDiv(array $params=array())
+    public function uiKitRemoveUserDiv(array $params=array())
     {
 
         $text = isset($params['text']) ? $params['text'] : '{#are_you_sure_you_want_to_remove_this_item_from_liked?#}';
@@ -22,10 +22,8 @@ trait uiKitRemoveItemDiv
             $this->getComponentText('Remove', array(
                 'style' => 'uikit_div_button',
                 'onclick' => array(
-                    $this->getOnclickSubmit('Controller/remove'),
-                    $this->getOnclickHideDiv('uikit-remove-item'),
-                    $this->getOnclickHideDiv('uikit-block-buttons'),
-                    $this->getOnclickGoHome()
+                    $this->getOnclickSubmit('Controller/removeuser',['sync_open' => 1]),
+                    $this->getOnclickLogout()
                 )
             ))
         ), array(

@@ -63,6 +63,13 @@ trait Onclick {
         return $obj;
     }
 
+
+    public function getOnclickLogout(){
+        $obj = new \StdClass;
+        $obj->action = 'logout';
+        return $obj;
+    }
+
     /**
      * When the component is clicked a div with the corresponding divid should be hidden
      *
