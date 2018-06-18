@@ -22,7 +22,7 @@ trait uiKitInformationTile
             'text-align' => 'center',
             'padding' => '20 10 20 10',
             'width' => '50%',
-            'height' => '170',
+            'height' => '165',
         ), $style));
     }
 
