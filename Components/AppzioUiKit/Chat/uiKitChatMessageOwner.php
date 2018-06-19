@@ -46,7 +46,7 @@ trait uiKitChatMessageOwner {
         ], [], [
             'width' => '100%',
             'text-align' => 'right',
-            'margin' => '0 10 0 10',
+            'padding' => '0 10 0 10',
             'vertical-align' => 'top',
         ]);
     }
