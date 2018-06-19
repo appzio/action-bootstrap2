@@ -39,6 +39,7 @@ trait uiKitMatchItem
             ]),
         ], $parameters, [
             'width' => 'auto',
+            'vertical-align' => 'middle',
             'margin' => '5 15 5 15',
         ]);
     }
@@ -102,6 +103,12 @@ trait uiKitMatchItem
             ]);
         } else if ( isset($content['profile_comment']) AND $content['profile_comment'] ) {
             $bottom_row[] = $this->getComponentText($content['profile_comment'], [], [
+                'color' => '#6b7175',
+                'font-size' => '14',
+                'margin' => '5 0 0 0',
+            ]);
+        } else {
+            $bottom_row[] = $this->getComponentText('{#no_messages_yet#}', [], [
                 'color' => '#6b7175',
                 'font-size' => '14',
                 'margin' => '5 0 0 0',
