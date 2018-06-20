@@ -53,7 +53,7 @@ trait uiKitArticleItem {
 	        ), array(), array(
 		        'width' => 'auto',
 		        'height' => $this->screen_height / $this->height_proportion,
-		        'padding' => '10 10 0 10',
+		        'padding' => '0 10 0 10',
 	        )),
         ), array(
 	        'onclick' => $onclick,
