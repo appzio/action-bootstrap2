@@ -38,7 +38,8 @@ trait uiKitVideoDiv
 			    'shadow-color' => '#33000000',
 			    'shadow-radius' => '1',
 			    'shadow-offset' => '0 3',
-			    'margin' => '0 0 0 0'
+			    'margin' => '0 0 0 0',
+                'height' => '50'
 		    )),
 			$this->getComponentVideo($params['video_url'], array(
 				'showplayer' => 1,
