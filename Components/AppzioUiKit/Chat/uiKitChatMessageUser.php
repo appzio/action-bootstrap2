@@ -34,19 +34,21 @@ trait uiKitChatMessageUser {
                 'width' => '10%',
                 'margin' => '0 10 0 0',
             ]),
-            $this->getComponentColumn($data, [], [
-                'width' => $this->uiKitChatMessageWidth( $message ),
-                'vertical-align' => 'middle',
-                'text-align' => 'left',
-                'background-color' => '#f9f9f9',
-                'border-radius' => '8',
-                'color' => '#676d77',
-            ])
+            $this->getComponentColumn($data, [], array_merge(
+                array(
+                    'vertical-align' => 'middle',
+                    'text-align' => 'left',
+                    'background-color' => '#f9f9f9',
+                    'border-radius' => '8',
+                    'color' => '#676d77',
+                ),
+                $this->uiKitChatMessageWidth( $message, 'right' )
+            ))
         ], [], [
             'width' => '100%',
             'text-align' => 'left',
             'padding' => '0 10 0 10',
-            'vertical-align' => 'middle'
+            'vertical-align' => 'top'
         ]);
     }
 
