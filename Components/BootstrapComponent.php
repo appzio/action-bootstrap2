@@ -282,6 +282,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Articles\uiKitArticleCategoryItem;
 	use AppzioUiKit\Articles\uiKitArticleHeading;
 	use AppzioUiKit\Articles\uiKitArticleText;
+	use AppzioUiKit\Articles\uiKitArticleRichText;
+	use AppzioUiKit\Articles\uiKitArticleWrapRow;
 	use AppzioUiKit\Articles\uiKitArticleQABlock;
 	use AppzioUiKit\Articles\uiKitArticleImage;
 	use AppzioUiKit\Articles\uiKitArticleVideo;
