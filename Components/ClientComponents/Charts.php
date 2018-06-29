@@ -37,6 +37,10 @@ trait Charts {
             $obj->x_names = $parameters['names'];
         }
 
+        if(isset($parameters['no_values'])){
+            $obj->no_values = 1;
+        }
+
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
         $obj = $this->configureDefaults($obj);
