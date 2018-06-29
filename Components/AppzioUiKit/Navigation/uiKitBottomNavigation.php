@@ -34,11 +34,11 @@ trait uiKitBottomNavigation
 
         return $this->getComponentColumn([
             $this->getComponentImage($icon, [], [
-                'width' => 22,
+                'width' => 21,
                 'margin' => '6 0 0 0',
             ]),
             $this->getComponentText($text, [], [
-                'font-size' => '14',
+                'font-size' => '12',
                 'padding' => '0 0 0 0',
                 'margin' => '5 0 6 0',
                 'color' => '#ffffff',

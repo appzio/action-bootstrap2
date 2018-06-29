@@ -27,14 +27,21 @@ trait uiKitChatMessageOwner {
         }
 
         return $this->getComponentRow([
-            $this->getComponentColumn($data, [], [
-                'width' => $this->uiKitChatMessageWidth( $message ),
-                'vertical-align' => 'middle',
-                'text-align' => 'right',
-                'background-color' => '#4678ff',
-                'border-radius' => '8',
-                'color' => '#ffffff',
+            $this->getComponentColumn([
+            ], [], [
+                'width' => '15',
+                'margin' => '0 0 0 20',
             ]),
+            $this->getComponentColumn($data, [], array_merge(
+                array(
+                    'vertical-align' => 'middle',
+                    'text-align' => 'right',
+                    'background-color' => '#4678ff',
+                    'border-radius' => '8',
+                    'color' => '#ffffff',
+                ),
+                $this->uiKitChatMessageWidth( $message, 'left' )
+            )),
             $this->getComponentColumn([
                 $this->getComponentImage($this->uiKitChatMessagePic( $message ), [], [
                     'crop' => 'round'
@@ -46,7 +53,7 @@ trait uiKitChatMessageOwner {
         ], [], [
             'width' => '100%',
             'text-align' => 'right',
-            'margin' => '0 10 0 10',
+            'padding' => '0 10 0 10',
             'vertical-align' => 'top',
         ]);
     }
@@ -88,23 +95,21 @@ trait uiKitChatMessageOwner {
         ]);
     }
 
-    public function uiKitChatMessageWidth( $message ) {
+    public function uiKitChatMessageWidth( $message, $offset ) {
 
         if ( isset($message['attachment']) AND empty($message['msg']) ) {
-            return 'default';
+            return [
+                'width' => 'default'
+            ];
+        } else if ( isset($message['attachment']) AND !empty($message['msg']) AND $offset == 'right' ) {
+            return [
+                'margin' => '0 0 0 0'
+            ];
         }
 
-        if ( $message['msg'] ) {
-            $length = strlen($message['msg']);
-
-            if ( $length < 50 ) {
-                return '40%';
-            } else if ( $length > 100 ) {
-                return '70%';
-            }
-        }
-
-        return 'auto';
+        return [
+            'margin' => ( $offset == 'left' ? '0 0 0 15' : '0 0 0 0' )
+        ];
     }
 
 }

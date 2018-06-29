@@ -154,73 +154,75 @@ trait ComponentHelpers {
 	 */
     public function getParsedContent( $content, $styles = array() ) {
 
-    	$tags = array(
-    	    'row' => 'getComponentRow',
-    	    'column' => 'getComponentColumn',
-    	    'richtext' => 'getComponentRichText',
-	    );
+        $tags = array(
+            'row' => 'getComponentRow',
+            'column' => 'getComponentColumn',
+            'richtext' => 'getComponentRichText',
+            'wraprow' => 'getComponentWrapRow',
+        );
 
-	    $text = str_replace(array("\r\n", "\r"), "\n", $content);
-	    $text = trim($text, "\n");
-	    $lines = explode("\n", $text);
+        $text = str_replace(array("\r\n", "\r"), "\n", $content);
+        $text = trim($text, "\n");
+        $lines = explode("\n", $text);
 
-	    $output = [];
+        $output = [];
 
-	    $args = array(
-		    'width' => 'auto',
-		    'color' => '#676b6f',
-		    'font-size' => '17',
-		    'padding' => '10 15 10 15',
-	    );
+        $args = array(
+            'width' => 'auto',
+            'color' => '#676b6f',
+            'font-size' => '17',
+            'padding' => '10 15 10 15',
+        );
 
-	    $args = array_merge($args, $styles);
+        $args = array_merge($args, $styles);
 
-	    foreach ( $lines as $i => $line ) {
+        foreach ( $lines as $i => $line ) {
 
-	    	if ( $i )
-			    $args['padding'] = '0 15 10 15';
+            if ( $i )
+                $args['padding'] = '0 15 10 15';
 
-		    if ( stristr($line, '**') ) {
-			    $line = str_replace('**', '', $line);
-			    $args['font-weight'] = 'bold';
-		    }
+            if ( stristr($line, '**') ) {
+                $line = str_replace('**', '', $line);
+                $args['font-weight'] = 'bold';
+            }
 
-		    $has_tag = false;
+            $has_tag = false;
 
-		    foreach ( $tags as $tag => $element ) {
-		    	if ( preg_match("<$tag>", $line) ) {
+            foreach ( $tags as $tag => $element ) {
+                if ( strpos($line, $tag) ) {
 
-				    $special = 'text';
-		    		if ( preg_match("~<$special>~", $line) ) {
-						$output[] = $this->getRichTextLayout( $tag, $element, $line, $args );
-				    } else {
-					    // As we use HTML like tags, we could simply put everything through strip_tags
-					    $text = strip_tags($line);
+                    if ( strpos($line, 'richtext') OR strpos($line, 'wraprow') ) {
+                        $output[] = $this->getRichTextLayout( $tag, $element, $line, $args );
+                    } else {
+                        // As we use HTML like tags, we could simply put everything through strip_tags
+                        $text = strip_tags($line);
 
-					    $output[] = $this->{$element}(array(
-						    $this->getComponentText($text, array(), $args)
-					    ), array(), array(
-						    'width' => '100%'
-					    ));
-				    }
+                        $output[] = $this->{$element}(array(
+                            $this->getComponentText($text, array(), $args)
+                        ), array(), array(
+                            'width' => '100%'
+                        ));
+                    }
 
-				    $has_tag = true;
-			    }
+                    $has_tag = true;
+                    break;
+                }
 
-		    }
+            }
 
-		    if ( !$has_tag ) {
-			    $output[] = $this->getComponentText($line, array(), $args);
-		    }
+            // No tags - simply output a some text
+            if ( !$has_tag ) {
+                $output[] = $this->getComponentText($line, array(), $args);
+            }
 
-		    unset($args['font-weight']);
-	    }
+            unset($args['font-weight']);
+        }
 
-	    return $output;
+        return $output;
     }
 
     public function getRichTextLayout( $tag, $element, $input, $args ) {
-    	
+
     	$data = array();
 
     	// Remove the wrapping element

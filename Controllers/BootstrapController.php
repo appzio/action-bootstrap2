@@ -134,7 +134,7 @@ class BootstrapController implements BootstrapControllerInterface {
 
         if(!$cache){
             $task = new \stdClass();
-	        $task->action = 'ask-location';
+            $task->action = 'ask-location';
             \Appcaching::setGlobalCache('location-asked'.$this->playid,true, $timetolive);
             $this->onloads[] = $task;
         } else {

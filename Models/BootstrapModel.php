@@ -639,6 +639,8 @@ class BootstrapModel extends CActiveRecord {
         if(isset($_REQUEST['touchid_result'])){
             $this->sessionSet('touch_asked', 1);
             return false;
+        } elseif($this->sessionGet('touch_asked')) {
+            return false;
         } elseif($this->getSavedVariable('touchid_supported') AND
             $this->getSavedVariable('deviceid') AND
             !$this->getSavedVariable('touchid') AND
