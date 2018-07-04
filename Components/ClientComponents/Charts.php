@@ -41,6 +41,10 @@ trait Charts {
             $obj->no_values = 1;
         }
 
+        if(isset($parameters['no_circles'])){
+            $obj->no_circles = 1;
+        }
+
         $obj = $this->attachStyles($obj,$styles);
         $obj = $this->attachParameters($obj,$parameters);
         $obj = $this->configureDefaults($obj);
