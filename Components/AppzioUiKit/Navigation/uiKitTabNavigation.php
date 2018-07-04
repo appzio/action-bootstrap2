@@ -33,17 +33,13 @@ trait uiKitTabNavigation
         $width = $this->screen_width / $count;
 
         if (isset($tab['disabled']) && $tab['disabled']) {
-
             return $this->getDisabledTab($text, $width, $styles);
-
         } else if (!$tab['active']) {
-
             return $this->getNormalTab($text, $width, $onclick, $styles);
-
         } else {
             return $this->getActiveTab($text, $width, $styles);
-
         }
+
     }
 
     protected function getDisabledTab($text, $width, $styles)
@@ -74,6 +70,8 @@ trait uiKitTabNavigation
             $active_marker = 'bottom';
         }
 
+        $active_color = ( isset($styles['active_tab_color']) ? $styles['active_tab_color'] : $this->color_top_bar_color );
+
         $tab_styles = $this->uiKitTabStyles($styles, array(
             'font-size',
             'text-align',
@@ -90,12 +88,13 @@ trait uiKitTabNavigation
         return $this->getComponentColumn(array(
             $this->getComponentText($text, array(), $tab_styles),
             $this->getComponentSpacer('3', array(), array(
-                'background-color' => $this->color_top_bar_color,
+                'background-color' => $active_color,
                 'vertical-align' => $active_marker
             )),
         ), array(), array(
             'width' => $width,
         ));
+
     }
 
     protected function getNormalTab($text, $width, $onclick, $styles)

@@ -37,7 +37,7 @@ trait uiKitPeopleList
 
         if (isset($params['infinite'])) {
             return $this->getInfiniteScroll($items, array(
-                'next_page_id' => (int)$page + 1
+                'next_page_id' => $page + 1
             ));
         }
 
