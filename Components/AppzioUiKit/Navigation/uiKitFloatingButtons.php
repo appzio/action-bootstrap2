@@ -25,11 +25,15 @@ trait uiKitFloatingButtons
             $layout->right = '15';
             $layout->width = ( count($buttons) * 80 );
 
-            $parameters['layout'] = $layout;
+            $default_params['layout'] = $layout;
         }
 
         if ( !empty($styles) ) {
             $component_styles = array_merge($component_styles, $styles);
+        }
+
+        if ( !empty($parameters) ) {
+            $parameters = array_merge($default_params, $parameters);
         }
 
         return $this->getComponentRow(
