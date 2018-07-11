@@ -31,6 +31,15 @@ trait Charts {
         $obj = new \StdClass;
         $obj->type = 'chart-line';
         $obj->label = 'My usage';
+        $obj->hint_placeholder = [
+            'type'=>'row',
+            'row_content'=>[
+                [
+                'type'=>'msg-plain',
+                'content'=>'Content test $x $y'
+                ]
+            ]
+        ];
         $obj->sets = $data;
 
         if(isset($parameters['names'])){
@@ -99,3 +108,4 @@ trait Charts {
 	}
 
 }
+    
