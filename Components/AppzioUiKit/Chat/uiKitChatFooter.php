@@ -4,13 +4,13 @@ namespace Bootstrap\Components\AppzioUiKit\Chat;
 
 trait uiKitChatFooter {
 
-    public function uiKitChatFooter($parameters=array(), $styles=array()){
+    public function uiKitChatFooter($settings=array(), $styles=array()){
         $data[] = $this->uiKitChatFooterUpload();
         $data[] = $this->getComponentVerticalSpacer(5);
         $data[] = $this->getComponentColumn([
             $this->getComponentFormFieldTextArea('', [
                 'submit_menu_id' => 'submit-msg',
-                'hint' => '{#type_to_send#} ...',
+                'hint' => ( isset($settings['hint']) ? $settings['hint'] : '{#type_to_send#} ...' ),
                 'variable' => 'tmp-chat-message',
                 'value' => '',
                 'activation' => 'keep-open',
@@ -36,7 +36,7 @@ trait uiKitChatFooter {
             'margin' => '0 0 0 5',
         ]);
 
-        $data[] = $this->uiKitChatFooterSubmit();
+        $data[] = $this->uiKitChatFooterSubmit($settings);
 
         return $this->getComponentRow($data, [], [
             'background-color' => '#ffffff',
@@ -70,9 +70,11 @@ trait uiKitChatFooter {
         ]);
     }
 
-    protected function uiKitChatFooterSubmit(){
+    protected function uiKitChatFooterSubmit($settings){
 
-        $onclick = $this->getOnclickSubmit('Chat/SaveMessage', [
+        $action = ( isset($settings['submit']) ? $settings['submit'] : 'Chat/SaveMessage' );
+
+        $onclick = $this->getOnclickSubmit($action, [
             'viewport' => 'bottom'
         ]);
 

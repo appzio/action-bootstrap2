@@ -13,7 +13,11 @@ trait uiKitArticleRichText {
             'padding' => '10 15 10 15',
         ], $styles);
 
-        return $this->getComponentRichText($this->getParsedContent($params['content']), [], $styles);
+        return $this->getComponentRichText(
+            $this->getParsedContent($params['content']),
+            $this->getEntryParams($params),
+            $styles
+        );
     }
 
 }

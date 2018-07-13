@@ -153,13 +153,12 @@ trait ComponentHelpers {
 	 * @return array
 	 */
     public function getParsedContent( $content, $styles = array() ) {
+        
+        if ( is_array($content) ) {
+            return $this->getNestedContentOutput( $content );
+        }
 
-        $tags = array(
-            'row' => 'getComponentRow',
-            'column' => 'getComponentColumn',
-            'richtext' => 'getComponentRichText',
-            'wraprow' => 'getComponentWrapRow',
-        );
+        $tags = $this->getComponentsMap();
 
         $text = str_replace(array("\r\n", "\r"), "\n", $content);
         $text = trim($text, "\n");
@@ -399,5 +398,60 @@ trait ComponentHelpers {
 
 		return $tags;
 	}
+
+	public function getComponentsMap() {
+	    return [
+            'row' => 'getComponentRow',
+            'column' => 'getComponentColumn',
+            'richtext' => 'getComponentRichText',
+            'wraprow' => 'getComponentWrapRow',
+        ];
+    }
+
+	public function getNestedContentOutput( $content ) {
+
+        $data = [];
+
+        foreach ($content as $entry) {
+
+            if ( $entry['type'] != 'text' OR !isset($entry['content']) ) {
+                continue;
+            }
+
+
+            $params = $this->getEntryParams( $entry );
+            $styles = ( isset($entry['styles']) ? $entry['styles'] : [] );
+
+            $data[] = $this->getComponentText($entry['content'], $params, $styles);
+        }
+
+        return $data;
+    }
+
+    public function getEntryParams( $entry ) {
+
+	    if ( !isset($entry['params']) OR empty($entry['params']) ) {
+	        return [];
+        }
+
+	    $output = [];
+
+        foreach ($entry['params'] as $key => $param) {
+
+            if ( $key == 'link' ) {
+                if ( preg_match('~action~', $param) ) {
+                    $action_path = str_replace('action:', '', $param);
+                    $output['onclick'] = $this->getOnclickOpenAction($action_path, false, [
+                        'back_button' => 1
+                    ]);
+                } else {
+                    $output['onclick'] = $this->getOnclickOpenUrl( $param );
+                }
+            }
+
+	    }
+
+	    return $output;
+    }
 
 }

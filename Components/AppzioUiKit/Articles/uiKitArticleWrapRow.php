@@ -13,7 +13,11 @@ trait uiKitArticleWrapRow {
             'padding' => '10 15 10 15',
         ], $styles);
 
-        return $this->getComponentWrapRow($this->getParsedContent($params['content'], $styles), [], $styles);
+        return $this->getComponentWrapRow(
+            $this->getParsedContent($params['content']),
+            $this->getEntryParams($params),
+            $styles
+        );
     }
 
 }
