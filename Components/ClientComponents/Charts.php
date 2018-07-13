@@ -31,15 +31,13 @@ trait Charts {
         $obj = new \StdClass;
         $obj->type = 'chart-line';
         $obj->label = 'My usage';
-        $obj->hint_placeholder = [
-            'type'=>'row',
-            'row_content'=>[
-                [
-                'type'=>'msg-plain',
-                'content'=>'Content test $x $y'
-                ]
-            ]
-        ];
+
+        if(isset($parameters['placeholder'])){
+            $obj->hint_placeholder = [
+                'type'=>'row',
+                'row_content'=>$parameters['placeholder']
+            ];
+        }
         $obj->sets = $data;
 
         if(isset($parameters['names'])){
