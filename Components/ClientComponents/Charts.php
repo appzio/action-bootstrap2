@@ -37,6 +37,7 @@ trait Charts {
                 'type'=>'row',
                 'row_content'=>$parameters['placeholder']
             ];
+            unset($parameters['placeholder']);
         }
         $obj->sets = $data;
 
