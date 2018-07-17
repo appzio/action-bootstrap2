@@ -35,7 +35,12 @@ trait Charts {
         if(isset($parameters['placeholder'])){
             $obj->hint_placeholder = [
                 'type'=>'row',
-                'row_content'=>$parameters['placeholder']
+                'row_content'=>[
+                    [
+                    'type'=>'msg-plain',
+                    'content'=>'$y -  $x '
+                    ]
+                ]
             ];
             unset($parameters['placeholder']);
         }
