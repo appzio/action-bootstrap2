@@ -129,13 +129,13 @@ class BootstrapController implements BootstrapControllerInterface {
      *
      * @return mixed
      */
-    public function collectLocation( $timetolive = false ){
-        $cache = \Appcaching::getGlobalCache('location-asked'.$this->playid);
+    public function collectLocation( $timetolive = false, $cache_name = 'location-asked' ){
+        $cache = \Appcaching::getGlobalCache($cache_name . $this->playid);
 
         if(!$cache){
             $task = new \stdClass();
             $task->action = 'ask-location';
-            \Appcaching::setGlobalCache('location-asked'.$this->playid,true, $timetolive);
+            \Appcaching::setGlobalCache($cache_name . $this->playid,true, $timetolive);
             $this->onloads[] = $task;
         } else {
             return false;
