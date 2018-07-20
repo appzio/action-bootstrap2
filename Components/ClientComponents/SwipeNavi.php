@@ -46,15 +46,30 @@ trait SwipeNavi {
             }
 
             if($count == $currentitem){
-                $row[] = $this->getComponentText('•',array(),array('color' => $color_selected,'font-size' => '27','width' => '14','text-align' => 'center','margin' => $margin));
+                $row[] = $this->getComponentText('•', [], [
+                    'color' => $color_selected,
+                    'font-size' => '27',
+                    'width' => '14',
+                    'text-align' => 'center',
+                    'margin' => $margin
+                ]);
             } else {
-                $row[] = $this->getComponentText('•',array(),array('color' => $color_normal,'font-size' => '27','width' => '14','text-align' => 'center','margin' => $margin));
+                $row[] = $this->getComponentText('•', [], [
+                    'color' => $color_normal,
+                    'font-size' => '27',
+                    'width' => '14',
+                    'text-align' => 'center',
+                    'margin' => $margin
+                ]);
             }
 
             $count++;
         }
 
-        $obj = $this->getComponentRow($row,array(),array_merge(array('width' => '100%', 'text-align' => 'center'), $styles));
+        $obj = $this->getComponentRow($row, [], array_merge([
+            'width' => '100%',
+            'text-align' => 'center'
+        ], $styles));
 
         return $obj;
     }
