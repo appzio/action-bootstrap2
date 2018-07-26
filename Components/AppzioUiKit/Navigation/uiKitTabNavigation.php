@@ -93,7 +93,7 @@ trait uiKitTabNavigation
             )),
         ), array(
             'id' => 'tab-' . str_replace(' ', '-', strtolower($text)),
-            'dynamic_content' => 1,
+            'async_dynamic_content' => 1,
         ), array(
             'width' => $width,
         ));
@@ -120,7 +120,7 @@ trait uiKitTabNavigation
         return $this->getComponentText($text, array(
             'onclick' => $onclick,
             'id' => 'tab-' . str_replace(' ', '-', strtolower($text)),
-            'dynamic_content' => 1,
+            'async_dynamic_content' => 1,
         ), $tab_styles);
     }
 
