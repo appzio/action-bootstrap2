@@ -5,7 +5,8 @@ use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitTabNavigation
 {
-
+    
+    public $add_tab_id;
     public $font_size;
 
     public function uiKitTabNavigation($content = array(), $parameters = array(), $styles = array())
@@ -14,6 +15,7 @@ trait uiKitTabNavigation
         $tabs = array();
 
         $this->font_size = isset($styles['font-size']) ? $styles['font-size'] : 14;
+        $this->add_tab_id = isset($parameters['add_tab_id']) ? true : false;
 
         foreach ($content as $tab) {
             $tabs[] = $this->getTab($tab, count($content), $styles);
@@ -91,10 +93,7 @@ trait uiKitTabNavigation
                 'background-color' => $active_color,
                 'vertical-align' => $active_marker
             )),
-        ), array(
-            'id' => 'tab-' . str_replace(' ', '-', strtolower($text)),
-            'async_dynamic_content' => 1,
-        ), array(
+        ), $this->uiKitTabParams( $text ), array(
             'width' => $width,
         ));
 
@@ -117,11 +116,24 @@ trait uiKitTabNavigation
             'width' => $width,
         ));
 
-        return $this->getComponentText($text, array(
-            'onclick' => $onclick,
-            'id' => 'tab-' . str_replace(' ', '-', strtolower($text)),
-            'async_dynamic_content' => 1,
+        return $this->getComponentText($text, array_merge(
+            array(
+                'onclick' => $onclick,
+            ),
+            $this->uiKitTabParams( $text )
         ), $tab_styles);
+    }
+
+    protected function uiKitTabParams( $text ) {
+
+        if ( $this->add_tab_id ) {
+            return array(
+                'id' => 'tab-' . str_replace(' ', '-', strtolower($text)),
+                'async_dynamic_content' => 1,
+            );
+        }
+
+        return array();
     }
 
     protected function uiKitTabStyles( $styles, array $allowed, array $default = array() ) {
