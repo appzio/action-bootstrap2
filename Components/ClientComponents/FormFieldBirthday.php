@@ -33,13 +33,13 @@ trait FormFieldBirthday {
         $monthvalue = $this->model->getSubmittedVariableByName('birth_month') ? $this->model->getSubmittedVariableByName('birth_month') : '01';
 
         if(isset($parameters['format']) AND $parameters['format'] == 'us'){
-            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => 'birth_month',array('width' => 120,'margin' => '0 10 0 0')));
-            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => 'birth_day'),array('width' => 50,'margin' => '0 10 0 10'));
-            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => 'birth_year'),array('width' => 80,'margin' => '0 0 0 0'));
+            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => 'birth_month'),array('width' => 120,'margin' => '0 10 0 0','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => 'birth_day'),array('width' => 50,'margin' => '0 10 0 10','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => 'birth_year'),array('width' => 80,'margin' => '0 0 0 0','font-size' => 16));
         } else {
-            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => 'birth_day'),array('width' => 50,'margin' => '0 10 0 0'));
-            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => 'birth_month',array('width' => 150,'margin' => '0 10 0 0')));
-            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => 'birth_year'),array('width' => 80,'margin' => '0 0 0 0'));
+            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => 'birth_day'),array('width' => 50,'margin' => '0 10 0 0','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => 'birth_month'),array('width' => 150,'margin' => '0 10 0 0','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => 'birth_year'),array('width' => 80,'margin' => '0 0 0 0','font-size' => 16));
 
         }
 
