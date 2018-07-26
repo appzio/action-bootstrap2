@@ -91,7 +91,10 @@ trait uiKitTabNavigation
                 'background-color' => $active_color,
                 'vertical-align' => $active_marker
             )),
-        ), array(), array(
+        ), array(
+            'id' => 'tab-' . str_replace(' ', '-', strtolower($text)),
+            'dynamic_content' => 1,
+        ), array(
             'width' => $width,
         ));
 
@@ -115,7 +118,9 @@ trait uiKitTabNavigation
         ));
 
         return $this->getComponentText($text, array(
-            'onclick' => $onclick
+            'onclick' => $onclick,
+            'id' => 'tab-' . str_replace(' ', '-', strtolower($text)),
+            'dynamic_content' => 1,
         ), $tab_styles);
     }
 
