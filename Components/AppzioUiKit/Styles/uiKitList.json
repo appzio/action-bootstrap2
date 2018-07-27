@@ -1,4 +1,32 @@
 {
+
+
+  "uikit_list_hide_button":{
+    "floating" : 1,
+    "float" : "right",
+    "margin" : "7 15 7 0",
+    "font-size" : "14",
+    "border-width" : 1,
+    "border-color" : "#7A7474",
+    "color" : "#7A7474",
+    "border-radius" : "4",
+    "height" : "25",
+    "padding" : "0 15 0 15"
+  },
+
+  "uikit_list_follow_button":{
+    "margin" : "7 15 7 0",
+    "font-size" : "14",
+    "border-width" : 1,
+    "border-color" : "#00BED2",
+    "color" : "#00BED2",
+    "border-radius" : "4",
+    "text-align": "center",
+    "height" : "25",
+    "padding" : "0 15 0 15",
+    "width": "120"
+  },
+
   "uikit_list_row": {
     "padding": "20 0 20 15",
     "height": 100,

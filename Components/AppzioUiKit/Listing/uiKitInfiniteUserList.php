@@ -25,10 +25,12 @@ trait uiKitInfiniteUserList {
             return $this->getComponentText('{#no_users_found_at_the_monent#}',array('style' => 'steps_error2'));
         }
 
+        $page = isset($_REQUEST['next_page_id']) ? $_REQUEST['next_page_id'] : 1;
+        $page++;
         $count = 0;
 
         foreach($content as $item){
-            $swiper[] = $this->getFeaturedUserForList($item);
+            $swiper[] = $this->getFeaturedUserForList($item,$parameters);
             $count++;
         }
 
@@ -38,14 +40,15 @@ trait uiKitInfiniteUserList {
                 array(
                     'id' => 'swipe_container'
                 ),[]);
-            return $this->getComponentColumn($out);
+
+            return $this->getInfiniteScroll($out,array('next_page_id' => $page));
         }
 
         return $this->getComponentText('{#no_users_found_at_the_monent#}',array('style' => 'steps_error2'));
         
     }
 
-	private function getFeaturedUserForList($content){
+	private function getFeaturedUserForList($content,$parameters){
 
         $id = isset($content['play_id']) ? $content['play_id'] : false;
 
@@ -55,6 +58,22 @@ trait uiKitInfiniteUserList {
 
         $profilepic = $content['profilepic'] ? $content['profilepic'] : 'icon_camera-grey.png';
         $name = isset($content['firstname']) ? $content['firstname'] : '{#anonymous#}';
+        $unlikeaction = isset($parameters['unlike_action']) ? $parameters['unlike_action'] : 'infinite/unlike/'.$id;
+        $likeaction = isset($parameters['likeaction']) ? $parameters['likeaction'] : 'infinite/like/'.$id;
+
+        $dolike[] = $this->getOnclickHideElement('user_'.$id);
+        $dolike[] = $this->getOnclickSubmit($likeaction);
+
+        $dounlike[] = $this->getOnclickHideElement('user_'.$id);
+        $dounlike[] = $this->getOnclickSubmit($unlikeaction);
+
+        $bookmark[] = $this->getOnclickHideElement('bookmark_not_active'.$id,['transition' => 'none']);
+        $bookmark[] = $this->getOnclickShowElement('bookmark_active'.$id,['transition' => 'none']);
+        $bookmark[] = $this->getOnclickSubmit('controller/bookmark/'.$id,['loader_off' => true]);
+
+        $un_bookmark[] = $this->getOnclickShowElement('bookmark_not_active'.$id,['transition' => 'none']);
+        $un_bookmark[] = $this->getOnclickHideElement('bookmark_active'.$id,['transition' => 'none']);
+        $un_bookmark[] = $this->getOnclickSubmit('controller/removebookmark/'.$id,['loader_off' => true]);
 
         if(isset($content['age']) AND $content['age']){
             $name .= ', ' .$content['age'];
@@ -64,32 +83,29 @@ trait uiKitInfiniteUserList {
 
         $location = 'Startbux Porto';
 
-        $row[] = $this->getComponentImage($profilepic, [
-            'imgwidth' => '150',
-            'imgheight' => '150',
-            'onclick' => $this->uiKitOpenProfile($id)
-        ],[
-            'crop' => 'round',
-            'margin' => '10 10 10 10',
-            'height' => '35',
-            'width' => '35'
-        ]);
+        /* top row */
+        $col[] = $this->getComponentRow([
+            $this->getComponentImage($profilepic, [
+                'imgwidth' => '150',
+                'imgheight' => '150',
+                'onclick' => $this->uiKitOpenProfile($id)],[
+                    'crop' => 'round',
+                    'margin' => '10 10 10 10',
+                    'height' => '35',
+                    'width' => '35'
+            ]),
+            $this->getComponentColumn(
+                [
+                    $this->getComponentText($name,[],['font-size' => '16']),
+                    $this->getComponentText($location,[],['font-size' => '14'])
+                ],[],['vertical-align' => 'middle']),
 
-        $subcol[] = $this->getComponentText($name,[],['font-size' => '16']);
-        $subcol[] = $this->getComponentText($location,[],['font-size' => '14']);
+            $this->getComponentText('{#hide#}',[
+                'onclick' => $dounlike,
+            'style' => 'uikit_list_hide_button'])
 
-        $row[] = $this->getComponentColumn($subcol,[],['vertical-align' => 'middle']);
-
-        $row[] = $this->getComponentText('{#hide#}',[
-            'onclick' => $this->getOnclickHideElement('user_'.$id)
-        ],[
-            'floating' => 1,'float' => 'right', 'margin' => '7 15 7 0',
-            'font-size' => '14','border-width' => 1,'border-color' => "#7A7474",'color' => '#7A7474','border-radius' => '4',
-            'height' => '25', 'padding' => '0 15 0 15']);
-
-        $col[] = $this->getComponentRow($row,[],['vertical-align' => 'middle']);
-
-        unset($row);
+        ],[],['vertical-align' => 'middle']
+        );
 
         $width = $this->screen_width;
         $height = round($this->screen_width/1.4,0);
@@ -103,21 +119,61 @@ trait uiKitInfiniteUserList {
                 'width' => $width,
                 'height' => $height]);
 
-
-
-        $row[] = $this->getComponentText($name,['style'=>'ukit_user_swiper_name']);
-
+        
         if(isset($content['instagram_username']) AND $content['instagram_username']){
             $row[] = $this->getComponentImage('uikit_swipe_insta.png',['style' => 'ukit_user_swiper_insta',
                 'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username'])]);
+            $col[] = $this->getComponentRow($row,[],['margin' => '0 0 0 0']);
         }
 
-        $col[] = $this->getComponentRow($row,[],['margin' => '0 0 0 0']);
+        $width = $this->screen_width - 140;
 
 
-        $out[] = $this->getComponentColumn($col, array(
+        /* bottom buttons */
 
-        ));
+
+        $controls[] = $this->getComponentImage('uikit-icon-black-heart.png',[
+            'onclick' => $dolike
+        ],[
+            'width' => '40','margin' => '5 15 5 15'
+        ]);
+
+        $controls[] = $this->getComponentRow([
+                $this->getComponentText('{#follow#}',['style' => 'uikit_list_follow_button'])
+            ],[],['width' => $width,'text-align' => 'center']);
+
+        if(isset($content['bookmark']) AND $content['bookmark']) {
+            $controls[] = $this->getComponentImage('uikit-icon-ribbon-hollow.png',[
+                'visibility' => 'hidden','id' => 'bookmark_not_active'.$id,'onclick' => $bookmark
+            ],[
+                'width' => '40','margin' => '5 15 5 15'
+            ]);
+
+            $controls[] = $this->getComponentImage('uikit-icon-ribbon-orange.png',[
+                'id' => 'bookmark_active'.$id,'onclick' => $un_bookmark
+            ],[
+                'width' => '40','margin' => '5 15 5 15'
+            ]);
+        } else {
+            $controls[] = $this->getComponentImage('uikit-icon-ribbon-hollow.png',[
+                'id' => 'bookmark_not_active'.$id,'onclick' => $bookmark
+            ],[
+                'width' => '40','margin' => '5 15 5 15'
+            ]);
+
+            $controls[] = $this->getComponentImage('uikit-icon-ribbon-orange.png',[
+                'visibility' => 'hidden','id' => 'bookmark_active'.$id,'onclick' => $un_bookmark
+            ],[
+                'width' => '40','margin' => '5 15 5 15'
+            ]);
+        }
+
+        $col[] = $this->getComponentRow($controls,[],['width' => '100%','vertical-align' => 'middle']);
+
+
+        $col[] = $this->getComponentDivider();
+
+        return $this->getComponentColumn($col,['id' => 'user_'.$id],['margin' => '0 0 10 0']);
 
         $out2[] = $this->getComponentColumn($out,[
             'leftswipeid' => 'left' . $id,
