@@ -3,7 +3,7 @@
 namespace Bootstrap\Components\AppzioUiKit\Listing;
 use Bootstrap\Components\BootstrapComponent;
 
-trait UiKitInfiniteUserList {
+trait uiKitInfiniteUserList {
 
     public $page = 0;
 
@@ -18,7 +18,7 @@ trait UiKitInfiniteUserList {
      * @return \stdClass
      */
 
-    public function UiKitInfiniteUserList($content, array $parameters=array(),array $styles=array()) {
+    public function uiKitInfiniteUserList($content, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapComponent $this */
 
         if(!is_array($content) OR empty($content)){
