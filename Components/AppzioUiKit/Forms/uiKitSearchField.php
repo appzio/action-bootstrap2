@@ -22,13 +22,13 @@ trait uiKitSearchField {
 
         $row[] = $this->getComponentImage('search-icon-for-field.png',array(),array('height' => '20'));
 
-        if($this->model->getMenuId() == 'cancelsearch'){
+        if($this->model->getMenuId() == 'cancelsearch' OR isset($parameters['filter'])){
             $val = '';
         } else {
             $val = $this->model->getSubmittedVariableByName('searchterm');
         }
 
-        $row[] = $this->getComponentFormFieldText($val,array(
+        $fieldparams = array(
             'style' => 'akit_searchbox_text',
             'value' => $val,
             'hint' => ( isset($parameters['hint']) ? $parameters['hint'] : '{#search#}' ),
@@ -39,11 +39,20 @@ trait uiKitSearchField {
             'suggestions_text_style' => 'akit_list_text',
             'submit_on_entry' => '1',
             //'activation' => 'initially'
-        ));
+        );
 
-        $right[] = $this->getComponentLoader(array('style' => 'akit_loader','visibility' => 'onloading'));
-        $right[] = $this->getComponentImage('uikit-delete-icongrey.png',array('onclick' => $close),array('width'=>'20'));
-        $row[] = $this->getComponentRow($right,array(),array('margin' => '0 0 0 0','floating' => 1,'float' => 'right'));
+        if(isset($parameters['filter'])){
+            $fieldparams['filter_on_entry'] = 1;
+            unset($fieldparams['submit_menu_id']);
+            unset($fieldparams['submit_on_entry']);
+        }
+
+        $row[] = $this->getComponentFormFieldText($val,$fieldparams);
+        if(!isset($parameters['filter'])) {
+            $right[] = $this->getComponentLoader(array('style' => 'akit_loader', 'visibility' => 'onloading'));
+            $right[] = $this->getComponentImage('uikit-delete-icongrey.png', array('onclick' => $close), array('width' => '20'));
+            $row[] = $this->getComponentRow($right, array(), array('margin' => '0 0 0 0', 'floating' => 1, 'float' => 'right'));
+        }
 
         return $this->getComponentRow($row,array(),array('background-color' => "#ffffff",'vertical-align' => 'middle','padding'=> '5 15 5 15'));
     }

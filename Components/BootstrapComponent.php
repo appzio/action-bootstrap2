@@ -267,6 +267,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Listing\uiKitMatchItem;
 	use AppzioUiKit\Listing\uiKitSearchItem;
 	use AppzioUiKit\Listing\uiKitPeopleListWithLikes;
+	use AppzioUiKit\Listing\UiKitInfiniteUserList;
 
     use AppzioUiKit\Divs\uiKitBlockButtonsDiv;
     use AppzioUiKit\Divs\uiKitReportItemDiv;

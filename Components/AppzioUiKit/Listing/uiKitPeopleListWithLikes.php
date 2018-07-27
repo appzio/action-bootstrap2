@@ -109,7 +109,7 @@ trait uiKitPeopleListWithLikes
         $col[] = $this->getComponentRow($row,[],['padding' => '20 20 10 20','width' => '100%']);
         $col[] = $this->getComponentDivider();
 
-        return $this->getComponentColumn($col,[],[]);
+        return $this->getComponentColumn($col,['filter' => strtolower($firstname)],[]);
 
     }
 
