@@ -48,7 +48,9 @@ trait uiKitTabNavigation
     {
         $tab_styles = $this->uiKitTabStyles($styles, array(
             'font-size',
-            'text-align'
+            'text-align',
+            'background-color',
+            'border-color',
         ), array(
             'color' => '#e3e1e1',
             'padding' => '20 0 20 0',
@@ -73,11 +75,15 @@ trait uiKitTabNavigation
         }
 
         $active_color = ( isset($styles['active_tab_color']) ? $styles['active_tab_color'] : $this->color_top_bar_color );
+        $active_tab_color = ( isset($styles['active_tab_color']) ? $styles['active_tab_color'] : '#000000' );
 
         $tab_styles = $this->uiKitTabStyles($styles, array(
             'font-size',
             'text-align',
+            'background-color',
+            'border-color',
         ), array(
+            'color' => $active_tab_color,
             'padding' => '23 0 20 0',
             'height' => 'auto',
             'text-align' => 'center',
@@ -104,7 +110,9 @@ trait uiKitTabNavigation
 
         $tab_styles = $this->uiKitTabStyles($styles, array(
             'font-size',
-            'text-align'
+            'text-align',
+            'background-color',
+            'border-color',
         ), array(
             'color' => '#323232',
             'padding' => '20 0 20 0',
