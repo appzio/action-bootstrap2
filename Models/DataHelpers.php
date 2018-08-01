@@ -29,6 +29,10 @@ trait DataHelpers {
         return $output;
     }
 
+    public function getMenuData($id){
+        return \AeMenuItems::model()->findByAttributes(['menu_id' => $id]);
+    }
+
     /**
      * Returns country code based on users location
      *

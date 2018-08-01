@@ -57,6 +57,10 @@ trait uiKitInfiniteUserList {
         }
 
         $profilepic = $content['profilepic'] ? $content['profilepic'] : 'icon_camera-grey.png';
+        $profilepic2 = $content['profilepic2'] ? $content['profilepic2'] : false;
+        $profilepic3 = $content['profilepic3'] ? $content['profilepic3'] : false;
+        $profilepic4 = $content['profilepic4'] ? $content['profilepic4'] : false;
+        $profilepic5 = $content['profilepic5'] ? $content['profilepic5'] : false;
         $name = isset($content['firstname']) ? $content['firstname'] : '{#anonymous#}';
         $unlikeaction = isset($parameters['unlike_action']) ? $parameters['unlike_action'] : 'infinite/unlike/'.$id;
         $likeaction = isset($parameters['likeaction']) ? $parameters['likeaction'] : 'infinite/like/'.$id;
@@ -110,21 +114,54 @@ trait uiKitInfiniteUserList {
         $width = $this->screen_width;
         $height = round($this->screen_width/1.4,0);
 
-        $col[] = $this->getComponentImage($profilepic,[
-            'imgwidth' => 900,
-            'imgheight' => 650,
-            'onclick' => $this->uiKitOpenProfile($id),
-            'priority' => '9'],[
+        if($profilepic2){
+            $pics[] = $this->getComponentImage($profilepic,[
+                'imgwidth' => 900,
+                'imgheight' => 650,
+                'onclick' => $this->uiKitOpenProfile($id),
+                'priority' => '9'],[
                 'crop' => 'yes',
                 'width' => $width,
                 'height' => $height]);
 
-        
-        if(isset($content['instagram_username']) AND $content['instagram_username']){
-            $row[] = $this->getComponentImage('uikit_swipe_insta.png',['style' => 'ukit_user_swiper_insta',
-                'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username'])]);
-            $col[] = $this->getComponentRow($row,[],['margin' => '0 0 0 0']);
+            $pics[] = $this->getComponentImage($profilepic2,[
+                'imgwidth' => 900,
+                'imgheight' => 650,
+                'onclick' => $this->uiKitOpenProfile($id),
+                'priority' => '9'],[
+                'crop' => 'yes',
+                'width' => $width,
+                'height' => $height]);
+
+            if($profilepic3){
+                $pics[] = $this->getComponentImage($profilepic3,[
+                    'imgwidth' => 900,
+                    'imgheight' => 650,
+                    'onclick' => $this->uiKitOpenProfile($id),
+                    'priority' => '9'],[
+                    'crop' => 'yes',
+                    'width' => $width,
+                    'height' => $height]);
+            }
+
+            $col[] = $this->getComponentSwipe($pics);
+            $col[] = $this->getComponentSwipeAreaNavigation('#00BED2','#E4E7E9',[],
+                ['margin' => '-30 0 0 0','text-align' => 'center', 'width' => '100%']);
+
+
+
+        } else {
+            $col[] = $this->getComponentImage($profilepic,[
+                'imgwidth' => 900,
+                'imgheight' => 650,
+                'onclick' => $this->uiKitOpenProfile($id),
+                'priority' => '9'],[
+                'crop' => 'yes',
+                'width' => $width,
+                'height' => $height]);
         }
+
+
 
         $width = $this->screen_width - 140;
 
@@ -138,9 +175,18 @@ trait uiKitInfiniteUserList {
             'width' => '40','margin' => '5 15 5 15'
         ]);
 
-        $controls[] = $this->getComponentRow([
-                $this->getComponentText('{#follow#}',['style' => 'uikit_list_follow_button'])
+        if(isset($content['instagram_username']) AND $content['instagram_username']){
+
+            $controls[] = $this->getComponentRow([
+                $this->getComponentText('{#follow#}',['style' => 'uikit_list_follow_button',
+                    'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username'])])
             ],[],['width' => $width,'text-align' => 'center']);
+        } else {
+            $controls[] = $this->getComponentRow([
+                $this->getComponentText('',['style' => 'uikit_list_follow_placeholder'])],
+                    [],['width' => $width,'text-align' => 'center']);
+        }
+
 
         if(isset($content['bookmark']) AND $content['bookmark']) {
             $controls[] = $this->getComponentImage('uikit-icon-ribbon-hollow.png',[

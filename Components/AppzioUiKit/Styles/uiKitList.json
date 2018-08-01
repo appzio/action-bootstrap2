@@ -27,6 +27,16 @@
     "width": "120"
   },
 
+  "uikit_list_follow_placeholder":{
+    "margin" : "7 15 7 0",
+    "font-size" : "14",
+    "color" : "#00BED2",
+    "text-align": "center",
+    "height" : "25",
+    "padding" : "0 15 0 15",
+    "width": "120"
+  },
+
   "uikit_list_row": {
     "padding": "20 0 20 15",
     "height": 100,
