@@ -85,8 +85,12 @@ trait uiKitInfiniteUserList {
             $name .= ', ' .date('Y') - $content['birth_year'];
         }
 
-        $location = 'Startbux Porto';
-
+        if(isset($content['current_venue']) AND $content['current_venue']){
+            $location = $content['current_venue'];
+        } else {
+            $location = '';
+        }
+        
         /* top row */
         $col[] = $this->getComponentRow([
             $this->getComponentImage($profilepic, [

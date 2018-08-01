@@ -377,8 +377,8 @@ class BootstrapModel extends CActiveRecord {
 
         if (isset($obj->$param)) {
             return $obj->$param;
-        } elseif (isset($obj['param'])) {
-            return $obj['param'];
+        } elseif (isset($obj[$param])) {
+            return $obj[$param];
         } else {
             return $default;
         }

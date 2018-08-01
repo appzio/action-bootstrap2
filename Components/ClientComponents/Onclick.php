@@ -257,12 +257,12 @@ trait Onclick {
         return $open;
     }
 
-    public function getOnclickGooglePlaces($variableid,$paramters=array()){
+    public function getOnclickGooglePlaces($variableid,$parameters=array()){
         $open_maps = new \StdClass;
         $open_maps->action = 'choose-google-place';
         $open_maps->custom_dialog = 0;
         $open_maps->variable = $variableid;
-        $open_maps = $this->attachParameters($open_maps,$paramters);
+        $open_maps = $this->attachParameters($open_maps,$parameters);
         return $open_maps;
     }
 
