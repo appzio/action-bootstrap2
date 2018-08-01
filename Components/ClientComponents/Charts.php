@@ -38,7 +38,7 @@ trait Charts {
                 'row_content'=>[
                     [
                     'type'=>'msg-plain',
-                    'content'=>'$d  $y '
+                    'content'=>'$d  $c $y '
                     ]
                 ]
             ];
