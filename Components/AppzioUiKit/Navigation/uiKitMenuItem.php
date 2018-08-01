@@ -35,17 +35,22 @@ trait uiKitMenuItem
 
         if ( !isset($item['link']) OR empty($item['link']) ) {
             return $parameters;
+        }
 
+        if(isset($item['tab']) AND $item['tab']){
+            $openparams['tab_id'] = $item['tab'];
+        } else {
+            $openparams = array();
         }
 
         if ( is_numeric($item['link']) ) {
-            $click['onclick'] = $this->getOnclickOpenAction(false, $item['link']);
+            $click['onclick'] = $this->getOnclickOpenAction(false, $item['link'],$openparams);
         } else if ( stristr($item['link'], 'http') ) {
             $click['onclick'] = $this->getOnclickOpenUrl($item['link']);
         } else if ( $item['link'] == 'go-home' ) {
             $click['onclick'] = $this->getOnclickGoHome();
         } else {
-            $click['onclick'] = $this->getOnclickOpenAction( $item['link'] );
+            $click['onclick'] = $this->getOnclickOpenAction( $item['link'] ,$openparams);
         }
 
         return array_merge($parameters, $click);
