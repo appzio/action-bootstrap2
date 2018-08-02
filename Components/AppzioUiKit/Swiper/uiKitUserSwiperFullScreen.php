@@ -3,7 +3,7 @@
 namespace Bootstrap\Components\AppzioUiKit\Swiper;
 use Bootstrap\Components\BootstrapComponent;
 
-trait uiKitUserSwiper {
+trait uiKitUserSwiperFullScreen {
 
     public $page = 0;
 
@@ -18,7 +18,7 @@ trait uiKitUserSwiper {
      * @return \stdClass
      */
 
-    public function uiKitUserSwiper($content, array $parameters=array(),array $styles=array()) {
+    public function uiKitUserSwiperFullScreen($content, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapComponent $this */
 
         if(!is_array($content) OR empty($content)){
@@ -28,7 +28,7 @@ trait uiKitUserSwiper {
         $count = 0;
 
         foreach($content as $item){
-            $swiper[] = $this->getFeaturedUser($item);
+            $swiper[] = $this->getFeaturedUserFullScreen($item);
             $count++;
         }
 
@@ -47,7 +47,7 @@ trait uiKitUserSwiper {
         
     }
 
-	private function getFeaturedUser($content){
+	private function getFeaturedUserFullScreen($content){
 
         $id = isset($content['play_id']) ? $content['play_id'] : false;
 
@@ -58,7 +58,7 @@ trait uiKitUserSwiper {
         $profilepic = $content['profilepic'] ? $content['profilepic'] : 'icon_camera-grey.png';
 
         $width = $this->screen_width;
-        $height = $this->screen_height - 150;
+        $height = $this->screen_height - 60;
 
         $ratio = $width/$height;
         $imgheight = round(900*$ratio,0);
@@ -80,37 +80,83 @@ trait uiKitUserSwiper {
             $name .= ', ' .date('Y') - $content['birth_year'];
         }
 
-        $row[] = $this->getComponentText($name,[],['color' => $this->color_top_bar_text_color,'font-size' => 16]);
+        /*    "shadow-color" : "#B2B4B3",
+    "shadow-radius": "1",
+    "shadow-offset": "0 0",
+*/
+
+        $row[] = $this->getComponentText($name,[],[
+            'color' => '#ffffff',
+            'shadow-color' => '#000000',
+            'shadow-radius' => 1,
+            'shadow-offset' => '0 0',
+            'padding' => '2 2 2 2',
+            'font-size' => 28
+        ]);
 
         if(isset($content['instagram_username']) AND $content['instagram_username']){
             $row[] = $this->getComponentImage('uikit_swipe_insta.png',['style' => 'ukit_user_swiper_insta',
-                'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username'])]);
+                'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username'])],[
+                    'background-color' => '#ffffff','height' => '40',
+                'padding' => '5 5 5 5','border-radius' => '6','margin' => '10 0 0 0'
+            ]);
         }
 
-        $col[] = $this->getComponentRow($row,[],['padding' => '10 15 10 15','background-color' =>
-        $this->color_top_bar_color,'vertical-align' => 'middle']);
+        $layout = new \stdClass();
+        $layout->top = 45;
+        $layout->center = 0;
 
+        $overlay = $this->getComponentColumn($row,['layout' => $layout],[
+            'padding' => '10 5 10 5',
+            'vertical-align' => 'middle',
+            'text-align' => 'center',
+            'width' => '100%']);
 
-        $col[] =
-
-
-        $out[] = $this->getComponentColumn($col, array(
-            'style' => 'ukit_user_swiper'
-        ));
-
-        $out2[] = $this->getComponentColumn($out,[
-            'leftswipeid' => 'left' . $id,
-            'rightswipeid' => 'right' . $id,
-        ],['text-align' => 'center','width' => '100%']);
-
+        /* setting the controls */
         if(isset($content['bookmark']) AND $content['bookmark']){
             $params['is_bookmarked'] = true;
         }
 
         $params['id'] = $id;
+        $layout = new \stdClass();
+        $layout->bottom = 30;
+        $layout->left = 15;
+        $layout->right = 15;
+        $params['layout'] = $layout;
+        $params['shadow'] = true;
+        $overlay2 = $this->uiKitUserSwiperControls($params);
 
-        $out2[] = $this->getComponentSpacer(25);
-        $out2[] = $this->uiKitUserSwiperControls($params,['margin' => '-150 0 0 0']);
+        $layout = new \stdClass();
+        $layout->bottom = 0;
+        $layout->left = 0;
+        $layout->right = 0;
+
+
+        /* optional shader */
+/*        $shadeheight = round($this->screen_width * 0.2,0);
+
+        $shader_img = $this->getImageFileName('blue-gradient.png');
+
+        $shader = $this->getComponentText('',['layout' => $layout],[
+            'height' => $shadeheight,
+            'width' => '100%',
+            'background-image' => $shader_img,
+            "background-size" => "cover",
+            //"background-linear-color" => "180deg,ffffff 0%,008596 100%"
+        ]);*/
+
+
+        $out[] = $this->getComponentColumn($col, array(
+            'style' => 'ukit_user_swiper_full_screen','overlay' => [$overlay,$overlay2]
+        ));
+
+
+        //die();
+        $out2[] = $this->getComponentColumn($out,[
+            'leftswipeid' => 'left' . $id,
+            'rightswipeid' => 'right' . $id,
+        ],['text-align' => 'center','width' => '100%']);
+
 
         return $this->getComponentColumn($out2);
 

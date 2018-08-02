@@ -90,7 +90,7 @@ trait uiKitInfiniteUserList {
         } else {
             $location = '';
         }
-        
+
         /* top row */
         $col[] = $this->getComponentRow([
             $this->getComponentImage($profilepic, [
@@ -173,10 +173,10 @@ trait uiKitInfiniteUserList {
         /* bottom buttons */
 
 
-        $controls[] = $this->getComponentImage('uikit-icon-black-heart.png',[
+        $controls[] = $this->getComponentImage('uikit_icon_slimheart.png',[
             'onclick' => $dolike
         ],[
-            'width' => '40','margin' => '5 15 5 15'
+            'width' => '35','margin' => '10 15 10 10'
         ]);
 
         if(isset($content['instagram_username']) AND $content['instagram_username']){
@@ -193,28 +193,28 @@ trait uiKitInfiniteUserList {
 
 
         if(isset($content['bookmark']) AND $content['bookmark']) {
-            $controls[] = $this->getComponentImage('uikit-icon-ribbon-hollow.png',[
+            $controls[] = $this->getComponentImage('uikit_icon_slimbookmark.png',[
                 'visibility' => 'hidden','id' => 'bookmark_not_active'.$id,'onclick' => $bookmark
             ],[
-                'width' => '40','margin' => '5 15 5 15'
+                'width' => '35','margin' => '10 10 10 15','floating' => '1', 'float' => 'right'
             ]);
 
-            $controls[] = $this->getComponentImage('uikit-icon-ribbon-orange.png',[
+            $controls[] = $this->getComponentImage('uikit_icon_slimbookmark_active.png',[
                 'id' => 'bookmark_active'.$id,'onclick' => $un_bookmark
             ],[
-                'width' => '40','margin' => '5 15 5 15'
+                'width' => '35','margin' => '10 10 10 15','floating' => '1', 'float' => 'right'
             ]);
         } else {
-            $controls[] = $this->getComponentImage('uikit-icon-ribbon-hollow.png',[
+            $controls[] = $this->getComponentImage('uikit_icon_slimbookmark.png',[
                 'id' => 'bookmark_not_active'.$id,'onclick' => $bookmark
             ],[
-                'width' => '40','margin' => '5 15 5 15'
+                'width' => '35','margin' => '10 10 10 15','floating' => '1', 'float' => 'right'
             ]);
 
-            $controls[] = $this->getComponentImage('uikit-icon-ribbon-orange.png',[
+            $controls[] = $this->getComponentImage('uikit_icon_slimbookmark_active.png',[
                 'visibility' => 'hidden','id' => 'bookmark_active'.$id,'onclick' => $un_bookmark
             ],[
-                'width' => '40','margin' => '5 15 5 15'
+                'width' => '35','margin' => '10 10 10 15','floating' => '1', 'float' => 'right'
             ]);
         }
 

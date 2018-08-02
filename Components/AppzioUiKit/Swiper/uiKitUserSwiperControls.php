@@ -54,29 +54,53 @@ trait uiKitUserSwiperControls {
         $bookmark_active_click[] = $this->getOnclickSubmit('controller/removebookmark/'.$id);
 
         $left = $this->getComponentColumn([
-            $this->getComponentImage($nope, array('onclick' => $left_click), ['width' => '70','vertical-align' => 'top']),
+            $this->getComponentImage($nope, array('onclick' => $left_click), ['width' => '70','vertical-align' => 'top',
+                'shadow-color' => '#000000',
+                'shadow-radius' => 1,
+                'shadow-offset' => '0 0',
+            ]),
         ],[],['height' => '90','vertical-align' => 'top','margin' => '0 15 0 0']);
 
         if($is_bookmarked){
             $bm = $this->getComponentColumn([
-                $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40'])
+                $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40',
+                    'shadow-color' => '#000000',
+                    'shadow-radius' => 1,
+                    'shadow-offset' => '0 0',
+                ])
             ],['id' => 'bookmark_inactive'.$id,'visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom']);
 
             $bm2 = $this->getComponentColumn([
-                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40'])
+                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40',
+                    'shadow-color' => '#000000',
+                    'shadow-radius' => 1,
+                    'shadow-offset' => '0 0',
+                ])
             ],['id' => 'bookmark_active'.$id],['height' => '90','vertical-align' => 'bottom']);
         } else {
             $bm = $this->getComponentColumn([
-                $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40'])
+                $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40',
+                    'shadow-color' => '#000000',
+                    'shadow-radius' => 1,
+                    'shadow-offset' => '0 0',
+                ])
             ],['id' => 'bookmark_inactive'.$id],['height' => '90','vertical-align' => 'bottom']);
 
             $bm2 = $this->getComponentColumn([
-                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40'])
+                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40',
+                    'shadow-color' => '#000000',
+                    'shadow-radius' => 1,
+                    'shadow-offset' => '0 0',
+                ])
             ],['id' => 'bookmark_active'.$id,'visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom']);
         }
 
         $right = $this->getComponentColumn([
-            $this->getComponentImage($yes, array('onclick' => $right_click), ['width' => '70','vertical-align' => 'top']),
+            $this->getComponentImage($yes, array('onclick' => $right_click), ['width' => '70','vertical-align' => 'top',
+                'shadow-color' => '#000000',
+                'shadow-radius' => 1,
+                'shadow-offset' => '0 0',
+            ]),
         ],[],['height' => '90','vertical-align' => 'top','margin' => '0 0 0 15']);
 
         $col[] = $this->getComponentRow([
@@ -86,10 +110,20 @@ trait uiKitUserSwiperControls {
             $right
         ]);
 
-        return $this->getComponentRow($col,[],[
-            'margin' => '0 60 10 60',
-            'text-align' => 'center',
-            'height' => '90']);
+        if(isset($parameters['layout'])){
+            return $this->getComponentRow($col,['layout' => $parameters['layout']],[
+                'margin' => '0 60 10 60',
+                'text-align' => 'center',
+                'noanimate' => true,
+                'height' => '90']);
+        } else {
+            return $this->getComponentRow($col,[],[
+                'margin' => '0 60 10 60',
+                'text-align' => 'center',
+                'noanimate' => true,
+                'height' => '90']);
+        }
+
 
     }
 

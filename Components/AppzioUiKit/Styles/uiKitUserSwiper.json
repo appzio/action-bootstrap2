@@ -11,6 +11,13 @@
     "border-radius": "3"
   },
 
+  "ukit_user_swiper_full_screen": {
+    "vertical-align": "middle",
+    "width": "100%",
+    "background-color": "#ffffff"
+  },
+
+
   "matching_featured_image":{
     "crop": "yes"
   },

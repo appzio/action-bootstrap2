@@ -240,6 +240,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Headers\uiKitBackgroundHeader;
     use AppzioUiKit\Headers\uiKitHeaderNavigationBar;
     use AppzioUiKit\Headers\uiKitFauxTopBar;
+    use AppzioUiKit\Headers\uiKitFauxTopBarTransparent;
 
     use AppzioUiKit\Buttons\uiKitButtonFilled;
     use AppzioUiKit\Buttons\uiKitButtonHollow;
@@ -325,6 +326,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Swiper\uiKitUserSwiper;
 	use AppzioUiKit\Swiper\uiKitUserSwiperControls;
 	use AppzioUiKit\Swiper\uiKitUserMatch;
+	use AppzioUiKit\Swiper\uiKitUserSwiperFullScreen;
 
 	use AppzioUiKit\Timer\uiKitTimer;
 

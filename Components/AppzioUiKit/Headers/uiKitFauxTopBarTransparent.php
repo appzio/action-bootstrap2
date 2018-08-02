@@ -2,7 +2,7 @@
 
 namespace Bootstrap\Components\AppzioUiKit\Headers;
 
-trait uiKitFauxTopBar {
+trait uiKitFauxTopBarTransparent {
 
 
     /**
@@ -11,7 +11,7 @@ trait uiKitFauxTopBar {
      * title, btn_title, btn_onclick, route_back, mode, logo, right_menu
      * @return mixed
      */
-    public function uiKitFauxTopBar($parameters = array()){
+    public function uiKitFauxTopBarTransparent($parameters = array()){
         /** @var BootstrapComponent $this */
 
         $title = isset($parameters['title']) ? $parameters['title'] : '{#title#}';
@@ -38,7 +38,10 @@ trait uiKitFauxTopBar {
                 array(
                     "height" => "40",
                     "width" => "40",
-                    "padding" => "5 0 5 5"
+                    "padding" => "5 0 5 5",
+                    'shadow-color' => '#545050',
+                    'shadow-radius' => 1,
+                    'shadow-offset' => '0 0',
                 )
             );
         } else {
@@ -48,7 +51,14 @@ trait uiKitFauxTopBar {
 
 
         if(isset($parameters['logo']) AND $parameters['logo']){
-            $top[] = $this->getComponentImage($parameters['logo'],[],['height' => '30','margin' => '15 0 15 0','width' => $this->screen_width - 95,'text-align' => 'center']);
+            $top[] = $this->getComponentImage($parameters['logo'],[],[
+                'height' => '30',
+                'margin' => '15 0 15 0',
+                'shadow-color' => '#545050',
+                'shadow-radius' => 1,
+                'shadow-offset' => '0 0',
+                'width' => $this->screen_width - 95,
+                'text-align' => 'center']);
         } else {
             $top[] = $this->getComponentText($title,array('uppercase' => true,'style' => 'jam_fauxheader_title'));
         }
@@ -57,7 +67,10 @@ trait uiKitFauxTopBar {
             $top[] = $this->getComponentImage($parameters['right_menu']['icon'],[
                 'onclick' => $this->getOnclickOpenAction(false,$parameters['right_menu']['config'])
             ],[
-                    'height' => '25'
+                    'height' => '25',
+                    'shadow-color' => '#545050',
+                    'shadow-radius' => 1,
+                    'shadow-offset' => '0 0',
                 ]
             );
         }
@@ -72,8 +85,21 @@ trait uiKitFauxTopBar {
             $top[] = $this->getComponentText('',array('style' => 'fauxheader_add'));
         }
 
-        return $this->getComponentRow($top,array(),array('background-color' => $this->color_top_bar_color,
-            'height' => '45','width' => $this->screen_width,'vertical-align' => 'middle','padding' => '0 10 0 10'));
+        $layout = new \stdClass();
+        $layout->top = 15;
+        $layout->left = 0;
+        $layout->right = 0;
+        $layout->center = 0;
+
+        return $this->getComponentRow($top,array(),array(
+            'height' => '45',
+            #'border' => 1,
+            #'border-color' => '#000000',
+            'width' => 'auto',
+            'text-align' => 'center',
+            'vertical-align' => 'middle',
+            'layout' => $layout,
+            'padding' => '0 10 0 10'));
 
     }
 
