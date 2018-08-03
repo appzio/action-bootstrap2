@@ -38,9 +38,9 @@ trait uiKitFauxTopBarTransparent {
                 array(
                     "height" => "40",
                     "width" => "40",
-                    "padding" => "5 0 5 5",
+                    "padding" => "5 0 5 0",
                     'shadow-color' => '#545050',
-                    'shadow-radius' => 1,
+                    'shadow-radius' => 2,
                     'shadow-offset' => '0 0',
                 )
             );
@@ -55,9 +55,9 @@ trait uiKitFauxTopBarTransparent {
                 'height' => '30',
                 'margin' => '15 0 15 0',
                 'shadow-color' => '#545050',
-                'shadow-radius' => 1,
+                'shadow-radius' => 2,
                 'shadow-offset' => '0 0',
-                'width' => $this->screen_width - 95,
+                'width' => $this->screen_width - 77,
                 'text-align' => 'center']);
         } else {
             $top[] = $this->getComponentText($title,array('uppercase' => true,'style' => 'jam_fauxheader_title'));
@@ -69,7 +69,7 @@ trait uiKitFauxTopBarTransparent {
             ],[
                     'height' => '25',
                     'shadow-color' => '#545050',
-                    'shadow-radius' => 1,
+                    'shadow-radius' => 2,
                     'shadow-offset' => '0 0',
                 ]
             );
@@ -99,7 +99,7 @@ trait uiKitFauxTopBarTransparent {
             'text-align' => 'center',
             'vertical-align' => 'middle',
             'layout' => $layout,
-            'padding' => '0 10 0 10'));
+            'padding' => '0 0 0 0'));
 
     }
 

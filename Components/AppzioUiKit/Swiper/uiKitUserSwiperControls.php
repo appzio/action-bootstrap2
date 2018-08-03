@@ -27,6 +27,7 @@ trait uiKitUserSwiperControls {
         $is_unliked = isset($parameters['is_unliked']) ? $parameters['is_unliked'] : false;
         $right_click = isset($parameters['right_click']) ? $parameters['right_click'] : false;
         $left_click = isset($parameters['left_click']) ? $parameters['left_click'] : false;
+        $shadow = isset($parameters['shadow']) ? $parameters['shadow'] : false;
 
         if(!$id){
             return $this->getComponentText('Missing id for uiKitUserSwiperControls!');
@@ -45,63 +46,69 @@ trait uiKitUserSwiperControls {
             $left_click = $this->getOnclickSwipeStackControl('swipe_container', 'left');
         }
 
-        $bookmark_inactive_click[] = $this->getOnclickShowElement('bookmark_active'.$id,['transition' => 'none']);
-        $bookmark_inactive_click[] = $this->getOnclickHideElement('bookmark_inactive'.$id,['transition' => 'none']);
+        $bookmark_inactive_click[] = $this->getOnclickHideElement('bookmark_inactive'.$id);
+        $bookmark_inactive_click[] = $this->getOnclickShowElement('bookmark_active'.$id);
         $bookmark_inactive_click[] = $this->getOnclickSubmit('controller/bookmark/'.$id);
 
-        $bookmark_active_click[] = $this->getOnclickHideElement('bookmark_active'.$id,['transition' => 'none']);
-        $bookmark_active_click[] = $this->getOnclickShowElement('bookmark_inactive'.$id,['transition' => 'none']);
+        $bookmark_active_click[] = $this->getOnclickHideElement('bookmark_active'.$id);
+        $bookmark_active_click[] = $this->getOnclickShowElement('bookmark_inactive'.$id);
         $bookmark_active_click[] = $this->getOnclickSubmit('controller/removebookmark/'.$id);
 
+        $img_params['width'] = 70;
+        $img_params['vertical-align'] = 'top';
+
+        if($shadow){
+            $img_params['shadow-color'] = '#000000';
+            $img_params['shadow-radius'] = '1';
+            $img_params['shadow-offset'] = '0 0';
+        }
+
         $left = $this->getComponentColumn([
-            $this->getComponentImage($nope, array('onclick' => $left_click), ['width' => '70','vertical-align' => 'top',
-                'shadow-color' => '#000000',
-                'shadow-radius' => 1,
-                'shadow-offset' => '0 0',
-            ]),
+            $this->getComponentImage($nope, array('onclick' => $left_click,
+                'onclick_animation' => 'pop'
+                ), $img_params),
         ],[],['height' => '90','vertical-align' => 'top','margin' => '0 15 0 0']);
+
+        $img_params['width'] = '40';
+        $img_params['onclick_animation'] = 'pop';
 
         if($is_bookmarked){
             $bm = $this->getComponentColumn([
-                $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40',
-                    'shadow-color' => '#000000',
-                    'shadow-radius' => 1,
-                    'shadow-offset' => '0 0',
-                ])
-            ],['id' => 'bookmark_inactive'.$id,'visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom']);
+                $this->getComponentImage($bookmark_inactive, array(
+                    'onclick' => $bookmark_inactive_click), $img_params)
+            ],['id' => 'bookmark_inactive'.$id,'visibility' => 'hidden'],[
+                'height' => '90','vertical-align' => 'bottom','onclick_animation' => 'pop']);
 
             $bm2 = $this->getComponentColumn([
-                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40',
-                    'shadow-color' => '#000000',
-                    'shadow-radius' => 1,
-                    'shadow-offset' => '0 0',
-                ])
-            ],['id' => 'bookmark_active'.$id],['height' => '90','vertical-align' => 'bottom']);
+                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), $img_params)
+            ],['id' => 'bookmark_active'.$id],['height' => '90','vertical-align' => 'bottom','onclick_animation' => 'pop']);
         } else {
+            $img_params['onclick_animation'] = 'pop';
+
             $bm = $this->getComponentColumn([
-                $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), ['height' => '40',
-                    'shadow-color' => '#000000',
-                    'shadow-radius' => 1,
-                    'shadow-offset' => '0 0',
-                ])
-            ],['id' => 'bookmark_inactive'.$id],['height' => '90','vertical-align' => 'bottom']);
+                $this->getComponentImage($bookmark_inactive, array('onclick' => $bookmark_inactive_click), $img_params)
+            ],['id' => 'bookmark_inactive'.$id],['height' => '90','vertical-align' => 'bottom','onclick_animation' => 'pop']);
 
             $bm2 = $this->getComponentColumn([
-                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), ['height' => '40',
-                    'shadow-color' => '#000000',
-                    'shadow-radius' => 1,
-                    'shadow-offset' => '0 0',
-                ])
-            ],['id' => 'bookmark_active'.$id,'visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom']);
+                $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), $img_params)
+            ],['id' => 'bookmark_active'.$id,'visibility' => 'hidden'],['height' => '90','vertical-align' => 'bottom','onclick_animation' => 'pop']);
         }
 
-        $right = $this->getComponentColumn([
-            $this->getComponentImage($yes, array('onclick' => $right_click), ['width' => '70','vertical-align' => 'top',
-                'shadow-color' => '#000000',
-                'shadow-radius' => 1,
-                'shadow-offset' => '0 0',
-            ]),
-        ],[],['height' => '90','vertical-align' => 'top','margin' => '0 0 0 15']);
+        $img_params['width'] = '70';
+        unset($img_params['onclick_animation']);
+
+        if($is_liked){
+            $img_params['opacity'] = '0.5';
+
+            $right = $this->getComponentColumn([
+                $this->getComponentImage($yes, array(), $img_params),
+            ],[],['height' => '90','vertical-align' => 'top','margin' => '0 0 0 15','opacity' => '0.8']);
+        } else {
+            $right = $this->getComponentColumn([
+                $this->getComponentImage($yes, array('onclick' => $right_click,
+                    'onclick_animation' => 'pop'), $img_params),
+            ],[],['height' => '90','vertical-align' => 'top','margin' => '0 0 0 15']);
+        }
 
         $col[] = $this->getComponentRow([
             $left,

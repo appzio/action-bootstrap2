@@ -38,7 +38,7 @@ trait uiKitFauxTopBar {
                 array(
                     "height" => "40",
                     "width" => "40",
-                    "padding" => "5 0 5 5"
+                    "padding" => "5 0 5 0"
                 )
             );
         } else {
@@ -48,7 +48,7 @@ trait uiKitFauxTopBar {
 
 
         if(isset($parameters['logo']) AND $parameters['logo']){
-            $top[] = $this->getComponentImage($parameters['logo'],[],['height' => '30','margin' => '15 0 15 0','width' => $this->screen_width - 95,'text-align' => 'center']);
+            $top[] = $this->getComponentImage($parameters['logo'],[],['height' => '30','margin' => '15 0 15 0','width' => $this->screen_width - 77,'text-align' => 'center']);
         } else {
             $top[] = $this->getComponentText($title,array('uppercase' => true,'style' => 'jam_fauxheader_title'));
         }
@@ -73,7 +73,7 @@ trait uiKitFauxTopBar {
         }
 
         return $this->getComponentRow($top,array(),array('background-color' => $this->color_top_bar_color,
-            'height' => '45','width' => $this->screen_width,'vertical-align' => 'middle','padding' => '0 10 0 10'));
+            'height' => '45','width' => $this->screen_width,'vertical-align' => 'middle','padding' => '0 0 0 0'));
 
     }
 
