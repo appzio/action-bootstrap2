@@ -95,13 +95,13 @@ trait uiKitPeopleListWithLikes
                     'style' => 'uikit_ukp_iconpic','onclick' => $unlike,'id' => 'liked'.$id.$tab,'visibility' => 'hidden']);
             }
 
-        }elseif(isset($parameters['icon_bookmark'])){
+        } elseif(isset($parameters['icon_bookmark'])){
             $icons[] = $this->getComponentImage($parameters['icon_bookmark'],['style' => 'uikit_ukp_iconpic']);
         }
 
         if(isset($parameters['icon_like'])){
             $click = $this->getOnclickSubmit($parameters['like_route'].'like/'.$user['play_id']);
-            $icons[] = $this->getComponentImage($parameters['icon_like'],['style' => 'uikit_ukp_iconpic','onclick' => $click]);
+            $icons[] = $this->getComponentImage($parameters['icon_like'],['style' => 'uikit_ukp_iconpic','onclick' => $click],[]);
         }
         
         $row[] = $this->getComponentRow($icons,[],['float' => 'right','floating' => '1', 'text-align' => 'right']);

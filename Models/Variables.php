@@ -318,7 +318,7 @@ trait Variables {
      * @return void
      */
     public function loadVariableContent($force=false){
-        $this->varcontent = $this->getVariableContent($this->appid);
+        $this->varcontent = $this->getVariableContent($this->playid);
     }
 
 
