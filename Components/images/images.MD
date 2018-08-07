@@ -33,7 +33,10 @@ $this->getComponentImage($this->getSavedVariable('profilepic'),$imageparams);
 * 7 = download only when needed to show, cache on client only temporarily
 * 9 = download only when needed to show, try to deleting after session
 
-Important note: if you are displaying user generated content such as profile pictures or gallery images, it is ALWAYS recommended to set their priority 9. Otherwise this result in the app size increasing significantly, as images also not accessed by the particular client will get added to asset list and client is instructed to download these at the earliest conveniency.
+Important note: 
+The image handling was changed slighty in August 2018. If no priority is set, all user uploaded images, images in thirdparties folder and images from instagram are marked with priority 9.
+
+This is because otherwise this result in the app size increasing significantly, as images also not accessed by the particular client will get added to asset list and client is instructed to download these at the earliest conveniency.
 
 Files referenced with a direct URL are not added to assetlist and are considered priority 9. In most cases its not recommended to hotlink to images directly as they can have significant impact on the app loading times. Images served through Appzio are optimized and can be automatically distributed using a CDN.
 
