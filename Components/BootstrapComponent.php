@@ -193,6 +193,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\Fieldlist;
 
     use ClientComponents\FullpageLoader;
+    use ClientComponents\FullpageLoaderAnimated;
     use ClientComponents\Spacers;
 
     use ClientComponents\Map;

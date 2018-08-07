@@ -22,7 +22,7 @@ trait uiKitRemoveUserDiv
             $this->getComponentText('Remove', array(
                 'style' => 'uikit_div_button',
                 'onclick' => array(
-                    $this->getOnclickSubmit('Controller/removeuser',['sync_open' => 1]),
+                    $this->getOnclickSubmit('Controller/removeuser/thisuser',['sync_open' => 1]),
                     $this->getOnclickLogout()
                 )
             ))
