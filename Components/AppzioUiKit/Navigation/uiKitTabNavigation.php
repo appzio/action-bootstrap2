@@ -36,7 +36,7 @@ trait uiKitTabNavigation
 
         if (isset($tab['disabled']) && $tab['disabled']) {
             return $this->getDisabledTab($text, $width, $styles);
-        } else if (!$tab['active']) {
+        } else if (!isset($tab['active']) OR !$tab['active']) {
             return $this->getNormalTab($text, $width, $onclick, $styles);
         } else {
             return $this->getActiveTab($text, $width, $styles);
