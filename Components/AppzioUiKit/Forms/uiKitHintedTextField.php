@@ -28,7 +28,7 @@ trait uiKitHintedTextField {
 
         if($this->model->getValidationError($variablename)) {
             $error[] = $this->getComponentText($hint .' ', $title_params);
-            $error[] = $this->getComponentText($this->model->getValidationError($variablename),array('style' => 'steps_error'));
+            $error[] = $this->getComponentText($this->model->getValidationError($variablename),array('style' => 'uikit_steps_error'));
             $out[] = $this->getComponentRow($error,array(),array('width' => '100%'));
         } else {
             $out[] = $this->getComponentText($hint, $title_params);
@@ -86,19 +86,19 @@ trait uiKitHintedTextField {
 
         }
 
-        if($this->model->getValidationError($variablename)){
+/*        if($this->model->getValidationError($variablename)){
             $out[] = $this->getComponentText('',array('style' => 'uikit_hinted_text_divider_error'));
         } else {
             $out[] = $this->getComponentText('',array('style' => 'uikit_hinted_text_divider'));
-        }
+        }*/
 
-        if($this->model->getValidationError($variablename.'_exists')){
-            $err[] = $this->getComponentText('{#choose_another_email_or#} ',array('style' => 'email_exists_text'));
-            $err[] = $this->getComponentText('{#return_to_login#}', array('style' => 'email_exists',
+/*        if($this->model->getValidationError($variablename.'_exists')){
+            $err[] = $this->getComponentText('{#choose_another_email_or#} ',array('style' => 'uikit_steps_error'));
+            $err[] = $this->getComponentText('{#return_to_login#}', array('style' => 'uikit_steps_error',
                 'onclick' => $this->getOnclickOpenAction('login')));
 
             $out[] = $this->getComponentRow($err,array('style' => 'email_exists_row'));
-        }
+        }*/
 
         return $this->getComponentColumn($out);
 	}

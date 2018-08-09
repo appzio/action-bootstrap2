@@ -14,6 +14,21 @@
   "uikit_hinted_textarea":{
     "margin": "10 15 0 15",
     "cursor-color": "#000000"
+  },
+  "uikit_steps_error": {
+    "text-align": "right",
+    "font-size": "12",
+    "margin": "15 15 0 15",
+    "color": "#B41C11",
+    "floating": "1",
+    "float": "right"
+  },
+
+  "uikit_steps_error2": {
+    "text-align": "center",
+    "font-size": "12",
+    "margin": "15 15 0 15",
+    "color": "#B41C11"
   }
 
 
