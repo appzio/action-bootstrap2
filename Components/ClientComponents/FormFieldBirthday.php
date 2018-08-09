@@ -28,18 +28,22 @@ trait FormFieldBirthday {
         $months = '01;{#month_jan#};02;{#month_feb#};03;{#month_mar#};04;{#month_apr#};05;{#month_may#};06;{#month_jun#};07;{#month_jul#};08;{#month_aug#};09;{#month_sep#};10;{#month_oct#};11;{#month_nov#};12;{#month_dec#}';
         $days = '01;01;02;02;03;03;04;04;05;05;06;06;07;07;08;08;09;09;10;10;11;11;12;12;13;13;14;14;15;15;16;16;17;17;18;18;19;19;20;20;21;21;22;22;23;23;24;24;25;25;26;26;27;27;28;28;29;29;30;30;31;31';
 
-        $yearvalue = $this->model->getSubmittedVariableByName('birth_year') ? $this->model->getSubmittedVariableByName('birth_year') : '1980';
-        $dayvalue = $this->model->getSubmittedVariableByName('birth_day') ? $this->model->getSubmittedVariableByName('birth_day') : '01';
-        $monthvalue = $this->model->getSubmittedVariableByName('birth_month') ? $this->model->getSubmittedVariableByName('birth_month') : '01';
+        $yearvalue = $this->model->getSubmittedVariableByName('birth_year') ? $this->model->getSubmittedVariableByName('birth_year') : $this->model->getSavedVariable('birth_year');
+        $dayvalue = $this->model->getSubmittedVariableByName('birth_day') ? $this->model->getSubmittedVariableByName('birth_day') : $this->model->getSavedVariable('birth_day');
+        $monthvalue = $this->model->getSubmittedVariableByName('birth_month') ? $this->model->getSubmittedVariableByName('birth_month') : $this->model->getSavedVariable('birth_month');
+
+        $var_month = $this->model->getVariableId('birth_month');
+        $var_day = $this->model->getVariableId('birth_day');
+        $var_year = $this->model->getVariableId('birth_year');
 
         if(isset($parameters['format']) AND $parameters['format'] == 'us'){
-            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => 'birth_month'),array('width' => 120,'margin' => '0 10 0 0','font-size' => 16));
-            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => 'birth_day'),array('width' => 50,'margin' => '0 10 0 10','font-size' => 16));
-            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => 'birth_year'),array('width' => 80,'margin' => '0 0 0 0','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => $var_month),array('width' => 120,'margin' => '0 10 0 0','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => $var_day),array('width' => 50,'margin' => '0 10 0 10','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => $var_year),array('width' => 80,'margin' => '0 0 0 0','font-size' => 16));
         } else {
-            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => 'birth_day'),array('width' => 50,'margin' => '0 10 0 0','font-size' => 16));
-            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => 'birth_month'),array('width' => 150,'margin' => '0 10 0 0','font-size' => 16));
-            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => 'birth_year'),array('width' => 80,'margin' => '0 0 0 0','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($days,array('value' => $dayvalue,'variable' => $var_day),array('width' => 50,'margin' => '0 10 0 0','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($months,array('value' => $monthvalue,'variable' => $var_month),array('width' => 150,'margin' => '0 10 0 0','font-size' => 16));
+            $col[] = $this->getComponentFormFieldSelectorList($years,array('value' => $yearvalue,'variable' => $var_year),array('width' => 80,'margin' => '0 0 0 0','font-size' => 16));
 
         }
 

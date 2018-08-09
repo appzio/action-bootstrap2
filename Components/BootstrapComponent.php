@@ -12,6 +12,7 @@ use Bootstrap\Views\ViewGetters;
 use Bootstrap\Views\ViewHelpers;
 use ImagesController;
 use packages\actionMitems\Components\uiKitAccordion;
+use packages\actionMregister\themes\uikitsocial\Components\uiKitBirthdayPickerDiv;
 
 /**
  * Class BootstrapComponent
@@ -259,6 +260,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Forms\uiKitTwoHandSlider;
     use AppzioUiKit\Forms\uiKitFormSectionHeader;
     use AppzioUiKit\Forms\uiKitGeneralField;
+    use AppzioUiKit\Forms\uiKitBirthdayPickerDiv;
 
     use AppzioUiKit\Listing\uiKitTagList;
     use AppzioUiKit\Listing\uiKitThreeColumnImageSwiper;

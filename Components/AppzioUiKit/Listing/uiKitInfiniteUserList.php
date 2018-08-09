@@ -149,10 +149,9 @@ trait uiKitInfiniteUserList {
             }
 
             $col[] = $this->getComponentSwipe($pics,['id' => 'swiper'.$id]);
-            $col[] = $this->getComponentSwipeAreaNavigation('#00BED2','#E4E7E9',['id' => 'swiper'.$id],
-                ['margin' => '-40 0 0 0','text-align' => 'center', 'width' => '100%']);
 
-
+            $col[] = $this->getComponentSwipeAreaNavigation('#00BED2','#E4E7E9',['swipe_id' => 'swiper'.$id],
+                ['margin' => '-40 0 0 0','text-align' => 'center','width' => '100%']);
 
         } else {
             $col[] = $this->getComponentImage($profilepic,[
