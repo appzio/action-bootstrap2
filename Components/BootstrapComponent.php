@@ -261,6 +261,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Forms\uiKitFormSectionHeader;
     use AppzioUiKit\Forms\uiKitGeneralField;
     use AppzioUiKit\Forms\uiKitBirthdayPickerDiv;
+    use AppzioUiKit\Forms\uiKitGenderSelector;
 
     use AppzioUiKit\Listing\uiKitTagList;
     use AppzioUiKit\Listing\uiKitThreeColumnImageSwiper;
