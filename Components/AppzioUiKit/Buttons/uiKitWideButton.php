@@ -15,9 +15,9 @@ trait uiKitWideButton
                 array('parent_style' => 'uikit_wide_button_text'),
                 $styles
             ))
-        ), array_merge(
-            array('style' => 'uikit_wide_button'),
-            $params
+        ), $params, array(
+            'parent_style' => 'uikit_wide_button',
+            'width' => 'auto',
         ));
     }
 
