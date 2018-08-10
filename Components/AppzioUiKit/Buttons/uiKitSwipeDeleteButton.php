@@ -25,16 +25,22 @@ trait uiKitSwipeDeleteButton
         	$delete_path = $params['delete_path'];
         }
 
+        $events = array(
+            $this->getOnclickHideElement('row_' . $identifier),
+            $this->getOnclickSubmit($delete_path)
+        );
+
+        if ( isset($params['list_branches']) AND $params['list_branches'] ) {
+            $events[] = $this->getOnclickListBranches();
+        }
+
         return $this->getComponentRow(array(
             $this->getComponentImage('uikit-icon-task-delete.png', array(
                 'style' => 'uikit_swipe_button_image'
             ))
         ), array(
             'style' => 'uikit_swipe_delete_button',
-            'onclick' => array(
-                $this->getOnclickHideElement('row_' . $identifier),
-                $this->getOnclickSubmit($delete_path)
-            )
+            'onclick' => $events
         ));
     }
 
