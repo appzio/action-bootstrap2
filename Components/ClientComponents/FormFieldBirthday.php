@@ -32,6 +32,10 @@ trait FormFieldBirthday {
         $dayvalue = $this->model->getSubmittedVariableByName('birth_day') ? $this->model->getSubmittedVariableByName('birth_day') : $this->model->getSavedVariable('birth_day');
         $monthvalue = $this->model->getSubmittedVariableByName('birth_month') ? $this->model->getSubmittedVariableByName('birth_month') : $this->model->getSavedVariable('birth_month');
 
+        if(!$yearvalue){
+            $yearvalue = '1980';
+        }
+
         $var_month = $this->model->getVariableId('birth_month');
         $var_day = $this->model->getVariableId('birth_day');
         $var_year = $this->model->getVariableId('birth_year');

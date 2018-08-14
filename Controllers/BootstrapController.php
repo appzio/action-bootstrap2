@@ -140,7 +140,27 @@ class BootstrapController implements BootstrapControllerInterface {
         } else {
             return false;
         }
+    }
 
+    /**
+     * Collects location once
+     *
+     * @return mixed
+     */
+    public function getTimedBool( $timetolive = 720, $cache_name = 'timed-bool' ){
+        $cache = \Appcaching::getGlobalCache($cache_name . $this->playid);
+
+        if($cache){
+            if($cache+$timetolive > time()){
+                \Appcaching::setGlobalCache($cache_name . $this->playid,time(), $timetolive);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            \Appcaching::setGlobalCache($cache_name . $this->playid,time(), $timetolive);
+            return true;
+        }
     }
 
     /* this is a special action you can call to flush routes */
