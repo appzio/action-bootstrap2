@@ -95,8 +95,12 @@ trait DataHelpers {
         return $vars;
     }
 
-    public function findClosestVenue($lat,$lon){
-        return ThirdpartyServices::findClosestVenue($lat, $lon, $this->appid);
+    public function findClosestVenue($lat,$lon,$keywords='restaurants,bars,cafes'){
+        return ThirdpartyServices::findClosestVenue($lat, $lon, $this->appid,300,$keywords);
+    }
+
+    public function findClosestVenues($lat,$lon,$keywords='bar'){
+        return ThirdpartyServices::findClosestVenues($lat, $lon, $this->appid,300,$keywords);
     }
 
     /**

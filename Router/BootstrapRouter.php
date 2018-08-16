@@ -307,6 +307,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
      */
     private function configureNames($route=false,$include_menuid=false){
 
+        $parts_raw = explode('/',$route);
         $route = strtolower($route);
         $parts = explode('/',$route);
 
@@ -321,7 +322,7 @@ class BootstrapRouter implements BootstrapRouterInterface {
 
         /* note that this gets included only from request, not from session */
         if(isset($parts[2]) AND !empty($parts[2]) AND $include_menuid){
-            $this->menuid = $parts[2];
+            $this->menuid = $parts_raw[2];
         }
 
     }
