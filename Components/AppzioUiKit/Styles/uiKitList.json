@@ -40,6 +40,19 @@
     "width": "120"
   },
 
+  "uikit_list_follow_button_small":{
+    "margin" : "0 0 7 0",
+    "font-size" : "14",
+    "border-width" : 1,
+    "border-color" : "#00BED2",
+    "color" : "#00BED2",
+    "border-radius" : "4",
+    "text-align": "center",
+    "height" : "25",
+    "padding" : "0 15 0 15",
+    "width": "90"
+  },
+
   "uikit_list_general_small_hollow_button":{
     "margin" : "7 15 7 0",
     "font-size" : "14",

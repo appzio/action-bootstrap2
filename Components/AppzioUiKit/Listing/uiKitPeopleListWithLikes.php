@@ -34,7 +34,7 @@ trait uiKitPeopleListWithLikes
         $firstname = isset($user['firstname']) ? $user['firstname'] : '{#anonymous#}';
         $age = isset($user['age']) ? $user['age'] : false;
 
-        $text_column_width = $this->screen_width - 170;
+        $text_column_width = $this->screen_width - 250;
 
         if($age){
             $firstname .= ', '.$age;
@@ -50,14 +50,15 @@ trait uiKitPeopleListWithLikes
             'style' => 'uikit_ukp_name',
             'onclick' => $this->uiKitOpenProfile($id)]);
 
+        $row[] = $this->getComponentColumn($name,[],['width' => $text_column_width]);
+
         if(isset($parameters['extra_icon']) AND isset($user['instagram_username']) AND $user['instagram_username']){
             $onclick = $this->getOnclickOpenUrl('https://instagram.com/'.$user['instagram_username']);
-            $name[] = $this->getComponentImage($parameters['extra_icon'],[
-                'style' => 'uikit_ukp_extraicon',
+            $row[] = $this->getComponentText('{#follow#}',[
+                'style' => 'uikit_list_follow_button_small',
                 'onclick' => $onclick]);
         }
 
-        $row[] = $this->getComponentColumn($name,[],['width' => $text_column_width]);
 
         $icons = array();
 
