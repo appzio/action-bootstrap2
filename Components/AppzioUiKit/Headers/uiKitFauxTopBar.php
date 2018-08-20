@@ -14,9 +14,11 @@ trait uiKitFauxTopBar {
     public function uiKitFauxTopBar($parameters = array()){
         /** @var BootstrapComponent $this */
 
-        $title = isset($parameters['title']) ? $parameters['title'] : '{#title#}';
+        $title = isset($parameters['title']) ? $parameters['title'] : false;
         $btn_title = isset($parameters['btn_title']) ? $parameters['btn_title'] : '';
         $action = isset($parameters['btn_onclick']) ? $parameters['btn_onclick'] : $this->getOnclickSubmit('photo');
+        $hairline = isset($parameters['hairline']) ? $parameters['hairline'] : false;
+        $color = isset($parameters['icon_color']) ? $parameters['icon_color'] : 'white';
 
         if(isset($parameters['route_back'])){
             $close = $this->getOnclickRoute($parameters['route_back']);
@@ -33,7 +35,7 @@ trait uiKitFauxTopBar {
         }elseif(isset($parameters['mode']) AND $parameters['mode'] == 'sidemenu'){
             $menuAction = $this->getOnclickOpenSidemenu();
             $top[] = $this->getComponentImage(
-                'white_hamburger_icon.png',
+                $color.'_hamburger_icon.png',
                 array('onclick' => $menuAction),
                 array(
                     "height" => "24",
@@ -49,7 +51,7 @@ trait uiKitFauxTopBar {
 
         if(isset($parameters['logo']) AND $parameters['logo']){
             $top[] = $this->getComponentImage($parameters['logo'],[],['height' => '30','margin' => '4 0 5 0','width' => $this->screen_width - 77,'text-align' => 'center']);
-        } else {
+        } elseif($title) {
             $top[] = $this->getComponentText($title,array('uppercase' => true,'style' => 'jam_fauxheader_title'));
         }
 
@@ -72,8 +74,16 @@ trait uiKitFauxTopBar {
             $top[] = $this->getComponentText('',array('style' => 'fauxheader_add'));
         }
 
-        return $this->getComponentRow($top,array(),array('background-color' => $this->color_top_bar_color,
-            'height' => '40','width' => $this->screen_width,'vertical-align' => 'top','padding' => '0 0 0 0'));
+        if($hairline){
+            $out[] = $this->getComponentRow($top,array(),array('background-color' => $this->color_top_bar_color,
+                'height' => '40','width' => $this->screen_width,'vertical-align' => 'top','padding' => '0 0 0 0'));
+
+            $out[] = $this->getComponentText('',[],['height' => 2,'background-color' => $hairline,'width' => '100%']);
+            return $this->getComponentColumn($out);
+        } else {
+            return $this->getComponentRow($top,array(),array('background-color' => $this->color_top_bar_color,
+                'height' => '40','width' => $this->screen_width,'vertical-align' => 'top','padding' => '0 0 0 0'));
+        }
 
     }
 
