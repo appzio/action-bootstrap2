@@ -60,12 +60,8 @@ trait uiKitUserSwiperFullScreen {
         $width = $this->screen_width;
         $height = $this->screen_height - 60;
 
-        $ratio = $width/$height;
-        $imgheight = round(900*$ratio,0);
-
         $col[] = $this->getComponentImage($profilepic,[
-            'imgwidth' => '900',
-            'imgheight' => $imgheight,
+            'imgwidth' => '1200',
             'onclick' => $this->uiKitOpenProfile($id),
             'priority' => '9'],[
                 'crop' => 'yes',

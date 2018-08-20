@@ -120,8 +120,8 @@ trait uiKitInfiniteUserList {
 
         if($profilepic2){
             $pics[] = $this->getComponentImage($profilepic,[
-                'imgwidth' => 900,
-                'imgheight' => 650,
+                'imgwidth' => 1200,
+                'imgheight' => 867,
                 'onclick' => $this->uiKitOpenProfile($id),
                 'priority' => '9'],[
                 'crop' => 'yes',
@@ -129,8 +129,8 @@ trait uiKitInfiniteUserList {
                 'height' => $height]);
 
             $pics[] = $this->getComponentImage($profilepic2,[
-                'imgwidth' => 900,
-                'imgheight' => 650,
+                'imgwidth' => 1200,
+                'imgheight' => 867,
                 'onclick' => $this->uiKitOpenProfile($id),
                 'priority' => '9'],[
                 'crop' => 'yes',
@@ -139,8 +139,8 @@ trait uiKitInfiniteUserList {
 
             if($profilepic3){
                 $pics[] = $this->getComponentImage($profilepic3,[
-                    'imgwidth' => 900,
-                    'imgheight' => 650,
+                    'imgwidth' => 1200,
+                    'imgheight' => 867,
                     'onclick' => $this->uiKitOpenProfile($id),
                     'priority' => '9'],[
                     'crop' => 'yes',
@@ -155,8 +155,8 @@ trait uiKitInfiniteUserList {
 
         } else {
             $col[] = $this->getComponentImage($profilepic,[
-                'imgwidth' => 900,
-                'imgheight' => 650,
+                'imgwidth' => 1200,
+                'imgheight' => 867,
                 'onclick' => $this->uiKitOpenProfile($id),
                 'priority' => '9'],[
                 'crop' => 'yes',
