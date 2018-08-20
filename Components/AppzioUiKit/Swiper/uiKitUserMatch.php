@@ -27,8 +27,11 @@ trait uiKitUserMatch {
         $col[] = $this->getComponentText($subtext,['style' => 'uikit_usermatch_subtext']);
 
         $col[] = $this->uiKitButtonHollow($button1_text,['onclick' => $button1_onclick]);
-        $col[] = $this->getComponentSpacer(20);
-        $col[] = $this->uiKitButtonFilled($button2_text,['onclick' => $button2_onclick]);
+
+        if($button2_text){
+            $col[] = $this->getComponentSpacer(20);
+            $col[] = $this->uiKitButtonFilled($button2_text,['onclick' => $button2_onclick]);
+        }
 
         return $this->getComponentColumn($col);
 
