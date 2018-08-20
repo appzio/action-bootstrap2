@@ -74,6 +74,13 @@ trait uiKitPeopleListWithLikes
             $icons[] = $this->getComponentImage($parameters['icon_dont_like'],['style' => 'uikit_ukp_iconpic','onclick' => $click]);
         }
 
+        if(isset($parameters['icon_like'])){
+            if(!isset($user['is_liked']) OR !$user['is_liked']){
+                $click = $this->getOnclickSubmit($parameters['like_route'].'like/'.$user['play_id']);
+                $icons[] = $this->getComponentImage($parameters['icon_like'],['style' => 'uikit_ukp_iconpic','onclick' => $click],[]);
+            }
+        }
+
         if(isset($parameters['icon_bookmark']) AND isset($parameters['icon_bookmark_active']) AND $parameters['bookmark_route']){
             $like[] = $this->getOnclickHideElement('unliked'.$id.$tab,['transition' => 'none']);
             $like[] = $this->getOnclickShowElement('liked'.$id.$tab,['transition' => 'none']);
@@ -99,13 +106,7 @@ trait uiKitPeopleListWithLikes
             $icons[] = $this->getComponentImage($parameters['icon_bookmark'],['style' => 'uikit_ukp_iconpic']);
         }
 
-        if(isset($parameters['icon_like'])){
-            if(!isset($user['is_liked']) OR !$user['is_liked']){
-                $click = $this->getOnclickSubmit($parameters['like_route'].'like/'.$user['play_id']);
-                $icons[] = $this->getComponentImage($parameters['icon_like'],['style' => 'uikit_ukp_iconpic','onclick' => $click],[]);
-            }
-        }
-        
+
         $row[] = $this->getComponentRow($icons,[],['float' => 'right','floating' => '1', 'text-align' => 'right']);
 
         $col[] = $this->getComponentRow($row,[],['padding' => '20 20 10 20','width' => '100%']);
