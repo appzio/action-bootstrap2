@@ -7,7 +7,7 @@ trait uiKitArticleHeading {
 	public $article;
 	public $category_data;
 
-    public function uiKitArticleHeading( $article, $category_data = false ){
+    public function uiKitArticleHeading( $article, $category_data = false, $show_false_back_arrow = false ){
 
     	$this->article = $article;
     	$this->category_data = $category_data;
@@ -16,17 +16,7 @@ trait uiKitArticleHeading {
 
     	if ( empty($image) ) {
 		    return $this->getComponentColumn(array_merge(
-			    array(
-				    $this->getComponentRow(array(
-					    $this->getComponentImage('arrow-back-black-v2.png', array(
-						    'onclick' => $this->getOnclickGoHome()
-					    ), array(
-						    'height' => '30',
-					    )),
-				    ), array(), array(
-					    'padding' => '15 15 15 15',
-				    ))
-			    ),
+			    $this->uiKitArticleNavigationBarSimple( $show_false_back_arrow ),
 			    $this->uiKitArticleCategory(),
 			    $this->uiKitArticleTitle('article-uikit-title-dark')
 		    ), array(), array(
@@ -54,6 +44,25 @@ trait uiKitArticleHeading {
 		    'height' => $this->screen_height,
 	    ));
 
+    }
+
+    private function uiKitArticleNavigationBarSimple( $show_false_back_arrow ) {
+
+        if ( !$show_false_back_arrow ) {
+            return array();
+        }
+
+        return array(
+            $this->getComponentRow(array(
+                $this->getComponentImage('arrow-back-black-v2.png', array(
+                    'onclick' => $this->getOnclickGoHome()
+                ), array(
+                    'height' => '30',
+                )),
+            ), array(), array(
+                'padding' => '15 15 15 15',
+            ))
+        );
     }
 
     private function uiKitArticleNavigationBar() {
