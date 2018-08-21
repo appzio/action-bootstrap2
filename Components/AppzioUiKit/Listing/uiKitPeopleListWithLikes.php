@@ -53,7 +53,11 @@ trait uiKitPeopleListWithLikes
         $row[] = $this->getComponentColumn($name,[],['width' => $text_column_width]);
 
         if(isset($parameters['extra_icon']) AND isset($user['instagram_username']) AND $user['instagram_username']){
-            $onclick = $this->getOnclickOpenUrl('https://instagram.com/'.$user['instagram_username']);
+            if($parameters['instaclick_command']){
+                $onclick[] = $this->getOnclickSubmit($parameters['instaclick_command'].$id);
+            }
+
+            $onclick[] = $this->getOnclickOpenUrl('https://instagram.com/'.$user['instagram_username']);
             $row[] = $this->getComponentText('{#follow#}',[
                 'style' => 'uikit_list_follow_button_small',
                 'onclick' => $onclick]);
