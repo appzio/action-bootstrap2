@@ -180,9 +180,15 @@ trait uiKitInfiniteUserList {
 
         if(isset($content['instagram_username']) AND $content['instagram_username']){
 
+            if(isset($parameters['instaclick_command'])){
+                $onclick_insta[] = $this->getOnclickSubmit($parameters['instaclick_command'].$id);
+            }
+
+            $onclick_insta[] = $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username']);
+
             $controls[] = $this->getComponentRow([
                 $this->getComponentText('{#follow#}',['style' => 'uikit_list_follow_button',
-                    'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username'])])
+                    'onclick' => $onclick_insta])
             ],[],['width' => $width,'text-align' => 'center']);
         } else {
             $controls[] = $this->getComponentRow([
