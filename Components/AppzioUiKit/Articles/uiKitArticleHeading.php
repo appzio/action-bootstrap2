@@ -117,7 +117,7 @@ trait uiKitArticleHeading {
 
     private function uiKitArticleCategory() {
 
-    	if ( empty($this->category_data) ) {
+    	if ( !isset($this->category_data->title) ) {
     		return array();
 	    }
 
