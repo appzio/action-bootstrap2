@@ -33,12 +33,12 @@ trait uiKitFauxTopBarTransparent {
         }elseif(isset($parameters['mode']) AND $parameters['mode'] == 'sidemenu'){
             $menuAction = $this->getOnclickOpenSidemenu();
             $top[] = $this->getComponentImage(
-                'menu1600.png',
+                'white_hamburger_icon.png',
                 array('onclick' => $menuAction),
                 array(
-                    "height" => "40",
-                    "width" => "40",
-                    "padding" => "5 0 5 0",
+                    "height" => "24",
+                    "width" => "24",
+                    "margin" => "0 0 0 13",
                     'shadow-color' => '#545050',
                     'shadow-radius' => 2,
                     'shadow-offset' => '0 0',
@@ -53,7 +53,7 @@ trait uiKitFauxTopBarTransparent {
         if(isset($parameters['logo']) AND $parameters['logo']){
             $top[] = $this->getComponentImage($parameters['logo'],[],[
                 'height' => '30',
-                'margin' => '15 0 15 0',
+                'margin' => '10 0 15 0',
                 'shadow-color' => '#545050',
                 'shadow-radius' => 2,
                 'shadow-offset' => '0 0',
@@ -68,6 +68,7 @@ trait uiKitFauxTopBarTransparent {
                 'onclick' => $this->getOnclickOpenAction(false,$parameters['right_menu']['config'])
             ],[
                     'height' => '25',
+                    'padding' => '1 0 0 0',
                     'shadow-color' => '#545050',
                     'shadow-radius' => 2,
                     'shadow-offset' => '0 0',
@@ -92,9 +93,9 @@ trait uiKitFauxTopBarTransparent {
         $layout->center = 0;
 
         return $this->getComponentRow($top,array(),array(
-            'height' => '45',
-            #'border' => 1,
-            #'border-color' => '#000000',
+            'height' => '32',
+            //'border' => 1,
+            //'border-color' => '#ffffff',
             'width' => 'auto',
             'text-align' => 'center',
             'vertical-align' => 'middle',

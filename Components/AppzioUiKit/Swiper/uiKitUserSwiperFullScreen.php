@@ -28,7 +28,7 @@ trait uiKitUserSwiperFullScreen {
         $count = 0;
 
         foreach($content as $item){
-            $swiper[] = $this->getFeaturedUserFullScreen($item);
+            $swiper[] = $this->getFeaturedUserFullScreen($item,$parameters);
             $count++;
         }
 
@@ -47,7 +47,7 @@ trait uiKitUserSwiperFullScreen {
         
     }
 
-	private function getFeaturedUserFullScreen($content){
+	private function getFeaturedUserFullScreen($content,$parameters){
 
         $id = isset($content['play_id']) ? $content['play_id'] : false;
 
@@ -58,7 +58,12 @@ trait uiKitUserSwiperFullScreen {
         $profilepic = $content['profilepic'] ? $content['profilepic'] : 'icon_camera-grey.png';
 
         $width = $this->screen_width;
-        $height = $this->screen_height - 60;
+
+        if(isset($parameters['bottom_menu']) AND $parameters['bottom_menu']){
+            $height = $this->screen_height - 60;
+        } else {
+            $height = $this->screen_height;
+        }
 
         $col[] = $this->getComponentImage($profilepic,[
             'imgwidth' => '1200',
@@ -115,7 +120,7 @@ trait uiKitUserSwiperFullScreen {
 
         $params['id'] = $id;
         $layout = new \stdClass();
-        $layout->bottom = 30;
+        $layout->bottom = 60;
         $layout->left = 15;
         $layout->right = 15;
         $params['layout'] = $layout;

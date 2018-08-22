@@ -52,7 +52,16 @@ trait uiKitFauxTopBar {
         if(isset($parameters['logo']) AND $parameters['logo']){
             $top[] = $this->getComponentImage($parameters['logo'],[],['height' => '30','margin' => '4 0 5 0','width' => $this->screen_width - 77,'text-align' => 'center']);
         } elseif($title) {
-            $top[] = $this->getComponentText($title,array(),['text-align' => 'center','width' => $this->screen_width - 77,'margin' => '8 0 5 0','font-size' => '15']);
+
+            if($color == 'white'){
+                $top[] = $this->getComponentText($title,array(),[
+                    'text-align' => 'center','width' => $this->screen_width - 77,
+                    'margin' => '8 0 5 0','font-size' => '15','color' => '#ffffff']);
+            } else {
+                $top[] = $this->getComponentText($title,array(),[
+                    'text-align' => 'center','width' => $this->screen_width - 77,
+                    'margin' => '8 0 5 0','font-size' => '15','color' => '#000000']);
+            }
         }
 
         if(isset($parameters['right_menu']) AND $parameters['right_menu'] AND isset($parameters['right_menu']['icon'])) {
