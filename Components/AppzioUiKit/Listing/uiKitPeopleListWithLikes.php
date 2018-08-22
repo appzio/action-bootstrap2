@@ -34,7 +34,11 @@ trait uiKitPeopleListWithLikes
         $firstname = isset($user['firstname']) ? $user['firstname'] : '{#anonymous#}';
         $age = isset($user['age']) ? $user['age'] : false;
 
-        $text_column_width = $this->screen_width - 250;
+        if(isset($parameters['extra_icon']) AND isset($user['instagram_username']) AND $user['instagram_username']) {
+            $text_column_width = $this->screen_width - 250;
+        } else {
+            $text_column_width = $this->screen_width - 100;
+        }
 
         if($age){
             $firstname .= ', '.$age;
