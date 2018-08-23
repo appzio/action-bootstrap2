@@ -96,8 +96,11 @@ trait uiKitUserSwiperFullScreen {
         ]);
 
         if(isset($content['instagram_username']) AND $content['instagram_username']){
-            $row[] = $this->getComponentImage('uikit_swipe_insta.png',['style' => 'ukit_user_swiper_insta',
-                'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username'])],[
+            $row[] = $this->getComponentImage('uikit_swipe_insta.png',[
+                'style' => 'ukit_user_swiper_insta',
+                'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username']),
+                'hide_when_swiping' => 1
+                ],[
                     'background-color' => '#ffffff','height' => '40',
                 'padding' => '5 5 5 5','border-radius' => '6','margin' => '10 0 0 0'
             ]);

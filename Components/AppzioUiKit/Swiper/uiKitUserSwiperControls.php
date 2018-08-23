@@ -144,13 +144,13 @@ trait uiKitUserSwiperControls
         ]);
 
         if (isset($parameters['layout'])) {
-            return $this->getComponentRow($col, ['layout' => $parameters['layout']], [
+            return $this->getComponentRow($col, ['layout' => $parameters['layout'],'hide_when_swiping' => 1], [
                 'margin' => '0 60 10 60',
                 'text-align' => 'center',
                 'noanimate' => true,
                 'height' => '90']);
         } else {
-            return $this->getComponentRow($col, [], [
+            return $this->getComponentRow($col, ['hide_when_swiping' => 1], [
                 'margin' => '0 60 10 60',
                 'text-align' => 'center',
                 'noanimate' => true,
