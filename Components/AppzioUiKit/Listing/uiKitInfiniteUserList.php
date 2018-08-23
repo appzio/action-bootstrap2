@@ -166,13 +166,13 @@ trait uiKitInfiniteUserList {
 
 
 
-        $width = $this->screen_width - 140;
+        $width = $this->screen_width - 120;
 
 
         /* bottom buttons */
 
 
-        $controls[] = $this->getComponentImage('uikit_icon_slimheart.png',[
+        $controls[] = $this->getComponentImage('uikit_icon_feed_heart.png',[
             'onclick' => $dolike
         ],[
             'width' => '35','margin' => '10 15 10 10'
@@ -198,25 +198,25 @@ trait uiKitInfiniteUserList {
 
 
         if(isset($content['bookmark']) AND $content['bookmark']) {
-            $controls[] = $this->getComponentImage('uikit_icon_slimbookmark.png',[
+            $controls[] = $this->getComponentImage('uikit_icon_feed_bookmark.png',[
                 'visibility' => 'hidden','id' => 'bookmark_not_active'.$id,'onclick' => $bookmark
             ],[
                 'width' => '35','margin' => '10 10 10 15','floating' => '1', 'float' => 'right'
             ]);
 
-            $controls[] = $this->getComponentImage('uikit_icon_slimbookmark_active.png',[
+            $controls[] = $this->getComponentImage('uikit_icon_feed_bookmark_active.png',[
                 'id' => 'bookmark_active'.$id,'onclick' => $un_bookmark
             ],[
                 'width' => '35','margin' => '10 10 10 15','floating' => '1', 'float' => 'right'
             ]);
         } else {
-            $controls[] = $this->getComponentImage('uikit_icon_slimbookmark.png',[
+            $controls[] = $this->getComponentImage('uikit_icon_feed_bookmark.png',[
                 'id' => 'bookmark_not_active'.$id,'onclick' => $bookmark
             ],[
                 'width' => '35','margin' => '10 10 10 15','floating' => '1', 'float' => 'right'
             ]);
 
-            $controls[] = $this->getComponentImage('uikit_icon_slimbookmark_active.png',[
+            $controls[] = $this->getComponentImage('uikit_icon_feed_bookmark_active.png',[
                 'visibility' => 'hidden','id' => 'bookmark_active'.$id,'onclick' => $un_bookmark
             ],[
                 'width' => '35','margin' => '10 10 10 15','floating' => '1', 'float' => 'right'

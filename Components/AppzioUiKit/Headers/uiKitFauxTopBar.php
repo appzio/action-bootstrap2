@@ -20,6 +20,10 @@ trait uiKitFauxTopBar {
         $hairline = isset($parameters['hairline']) ? $parameters['hairline'] : false;
         $color = isset($parameters['icon_color']) ? $parameters['icon_color'] : 'white';
 
+        if(!$color){
+            $color = 'black';
+        }
+
         if(isset($parameters['route_back'])){
             $close = $this->getOnclickRoute($parameters['route_back']);
             $top[] = $this->getComponentImage('div-back-icon.png',array('onclick' => $close,'style' => 'fauxheader_close'));
@@ -48,20 +52,43 @@ trait uiKitFauxTopBar {
             $top[] = $this->getComponentImage('div-close-icon.png',array('onclick' => $close,'style' => 'fauxheader_close'));
         }
 
+        if(isset($parameters['notification_count']) AND $parameters['notification_count']) {
+            $center_width = $this->screen_width - 137;
+            $top[] = $this->getComponentVerticalSpacer(30);
+        } else {
+            $center_width = $this->screen_width - 77;
+        }
 
         if(isset($parameters['logo']) AND $parameters['logo']){
-            $top[] = $this->getComponentImage($parameters['logo'],[],['height' => '30','margin' => '4 0 5 0','width' => $this->screen_width - 77,'text-align' => 'center']);
+            $top[] = $this->getComponentImage($parameters['logo'],[],['height' => '30','margin' => '4 0 5 0','width' => $center_width,'text-align' => 'center']);
         } elseif($title) {
-
             if($color == 'white'){
                 $top[] = $this->getComponentText($title,array(),[
-                    'text-align' => 'center','width' => $this->screen_width - 77,
+                    'text-align' => 'center','width' => $center_width,
                     'margin' => '8 0 5 0','font-size' => '15','color' => '#ffffff']);
             } else {
                 $top[] = $this->getComponentText($title,array(),[
-                    'text-align' => 'center','width' => $this->screen_width - 77,
+                    'text-align' => 'center','width' => $center_width,
                     'margin' => '8 0 5 0','font-size' => '15','color' => '#000000']);
             }
+        } else {
+            $top[] = $this->getComponentVerticalSpacer($center_width);
+        }
+
+        if(isset($parameters['notification_count']) AND $parameters['notification_count']){
+            $top[] = $this->getComponentText($parameters['notification_count'],[
+                'onclick' => $this->getOnclickOpenAction('notifications')
+            ],[
+                'color' => '#ffffff',
+                'font-size' => '12',
+                'font-weight' => 'bold',
+                'margin' => '7 5 7 5',
+                'text-align' => 'center',
+                'border-radius' => '4',
+                'background-color' => '#00BED2',
+                'width' => '20',
+                'height' => '18'
+            ]);
         }
 
         if(isset($parameters['right_menu']) AND $parameters['right_menu'] AND isset($parameters['right_menu']['icon'])) {

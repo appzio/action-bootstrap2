@@ -11,7 +11,7 @@ trait uiKitOpenProfile {
         return $this->getOnclickOpenAction(
             'userinfo',
             false,
-            array('sync_open' => 1, 'back_button' => 1, 'id' => $id)
+            array('sync_open' => 1, 'back_button' => 1, 'id' => $id,'click_hilite' => 'none')
         );
 
     }
