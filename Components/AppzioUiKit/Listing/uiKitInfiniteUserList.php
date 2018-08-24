@@ -96,6 +96,7 @@ trait uiKitInfiniteUserList {
             $this->getComponentImage($profilepic, [
                 'imgwidth' => '150',
                 'imgheight' => '150',
+                'click_hilite' => 'none',
                 'onclick' => $this->uiKitOpenProfile($id)],[
                     'crop' => 'round',
                     'margin' => '10 10 10 10',
@@ -122,6 +123,7 @@ trait uiKitInfiniteUserList {
             $pics[] = $this->getComponentImage($profilepic,[
                 'imgwidth' => 1200,
                 'imgheight' => 867,
+                'click_hilite' => 'none',
                 'onclick' => $this->uiKitOpenProfile($id),
                 'priority' => '9'],[
                 'crop' => 'yes',
@@ -131,6 +133,7 @@ trait uiKitInfiniteUserList {
             $pics[] = $this->getComponentImage($profilepic2,[
                 'imgwidth' => 1200,
                 'imgheight' => 867,
+                'click_hilite' => 'none',
                 'onclick' => $this->uiKitOpenProfile($id),
                 'priority' => '9'],[
                 'crop' => 'yes',
@@ -141,6 +144,7 @@ trait uiKitInfiniteUserList {
                 $pics[] = $this->getComponentImage($profilepic3,[
                     'imgwidth' => 1200,
                     'imgheight' => 867,
+                    'click_hilite' => 'none',
                     'onclick' => $this->uiKitOpenProfile($id),
                     'priority' => '9'],[
                     'crop' => 'yes',
@@ -157,6 +161,7 @@ trait uiKitInfiniteUserList {
             $col[] = $this->getComponentImage($profilepic,[
                 'imgwidth' => 1200,
                 'imgheight' => 867,
+                'click_hilite' => 'none',
                 'onclick' => $this->uiKitOpenProfile($id),
                 'priority' => '9'],[
                 'crop' => 'yes',

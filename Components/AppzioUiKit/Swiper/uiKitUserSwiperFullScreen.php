@@ -68,6 +68,7 @@ trait uiKitUserSwiperFullScreen {
         $col[] = $this->getComponentImage($profilepic,[
             'imgwidth' => '1200',
             'onclick' => $this->uiKitOpenProfile($id),
+            'click_hilite' => 'none',
             'priority' => '9'],[
                 'crop' => 'yes',
                 'width' => $width,
