@@ -77,7 +77,7 @@ trait uiKitUserSwiperControls
         $bookmark_active_click[] = $this->getOnclickSubmit('controller/removebookmark/' . $id);
 
 
-        if ($is_bookmarked) {
+/*        if ($is_bookmarked) {
             $bm = $this->getComponentColumn([
                 $this->getComponentImage($bookmark_inactive, array(
                     'onclick' => $bookmark_inactive_click), $img_params)
@@ -97,27 +97,27 @@ trait uiKitUserSwiperControls
             $bm2 = $this->getComponentColumn([
                 $this->getComponentImage($bookmark, array('onclick' => $bookmark_active_click), $img_params)
             ], ['id' => 'bookmark_active' . $id, 'visibility' => 'hidden'], ['height' => '90', 'vertical-align' => 'bottom', 'onclick_animation' => 'pop']);
-        }
+        }*/
 
 
         // new replacement
-        /*        $add_bookmark[] = $this->getOnclickSubmit('controller/bookmark/' . $id, ['delay' => 1, 'loader_off' => true]);
-                $remove_bookmark[] = $this->getOnclickSubmit('controller/removebookmark/' . $id, ['delay' => 1, 'loader_off' => true]);
+        $add_bookmark[] = $this->getOnclickSubmit('controller/bookmark/' . $id, ['delay' => 1, 'loader_off' => true]);
+        $remove_bookmark[] = $this->getOnclickSubmit('controller/removebookmark/' . $id, ['delay' => 1, 'loader_off' => true]);
 
-                $img_params['onclick_animation'] = 'pop';
-                $click_params['selected_content'] = $this->getImageFileName($bookmark);
-                $click_params['selected_transition'] = 'flip-top';
+        $img_params['onclick_animation'] = 'pop';
+        $click_params['selected_content'] = $this->getImageFileName($bookmark);
+        $click_params['selected_transition'] = 'flip-top';
 
-                if ($is_bookmarked) {
-                    $click_params['show_selected'] = '1';
-                }
+        if ($is_bookmarked) {
+            $click_params['show_selected'] = '1';
+        }
 
-                $click_params['onclick'] = $add_bookmark;
-                $click_params['selected_onclick'] = $remove_bookmark;
+        $click_params['onclick'] = $add_bookmark;
+        $click_params['selected_onclick'] = $remove_bookmark;
 
-                $bm = $this->getComponentColumn([
-                    $this->getComponentImage($bookmark_inactive, $click_params, $img_params)
-                ], ['id' => 'bookmark_inactive' . $id], ['height' => '90', 'vertical-align' => 'bottom', 'onclick_animation' => 'pop']);*/
+        $bm = $this->getComponentColumn([
+            $this->getComponentImage($bookmark_inactive, $click_params, $img_params)
+        ], ['id' => 'bookmark_inactive' . $id], ['height' => '90', 'vertical-align' => 'bottom', 'onclick_animation' => 'pop']);
 
 
         $img_params['width'] = '70';
