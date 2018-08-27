@@ -30,7 +30,7 @@ trait Session {
      * @param $array
      */
     public function sessionSetArray($array){
-        if(isset($_REQUEST['cache_request']) AND $_REQUEST['cache_request'] === true){
+        if(isset($_REQUEST['cache_request']) AND $_REQUEST['cache_request'] == true){
             return false;
         }
 
@@ -48,7 +48,7 @@ trait Session {
      * @param $value
      */
     public function sessionSet($key,$value){
-        if(isset($_REQUEST['cache_request']) AND $_REQUEST['cache_request'] === true){
+        if(isset($_REQUEST['cache_request']) AND $_REQUEST['cache_request'] == true){
             return false;
         }
 
