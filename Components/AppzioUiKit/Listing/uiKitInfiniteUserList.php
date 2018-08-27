@@ -41,7 +41,7 @@ trait uiKitInfiniteUserList {
                     'id' => 'swipe_container'
                 ),[]);
 
-            return $this->getInfiniteScroll($out,array('next_page_id' => $page));
+            return $this->getInfiniteScroll($out,array('next_page_id' => $page),['background-color' => '#ffffff']);
         }
 
         return $this->getComponentText('{#no_users_found_at_the_monent#}',array('style' => 'steps_error2'));
@@ -247,7 +247,7 @@ trait uiKitInfiniteUserList {
         $params['id'] = $id;
 
         $out2[] = $this->uiKitUserSwiperControls($params);
-        return $this->getComponentColumn($out2,['id' => 'user_'.$id]);
+        return $this->getComponentColumn($out2,['id' => 'user_'.$id],[]);
 
     }
 

@@ -8,17 +8,14 @@ trait uiKitUserSwiperFullScreen {
     public $page = 0;
 
     /**
-     * @param $content string, no support for line feeds
-     * @param array $styles 'margin', 'padding', 'orientation', 'background', 'alignment', 'radius', 'opacity',
-     * 'orientation', 'height', 'width', 'align', 'crop', 'text-style', 'font-size', 'text-color', 'border-color',
-     * 'border-width', 'font-android', 'font-ios', 'background-color', 'background-image', 'background-size',
-     * 'color', 'shadow-color', 'shadow-offset', 'shadow-radius', 'vertical-align', 'border-radius', 'text-align',
-     * 'lazy', 'floating' (1), 'float' (right | left), 'max-height', 'white-space' (no-wrap), parent_style
-     * @param array $parameters selected_state, variable, onclick, style
+     * @param $content array, data array with following fields:
+     * - play_id, profilepic, firstname,
+     * - optional: bookmark
+     * @param array $parameters
      * @return \stdClass
      */
 
-    public function uiKitUserSwiperFullScreen($content, array $parameters=array(),array $styles=array()) {
+    public function uiKitUserSwiperFullScreen(array $content, array $parameters=array()) {
         /** @var BootstrapComponent $this */
 
         if(!is_array($content) OR empty($content)){
@@ -63,6 +60,10 @@ trait uiKitUserSwiperFullScreen {
             $height = $this->screen_height - 60;
         } else {
             $height = $this->screen_height;
+        }
+
+        if($this->screen_width == '375' AND $this->screen_height == '812'){
+            $height = $height - 70;
         }
 
         $col[] = $this->getComponentImage($profilepic,[

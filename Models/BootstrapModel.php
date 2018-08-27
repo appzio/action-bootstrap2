@@ -625,6 +625,11 @@ class BootstrapModel extends CActiveRecord {
         return false;
     }
 
+    public function getFakeColors()
+    {
+        return json_decode('{"background_color":"#FFBDB890","top_bar_color":"#FFBDB890","top_bar_text_color":"#FFFFFFFF","top_bar_icon_color":"#FFFFFFFF","button_color":"#FFBDB890","button_text_color":"#FFFFFFFF","button_more_info_color":"#FF000000","button_more_info_icon_color":"#FFFFFFFF","item_color":"#FFFFCDD2","item_text_color":"#FFFFFFFF","text_color":"#FF000000","top_menu_color":"#FFFFFFFF","top_menu_text_color":"#FFFFFFFF","statusbar_background_color":"#FFBDB890","statusbar_text_color":"#FFFFFFFF"}');
+    }
+
     private function toPascalCase($string)
     {
         return str_replace('_', '', ucwords($string, '_'));
