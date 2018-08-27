@@ -30,6 +30,10 @@ trait Session {
      * @param $array
      */
     public function sessionSetArray($array){
+        if(isset($_REQUEST['cache_request']) AND $_REQUEST['cache_request'] === true){
+            return false;
+        }
+
         if(is_array($array) AND !empty($array)){
             foreach($array as $key=>$value) {
                 $this->sessionSet($key,$value);
@@ -44,6 +48,10 @@ trait Session {
      * @param $value
      */
     public function sessionSet($key,$value){
+        if(isset($_REQUEST['cache_request']) AND $_REQUEST['cache_request'] === true){
+            return false;
+        }
+
         $this->session_storage[$key] = $value;
     }
 
