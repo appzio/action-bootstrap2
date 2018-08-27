@@ -139,7 +139,7 @@ trait uiKitUserSwiperControls
         $col[] = $this->getComponentRow([
             $left,
             $bm,
-            $bm2,
+            //$bm2,
             $right
         ]);
 
