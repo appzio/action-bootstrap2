@@ -23,7 +23,6 @@ trait uiKitHeaderNavigationBar {
             'vertical-align' => 'top',
             'background-image' => $filename,
             'background-size' => 'cover',
-            'margin' => '0 0 5 0',
             'width' => $this->screen_width,
             'height' => $this->screen_height / 4,
         ));
