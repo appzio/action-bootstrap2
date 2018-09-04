@@ -27,7 +27,6 @@ trait uiKitTopbarWithButtons
         ];
 
         $config_error = false;
-
         foreach ($params as $item_key => $item_params) {
 
             if ( $item_params['required'] AND !isset($configs[$item_key]) ) {
@@ -41,13 +40,16 @@ trait uiKitTopbarWithButtons
                 'text-align' => 'center'
             ]);
         }
-
         $styles = array(
             'width' => 'auto',
             'height' => '50',
             'vertical-align' => 'middle',
             'background-color' => $this->color_top_bar_color,
         );
+        if ($styles['background-color']=='transparent')
+        {
+            unset($styles['background-color']);
+        }
 
         if ( !empty($custom_styles) ) {
             $styles = array_merge($styles, $custom_styles);
@@ -133,10 +135,15 @@ trait uiKitTopbarWithButtons
     }
 
     private function getAction($content){
+
+        $action = [];
         if (isset($content['onclick'])&&!empty( $content['onclick'])){
-            return array('onclick'=>$content['onclick']);
+            $action['onclick'] = $content['onclick'];
         }
-        return array();
+        if (isset($content['variable'])&&!empty($content['variable'])){
+            $action['variable'] = $content['variable'];
+        }
+        return $action;
     }
 
 }

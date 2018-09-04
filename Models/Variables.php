@@ -339,7 +339,7 @@ trait Variables {
         $cache = \Appcaching::getUserCache($playid,$this->appid,'playvariables');
 
         if ( $cache ) {
-            return $cache;
+            //return $cache;
         }
 
         $vars = \AeplayVariable::getArrayOfPlayvariables($playid);
