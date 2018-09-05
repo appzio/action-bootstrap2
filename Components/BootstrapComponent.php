@@ -188,10 +188,11 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\RangeSlider;
     use ClientComponents\Row;
     use ClientComponents\WrapRow;
-    use ClientComponents\Text;
     use ClientComponents\RichText;
     use ClientComponents\Video;
     use ClientComponents\Fieldlist;
+    use ClientComponents\Text;
+
 
     use ClientComponents\FullpageLoader;
     use ClientComponents\FullpageLoaderAnimated;
@@ -331,6 +332,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 
 	use AppzioUiKit\Swiper\uiKitUserSwiper;
 	use AppzioUiKit\Swiper\uiKitUserSwiperControls;
+	use AppzioUiKit\Swiper\uiKitUserSwiperControlsSmall;
 	use AppzioUiKit\Swiper\uiKitUserMatch;
 	use AppzioUiKit\Swiper\uiKitUserSwiperFullScreen;
 
