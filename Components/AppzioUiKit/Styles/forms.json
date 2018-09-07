@@ -37,9 +37,9 @@
   "uikit-general-field-icon": {
     "width": "25",
     "height": "25",
-    "margin": "15 0 15 15",
-    "opacity": "0.6"
+    "margin": "15 0 15 15"
   },
+
   "uikit-general-field-error": {
     "text-align": "center",
     "background-color": "#D40511",

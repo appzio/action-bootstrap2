@@ -46,6 +46,12 @@ trait uiKitGeneralField {
             return $this->getComponentColumn($row);
         }
 
+        if(isset($params['error']) AND $params['error']){
+            $row[] = $this->getComponentRow($col, array(), array('vertical-align' => 'middle'));
+            $row[] = $this->getComponentText($params['error'], array('style' => 'uikit-general-field-error'));
+            return $this->getComponentColumn($row);
+        }
+
         return $this->getComponentRow($col, array(), array('vertical-align' => 'middle'));
     }
 
