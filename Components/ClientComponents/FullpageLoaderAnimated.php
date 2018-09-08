@@ -29,7 +29,7 @@ trait FullpageLoaderAnimated {
         $col[] = $this->getComponentImage('uikit_balls_loader.gif',[],['width' => '180']);
         $col[] = $this->getComponentText($text,array('style' => 'loader-text'));
 
-        return $this->getComponentColumn($col,array('text-align' => 'center','width' => '100%','align' => 'center'));
+        return $this->getComponentColumn($col,[],array('text-align' => 'center','width' => '100%','align' => 'center'));
 
     }
 

@@ -233,6 +233,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Text\uiKitInformationTile;
     use AppzioUiKit\Text\uiKitTextCollapsableHeader;
     use AppzioUiKit\Text\uiKitSectionLabel;
+    use AppzioUiKit\Text\uiKitTermsText;
 
     use AppzioUiKit\Headers\uiKitTitlePriceLocation;
     use AppzioUiKit\Headers\uiKitHeaderWithImage;
