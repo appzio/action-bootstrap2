@@ -12,7 +12,7 @@ trait uiKitSlider {
         $step = isset($parameters['step']) ? $parameters['step'] : 50;
         $unit = isset($parameters['unit']) ? $parameters['unit'] : '{#km#}';
         $title = isset($parameters['title']) ? $parameters['title'] : '{#distance#}';
-        $left_track_color = isset($parameters['left_track_color']) ? $parameters['left_track_color'] : '#ffc204';
+        $left_track_color = isset($parameters['left_track_color']) ? $parameters['left_track_color'] : $this->color_top_bar_color;
         $right_track_color = isset($parameters['left_track_color']) ? $parameters['left_track_color'] : '#bebebe';
         $thumb_color = isset($parameters['thumb_color']) ? $parameters['thumb_color'] : '#7ed321';
         $variable = isset($parameters['variable']) ? $parameters['variable'] : 'filter_distance';

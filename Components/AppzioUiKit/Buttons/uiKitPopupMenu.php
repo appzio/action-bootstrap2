@@ -49,8 +49,8 @@ trait uiKitPopupMenu
         $this->addDivs($divs);
 
         $layout = new \stdClass();
-        $layout->top = $this->screen_height / 12;
-        $layout->right = $this->screen_width / 12;
+        $layout->top = round($this->screen_height / 12,0);
+        $layout->right = round($this->screen_width / 12,0);
 
         $onclick = $this->getOnclickShowDiv('uikit-block-buttons', array(
             'tap_to_close' => 1,

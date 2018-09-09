@@ -75,7 +75,14 @@ trait uiKitUserSwiperFullScreen {
                 'width' => $width,
                 'height' => $height]);
 
-        $name = isset($content['firstname']) ? $content['firstname'] : '{#anonymous#}';
+        $name = isset($content['firstname']) ? $content['firstname'] : false;
+
+        if(!$name){
+            $name = isset($content['real_name']) ? explode(' ', $content['real_name']) : false;
+            if(isset($name[0])){
+                $name = $name[0];
+            }
+        }
 
         if(isset($content['age']) AND $content['age']){
             $name .= ', '.$content['age'];

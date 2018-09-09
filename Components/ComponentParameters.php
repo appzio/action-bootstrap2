@@ -67,6 +67,12 @@ trait ComponentParameters {
                     $obj->variable = $this->model->getVariableId($obj->variable);
                 }
             }
+
+            if(isset($obj->variable2) AND is_string($obj->variable2) AND !is_numeric($obj->variable2)){
+                if($this->model->getVariableId($obj->variable2)){
+                    $obj->variable2 = $this->model->getVariableId($obj->variable2);
+                }
+            }
         }
 
         return $obj;

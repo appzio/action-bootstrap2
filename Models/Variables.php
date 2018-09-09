@@ -197,6 +197,41 @@ trait Variables {
         return $this->submitvariables;
     }
 
+
+    /**
+     * Saves all submitted variables. If there is a multiselect, it will convert its values
+     * to a json array.
+     */
+
+    public function saveAllSubmittedVariables(){
+
+
+        foreach ($this->submitvariables as $key=>$var){
+
+            $parts = explode('_', $key);
+
+            if(isset($parts[0])){
+                if(is_numeric($parts[0]) AND isset($parts[1]) AND in_array($parts[0],$this->vars) AND $var){
+                    $id = $parts[0];
+                    $saver[$id][$var] = $var;
+                }
+
+                if(is_numeric($parts[0]) AND isset($parts[1]) AND in_array($parts[0],$this->vars)){
+                    unset($this->submitvariables[$key]);
+                }
+            }
+        }
+
+        if(isset($saver)){
+            foreach($saver as $key=>$val){
+                $val = (object)$val;
+                $this->submitvariables[$key] = json_encode($val);
+            }
+        }
+
+        \AeplayVariable::saveVariablesArray($this->submitvariables, $this->playid, $this->appid,'standard');
+    }
+
     /**
      * Returns all submitted variables with names as key
      *
