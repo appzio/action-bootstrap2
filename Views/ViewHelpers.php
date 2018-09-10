@@ -32,4 +32,42 @@ trait ViewHelpers {
     public function getTextColorForBackground($bgcolor){
             return (hexdec($bgcolor) > 0xffffff/2) ? '#000000':'#ffffff';
     }
+
+    public function getNickname($content,$age=true){
+        $name = isset($content['nickname']) AND $content['nickname'] ? $content['nickname'] : false;
+
+        if(!$name){
+            $name = isset($content['name']) ? $content['name'] : false;
+        }
+
+        if(!$name){
+            $name = isset($content['firstname']) ? $content['firstname'] : false;
+        }
+
+        if(!$name){
+            $name = isset($content['real_name']) ? $content['real_name'] : false;
+        }
+
+        if(stristr($name, ' ')){
+            $name = explode(' ', $name);
+            $name = $name[0];
+        }
+
+        if(!$name){
+            $name = '{#anonymous#}';
+        }
+
+        if(!$age){
+            return $name;
+        }
+
+        if(isset($content['age']) AND $content['age']){
+            $name .= ', '.$content['age'];
+        } elseif(isset($content['birth_year'])){
+            $name .= ', ' .date('Y') - $content['birth_year'];
+        }
+
+        return $name;
+
+    }
 }

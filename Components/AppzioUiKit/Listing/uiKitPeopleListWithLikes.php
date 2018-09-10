@@ -31,8 +31,6 @@ trait uiKitPeopleListWithLikes
 
         $id = $user['play_id'];
         $profilepic = isset($user['profilepic']) ? $user['profilepic'] : 'anonymous-person.png';
-        $firstname = isset($user['firstname']) ? $user['firstname'] : '{#anonymous#}';
-        $age = isset($user['age']) ? $user['age'] : false;
 
         if(isset($parameters['extra_icon']) AND isset($user['instagram_username']) AND $user['instagram_username']) {
             $text_column_width = $this->screen_width - 250;
@@ -40,9 +38,7 @@ trait uiKitPeopleListWithLikes
             $text_column_width = $this->screen_width - 100;
         }
 
-        if($age){
-            $firstname .= ', '.$age;
-        }
+        $firstname = $this->getNickname($user);
 
         $row[] = $this->getComponentImage($profilepic,[
             'style' => 'uikit_ukp_profilepic',

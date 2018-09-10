@@ -61,7 +61,9 @@ trait uiKitInfiniteUserList {
         $profilepic3 = $content['profilepic3'] ? $content['profilepic3'] : false;
         $profilepic4 = $content['profilepic4'] ? $content['profilepic4'] : false;
         $profilepic5 = $content['profilepic5'] ? $content['profilepic5'] : false;
-        $name = isset($content['firstname']) ? $content['firstname'] : '{#anonymous#}';
+
+        $name = $this->getNickname($content);
+
         $unlikeaction = isset($parameters['unlike_action']) ? $parameters['unlike_action'] : 'infinite/unlike/'.$id;
         $likeaction = isset($parameters['likeaction']) ? $parameters['likeaction'] : 'infinite/like/'.$id;
 
@@ -78,12 +80,6 @@ trait uiKitInfiniteUserList {
         $un_bookmark[] = $this->getOnclickShowElement('bookmark_not_active'.$id,['transition' => 'none']);
         $un_bookmark[] = $this->getOnclickHideElement('bookmark_active'.$id,['transition' => 'none']);
         $un_bookmark[] = $this->getOnclickSubmit('controller/removebookmark/'.$id,['loader_off' => true]);
-
-        if(isset($content['age']) AND $content['age']){
-            $name .= ', ' .$content['age'];
-        } elseif(isset($content['birth_year'])){
-            $name .= ', ' .date('Y') - $content['birth_year'];
-        }
 
         if(isset($content['current_venue']) AND $content['current_venue']){
             $location = $content['current_venue'];

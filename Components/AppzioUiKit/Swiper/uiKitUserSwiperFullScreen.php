@@ -75,20 +75,7 @@ trait uiKitUserSwiperFullScreen {
                 'width' => $width,
                 'height' => $height]);
 
-        $name = isset($content['firstname']) ? $content['firstname'] : false;
-
-        if(!$name){
-            $name = isset($content['real_name']) ? explode(' ', $content['real_name']) : false;
-            if(isset($name[0])){
-                $name = $name[0];
-            }
-        }
-
-        if(isset($content['age']) AND $content['age']){
-            $name .= ', '.$content['age'];
-        } elseif(isset($content['birth_year'])){
-            $name .= ', ' .date('Y') - $content['birth_year'];
-        }
+        $name = $this->getNickname($content);
 
         /*    "shadow-color" : "#B2B4B3",
     "shadow-radius": "1",
