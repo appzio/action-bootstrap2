@@ -40,6 +40,10 @@ trait uiKitHintedTextField {
             $val = $parameters['value'];
         }
 
+        if(!$val){
+            $val = $this->model->getSavedVariable($variablename);
+        }
+
         switch($type){
             case 'text':
                 $out[] = $this->getComponentFormFieldText($val,
