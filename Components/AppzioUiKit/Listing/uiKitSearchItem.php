@@ -35,7 +35,9 @@ trait uiKitSearchItem {
 		    }
 	    }
 
-	    $title_row[] = $this->getComponentImage($icon, array(), array(
+	    $title_row[] = $this->getComponentImage($icon, array(
+	        'priority' => 9
+        ), array(
 		    'width' => '6%',
 		    'margin' => '0 10 0 0',
 	    ));

@@ -758,7 +758,6 @@ trait Onclick {
         return $onclick;
     }
 
-
     /**
      * Clicking the component to which the returned object is attached will open the app sidemenu.
      * This is often used when you are using a custom header and want to open the side menu when clicking on an icon.
@@ -766,10 +765,24 @@ trait Onclick {
      * @param array $parameters
      * @return \stdClass
      */
-    public function getOnclickOpenSidemenu($parameters = array()){
+    public function getOnclickOpenSidemenu($parameters = array())
+    {
         $onclick = new \stdClass();
         $onclick->action = 'open-sidemenu';
-        $onclick = $this->attachParameters($onclick,$parameters);
+        $onclick = $this->attachParameters($onclick, $parameters);
+        return $onclick;
+    }
+
+    /**
+     * Clicking the component to which the returned object is attached will close the app sidemenu.
+     * This is often used when you are using a custom side navigation and want to close the side menu when clicking on an icon.
+     *
+     * @return \stdClass
+     */
+    public function getOnclickCloseSidemenu()
+    {
+        $onclick = new \stdClass();
+        $onclick->action = 'close-side-menu';
         return $onclick;
     }
 
