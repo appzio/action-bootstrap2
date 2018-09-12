@@ -24,6 +24,15 @@ class BootstrapModel extends CActiveRecord {
     use Mobilematching;
     use CalendarHelper;
 
+    /* recycable objects are used for passing data between actions in order to avoid expensive
+    queries being run several times. Simply define the variable name in a model that can be
+    recycled for other actions. This will speed up the listbranches where different actions
+    rely on same data for rendering (such as in mobile matching) */
+
+    public $recycleable_objects = array();
+    public $global_recycleable = array();
+    public $recycleable_object_names = array();
+
     /**
      * Actions configuration as defined in the web admin. All these can be overriden using $this->rewriteActionConfigField()
      *
