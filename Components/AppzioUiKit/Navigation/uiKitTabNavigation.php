@@ -77,6 +77,7 @@ trait uiKitTabNavigation
         $active_color = ( isset($styles['active_tab_color']) ? $styles['active_tab_color'] : $this->color_top_bar_color );
         $active_tab_color = ( isset($styles['active_tab_color']) ? $styles['active_tab_color'] : '#000000' );
         $border_color = ( isset($styles['border-color']) ? $styles['border-color'] : '#fafafa' );
+        $active_tab_background = ( isset($styles['background-color']) ? $styles['background-color'] : '#ffffff' );
 
         $tab_styles = $this->uiKitTabStyles($styles, array(
             'font-size',
@@ -85,12 +86,10 @@ trait uiKitTabNavigation
             'border-color',
         ), array(
             'color' => $active_tab_color,
-            // 'padding' => '23 0 20 0',
+            'padding' => '0 0 20 0',
             'height' => 'auto',
             'text-align' => 'center',
             'background-color' => '#ffffff',
-            // 'border-width' => '1',
-            // 'border-color' => '#fafafa',
             'font-size' => $this->font_size,
         ));
 
@@ -98,7 +97,9 @@ trait uiKitTabNavigation
             $this->getComponentSpacer(1, array(), array(
                 'background-color' => $border_color,
             )),
-            $this->getComponentSpacer(19),
+            $this->getComponentSpacer(19, array(), array(
+                'background-color' => $active_tab_background,
+            )),
             $this->getComponentText($text, array(), $tab_styles),
             $this->getComponentSpacer('3', array(), array(
                 'background-color' => $active_color,
