@@ -103,7 +103,7 @@ trait uiKitInfiniteUserList {
                 [
                     $this->getComponentText($name,[],['font-size' => '16']),
                     $this->getComponentText($location,[],['font-size' => '14'])
-                ],[],['vertical-align' => 'middle']),
+                ],['onclick' => $this->uiKitOpenProfile($id)],['vertical-align' => 'middle']),
 
             $this->getComponentText('{#hide#}',[
                 'onclick' => $dounlike,
