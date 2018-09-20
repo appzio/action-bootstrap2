@@ -1,4 +1,16 @@
 {
+
+  "uikit_div_location_selector": {
+    "height" : "350",
+    "background-color": "#ffffff",
+    "shadow-color": "#DDE2DE",
+    "shadow-radius": "1",
+    "shadow-offset": "0 2",
+    "border-radius": "4",
+    "margin": "10 10 10 10",
+    "text-align": "center"
+  },
+
   "uikit_div": {
     "width": "100%",
     "background-color": "#FFFFFF",

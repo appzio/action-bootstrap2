@@ -95,6 +95,10 @@ trait DataHelpers {
         return $vars;
     }
 
+    public function addressToCoordinates($country,$city=false){
+        return $location = ThirdpartyServices::addressToCoordinates($this->appid,$country,$city);
+    }
+
     public function findClosestVenue($lat,$lon,$keywords='restaurants,bars,cafes'){
         return ThirdpartyServices::findClosestVenue($lat, $lon, $this->appid,300,$keywords);
     }

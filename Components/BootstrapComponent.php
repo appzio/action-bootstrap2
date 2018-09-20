@@ -288,6 +288,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Divs\uiKitPurchaseDiv;
     use AppzioUiKit\Divs\uiKitVideoDiv;
     use AppzioUiKit\Divs\uiKitRemoveUserDiv;
+    use AppzioUiKit\Divs\uiKitLocationSelectorDiv;
 
     use AppzioUiKit\Fullviews\uiKitIntroWithButtons;
 
