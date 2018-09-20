@@ -363,7 +363,7 @@ trait DataHelpers {
 
         if(isset($content['age']) AND $content['age']){
             $name .= ', '.$content['age'];
-        } elseif(isset($content['birth_year'])){
+        } elseif(isset($content['birth_year']) AND is_numeric($content['birth_year'])){
             $name .= ', ' .date('Y') - $content['birth_year'];
         }
 
