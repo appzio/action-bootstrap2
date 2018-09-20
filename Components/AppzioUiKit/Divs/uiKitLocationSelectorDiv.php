@@ -48,12 +48,12 @@ trait uiKitLocationSelectorDiv
             $content[] = $this->getComponentFormFieldList($cities,array(
                 'variable' => 'city_selected',
                 'value' => $city
-            ),['font-size' => 13]);
+            ),['font-size' => 13,'width' => '80%']);
         } else {
             $content[] = $this->getComponentFormFieldList($countries,array(
                 'variable' => 'country_selected',
                 'value' => $country
-            ),['font-size' => 13]);
+            ),['font-size' => 13,'width' => '80%']);
         }
 
 
@@ -77,14 +77,18 @@ trait uiKitLocationSelectorDiv
             'background' => 'blur',
             'tap_to_close' => 1,
             'transition' => 'none',
-            'delay' => '0.5',
+            'layout' => $layout
+        );
+
+        $divparam2 = array(
+            'transition' => 'none',
             'layout' => $layout
         );
 
         if(!$cities) {
             $cols[] = $this->getComponentText('{#select#}', array(
                 'onclick' => [
-                    $this->getOnclickShowDiv('loader'),
+                    $this->getOnclickShowDiv('loader',$divparam2),
                     $this->getOnclickSubmit('selectcountry',['sync_open' => 1]),
                     $this->getOnclickHideDiv('location_selector', ['delay' => '0.5']),
                     $this->getOnclickShowDiv('location_selector', $divparam),
@@ -101,6 +105,8 @@ trait uiKitLocationSelectorDiv
             ), $style
             );
         }
+
+        $content[] = $this->getComponentSpacer(20);
 
         $content[] = $this->getComponentRow($cols,array(),array(
             'text-align' => 'center'
