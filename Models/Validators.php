@@ -144,6 +144,8 @@ trait Validators {
             return false;
         }
 
+        $email = strtolower($email);
+
         $validator = new \CEmailValidator;
         $validator->checkMX = true;
 
