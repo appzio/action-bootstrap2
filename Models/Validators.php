@@ -2,7 +2,8 @@
 
 namespace Bootstrap\Models;
 
-trait Validators {
+trait Validators
+{
 
     /* @var $this BootstrapModel */
 
@@ -138,9 +139,10 @@ trait Validators {
      * @param $email
      * @return bool
      */
-    public function validateEmail($email){
+    public function validateEmail($email)
+    {
 
-        if ( empty($email) ) {
+        if (empty($email)) {
             return false;
         }
 
@@ -149,10 +151,10 @@ trait Validators {
         $validator = new \CEmailValidator;
         $validator->checkMX = true;
 
-        $email = rtrim( $email );
+        $email = rtrim($email);
 
         // Email must contain only lowercase letters
-        if ( preg_match('/[A-Z]/', $email) ) {
+        if (preg_match('/[A-Z]/', $email)) {
             return false;
         }
 
@@ -169,13 +171,14 @@ trait Validators {
      * @param $url
      * @return bool
      */
-    public function validateWebsite($url){
-        if(strlen($url) < 4){
+    public function validateWebsite($url)
+    {
+        if (strlen($url) < 4) {
             return false;
         }
 
-        if(!stristr($this->getSavedVariable('website'),'http')){
-            $url = 'http://'.$url;
+        if (!stristr($this->getSavedVariable('website'), 'http')) {
+            $url = 'http://' . $url;
         }
 
         $url = parse_url($url);
@@ -190,22 +193,22 @@ trait Validators {
      * @param bool $strict
      * @return bool
      */
-    public function validatePassword($password,$strict=false){
-        if($strict){
-            $uppercase = preg_match('@[A-Z]@', $password);
-            $lowercase = preg_match('@[a-z]@', $password);
-            $number    = preg_match('@[0-9]@', $password);
+    public function validatePassword($password, $strict = false)
+    {
 
-            if(!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
+        if ($strict) {
+            $regex = '(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$';
+
+            if (!preg_match("~{$regex}~", $password)) {
+                return false;
+            }
+        } else {
+            if (strlen($password) < 3) {
                 return false;
             }
         }
 
-        if(strlen($password) > 3){
-            return true;
-        }
-
-        return false;
-
+        return true;
     }
+
 }
