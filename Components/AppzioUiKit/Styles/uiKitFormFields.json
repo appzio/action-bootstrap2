@@ -7,21 +7,25 @@
 
   "uikit_steps_hint":{
     "color": "#4b4c4d",
-    "font-size": "12",
-    "margin": "20 5 0 15"
+    "font-size": "11",
+    "margin": "20 15 0 15"
   },
+
+  "uikit_steps_hint_error":{
+    "color": "#F12617",
+    "font-size": "11",
+    "margin": "20 15 0 15"
+  },
+
 
   "uikit_hinted_textarea":{
     "margin": "10 15 0 15",
     "cursor-color": "#000000"
   },
   "uikit_steps_error": {
-    "text-align": "right",
     "font-size": "12",
-    "margin": "15 15 0 15",
-    "color": "#B41C11",
-    "floating": "1",
-    "float": "right"
+    "color": "#F12617",
+    "margin": "10 15 0 15"
   },
 
   "uikit_steps_error2": {

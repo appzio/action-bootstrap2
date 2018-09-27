@@ -18,20 +18,27 @@ trait uiKitHintedTextField {
 
     public function uiKitHintedTextField($hint,$variablename,$type='text', array $parameters=array(),array $styles=array()) {
         /** @var BootstrapComponent $this */
+        
+        
+        $no_divider = $this->addParam('no_divider', $parameters,false);
 
         $parameters['variable'] = $variablename;
 
-        $title_params['style'] = 'uikit_steps_hint';
 	    if ( isset($parameters['uppercase']) AND $parameters['uppercase'] ) {
 	        $title_params['uppercase'] = true;
         }
 
-        if($this->model->getValidationError($variablename)) {
-            $error[] = $this->getComponentText($hint .' ', $title_params);
-            $error[] = $this->getComponentText($this->model->getValidationError($variablename),array('style' => 'uikit_steps_error'));
-            $out[] = $this->getComponentRow($error,array(),array('width' => '100%'));
-        } else {
+        if(!$no_divider) {
+            $title_params['style'] = 'uikit_steps_hint';
             $out[] = $this->getComponentText($hint, $title_params);
+        } else {
+            if($this->model->getValidationError($variablename)) {
+                $title_params['style'] = 'uikit_steps_hint_error';
+                $out[] = $this->getComponentText($hint, $title_params);
+            } else{
+                $title_params['style'] = 'uikit_steps_hint';
+                $out[] = $this->getComponentText($hint, $title_params);
+            }
         }
 
         if(!isset($parameters['value'])){
@@ -90,19 +97,14 @@ trait uiKitHintedTextField {
 
         }
 
-/*        if($this->model->getValidationError($variablename)){
-            $out[] = $this->getComponentText('',array('style' => 'uikit_hinted_text_divider_error'));
-        } else {
-            $out[] = $this->getComponentText('',array('style' => 'uikit_hinted_text_divider'));
-        }*/
-
-/*        if($this->model->getValidationError($variablename.'_exists')){
-            $err[] = $this->getComponentText('{#choose_another_email_or#} ',array('style' => 'uikit_steps_error'));
-            $err[] = $this->getComponentText('{#return_to_login#}', array('style' => 'uikit_steps_error',
-                'onclick' => $this->getOnclickOpenAction('login')));
-
-            $out[] = $this->getComponentRow($err,array('style' => 'email_exists_row'));
-        }*/
+        if(!$no_divider){
+            if($this->model->getValidationError($variablename)) {
+                $out[] = $this->getComponentText('',[],['background-color' => '#F12617','height' => '1', 'width' => '100%']);
+                $out[] = $this->getComponentText($this->model->getValidationError($variablename),array('style' => 'uikit_steps_error'));
+            } else {
+                $out[] = $this->getComponentText('',[],['background-color' => '#D9DBDA','height' => '1', 'width' => '100%','margin' => '5 0 5 0']);
+            }
+        }
 
         return $this->getComponentColumn($out);
 	}
