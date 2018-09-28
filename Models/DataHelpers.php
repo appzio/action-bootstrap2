@@ -336,6 +336,10 @@ trait DataHelpers {
     public function getNickname($content,$age=true){
         $name = isset($content['nickname']) AND $content['nickname'] ? $content['nickname'] : false;
 
+        if($name){
+            return $name;
+        }
+
         if(!$name){
             $name = isset($content['name']) ? $content['name'] : false;
         }
