@@ -88,11 +88,11 @@ trait uiKitLocationSelectorDiv
         if(!$cities) {
             $cols[] = $this->getComponentText('{#select#}', array(
                 'onclick' => [
-                    $this->getOnclickShowDiv('loader',$divparam2),
+                    //$this->getOnclickShowDiv('loader',$divparam2),
                     $this->getOnclickSubmit('selectcountry',['sync_open' => 1]),
-                    $this->getOnclickHideDiv('location_selector', ['delay' => '0.5']),
-                    $this->getOnclickShowDiv('location_selector', $divparam),
-                    $this->getOnclickHideDiv('loader', ['delay' => '0.5']),
+                    //$this->getOnclickHideDiv('location_selector', ['delay' => '0.5']),
+                    //$this->getOnclickShowDiv('location_selector', $divparam),
+                    //$this->getOnclickHideDiv('loader', ['delay' => '0.5']),
                 ]
             ), $style
             );
