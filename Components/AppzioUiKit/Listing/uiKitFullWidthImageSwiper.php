@@ -17,6 +17,7 @@ trait uiKitFullWidthImageSwiper {
         $params['priority'] = '9';
         $params['not_to_assetlist'] = true;
         $params['tap_to_open'] = 1;
+        $params['click_hilite'] = 'none';
 
         $image_styles['width'] = $this->screen_width;
         $image_styles['height'] = $height;
