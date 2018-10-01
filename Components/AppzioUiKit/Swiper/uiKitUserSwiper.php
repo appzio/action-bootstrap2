@@ -22,7 +22,7 @@ trait uiKitUserSwiper {
         /** @var BootstrapComponent $this */
 
         if(!is_array($content) OR empty($content)){
-            return $this->getComponentText('{#no_users_found_at_the_monent#}',array('style' => 'steps_error2'));
+            return $this->getComponentText('{#no_users_found_at_the_moment#}',array('style' => 'steps_error2'));
         }
 
         $count = 0;
@@ -43,7 +43,7 @@ trait uiKitUserSwiper {
             return $this->getComponentColumn($out);
         }
 
-        return $this->getComponentText('{#no_users_found_at_the_monent#}',array('style' => 'steps_error2'));
+        return $this->getComponentText('{#no_users_found_at_the_moment#}',array('style' => 'steps_error2'));
         
     }
 

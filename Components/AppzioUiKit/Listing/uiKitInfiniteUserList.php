@@ -24,8 +24,8 @@ trait uiKitInfiniteUserList {
         $id = isset($parameters['id']) ? $parameters['id'] : 'swipe_container';
 
         if(!is_array($content) OR empty($content)){
-            return $this->getComponentText('{#sorry_no_users_found_at_the_monent#}',[],[
-                'text-align' => 'center','font-size' => '14','color' => '#B2B4B3']);
+            return $this->getComponentText('{#sorry_no_users_found_at_the_moment_with_your_filter_selection#}',[],[
+                'text-align' => 'center','font-size' => '14','color' => '#B2B4B3','margin' => '10 40 10 40']);
         }
 
         $page = isset($_REQUEST['next_page_id']) ? $_REQUEST['next_page_id'] : 1;
@@ -47,7 +47,7 @@ trait uiKitInfiniteUserList {
             return $this->getInfiniteScroll($out,array('next_page_id' => $page),['background-color' => '#ffffff']);
         }
 
-        return $this->getComponentText('{#no_users_found_at_the_monent#}',array('style' => 'steps_error2'));
+        return $this->getComponentText('{#no_users_found_at_the_moment#}',array('style' => 'steps_error2'));
         
     }
 

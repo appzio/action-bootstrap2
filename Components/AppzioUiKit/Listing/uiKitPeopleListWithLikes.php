@@ -18,7 +18,7 @@ trait uiKitPeopleListWithLikes
             return $this->getComponentColumn($rows);
         }
 
-        return $this->getComponentText('{#no_users_found_at_the_monent#}', array('style' => 'jm_notification_text'));
+        return $this->getComponentText('{#no_users_found_at_the_moment#}', array('style' => 'jm_notification_text'));
     }
 
     public function getUserRowListingWithLikes($user,$parameters){
