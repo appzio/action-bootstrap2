@@ -14,9 +14,10 @@ trait uiKitFauxTopBarTransparent {
     public function uiKitFauxTopBarTransparent($parameters = array()){
         /** @var BootstrapComponent $this */
 
-        $title = isset($parameters['title']) ? $parameters['title'] : '{#title#}';
+        $title = isset($parameters['title']) ? $parameters['title'] : false;
         $btn_title = isset($parameters['btn_title']) ? $parameters['btn_title'] : '';
         $action = isset($parameters['btn_onclick']) ? $parameters['btn_onclick'] : $this->getOnclickSubmit('photo');
+        $color = isset($parameters['icon_color']) ? $parameters['icon_color'] : 'white';
 
         if(isset($parameters['route_back'])){
             $close = $this->getOnclickRoute($parameters['route_back']);
@@ -49,18 +50,29 @@ trait uiKitFauxTopBarTransparent {
             $top[] = $this->getComponentImage('div-close-icon.png',array('onclick' => $close,'style' => 'fauxheader_close'));
         }
 
+        if(isset($parameters['notification_count']) AND $parameters['notification_count']) {
+            $center_width = $this->screen_width - 137;
+            $top[] = $this->getComponentVerticalSpacer(30);
+        } else {
+            $center_width = $this->screen_width - 77;
+        }
 
         if(isset($parameters['logo']) AND $parameters['logo']){
-            $top[] = $this->getComponentImage($parameters['logo'],[],[
-                'height' => '30',
-                'margin' => '10 0 15 0',
-                'shadow-color' => '#545050',
-                'shadow-radius' => 2,
-                'shadow-offset' => '0 0',
-                'width' => $this->screen_width - 77,
-                'text-align' => 'center']);
+            $top[] = $this->getComponentImage($parameters['logo'],[],['height' => '30','margin' => '4 0 5 0','width' => $center_width,'text-align' => 'center']);
+        } elseif($title) {
+            if($color == 'white'){
+                $top[] = $this->getComponentText($title,array(),[
+                    'text-align' => 'center','width' => $center_width,
+                    'margin' => '8 0 5 0','font-size' => '15','color' => '#ffffff']);
+            } else {
+                $top[] = $this->getComponentText($title,array(),[
+                    'text-align' => 'center','width' => $center_width,
+                    'margin' => '8 0 5 0','font-size' => '15','color' => '#000000']);
+            }
+        } elseif($title) {
+            $top[] = $this->getComponentText($title,[],['color' => '#fffffff']);
         } else {
-            $top[] = $this->getComponentText($title,array('uppercase' => true,'style' => 'jam_fauxheader_title'));
+            $top[] = $this->getComponentVerticalSpacer($center_width);
         }
 
         if(isset($parameters['right_menu']) AND $parameters['right_menu'] AND isset($parameters['right_menu']['icon'])) {

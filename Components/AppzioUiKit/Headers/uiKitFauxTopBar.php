@@ -29,7 +29,17 @@ trait uiKitFauxTopBar {
             $top[] = $this->getComponentImage('div-back-icon.png',array('onclick' => $close,'style' => 'fauxheader_close'));
         }elseif(isset($parameters['mode']) AND $parameters['mode'] == 'gohome'){
             $close = $this->getOnclickGoHome();
-            $top[] = $this->getComponentImage('div-back-icon.png',array('onclick' => $close,'style' => 'fauxheader_close'));
+
+            $top[] = $this->getComponentImage(
+                $color.'-div-back-icon.png',
+                array('onclick' => $close),
+                array(
+                    "height" => "28",
+                    "width" => "28",
+                    "margin" => "6 0 0 6"
+                )
+            );
+
         }elseif(isset($parameters['mode']) AND $parameters['mode'] == 'close'){
             $close = $this->getOnclickClosePopup();
             $top[] = $this->getComponentImage('close-icon-div.png',array('onclick' => $close,'style' => 'fauxheader_close'));
@@ -65,11 +75,11 @@ trait uiKitFauxTopBar {
             if($color == 'white'){
                 $top[] = $this->getComponentText($title,array(),[
                     'text-align' => 'center','width' => $center_width,
-                    'margin' => '8 0 5 0','font-size' => '15','color' => '#ffffff']);
+                    'margin' => '9 0 5 0','font-size' => '16','color' => '#ffffff']);
             } else {
                 $top[] = $this->getComponentText($title,array(),[
                     'text-align' => 'center','width' => $center_width,
-                    'margin' => '8 0 5 0','font-size' => '15','color' => '#000000']);
+                    'margin' => '9 0 5 0','font-size' => '16','color' => '#000000']);
             }
         } else {
             $top[] = $this->getComponentVerticalSpacer($center_width);
