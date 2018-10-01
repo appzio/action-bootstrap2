@@ -115,54 +115,41 @@ trait uiKitInfiniteUserList {
         $width = $this->screen_width;
         $height = round($this->screen_width/1.4,0);
 
-        if($profilepic2){
-            $pics[] = $this->getComponentImage($profilepic,[
+        $original_dimensions = $this->addParam('original_image_dimensions', $parameters);
+
+
+
+        if($original_dimensions){
+            $params = [
                 'imgwidth' => 1200,
-                'imgheight' => 867,
                 'click_hilite' => 'none',
                 'onclick' => $this->uiKitOpenProfile($id),
-                'priority' => '9'],[
-                'crop' => 'yes',
-                'width' => $width,
-                'height' => $height]);
+                'priority' => '9'];
 
-            $pics[] = $this->getComponentImage($profilepic2,[
-                'imgwidth' => 1200,
-                'imgheight' => 867,
-                'click_hilite' => 'none',
-                'onclick' => $this->uiKitOpenProfile($id),
-                'priority' => '9'],[
-                'crop' => 'yes',
-                'width' => $width,
-                'height' => $height]);
-
-            if($profilepic3){
-                $pics[] = $this->getComponentImage($profilepic3,[
+            $styles = ['width' => $width];
+        } else {
+                $params = [
                     'imgwidth' => 1200,
                     'imgheight' => 867,
                     'click_hilite' => 'none',
                     'onclick' => $this->uiKitOpenProfile($id),
-                    'priority' => '9'],[
+                    'priority' => '9'];
+
+                $styles = [
                     'crop' => 'yes',
                     'width' => $width,
-                    'height' => $height]);
-            }
+                    'height' => $height];
+        }
 
-            $col[] = $this->getComponentSwipe($pics,['id' => 'swiper'.$id]);
-
+        if($profilepic2){
+            $pics[] = $this->getComponentImage($profilepic,$params,$styles);
+            $pics[] = $this->getComponentImage($profilepic2,$params,$styles);
+            $pics[] = $this->getComponentImage($profilepic3,$params,$styles);
+            $col[] = $this->getComponentSwipe($pics,['id' => 'swiper'.$id],['background-color' => '#000000']);
             $col[] = $this->getComponentSwipeAreaNavigation('#00BED2','#E4E7E9',['swipe_id' => 'swiper'.$id],
                 ['margin' => '-40 0 0 0','text-align' => 'center','width' => '100%']);
-
         } else {
-            $col[] = $this->getComponentImage($profilepic,[
-                'imgwidth' => 1200,
-                'imgheight' => 867,
-                'click_hilite' => 'none',
-                'onclick' => $this->uiKitOpenProfile($id),
-                'priority' => '9'],[
-                'crop' => 'yes',
-                'width' => $width,
-                'height' => $height]);
+            $col[] = $this->getComponentImage($profilepic,$params,$styles);
         }
 
 

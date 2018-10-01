@@ -101,7 +101,14 @@ trait uiKitFauxTopBar {
             ]);
         }
 
-        if(isset($parameters['right_menu']) AND $parameters['right_menu'] AND isset($parameters['right_menu']['icon'])) {
+        if(isset($parameters['right_icon']) AND isset($parameters['right_action'])){
+            $top[] = $this->getComponentImage($parameters['right_icon'],[
+                'onclick' => $parameters['right_action']
+            ],[
+                    'height' => '25','margin' => '4 0 0 0'
+                ]
+            );
+        }elseif(isset($parameters['right_menu']) AND $parameters['right_menu'] AND isset($parameters['right_menu']['icon'])) {
             $top[] = $this->getComponentImage($parameters['right_menu']['icon'],[
                 'onclick' => $this->getOnclickOpenAction(false,$parameters['right_menu']['config'])
             ],[
