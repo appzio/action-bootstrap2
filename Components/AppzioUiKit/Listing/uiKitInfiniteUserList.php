@@ -21,8 +21,11 @@ trait uiKitInfiniteUserList {
     public function uiKitInfiniteUserList($content, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapComponent $this */
 
+        $id = isset($parameters['id']) ? $parameters['id'] : 'swipe_container';
+
         if(!is_array($content) OR empty($content)){
-            return $this->getComponentText('{#no_users_found_at_the_monent#}',array('style' => 'steps_error2'));
+            return $this->getComponentText('{#sorry_no_users_found_at_the_monent#}',[],[
+                'text-align' => 'center','font-size' => '14','color' => '#B2B4B3']);
         }
 
         $page = isset($_REQUEST['next_page_id']) ? $_REQUEST['next_page_id'] : 1;
@@ -38,7 +41,7 @@ trait uiKitInfiniteUserList {
             $out[] = $this->getComponentColumn(
                 $swiper,
                 array(
-                    'id' => 'swipe_container'
+                    'id' => $id
                 ),[]);
 
             return $this->getInfiniteScroll($out,array('next_page_id' => $page),['background-color' => '#ffffff']);
