@@ -5,7 +5,7 @@ use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitTabNavigation
 {
-    
+
     public $add_tab_id;
     public $font_size;
 
@@ -67,7 +67,7 @@ trait uiKitTabNavigation
 
     protected function getActiveTab($text, $width, $styles)
     {
-        
+
         if ( isset($styles['active_marker']) ) {
             $active_marker = $styles['active_marker'];
         } else {
@@ -77,16 +77,15 @@ trait uiKitTabNavigation
         $active_color = ( isset($styles['active_tab_color']) ? $styles['active_tab_color'] : $this->color_top_bar_color );
         $active_tab_color = ( isset($styles['active_tab_color']) ? $styles['active_tab_color'] : '#000000' );
         $border_color = ( isset($styles['border-color']) ? $styles['border-color'] : '#fafafa' );
-        $active_tab_background = ( isset($styles['background-color']) ? $styles['background-color'] : '#ffffff' );
+        // $active_tab_background = ( isset($styles['background-color']) ? $styles['background-color'] : '#ffffff' );
 
         $tab_styles = $this->uiKitTabStyles($styles, array(
             'font-size',
             'text-align',
             'background-color',
-            'border-color',
         ), array(
             'color' => $active_tab_color,
-            'padding' => '0 0 20 0',
+            'vertical-align' => 'middle',
             'height' => 'auto',
             'text-align' => 'center',
             'background-color' => '#ffffff',
@@ -94,19 +93,16 @@ trait uiKitTabNavigation
         ));
 
         return $this->getComponentColumn(array(
-            $this->getComponentSpacer(1, array(), array(
-                'background-color' => $border_color,
-            )),
-            $this->getComponentSpacer(19, array(), array(
-                'background-color' => $active_tab_background,
-            )),
             $this->getComponentText($text, array(), $tab_styles),
             $this->getComponentSpacer('3', array(), array(
+                'floating' => 1,
                 'background-color' => $active_color,
                 'vertical-align' => $active_marker
             )),
         ), $this->uiKitTabParams( $text ), array(
             'width' => $width,
+            'border-color' => $border_color,
+            'border-width' => 1,
         ));
 
     }
