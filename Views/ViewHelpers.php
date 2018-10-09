@@ -34,7 +34,7 @@ trait ViewHelpers {
     }
 
     public function getNickname($content,$age=true){
-        $name = isset($content['nickname']) AND $content['nickname'] ? $content['nickname'] : false;
+        $name = isset($content['nickname']) ? $content['nickname'] : false;
 
         if($name){
             return $name;
