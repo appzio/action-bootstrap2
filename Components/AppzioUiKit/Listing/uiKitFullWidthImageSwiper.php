@@ -10,6 +10,7 @@ trait uiKitFullWidthImageSwiper {
         $height = round($this->screen_width / 1.25, 0);
 
         $id = isset($params['id']) ? $params['id'] : 'photos';
+        $swipe_navi = isset($params['navi_location']) ? $params['navi_location'] : 'bottom';
 
         $params['imgwidth'] = '900';
         $params['imgheight'] = '720';
@@ -40,8 +41,11 @@ trait uiKitFullWidthImageSwiper {
         }
 
         $output[] = $this->getComponentSwipe($content,array('id' => $id));
-        $col[] = $this->getComponentSwipeAreaNavigation('#ffffff','#66ffffff',array('swipe_id' => $id));
-        $output[] = $this->getComponentColumn($col,array(),array('height' => '40', 'margin' => '-40 0 0 0','text-align' => 'center'));
+
+        if($swipe_navi == 'bottom'){
+            $col[] = $this->getComponentSwipeAreaNavigation('#ffffff','#66ffffff',array('swipe_id' => $id));
+            $output[] = $this->getComponentColumn($col,array(),array('height' => '40', 'margin' => '-40 0 0 0','text-align' => 'center'));
+        }
 
         return $this->getComponentColumn($output);
 
