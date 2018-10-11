@@ -1,9 +1,11 @@
 <?php
 
 namespace Bootstrap\Components\ClientComponents;
+
 use Bootstrap\Views\BootstrapView;
 
-trait Swipe {
+trait Swipe
+{
 
     /**
      * @param $pages array
@@ -21,24 +23,25 @@ trait Swipe {
      * @return \stdClass
      */
 
-    public function getComponentSwipe(array $pages, array $parameters=array(),array $styles=array()) {
+    public function getComponentSwipe(array $pages, array $parameters = array(), array $styles = array())
+    {
         /** @var BootstrapView $this */
 
-		$obj = new \StdClass;
+        $obj = new \StdClass;
         $obj->type = 'swipe';
         $obj->swipe_content = $pages;
 
         $allowed = array(
-            'swipe_content', 'text_content', 'progress_image', 'track_image','animate','remember_position','position',
+            'swipe_content', 'text_content', 'progress_image', 'track_image', 'animate', 'remember_position', 'position',
             'item_width', 'dynamic', 'id', 'items', 'animation', 'container_id', 'item_scale', 'transition', 'world_ending',
-            'hide_scrollbar', 'swipe_id'
+            'hide_scrollbar', 'swipe_id', 'preserve_position'
         );
 
-        $obj = $this->attachStyles($obj,$styles);
-        $obj = $this->attachParameters($obj,$parameters,$allowed);
+        $obj = $this->attachStyles($obj, $styles);
+        $obj = $this->attachParameters($obj, $parameters, $allowed);
         $obj = $this->configureDefaults($obj);
 
         return $obj;
-	}
+    }
 
 }

@@ -24,7 +24,7 @@ trait uiKitFloatingButtons
             $layout->height = '80';
             $layout->right = '15';
             $layout->width = ( count($buttons) * 80 );
-
+            
             $default_params['layout'] = $layout;
         }
 
@@ -34,6 +34,8 @@ trait uiKitFloatingButtons
 
         if ( !empty($parameters) ) {
             $parameters = array_merge($default_params, $parameters);
+        } else if ( $overlay ) {
+            $parameters = $default_params;
         }
 
         return $this->getComponentRow(

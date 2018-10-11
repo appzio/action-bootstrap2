@@ -16,6 +16,7 @@ trait uiKitBirthdayPickerDiv
         $title = isset($params['title']) ? $params['title'] : '{#select_birthdate#}';
         $subtitle = isset($params['subtitle']) ? $params['subtitle'] : '';
         $variable = isset($params['variable']) ? $params['variable'] : 'pick-date';
+        $format = isset($params['format']) ? $params['format'] : false;
 
         return $this->getComponentColumn(array_merge(
             array(
@@ -45,6 +46,7 @@ trait uiKitBirthdayPickerDiv
                 $this->getComponentFormFieldBirthday(
                 array(
                     'width' => '100%',
+                    'format' => $format,
                     'margin' => '5 15 0 15',
                 )),
             ),

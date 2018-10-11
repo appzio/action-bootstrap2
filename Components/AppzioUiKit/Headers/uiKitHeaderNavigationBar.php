@@ -34,7 +34,7 @@ trait uiKitHeaderNavigationBar {
                 $this->getComponentImage('arrow-back-white-v2.png', array(
                     'onclick' => $this->getOnclickGoHome()
                 ), array(
-                    'width' => '25',
+                    'height' => '25',
                 )),
                 $this->getComponentText($text, [], [
                     'width' => $this->screen_width - 20,
