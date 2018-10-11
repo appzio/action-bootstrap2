@@ -254,6 +254,8 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Buttons\uiKitPopupMenu;
 
     use AppzioUiKit\Forms\uiKitDivider;
+    use AppzioUiKit\Forms\uiKitDividerError;
+    use AppzioUiKit\Forms\uiKitFormErrorText;
     use AppzioUiKit\Forms\uiKitImageGridUpload;
     use AppzioUiKit\Forms\uiKitSearchField;
     use AppzioUiKit\Forms\uiKitHintedTextField;

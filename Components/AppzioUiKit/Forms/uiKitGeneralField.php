@@ -44,16 +44,34 @@ trait uiKitGeneralField
         }
 
         if (isset($this->model->validation_errors[$field])) {
+            $error = $this->model->validation_errors[$field];
+        } elseif(isset($params['error']) AND $params['error']){
+            $error = $params['error'];
+        } else {
+            $error = false;
+        }
+
+
+        if (isset($params['divider']) AND $params['divider']) {
+
+            if($error){
+                $output[] = $this->getComponentRow($col, array(), array('vertical-align' => 'middle'));
+                $output[] = $this->uiKitDividerError();
+                $output[] = $this->uiKitFormErrorText($error);
+                return $this->getComponentColumn($output);
+
+            } else {
+                $output[] = $this->getComponentRow($col, array(), array('vertical-align' => 'middle'));
+                $output[] = $this->uiKitDivider();
+                return $this->getComponentColumn($output);
+            }
+
+        } elseif($error) {
             $row[] = $this->getComponentRow($col, array(), array('vertical-align' => 'middle'));
-            $row[] = $this->getComponentText($this->model->validation_errors[$field], array('style' => 'uikit-general-field-error'));
+            $row[] = $this->getComponentText($error, array('style' => 'uikit-general-field-error'));
             return $this->getComponentColumn($row);
         }
 
-        if (isset($params['error']) AND $params['error']) {
-            $row[] = $this->getComponentRow($col, array(), array('vertical-align' => 'middle'));
-            $row[] = $this->getComponentText($params['error'], array('style' => 'uikit-general-field-error'));
-            return $this->getComponentColumn($row);
-        }
 
         return $this->getComponentRow($col, array(), array('vertical-align' => 'middle'));
     }

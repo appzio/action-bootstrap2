@@ -10,6 +10,16 @@
     "width": "100%",
     "opacity": "0.5"
   },
+  "uikit_form_error_text":{
+    "color" : "#FF2718",
+    "font-size": "12",
+    "margin": "5 0 5 0"
+  },
+  "uikit_divider_error": {
+    "height": "1",
+    "background-color": "#FF1100",
+    "width": "100%"
+  },
   "ukit_form_field_select_icon": {
     "width": "30",
     "floating": "1",
