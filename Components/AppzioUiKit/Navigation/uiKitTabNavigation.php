@@ -20,7 +20,6 @@ trait uiKitTabNavigation
         foreach ($content as $tab) {
             $tabs[] = $this->getTab($tab, count($content), $styles);
         }
-
         return $this->getComponentRow($tabs, $parameters, array(
             'width' => '100%'
         ));
@@ -119,6 +118,8 @@ trait uiKitTabNavigation
             'text-align',
             'background-color',
             'border-color',
+            'color',
+            'border-width'
         ), array(
             'color' => '#323232',
             'padding' => '20 0 20 0',
