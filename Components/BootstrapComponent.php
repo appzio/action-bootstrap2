@@ -178,12 +178,13 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\FormFieldUploadImage;
     use ClientComponents\FormFieldUploadVideo;
 
-    use ClientComponents\Html;
     use ClientComponents\Image;
+    use ClientComponents\Html;
     use ClientComponents\InfiniteScroll;
     use ClientComponents\Loader;
     use ClientComponents\Onclick;
 
+    use ClientComponents\Text;
     use ClientComponents\Progress;
     use ClientComponents\RangeSlider;
     use ClientComponents\Row;
@@ -191,8 +192,6 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\RichText;
     use ClientComponents\Video;
     use ClientComponents\Fieldlist;
-    use ClientComponents\Text;
-
 
     use ClientComponents\FullpageLoader;
     use ClientComponents\FullpageLoaderAnimated;

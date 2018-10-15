@@ -77,7 +77,9 @@ trait Session {
     public function sessionUnset($key){
 
         if ( isset($this->session_storage[$key]) ) {
-            unset( $this->session_storage[$key] );
+            /* this is for API controller so that it doesn't overwrite old value to this */
+            $this->session_storage['session-keys-to-delete'][] = $key;
+             unset($this->session_storage[$key]);
         }
 
     }
