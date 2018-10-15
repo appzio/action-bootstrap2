@@ -294,7 +294,7 @@ trait Onclick {
             $routeparts = explode('/', $route);
 
             if(!isset($routeparts[1]) OR empty($routeparts[1])){
-                $this->errors[] = 'Route is not defined right. It should controller/method';
+                $this->errors[] = 'Route is not defined right. Route example: controller/method';
             }
 
             // add the route to target
