@@ -36,7 +36,7 @@ trait uiKitExpandingField
         } else {
             $error = false;
         }
-        
+
         $onclick_show[] = $this->getOnclickShowElement($variable.'-row-expanded',['transition' => 'none']);
         $onclick_show[] = $this->getOnclickHideElement($variable.'*-row-collapsed',['transition' => 'none']);
         $onclick_show[] = $this->getOnclickHideElement('*-element-on',['transition' => 'none']);
@@ -108,7 +108,7 @@ trait uiKitExpandingField
         $value = $this->addParam('value', $parameters,$title);
         $variable = $this->addParam('variable', $parameters,'');
         $icon = $this->addParam('icon', $parameters,false);
-        $expanding_content = $this->addParam('expanding_content', $parameters,false);
+        $expanding_content = $this->addParam('expanding_content', $parameters,$this->getComponentText('No content'));
 
         return $this->getComponentColumn([$expanding_content],[
             'id' => $variable.'-element-on',
