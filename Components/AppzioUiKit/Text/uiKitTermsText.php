@@ -21,13 +21,16 @@ trait uiKitTermsText
             $this->getComponentText($text, [],array(
                 'text-align' => 'center',
                 'font-size' => '12',
+                'color' => $this->color_text_color,
+                'margin' => '0 0 5 0'
             )),
             $this->getComponentText($link_text, array(
                 'onclick' => $onclick
             ),[
                 'text-align' => 'center',
                 'font-size' => '12',
-                'font-weight' => 'bold'
+                'font-weight' => 'bold',
+                'color' => $this->color_text_color
             ])
         ),[], array(
             'text-align' => 'center',
