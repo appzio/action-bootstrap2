@@ -7,6 +7,14 @@ use ThirdpartyServices;
 trait DataHelpers {
 
 
+    public function getActiveTab(){
+        if(isset($this->query['tabid'])){
+            return $this->query['tabid'];
+        }
+
+        return 1;
+    }
+
     /* @var $this BootstrapModel */
 
     /**

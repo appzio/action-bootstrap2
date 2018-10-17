@@ -253,6 +253,10 @@ class BootstrapModel extends CActiveRecord {
      */
     public $bottom_menu_config;
 
+
+    /* original query parameters from the client */
+    public $query;
+
     /**
      * @var
      */
