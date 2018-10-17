@@ -283,6 +283,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
 	use AppzioUiKit\Listing\uiKitPeopleListWithLikes;
 	use AppzioUiKit\Listing\uiKitInfiniteUserList;
 	use AppzioUiKit\Listing\uiKitImageGallery;
+	use AppzioUiKit\Listing\uiKitCountryList;
 
     use AppzioUiKit\Divs\uiKitBlockButtonsDiv;
     use AppzioUiKit\Divs\uiKitReportItemDiv;
