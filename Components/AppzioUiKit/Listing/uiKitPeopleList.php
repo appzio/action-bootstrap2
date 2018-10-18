@@ -59,7 +59,8 @@ trait uiKitPeopleList
             $this->getComponentColumn(array(
                 $this->getPersonName($person['name']),
                 $this->getPersonInfo($person['info']),
-                $this->getPersonContact($person['contact'])
+                $this->getPersonContact($person['contact']),
+                $this->getPersonUnit($person['business_unit'])
             ))
         ), array(
             'style' => 'uikit_people_list_person_wrapper',
@@ -102,6 +103,19 @@ trait uiKitPeopleList
     protected function getPersonContact($contact)
     {
         return $this->getComponentText($contact, array(
+            'style' => 'uikit_people_list_person_contact'
+        ));
+    }
+
+    /**
+     * Returns person business_unit info markup
+     *
+     * @param $contact
+     * @return mixed
+     */
+    protected function getPersonUnit($contact)
+    {
+        return $this->getComponentText(ucfirst($contact), array(
             'style' => 'uikit_people_list_person_contact'
         ));
     }
