@@ -11,8 +11,6 @@ use Bootstrap\Models\BootstrapModel;
 use Bootstrap\Views\ViewGetters;
 use Bootstrap\Views\ViewHelpers;
 use ImagesController;
-use packages\actionMitems\Components\uiKitAccordion;
-use packages\actionMregister\themes\uikitsocial\Components\uiKitBirthdayPickerDiv;
 
 /**
  * Class BootstrapComponent
@@ -409,6 +407,15 @@ class BootstrapComponent implements BootstrapComponentInterface {
      */
     public function getDivs(){
         return $this->divs;
+    }
+
+
+    /**
+     * This will tell the app, that the theme is used inside the app
+     * @param $name
+     */
+    public function registerTheme($name){
+        $this->model->registerTheme($name);
     }
 
 }

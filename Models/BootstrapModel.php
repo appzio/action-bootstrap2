@@ -261,6 +261,7 @@ class BootstrapModel extends CActiveRecord {
      * @var
      */
     private $errors;
+    public $registered_themes;
 
     /**
      * BootstrapModel constructor.
@@ -377,6 +378,32 @@ class BootstrapModel extends CActiveRecord {
         }
 
         return false;
+    }
+
+
+    /**
+     * This will register information about a cache used by the app
+     * @param $name
+     */
+
+    public function registerTheme($name){
+        $appid = $this->appid;
+        
+        if(isset($this->registered_themes[$name])){
+            return true;
+        }
+
+        $cachename = '--system-themes--'.$appid;
+        $themes = $this->sessionGet($cachename);
+
+        if(is_array($themes) AND !isset($themes[$name])){
+            $themes[$name] = true;
+            \Appcaching::setGlobalCache($cachename,$themes);
+        } elseif(!is_array($themes)) {
+            \Appcaching::setGlobalCache($cachename, array($name => true));
+        }
+
+        $this->registered_themes[$name] = true;
     }
 
 
