@@ -15,6 +15,7 @@ trait uiKitExpandingField
         $value = $this->addParam('value', $parameters,$title);
         $variable = $this->addParam('variable', $parameters,'');
         $variable2 = $this->addParam('variable2', $parameters,'');
+        $var_separator = $this->addParam('var_separator', $parameters,'');
         $icon = $this->addParam('icon', $parameters,false);
         $expanding_content = $this->addParam('expanding_content', $parameters,false);
 
@@ -47,19 +48,25 @@ trait uiKitExpandingField
         $onclick_hide[] = $this->getOnclickHideElement($variable.'-element-on');
 
 
-/*        $col_hidden = $col;
+        /*        $col_hidden = $col;
 
-        $col[] = $this->getComponentImage('uikit-icon-fieldarrow.png',[
-        ],[
-            'floating' => 1,'float' => 'right','width' => '25']);
+                $col[] = $this->getComponentImage('uikit-icon-fieldarrow.png',[
+                ],[
+                    'floating' => 1,'float' => 'right','width' => '25']);
 
-        $col_hidden[] =  $this->getComponentImage('uikit-icon-fieldarrow-down.png',[
-        ],[
-            'floating' => 1,'float' => 'right','width' => '25']);*/
+                $col_hidden[] =  $this->getComponentImage('uikit-icon-fieldarrow-down.png',[
+                ],[
+                    'floating' => 1,'float' => 'right','width' => '25']);*/
 
         if($variable2){
             $var2[] = $this->getComponentText($value,['variable' => $variable],[
                 'color' => '#ffffff']);
+
+            if($var_separator){
+                $var2[] = $this->getComponentText($var_separator,[],[
+                    'color' => '#ffffff']);
+            }
+
             $var2[] = $this->getComponentText($value,['variable' => $parameters['variable2']],[
                 'color' => '#ffffff']);
 
