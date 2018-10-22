@@ -2,21 +2,23 @@
 
 namespace Bootstrap\Components\AppzioUiKit\Articles;
 
-trait uiKitArticleBlockquote {
+trait uiKitArticleBlockquote
+{
 
-    public function uiKitArticleBlockquote( $params, $styles = array() ){
+    public function uiKitArticleBlockquote($params, $styles = array())
+    {
         return $this->getComponentRow(array(
-        	$this->getComponentImage('quotes.png', array(), array(
-        		'width' => 30
-	        )),
-	        $this->getComponentText($params['content'], array(), array(
-	        	'font-size' => '22',
-	        	'color' => '#1d1d1d',
-	        	'padding' => '0 0 0 10',
-	        ))
+            $this->getComponentImage('quotes.png', array(), array(
+                'width' => 30
+            )),
+            $this->getComponentText($params['content'], array(), array(
+                'font-size' => '22',
+                'color' => '#1d1d1d',
+                'padding' => '0 0 0 10',
+            ))
         ), array(), array(
-        	'vertical-align' => 'top',
-        	'padding' => '10 15 10 15',
+            'vertical-align' => 'top',
+            'padding' => '10 15 10 15',
         ));
     }
 

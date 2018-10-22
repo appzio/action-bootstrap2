@@ -2,9 +2,11 @@
 
 namespace Bootstrap\Components\AppzioUiKit\Articles;
 
-trait uiKitArticleRichText {
+trait uiKitArticleRichText
+{
 
-    public function uiKitArticleRichText( $params, $styles = array() ) {
+    public function uiKitArticleRichText($params, $styles = array())
+    {
 
         $styles = array_merge([
             'width' => 'auto',

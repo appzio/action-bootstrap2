@@ -1,12 +1,14 @@
 <?php
 
 namespace Bootstrap\Components\AppzioUiKit\Navigation;
+
 use Bootstrap\Components\BootstrapComponent;
 
 trait uiKitTopbarWithButtons
 {
 
-    public function uiKitTopbarWithButtons( $configs, array $custom_styles = array() ) {
+    public function uiKitTopbarWithButtons($configs, array $custom_styles = array())
+    {
         /** @var BootstrapComponent $this */
 
         $top_bar_width_index = 6;
@@ -29,13 +31,13 @@ trait uiKitTopbarWithButtons
         $config_error = false;
         foreach ($params as $item_key => $item_params) {
 
-            if ( $item_params['required'] AND !isset($configs[$item_key]) ) {
+            if ($item_params['required'] AND !isset($configs[$item_key])) {
                 $config_error = true;
                 break;
             }
         }
 
-        if ( $config_error ) {
+        if ($config_error) {
             return $this->getComponentText('{#configuration_error#}', [], [
                 'text-align' => 'center'
             ]);
@@ -46,25 +48,25 @@ trait uiKitTopbarWithButtons
             'vertical-align' => 'middle',
             'background-color' => $this->color_top_bar_color,
         );
-        if ($styles['background-color']=='transparent')
-        {
+
+        if ($styles['background-color'] == 'transparent') {
             unset($styles['background-color']);
         }
 
-        if ( !empty($custom_styles) ) {
+        if (!empty($custom_styles)) {
             $styles = array_merge($styles, $custom_styles);
         }
 
         $right_data = [];
 
-        if ( isset($configs['rightSection']) AND $configs['rightSection'] ) {
+        if (isset($configs['rightSection']) AND $configs['rightSection']) {
             foreach ($configs['rightSection'] as $i => $entry) {
 
                 // Decrise the width index so the icons can actually fit
-                if ( $i )
+                if ($i)
                     $top_bar_width_index -= 1.5;
 
-                if ( $i > 2 )
+                if ($i > 2)
                     continue;
 
                 $right_data[] = $this->getComponentIcon($entry);
@@ -97,34 +99,36 @@ trait uiKitTopbarWithButtons
         ]);
 
         return $this->getComponentRow([
-           $leftComponent,
-           $centerComponent,
-           $rightComponent
+            $leftComponent,
+            $centerComponent,
+            $rightComponent
         ], [], $styles);
     }
 
-    private function getComponent($content){
+    private function getComponent($content)
+    {
 
-        if (isset($content['title'])){
-            return $this->getComponentText($content['title'], [],[
+        if (isset($content['title'])) {
+            return $this->getComponentText($content['title'], [], [
                 'font-size' => '17',
                 'color' => '#ffffff',
                 'text-align' => 'center',
             ]);
         }
 
-	    if (isset($content['image'])&&!empty($content['image'])){
-            return $this->getComponentImage($content['image'], [],[
+        if (isset($content['image']) && !empty($content['image'])) {
+            return $this->getComponentImage($content['image'], [], [
                 'height' => '25',
             ]);
         }
 
         return $this->getComponentText('');
     }
-    
-    private function getComponentIcon($content) {
 
-        if ( !isset($content['image']) OR empty($content['image']) ) {
+    private function getComponentIcon($content)
+    {
+
+        if (!isset($content['image']) OR empty($content['image'])) {
             return $this->getComponentText('');
         }
 
@@ -134,13 +138,14 @@ trait uiKitTopbarWithButtons
         ]);
     }
 
-    private function getAction($content){
+    private function getAction($content)
+    {
 
         $action = [];
-        if (isset($content['onclick'])&&!empty( $content['onclick'])){
+        if (isset($content['onclick']) && !empty($content['onclick'])) {
             $action['onclick'] = $content['onclick'];
         }
-        if (isset($content['variable'])&&!empty($content['variable'])){
+        if (isset($content['variable']) && !empty($content['variable'])) {
             $action['variable'] = $content['variable'];
         }
         return $action;
