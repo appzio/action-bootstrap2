@@ -22,15 +22,17 @@ trait uiKitImageGallery
     {
 
         $rows = array_chunk($items, 4);
-        $width = round(($this->screen_width - 80) / 4,0);
+        $width = round(($this->screen_width - 80) / 4, 0);
 
-        foreach($rows as $imagerow){
-            foreach ($imagerow as $image){
-                $col[] = $this->getComponentImage($image,['img_width' => '200',
-                    'onclick' => $this->getOnclickSubmit('Controller/selectimage/'.$image,['viewport' => 'top'])
-                    ],[
-                    'width' =>$width,'height' => $width,'crop' => 'yes', 'border-radius' => 4,
-                    'margin' => '5 5 0 0']);
+        foreach ($rows as $imagerow) {
+            foreach ($imagerow as $image) {
+                $col[] = $this->getComponentImage($image, [
+                    'img_width' => '300',
+                    'onclick' => $this->getOnclickSubmit('Controller/selectimage/' . $image, ['viewport' => 'top'])
+                ], [
+                    'width' => $width, 'height' => $width, 'crop' => 'yes', 'border-radius' => 4,
+                    'margin' => '5 5 0 0'
+                ]);
             }
 
             $output[] = $this->getComponentRow($col);
@@ -38,11 +40,13 @@ trait uiKitImageGallery
         }
 
         /** @var BootstrapComponent $this */
-        return $this->getComponentColumn($output,[
+        return $this->getComponentColumn($output, [
             'id' => 'image_gallery',
-            'visibility' => 'hidden'],[
+            'visibility' => 'hidden'
+        ], [
             'margin' => '0 30 20 30',
-            'text-align' => 'center']);
+            'text-align' => 'center'
+        ]);
     }
 
 }
