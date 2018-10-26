@@ -1,6 +1,7 @@
 <?php
 
 namespace Bootstrap\Components\AppzioUiKit\Listing;
+
 use Bootstrap\Views\BootstrapView;
 
 trait uiKitPeopleList
@@ -31,8 +32,8 @@ trait uiKitPeopleList
             $items[] = $this->uiKitDivider();
         }
 
-        if ( count($people) < 20 ) {
-        	return $this->getComponentColumn($items);
+        if (count($people) < 20) {
+            return $this->getComponentColumn($items);
         }
 
         if (isset($params['infinite'])) {
@@ -115,7 +116,7 @@ trait uiKitPeopleList
      */
     protected function getPersonUnit($contact)
     {
-        return $this->getComponentText(ucfirst($contact), array(
+        return $this->getComponentText(strtoupper($contact), array(
             'style' => 'uikit_people_list_person_contact'
         ));
     }
@@ -146,8 +147,4 @@ trait uiKitPeopleList
         return $onclick;
     }
 
-    public function getDivs()
-    {
-
-    }
 }
