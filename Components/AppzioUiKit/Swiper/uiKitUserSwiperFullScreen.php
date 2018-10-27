@@ -46,6 +46,8 @@ trait uiKitUserSwiperFullScreen {
 
 	private function getFeaturedUserFullScreen($content,$parameters){
 
+        $remove_on_bookmark = $this->addParam('remove_on_bookmark',$parameters,false);
+
         $id = isset($content['play_id']) ? $content['play_id'] : false;
 
         if(!$id){
@@ -124,6 +126,7 @@ trait uiKitUserSwiperFullScreen {
         $layout->right = 15;
         $params['layout'] = $layout;
         $params['shadow'] = true;
+        $params['remove_on_bookmark'] = $remove_on_bookmark;
         $overlay2 = $this->uiKitUserSwiperControls($params);
 
         $layout = new \stdClass();

@@ -31,6 +31,7 @@ trait uiKitUserSwiperControls
         $right_click = isset($parameters['right_click']) ? $parameters['right_click'] : false;
         $left_click = isset($parameters['left_click']) ? $parameters['left_click'] : false;
         $shadow = isset($parameters['shadow']) ? $parameters['shadow'] : false;
+        $remove_on_bookmark = isset($parameters['remove_on_bookmark']) ? $parameters['remove_on_bookmark'] : false;
 
         if (!$id) {
             return $this->getComponentText('Missing id for uiKitUserSwiperControls!');
@@ -99,9 +100,13 @@ trait uiKitUserSwiperControls
             ], ['id' => 'bookmark_active' . $id, 'visibility' => 'hidden'], ['height' => '90', 'vertical-align' => 'bottom', 'onclick_animation' => 'pop']);
         }*/
 
-
         // new replacement
         $add_bookmark[] = $this->getOnclickSubmit('controller/bookmark/' . $id, ['delay' => 1, 'loader_off' => true]);
+
+        if($remove_on_bookmark){
+            $add_bookmark[] = $this->getOnclickSwipeStackControl('swipe_container', 'up');
+        }
+
         $remove_bookmark[] = $this->getOnclickSubmit('controller/removebookmark/' . $id, ['delay' => 1, 'loader_off' => true]);
 
         $img_params['onclick_animation'] = 'pop';
