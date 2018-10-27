@@ -17,6 +17,7 @@ trait uiKitExpandingField
         $variable2 = $this->addParam('variable2', $parameters, '');
         $var_separator = $this->addParam('var_separator', $parameters, '');
         $icon = $this->addParam('icon', $parameters, false);
+        $value_color = $this->addParam('value_color',$parameters,'#333333');
 
         $params_initial['hint'] = $title;
         $params_initial['style'] = 'uikit-general-field-text';
@@ -58,7 +59,7 @@ trait uiKitExpandingField
             $var2[] = $this->getComponentText($value, ['variable' => $parameters['variable2']], [
                 'color' => '#ffffff']);
 
-            $col[] = $this->getComponentRow($var2, [], ['floating' => '1', 'float' => 'right']);
+            $col[] = $this->getComponentRow($var2, [], ['floating' => '1', 'float' => 'right','margin' => '0 15 0 0']);
 
         } else {
             $col[] = $this->getComponentText($value, [
@@ -67,7 +68,7 @@ trait uiKitExpandingField
                 'padding' => '0 15 0 0',
                 'floating' => 1,
                 'float' => 'right',
-                'color' => '#333333' // TODO: check usages accross the other apps
+                'color' => $value_color
             ]);
         }
 
