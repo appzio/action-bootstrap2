@@ -1,9 +1,11 @@
 <?php
 
 namespace Bootstrap\Components\AppzioUiKit\Swiper;
+
 use Bootstrap\Components\BootstrapComponent;
 
-trait uiKitUserSwiperFullScreen {
+trait uiKitUserSwiperFullScreen
+{
 
     public $page = 0;
 
@@ -15,42 +17,47 @@ trait uiKitUserSwiperFullScreen {
      * @return \stdClass
      */
 
-    public function uiKitUserSwiperFullScreen(array $content, array $parameters=array()) {
+    public function uiKitUserSwiperFullScreen(array $content, array $parameters = array())
+    {
         /** @var BootstrapComponent $this */
 
-        if(!is_array($content) OR empty($content)){
-            return $this->getComponentText('{#no_users_found_at_the_moment#}',array('style' => 'steps_error2'));
+        $overlay_left = $this->addParam('unlike_overlay', $parameters, 'uikit_swipe_nope_overlay.png');
+        $overlay_right = $this->addParam('like_overlay', $parameters, 'uikit_swipe_like_overlay.png');
+
+        if (!is_array($content) OR empty($content)) {
+            return $this->getComponentText('{#no_users_found_at_the_moment#}', array('style' => 'steps_error2'));
         }
 
         $count = 0;
 
-        foreach($content as $item){
-            $swiper[] = $this->getFeaturedUserFullScreen($item,$parameters);
+        foreach ($content as $item) {
+            $swiper[] = $this->getFeaturedUserFullScreen($item, $parameters);
             $count++;
         }
 
-        if(isset($swiper)){
+        if (isset($swiper)) {
             $out[] = $this->getComponentSwipeStack(
                 $swiper,
                 array(
                     'id' => 'swipe_container',
-                    'overlay_left' => $this->getComponentImage('uikit_swipe_nope_overlay.png',array('text-align' => 'right','width'=> '350','height'=> '350')),
-                    'overlay_right' => $this->getComponentImage('uikit_swipe_like_overlay.png',array('text-align' => 'left','width'=> '350','height'=> '350'))
-                ),[]);
+                    'overlay_left' => $this->getComponentImage($overlay_left, array('text-align' => 'right', 'width' => '350', 'height' => '350')),
+                    'overlay_right' => $this->getComponentImage($overlay_right, array('text-align' => 'left', 'width' => '350', 'height' => '350'))
+                ), []);
             return $this->getComponentColumn($out);
         }
 
-        return $this->getComponentText('{#no_users_found_at_the_moment#}',array('style' => 'steps_error2'));
-        
+        return $this->getComponentText('{#no_users_found_at_the_moment#}', array('style' => 'steps_error2'));
+
     }
 
-	private function getFeaturedUserFullScreen($content,$parameters){
+    private function getFeaturedUserFullScreen($content, $parameters)
+    {
 
-        $remove_on_bookmark = $this->addParam('remove_on_bookmark',$parameters,false);
+        $remove_on_bookmark = $this->addParam('remove_on_bookmark', $parameters, false);
 
         $id = isset($content['play_id']) ? $content['play_id'] : false;
 
-        if(!$id){
+        if (!$id) {
             return $this->getComponentText('Missing user play_id');
         }
 
@@ -58,24 +65,24 @@ trait uiKitUserSwiperFullScreen {
 
         $width = $this->screen_width;
 
-        if(isset($parameters['bottom_menu']) AND $parameters['bottom_menu']){
+        if (isset($parameters['bottom_menu']) AND $parameters['bottom_menu']) {
             $height = $this->screen_height - 60;
         } else {
             $height = $this->screen_height;
         }
 
-        if($this->screen_width == '375' AND $this->screen_height == '812'){
+        if ($this->screen_width == '375' AND $this->screen_height == '812') {
             $height = $height - 70;
         }
 
-        $col[] = $this->getComponentImage($profilepic,[
+        $col[] = $this->getComponentImage($profilepic, [
             'imgwidth' => '1200',
             'onclick' => $this->uiKitOpenProfile($id),
             'click_hilite' => 'none',
-            'priority' => '9'],[
-                'crop' => 'yes',
-                'width' => $width,
-                'height' => $height]);
+            'priority' => '9'], [
+            'crop' => 'yes',
+            'width' => $width,
+            'height' => $height]);
 
         $name = $this->getNickname($content);
 
@@ -84,7 +91,7 @@ trait uiKitUserSwiperFullScreen {
     "shadow-offset": "0 0",
 */
 
-        $row[] = $this->getComponentText($name,[],[
+        $row[] = $this->getComponentText($name, [], [
             'color' => '#ffffff',
             'shadow-color' => '#000000',
             'shadow-radius' => 1,
@@ -93,14 +100,14 @@ trait uiKitUserSwiperFullScreen {
             'font-size' => 28
         ]);
 
-        if(isset($content['instagram_username']) AND $content['instagram_username']){
-            $row[] = $this->getComponentImage('uikit_swipe_insta.png',[
+        if (isset($content['instagram_username']) AND $content['instagram_username']) {
+            $row[] = $this->getComponentImage('uikit_swipe_insta.png', [
                 'style' => 'ukit_user_swiper_insta',
-                'onclick' => $this->getOnclickOpenUrl('https://instagram.com/'.$content['instagram_username']),
+                'onclick' => $this->getOnclickOpenUrl('https://instagram.com/' . $content['instagram_username']),
                 'hide_when_swiping' => 1
-                ],[
-                    'background-color' => '#ffffff','height' => '40',
-                'padding' => '5 5 5 5','border-radius' => '6','margin' => '10 0 0 0'
+            ], [
+                'background-color' => '#ffffff', 'height' => '40',
+                'padding' => '5 5 5 5', 'border-radius' => '6', 'margin' => '10 0 0 0'
             ]);
         }
 
@@ -108,14 +115,23 @@ trait uiKitUserSwiperFullScreen {
         $layout->top = 45;
         $layout->center = 0;
 
-        $overlay = $this->getComponentColumn($row,['layout' => $layout],[
+        $overlay = $this->getComponentColumn($row, ['layout' => $layout], [
             'padding' => '10 5 10 5',
             'vertical-align' => 'middle',
             'text-align' => 'center',
             'width' => '100%']);
 
+
+        if(isset($parameters['yes'])){
+            $params['yes'] = $parameters['yes'];
+        }
+
+        if(isset($parameters['nope'])){
+            $params['nope'] = $parameters['nope'];
+        }
+
         /* setting the controls */
-        if(isset($content['bookmark']) AND $content['bookmark']){
+        if (isset($content['bookmark']) AND $content['bookmark']) {
             $params['is_bookmarked'] = true;
         }
 
@@ -127,6 +143,7 @@ trait uiKitUserSwiperFullScreen {
         $params['layout'] = $layout;
         $params['shadow'] = true;
         $params['remove_on_bookmark'] = $remove_on_bookmark;
+
         $overlay2 = $this->uiKitUserSwiperControls($params);
 
         $layout = new \stdClass();
@@ -136,29 +153,29 @@ trait uiKitUserSwiperFullScreen {
 
 
         /* optional shader */
-/*        $shadeheight = round($this->screen_width * 0.2,0);
+        /*        $shadeheight = round($this->screen_width * 0.2,0);
 
-        $shader_img = $this->getImageFileName('blue-gradient.png');
+                $shader_img = $this->getImageFileName('blue-gradient.png');
 
-        $shader = $this->getComponentText('',['layout' => $layout],[
-            'height' => $shadeheight,
-            'width' => '100%',
-            'background-image' => $shader_img,
-            "background-size" => "cover",
-            //"background-linear-color" => "180deg,ffffff 0%,008596 100%"
-        ]);*/
+                $shader = $this->getComponentText('',['layout' => $layout],[
+                    'height' => $shadeheight,
+                    'width' => '100%',
+                    'background-image' => $shader_img,
+                    "background-size" => "cover",
+                    //"background-linear-color" => "180deg,ffffff 0%,008596 100%"
+                ]);*/
 
 
         $out[] = $this->getComponentColumn($col, array(
-            'style' => 'ukit_user_swiper_full_screen','overlay' => [$overlay,$overlay2]
+            'style' => 'ukit_user_swiper_full_screen', 'overlay' => [$overlay, $overlay2]
         ));
 
 
         //die();
-        $out2[] = $this->getComponentColumn($out,[
+        $out2[] = $this->getComponentColumn($out, [
             'leftswipeid' => 'left' . $id,
             'rightswipeid' => 'right' . $id,
-        ],['text-align' => 'center','width' => '100%']);
+        ], ['text-align' => 'center', 'width' => '100%']);
 
 
         return $this->getComponentColumn($out2);
