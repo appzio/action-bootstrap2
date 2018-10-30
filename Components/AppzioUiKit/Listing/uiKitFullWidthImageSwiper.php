@@ -42,7 +42,7 @@ trait uiKitFullWidthImageSwiper {
 
         $output[] = $this->getComponentSwipe($content,array('id' => $id));
 
-        if($swipe_navi == 'bottom'){
+        if($swipe_navi == 'bottom' AND count($images) > 1){
             $col[] = $this->getComponentSwipeAreaNavigation('#ffffff','#66ffffff',array('swipe_id' => $id));
             $output[] = $this->getComponentColumn($col,array(),array('height' => '40', 'margin' => '-40 0 0 0','text-align' => 'center'));
         }
