@@ -537,8 +537,12 @@ class BootstrapModel extends CActiveRecord {
      *
      * @return bool|mixed
      */
-    public function getItemId(){
+    public function getItemId($session_only=false){
         $pointer = 'item_id_'.$this->action_id;
+
+        if($session_only){
+            return $this->sessionGet($pointer);
+        }
 
         if($this->getMenuId()){
             $this->current_itemid = $this->getMenuId();
