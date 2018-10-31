@@ -10,7 +10,8 @@ namespace Bootstrap\Models;
 use Aegame;
 use Aevariable;
 
-trait Variables {
+trait Variables
+{
 
     /* @var $this BootstrapModel */
 
@@ -20,9 +21,10 @@ trait Variables {
      * @param $varname
      * @return bool
      */
-    public function getVariableId($varname){
+    public function getVariableId($varname)
+    {
 
-        if(isset($this->vars[$varname])){
+        if (isset($this->vars[$varname])) {
             return $this->vars[$varname];
         } else {
             return false;
@@ -35,11 +37,12 @@ trait Variables {
      * @param $varid
      * @return bool
      */
-    public function getVariableName($varid){
+    public function getVariableName($varid)
+    {
 
         $vars = array_flip($this->vars);
 
-        if(isset($vars[$varid])){
+        if (isset($vars[$varid])) {
             return $vars[$varid];
         } else {
             return false;
@@ -52,11 +55,12 @@ trait Variables {
      * @param $varname
      * @return bool
      */
-    public function getGlobalVariableByName($varname){
+    public function getGlobalVariableByName($varname)
+    {
 
-        $var = \AegameKeyvaluestorage::model()->findByAttributes(array('game_id' => $this->appid,'key' => $varname));
+        $var = \AegameKeyvaluestorage::model()->findByAttributes(array('game_id' => $this->appid, 'key' => $varname));
 
-        if(isset($var->value)){
+        if (isset($var->value)) {
             return $var->value;
         } else {
             return false;
@@ -70,21 +74,22 @@ trait Variables {
      * @param bool $exclude
      * @return bool
      */
-    public function saveNamedVariables($variables,$exclude=false){
+    public function saveNamedVariables($variables, $exclude = false)
+    {
 
         $new = array();
 
-        foreach($variables as $key=>$val){
-            if(isset($this->vars[$key])){
+        foreach ($variables as $key => $val) {
+            if (isset($this->vars[$key])) {
                 $id = $this->vars[$key];
                 $new[$id] = $val;
-            } elseif(!is_numeric($key)) {
+            } elseif (!is_numeric($key)) {
                 $newvar = Aevariable::addGameVariable($this->appid, $key);
                 $new[$newvar] = $val;
             }
         }
 
-        \AeplayVariable::saveVariablesArray($new,$this->playid,$exclude);
+        \AeplayVariable::saveVariablesArray($new, $this->playid, $exclude);
         $this->loadVariableContent();
         return true;
     }
@@ -97,19 +102,20 @@ trait Variables {
      * @param bool $default
      * @return bool
      */
-    public function getSavedVariable($varname,$default=false){
+    public function getSavedVariable($varname, $default = false)
+    {
 
         if (isset($this->varcontent[$varname])) {
             return $this->varcontent[$varname];
         }
-        
+
         $id = $this->getVariableId($varname);
 
         /* we seem to have a problem of variable not always being available. todo: research why? */
 
-        if($id){
-            $var = \AeplayVariable::model()->findByAttributes(array('play_id'=>$this->playid,'variable_id' => $id));
-            if(isset($var->value)){
+        if ($id) {
+            $var = \AeplayVariable::model()->findByAttributes(array('play_id' => $this->playid, 'variable_id' => $id));
+            if (isset($var->value)) {
                 return $var->value;
             }
         }
@@ -127,7 +133,8 @@ trait Variables {
      * @param $gid
      * @return bool
      */
-    public static function getVariables($gid){
+    public static function getVariables($gid)
+    {
         $vars = \Aevariable::model()->findAllByAttributes(array('game_id' => $gid));
 
         foreach ($vars as $var) {
@@ -135,7 +142,7 @@ trait Variables {
             $varnames[$name] = $var->id;
         }
 
-        if(isset($varnames)){
+        if (isset($varnames)) {
             return $varnames;
         } else {
             return false;
@@ -148,15 +155,16 @@ trait Variables {
      * @param $playid
      * @return mixed
      */
-    public static function getVariableContent($playid){
+    public static function getVariableContent($playid)
+    {
         $vars = \AeplayVariable::model()->with('variable')->findAllByAttributes(array('play_id' => $playid));
 
-        foreach($vars as $var){
+        foreach ($vars as $var) {
             $name = $var->variable->name;
             $varcontent[$name] = $var->value;
         }
 
-        if(isset($varcontent)){
+        if (isset($varcontent)) {
             return $varcontent;
         } else {
             return false;
@@ -171,7 +179,8 @@ trait Variables {
      * @param bool $default
      * @return bool
      */
-    public function getSubmittedVariableByName($varname,$default=false) {
+    public function getSubmittedVariableByName($varname, $default = false)
+    {
         /* @var $this BootstrapModel */
 
         $data = $this->submitvariables;
@@ -193,7 +202,8 @@ trait Variables {
      *
      * @return mixed
      */
-    public function getAllSubmittedVariables(){
+    public function getAllSubmittedVariables()
+    {
         return $this->submitvariables;
     }
 
@@ -203,33 +213,34 @@ trait Variables {
      * to a json array.
      */
 
-    public function saveAllSubmittedVariables(){
+    public function saveAllSubmittedVariables()
+    {
 
 
-        foreach ($this->submitvariables as $key=>$var){
+        foreach ($this->submitvariables as $key => $var) {
 
             $parts = explode('_', $key);
 
-            if(isset($parts[0])){
-                if(is_numeric($parts[0]) AND isset($parts[1]) AND in_array($parts[0],$this->vars) AND $var){
+            if (isset($parts[0])) {
+                if (is_numeric($parts[0]) AND isset($parts[1]) AND in_array($parts[0], $this->vars) AND $var) {
                     $id = $parts[0];
                     $saver[$id][$var] = $var;
                 }
 
-                if(is_numeric($parts[0]) AND isset($parts[1]) AND in_array($parts[0],$this->vars)){
+                if (is_numeric($parts[0]) AND isset($parts[1]) AND in_array($parts[0], $this->vars)) {
                     unset($this->submitvariables[$key]);
                 }
             }
         }
 
-        if(isset($saver)){
-            foreach($saver as $key=>$val){
+        if (isset($saver)) {
+            foreach ($saver as $key => $val) {
                 $val = (object)$val;
                 $this->submitvariables[$key] = json_encode($val);
             }
         }
 
-        \AeplayVariable::saveVariablesArray($this->submitvariables, $this->playid, $this->appid,'standard');
+        \AeplayVariable::saveVariablesArray($this->submitvariables, $this->playid, $this->appid, 'standard');
     }
 
     /**
@@ -237,20 +248,21 @@ trait Variables {
      *
      * @return array
      */
-    public function getAllSubmittedVariablesByName(){
+    public function getAllSubmittedVariablesByName()
+    {
 
         /* depeneding on whether app has variable set or not,
         submit might come as variable id's or names */
 
-        foreach($this->submitvariables as $key=>$var){
-            if(is_numeric($key)){
+        foreach ($this->submitvariables as $key => $var) {
+            if (is_numeric($key)) {
                 $key = $this->getVariableName($key);
             }
 
             $output[$key] = $var;
         }
 
-        if(isset($output)){
+        if (isset($output)) {
             return $output;
         }
 
@@ -265,19 +277,20 @@ trait Variables {
      * @param bool $exclude
      * @return bool
      */
-    public static function saveVariables($vars,$playid,$exclude=false){
+    public static function saveVariables($vars, $playid, $exclude = false)
+    {
 
-        if(is_array($vars)){
+        if (is_array($vars)) {
             foreach ($vars as $var_id => $var_value) {
-                if(!isset($exclude[$var_id])){
-                    if(is_numeric($var_id)){
+                if (!isset($exclude[$var_id])) {
+                    if (is_numeric($var_id)) {
                         \AeplayVariable::updateWithId($playid, $var_id, $var_value);
                     } else {
                         /* deals mainly tags or any other format where
                         the variable value is a list of values */
-                        if(stristr($var_id,'_')){
-                            $id = substr($var_id,0,strpos($var_id,'_'));
-                            $fieldname=substr($var_id,strpos($var_id,'_')+1);
+                        if (stristr($var_id, '_')) {
+                            $id = substr($var_id, 0, strpos($var_id, '_'));
+                            $fieldname = substr($var_id, strpos($var_id, '_') + 1);
                             $arraysave[$id][$fieldname] = $var_value;
                         }
                     }
@@ -285,8 +298,8 @@ trait Variables {
             }
         }
 
-        if(isset($arraysave)){
-            foreach ($arraysave as $key=>$savebit){
+        if (isset($arraysave)) {
+            foreach ($arraysave as $key => $savebit) {
                 \AeplayVariable::updateWithId($playid, $key, $savebit);
             }
         }
@@ -301,17 +314,18 @@ trait Variables {
      * @param $variable
      * @param $value
      */
-    public function saveVariable($variable,$value){
+    public function saveVariable($variable, $value)
+    {
 
         /* added March 2018, will not save if its already of this value */
-        if($this->getSavedVariable($variable) == $value){
+        if ($this->getSavedVariable($variable) == $value) {
             return true;
         }
 
-        if ( !is_numeric($variable) ) {
+        if (!is_numeric($variable)) {
             $varid = $this->getVariableId($variable);
 
-            if(!$varid AND $value){
+            if (!$varid AND $value) {
                 $new = new \Aevariable;
                 $new->game_id = $this->appid;
                 $new->name = $variable;
@@ -322,7 +336,7 @@ trait Variables {
             $varid = $variable;
         }
 
-        \AeplayVariable::updateWithId($this->playid,$varid,$value);
+        \AeplayVariable::updateWithId($this->playid, $varid, $value);
         $this->loadVariableContent(true);
     }
 
@@ -332,8 +346,9 @@ trait Variables {
      * @param $variablename
      * @return void
      */
-    public function deleteVariable($variablename){
-        \AeplayVariable::deleteWithName($this->playid,$variablename,$this->appid);
+    public function deleteVariable($variablename)
+    {
+        \AeplayVariable::deleteWithName($this->playid, $variablename, $this->appid);
         $this->loadVariableContent(true);
     }
 
@@ -342,7 +357,8 @@ trait Variables {
      *
      * @return void
      */
-    public function loadVariables(){
+    public function loadVariables()
+    {
         $this->vars = $this->getVariables($this->appid);
     }
 
@@ -352,7 +368,8 @@ trait Variables {
      * @param bool $force
      * @return void
      */
-    public function loadVariableContent($force=false){
+    public function loadVariableContent($force = false)
+    {
         $this->varcontent = $this->getVariableContent($this->playid);
     }
 
@@ -365,20 +382,25 @@ trait Variables {
      * @param bool $playid
      * @return array|bool
      */
-    public function foreignVariablesGet( $playid = false ) {
+    public function foreignVariablesGet($playid = false)
+    {
 
-        if ( empty($playid) ) {
+        if (empty($playid)) {
             $playid = $this->playid;
         }
 
-        $cache = \Appcaching::getUserCache($playid,$this->appid,'playvariables');
+        $cachename = 'foreign-variables-' . $playid;
+        $cache = \Appcaching::getGlobalCache($cachename);
 
-        if ( $cache ) {
-            //return $cache;
+        if ($cache AND $cache['time'] + 720 > time()) {
+            return $cache['values'];
         }
 
         $vars = \AeplayVariable::getArrayOfPlayvariables($playid);
-        \Appcaching::setUserCache($playid,$this->appid,'playvariables',$vars);
+
+        $cache_content['time'] = time();
+        $cache_content['values'] = $vars;
+        \Appcaching::setGlobalCache($cachename, $cache_content);
 
         return $vars;
     }
@@ -390,8 +412,9 @@ trait Variables {
      * @param $value
      * @param int $playid
      */
-    public function foreignVariableSave( string $variablename, $value, int $playid ){
-        \AeplayVariable::updateWithName( $playid, $variablename, $value, $this->appid );
+    public function foreignVariableSave(string $variablename, $value, int $playid)
+    {
+        \AeplayVariable::updateWithName($playid, $variablename, $value, $this->appid);
         $this->loadVariableContent(true);
     }
 }
