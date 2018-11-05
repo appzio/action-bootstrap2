@@ -12,10 +12,11 @@ trait uiKitExpandingField
         /** @var BootstrapComponent $this */
 
         $title = $this->addParam('title', $parameters, '');
-        $value = $this->addParam('value', $parameters, $title);
+        $value = $this->addParam('value', $parameters, '');
+        $value2 = $this->addParam('value2', $parameters, '');
         $variable = $this->addParam('variable', $parameters, '');
         $variable2 = $this->addParam('variable2', $parameters, '');
-        $var_separator = $this->addParam('var_separator', $parameters, '');
+        $var_separator = $this->addParam('var_separator', $parameters, false);
         $icon = $this->addParam('icon', $parameters, false);
         $value_color = $this->addParam('value_color',$parameters,'#333333');
 
@@ -48,15 +49,20 @@ trait uiKitExpandingField
         $onclick_hide[] = $this->getOnclickHideElement($variable . '-element-on');
 
         if ($variable2) {
-            $var2[] = $this->getComponentText($value, ['variable' => $variable], [
+            $var2[] = $this->getComponentText($value, [
+                'variable' => $variable
+            ], [
                 'color' => '#ffffff']);
 
             if ($var_separator) {
-                $var2[] = $this->getComponentText($var_separator, [], [
+                $var2[] = $this->getComponentText($var_separator, [
+                    //'visibility' => 'hidden',
+                    //'id' => $variable.'-element-on'
+                ], [
                     'color' => '#ffffff']);
             }
 
-            $var2[] = $this->getComponentText($value, ['variable' => $parameters['variable2']], [
+            $var2[] = $this->getComponentText($value2, ['variable' => $variable2], [
                 'color' => '#ffffff']);
 
             $col[] = $this->getComponentRow($var2, [], ['floating' => '1', 'float' => 'right','margin' => '0 15 0 0']);
