@@ -20,7 +20,7 @@ trait Banner {
     public function getBannerAd($advertisingid, $size='banner') {
         /** @var BootstrapView $this */
 		$obj = new \StdClass;
-        $obj->action = 'ad';
+        $obj->type = 'ad';
         $obj->content = $advertisingid;
         $obj->ad_size = $size;
         return $obj;
