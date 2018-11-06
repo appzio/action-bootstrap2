@@ -21,7 +21,7 @@ trait Banner {
         /** @var BootstrapView $this */
 		$obj = new \StdClass;
         $obj->action = 'ad';
-        $obj->action_config = $advertisingid;
+        $obj->content = $advertisingid;
         $obj->ad_size = $size;
         return $obj;
 	}
