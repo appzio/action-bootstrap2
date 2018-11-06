@@ -52,20 +52,31 @@ trait uiKitExpandingField
             $var2[] = $this->getComponentText($value, [
                 'variable' => $variable
             ], [
-                'color' => '#ffffff']);
+                'color' => '#ffffff',
+                'font-size' => '14'
+                ]);
 
             if ($var_separator) {
                 $var2[] = $this->getComponentText($var_separator, [
                     //'visibility' => 'hidden',
                     //'id' => $variable.'-element-on'
                 ], [
-                    'color' => '#ffffff']);
+                    'color' => '#ffffff',
+                    'font-size' => '14'
+                    ]);
             }
 
             $var2[] = $this->getComponentText($value2, ['variable' => $variable2], [
-                'color' => '#ffffff']);
+                'color' => '#ffffff',
+                'font-size' => '14'
+            ]);
 
-            $col[] = $this->getComponentRow($var2, [], ['floating' => '1', 'float' => 'right','margin' => '0 15 0 0']);
+            $col[] = $this->getComponentRow($var2, [], [
+                'floating' => '1',
+                'float' => 'right',
+                'margin' => '0 15 0 0',
+                'font-size' => '14'
+            ]);
 
         } else {
             $col[] = $this->getComponentText($value, [
@@ -74,7 +85,8 @@ trait uiKitExpandingField
                 'padding' => '0 15 0 0',
                 'floating' => 1,
                 'float' => 'right',
-                'color' => $value_color
+                'color' => $value_color,
+                'font-size' => '14'
             ]);
         }
 
