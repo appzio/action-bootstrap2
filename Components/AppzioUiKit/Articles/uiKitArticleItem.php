@@ -21,6 +21,12 @@ trait uiKitArticleItem
             $onclick = $this->getOnclickShowDiv('video-article-' . $article->id, $this->uiKitArticleDivLayout());
         }
 
+        if (isset($category_data->title)) {
+            $category_title = strtoupper($category_data->title);
+        } else {
+            $category_title = 'N/A';
+        }
+
         return $this->getComponentRow(array(
             $this->getComponentColumn(array(
                 $this->getComponentImage($this->getListingImage($article->photos), array(
@@ -41,7 +47,7 @@ trait uiKitArticleItem
                     'style' => 'article-uikit-listing-title',
                 )),
                 $this->getComponentRow(array(
-                    $this->getComponentText(strtoupper($category_data->title), array(
+                    $this->getComponentText($category_title, array(
                         'style' => 'article-uikit-listing-subtitle',
                     )),
                 )),

@@ -268,6 +268,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Forms\uiKitRadioButtonsCheckboxes;
     use AppzioUiKit\Forms\uiKitFormOnOff;
     use AppzioUiKit\Forms\uiKitExpandingField;
+    use AppzioUiKit\Forms\uiKitDivSelectorField;
 
     use AppzioUiKit\Listing\uiKitTagList;
     use AppzioUiKit\Listing\uiKitThreeColumnImageSwiper;
