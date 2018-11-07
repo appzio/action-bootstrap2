@@ -33,8 +33,12 @@ trait uiKitInfiniteUserList {
         $count = 0;
 
         foreach($content as $item){
-            $swiper[] = $this->getFeaturedUserForList($item,$parameters);
+            $swiper[] = $this->getFeaturedUserForList($item,$parameters,$count);
             $count++;
+            if($count == 4 AND isset($parameters['ad_id'])){
+                $swiper[] = $this->getBannerAd($parameters['ad_id'],'large');
+                $count = 0;
+            }
         }
 
         if(isset($swiper)){
