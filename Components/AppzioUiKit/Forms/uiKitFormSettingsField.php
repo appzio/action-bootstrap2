@@ -15,7 +15,7 @@ trait uiKitFormSettingsField {
         $clicker_element = $this->addParam('clicker_element', $parameters,false);
 
         $description_style['font-size'] = isset($styles['font-size']) ? $styles['font-size']-4 : 12;
-        $description_style['opacity'] = 0.6;
+        $description_style['opacity'] = '0.6';
         $description_style['margin'] = '5 0 0 0';
         $description_style['color'] = isset($styles['color']) ? $styles['color'] : $this->color_text_color;
 
@@ -45,7 +45,10 @@ trait uiKitFormSettingsField {
             $row[] = $clicker_element;
         } else {
             $row[] = $this->getComponentImage('formkit-selector-arrow-fwd.png',[],[
-                'floating' => 1,'float' => 'right','height' => '18','opacity' => '0.8'
+                'floating' => 1,
+                'float' => 'right',
+                'height' => '18',
+                'opacity' => '0.8'
             ]);
         }
 
@@ -56,11 +59,13 @@ trait uiKitFormSettingsField {
         if($onclick){
             $line = $this->getComponentColumn($col, ['onclick' => $onclick], [
                 'vertical-align' => 'middle',
+                'width' => 'auto',
                 'margin' => $margin,
                 'height' => $height]);
         } else {
             $line = $this->getComponentColumn($col, [], [
                 'vertical-align' => 'middle',
+                'width' => 'auto',
                 'margin' => $margin,
                 'height' => $height]);
         }

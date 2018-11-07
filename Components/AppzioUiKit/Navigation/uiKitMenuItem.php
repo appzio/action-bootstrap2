@@ -8,7 +8,8 @@ trait uiKitMenuItem
     public function uiKitMenuItem($item = [], array $parameters = [], array $styles = [])
     {
 
-        if (!isset($item['name'])) {
+
+        if (!isset($item['name']) AND !isset($item['label'])) {
             return $this->getComponentText('{#missing_name#}', [
                 'style' => 'article-uikit-error'
             ]);
@@ -20,7 +21,15 @@ trait uiKitMenuItem
             ]);
         }
 
-        $menu_content[] = $this->getComponentText($item['name'], [
+        if(isset($item['name'])){
+            $name = $item['name'];
+        } elseif(isset($item['label'])){
+            $name = $item['label'];
+        } else {
+            $name = 'Unknown';
+        }
+
+        $menu_content[] = $this->getComponentText($name, [
             'style' => 'uikit_menu_item_label'
         ]);
 
