@@ -30,14 +30,20 @@ trait uiKitInfiniteUserList {
 
         $page = isset($_REQUEST['next_page_id']) ? $_REQUEST['next_page_id'] : 1;
         $page++;
-        $count = 0;
+        $count = 1;
+
+        if(isset($parameters['ad_threshold']) AND isset($parameters['ad_id']) AND isset($parameters['ad_size'])){
+            $advertising = true;
+        } else {
+            $advertising = false;
+        }
 
         foreach($content as $item){
             $swiper[] = $this->getFeaturedUserForList($item,$parameters,$count);
             $count++;
-            if($count == 4 AND isset($parameters['ad_id'])){
-                $swiper[] = $this->getBannerAd($parameters['ad_id'],'large');
-                $count = 0;
+            if($advertising AND $count == $parameters['ad_threshold']){
+                $swiper[] = $this->getBannerAd($parameters['ad_id'],$parameters['ad_size']);
+                $count = 1;
             }
         }
 
