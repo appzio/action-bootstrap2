@@ -24,7 +24,7 @@ trait Fieldlist {
      * @param array $styles -- please see the link for more information about parameters [link] Bootstrap\Components\ComponentStyles
      * @return \stdClass
      */
-    public function getComponentFormFieldList(string $content, array $parameters=array(),array $styles=array()) {
+    public function getComponentFormFieldList($content, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
 
         if(is_array($content)){
