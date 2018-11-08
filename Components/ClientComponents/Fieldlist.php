@@ -10,7 +10,7 @@ use Bootstrap\Views\BootstrapView;
 trait Fieldlist {
 
     /**
-     * @param $content string
+     * @param $content array with key value pairs or string like this: key1;value1;key2;value2
      * @param array $parameters selected_state, variable, onclick, style
      * <code>
      * $array = array(
@@ -26,6 +26,19 @@ trait Fieldlist {
      */
     public function getComponentFormFieldList(string $content, array $parameters=array(),array $styles=array()) {
         /** @var BootstrapView $this */
+
+        if(is_array($content)){
+            foreach ($content as $key=>$value){
+                if(isset($key) AND isset($value)){
+                    $output[] = $key;
+                    $output[] = $value;
+                }
+            }
+
+            if(isset($output)){
+                $content = implode(';', $output);
+            }
+        }
 
 		$obj = new \StdClass;
         $obj->type = 'field-list';
