@@ -36,9 +36,11 @@ trait uiKitFullWidthImageSwiper
         $current = 1;
 
         foreach ($images as $image) {
-            $content[] = $this->getComponentColumn(array(
-                $this->getComponentImage($image, $params, $image_styles),
-            ));
+            if($image){
+                $content[] = $this->getComponentColumn(array(
+                    $this->getComponentImage($image, $params, $image_styles),
+                ));
+            }
 
             $current++;
         }
