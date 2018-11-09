@@ -18,7 +18,8 @@
 
 namespace Bootstrap\Router;
 
-class BootstrapRouter implements BootstrapRouterInterface {
+class BootstrapRouter implements BootstrapRouterInterface
+{
 
     use \Bootstrap\Router\BootstrapRouterGetters;
 
@@ -130,13 +131,14 @@ class BootstrapRouter implements BootstrapRouterInterface {
      * BootstrapRouter constructor.
      * @param $obj
      */
-    public function __construct($obj){
+    public function __construct($obj)
+    {
         /* this exist to make the referencing of
         passed objects & variables easier */
 
-        while($n = each($this)){
+        while ($n = each($this)) {
             $key = $n['key'];
-            if(isset($obj->$key) AND !$this->$key){
+            if (isset($obj->$key) AND !$this->$key) {
                 $this->$key = $obj->$key;
             }
         }
@@ -149,11 +151,12 @@ class BootstrapRouter implements BootstrapRouterInterface {
      * @param $secondary
      * @return mixed
      */
-    private function checkExistence($primary,$secondary){
-        if(classExists($primary)){
+    private function checkExistence($primary, $secondary)
+    {
+        if (classExists($primary)) {
             $this->controller_path = $primary;
             return $primary;
-        } elseif(classExists($secondary)) {
+        } elseif (classExists($secondary)) {
             $this->controller_path = $secondary;
             return $secondary;
         }
@@ -177,57 +180,57 @@ class BootstrapRouter implements BootstrapRouterInterface {
      * @param $class
      * @return string
      */
-    public function getController($class){
+    public function getController($class)
+    {
         $this->setRoute();
 
         $mode = $this->model->getConfigParam('mode');
         $theme = $this->model->getConfigParam('article_action_theme');
 
-        $themepath = $this->getMainPath() ."\\themes\\" .$theme .'\\Controllers\\';
-        $mainpath = $this->getMainPath() .'\\Controllers\\';
-        $default = $class ."Controllers\Controller";
-
+        $themepath = $this->getMainPath() . "\\themes\\" . $theme . '\\Controllers\\';
+        $mainpath = $this->getMainPath() . '\\Controllers\\';
+        $default = $class . "Controllers\Controller";
 
         /* 1 & 2 active route */
-        if($this->controller_name){
+        if ($this->controller_name) {
             /* check inside the theme */
-            if(classExists($themepath.ucfirst($this->controller_name))) {
-                $this->controller_path = $themepath.ucfirst($this->controller_name);
+            if (classExists($themepath . ucfirst($this->controller_name))) {
+                $this->controller_path = $themepath . ucfirst($this->controller_name);
                 $this->controller_name = ucfirst($this->controller_name);
                 return $this->controller_path;
             }
 
-            if(classExists($mainpath.ucfirst($this->controller_name))) {
-                $this->controller_path = $mainpath.ucfirst($this->controller_name);
+            if (classExists($mainpath . ucfirst($this->controller_name))) {
+                $this->controller_path = $mainpath . ucfirst($this->controller_name);
                 $this->controller_name = ucfirst($this->controller_name);
                 return $this->controller_path;
             }
         }
 
         /* 3 & 4 mode */
-        if($mode){
-            if(classExists($themepath.ucfirst($mode))) {
-                $this->controller_path = $themepath.ucfirst($mode);
+        if ($mode) {
+            if (classExists($themepath . ucfirst($mode))) {
+                $this->controller_path = $themepath . ucfirst($mode);
                 $this->controller_name = ucfirst($mode);
                 return $this->controller_path;
             }
 
-            if(classExists($mainpath.ucfirst($mode))) {
-                $this->controller_path = $mainpath.ucfirst($mode);
+            if (classExists($mainpath . ucfirst($mode))) {
+                $this->controller_path = $mainpath . ucfirst($mode);
                 $this->controller_name = ucfirst($mode);
                 return $this->controller_path;
             }
         }
 
         /* 5 & 6 default */
-        if(classExists($themepath.'Controller')) {
-            $this->controller_path = $themepath.'Controller';
+        if (classExists($themepath . 'Controller')) {
+            $this->controller_path = $themepath . 'Controller';
             $this->controller_name = 'Controller';
             return $this->controller_path;
         }
 
-        if(classExists($mainpath.'Controller')) {
-            $this->controller_path = $mainpath.'Controller';
+        if (classExists($mainpath . 'Controller')) {
+            $this->controller_path = $mainpath . 'Controller';
             $this->controller_name = 'Controller';
             return $this->controller_path;
         }
@@ -245,15 +248,16 @@ class BootstrapRouter implements BootstrapRouterInterface {
      * @param $class
      * @return string
      */
-    public function getComponent($class){
+    public function getComponent($class)
+    {
 
-        $default = $class ."Components\Components";
-        $backup = $this->getMainPath() ."\Components\Components";
+        $default = $class . "Components\Components";
+        $backup = $this->getMainPath() . "\Components\Components";
 
-        if(classExists($default)){
+        if (classExists($default)) {
             $this->component_path = $default;
             return $default;
-        } elseif(classExists($backup)) {
+        } elseif (classExists($backup)) {
             $this->component_path = $backup;
             return $backup;
         } else {
@@ -267,8 +271,9 @@ class BootstrapRouter implements BootstrapRouterInterface {
      *
      * @return string
      */
-    private function getMainPath(){
-        $name = 'packages\action'.ucfirst($this->action_shortname);
+    private function getMainPath()
+    {
+        $name = 'packages\action' . ucfirst($this->action_shortname);
         return $name;
     }
 
@@ -281,19 +286,20 @@ class BootstrapRouter implements BootstrapRouterInterface {
      * @return bool|string
      */
 
-    public function getView($class){
+    public function getView($class)
+    {
 
         // look for others
-        $default = $class ."Views\View";
-        $defined = $class ."Views\\".ucfirst($this->view_name);
-        $backup = $this->getMainPath() ."\Views\\".ucfirst($this->view_name);
-        $backup2 = $this->getMainPath() .'\Views\View';
+        $default = $class . "Views\View";
+        $defined = $class . "Views\\" . ucfirst($this->view_name);
+        $backup = $this->getMainPath() . "\Views\\" . ucfirst($this->view_name);
+        $backup2 = $this->getMainPath() . '\Views\View';
 
-        if(classExists($defined)){
+        if (classExists($defined)) {
             return $defined;
-        } elseif(classExists($backup)) {
+        } elseif (classExists($backup)) {
             return $backup;
-        } elseif(classExists($backup2)) {
+        } elseif (classExists($backup2)) {
             return $backup2;
         } else {
             $this->error[] = 'Defined view not found';
@@ -305,26 +311,26 @@ class BootstrapRouter implements BootstrapRouterInterface {
      * @param bool $route
      * @param bool $include_menuid
      */
-    private function configureNames($route=false,$include_menuid=false){
-
-        $parts_raw = explode('/',$route);
+    private function configureNames($route = false, $include_menuid = false)
+    {
+        $parts_raw = explode('/', $route);
         $route = strtolower($route);
-        $parts = explode('/',$route);
+        $parts = explode('/', $route);
 
-        if(isset($parts[1]) AND !empty($parts[1])){
+        if (isset($parts[1]) AND !empty($parts[1])) {
             $this->controller_name = $parts[0];
             $this->action_name = $parts[1];
-        } elseif(isset($parts[0]) AND $parts[0]) {
+        } elseif (isset($parts[0]) AND $parts[0]) {
             $this->action_name = 'default';
         } else {
             $this->action_name = 'default';
         }
 
-        /* note that this gets included only from request, not from session */
-        if(isset($parts[2]) AND !empty($parts[2]) AND $include_menuid){
+        // Note that this gets included only from request, not from session
+        // Users could also pass 0 as a value of the menuid; this is useful when passing IDs
+        if (isset($parts[2]) AND (!empty($parts[2] OR $parts[2] == '0') ) AND $include_menuid) {
             $this->menuid = $parts_raw[2];
         }
-
     }
 
     /**
@@ -333,17 +339,18 @@ class BootstrapRouter implements BootstrapRouterInterface {
      *
      * @return void
      */
-    private function setRoute(){
-        if(stristr($this->menuid, '/')) {
-            $this->configureNames($this->menuid,true);
-        }elseif($this->model->sessionGet('persist_route_'.$this->action_id)){
-            $route = $this->model->sessionGet('current_route_'.$this->action_id);
+    private function setRoute()
+    {
+        if (stristr($this->menuid, '/')) {
+            $this->configureNames($this->menuid, true);
+        } elseif ($this->model->sessionGet('persist_route_' . $this->action_id)) {
+            $route = $this->model->sessionGet('current_route_' . $this->action_id);
             $this->configureNames($route);
         } else {
             $this->configureNames();
         }
     }
-    
+
     /**
      * Call the controller method if it exists, else call the default one.
      * It returns the view name that should be called and data that should
@@ -351,23 +358,23 @@ class BootstrapRouter implements BootstrapRouterInterface {
      *
      * @return void
      */
-    public function prepareView(){
-    	
-        $name = 'action'.ucfirst($this->action_name);
+    public function prepareView()
+    {
+        $name = 'action' . ucfirst($this->action_name);
         $default = 'actionDefault';
 
-        if(method_exists($this->controller, $name)){
+        if (method_exists($this->controller, $name)) {
             $viewinfo = $this->controller->$name();
-        } elseif(method_exists($this->controller, $default)) {
-            $this->error[] = 'Unknown controller method '.$default .' @ controller: ' .$this->controller_name;
+        } elseif (method_exists($this->controller, $default)) {
+            $this->error[] = 'Unknown controller method ' . $default . ' @ controller: ' . $this->controller_name;
             $viewinfo = $this->controller->$default();
         } else {
             $this->error[] = 'No controller methods found';
             $viewinfo = $this->view->actionViewerror();
         }
 
-	    $this->view_name = $viewinfo[0];
-	    $this->view_data = ( isset($viewinfo[1]) ? $viewinfo[1] : [] );
+        $this->view_name = $viewinfo[0];
+        $this->view_data = (isset($viewinfo[1]) ? $viewinfo[1] : []);
     }
 
 }
