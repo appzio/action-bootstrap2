@@ -161,6 +161,31 @@ class BootstrapComponent implements BootstrapComponentInterface {
     public $bottom_menu_text_color;
     public $bottom_menu_background_color;
 
+    /**
+     * Whether status bar has been sent to transparent. This means that the view starts from the very top.
+     *
+     * @var bool
+     */
+    public $transparent_statusbar;
+
+    /**
+     * Whether default menubar is hidden.
+     *
+     * @var bool
+     */
+    public $hide_default_menubar;
+
+    /**
+     * Whether phone's statusbar is shown. Combined with transparent statusbar, this will affect custom top bars.
+     *
+     * @var bool
+     */
+    public $phone_statusbar;
+
+    public $ios;
+    public $android;
+    public $notch;
+
 
     use ComponentHelpers;
     use ComponentParameters;

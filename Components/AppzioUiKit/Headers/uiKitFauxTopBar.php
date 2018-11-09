@@ -24,6 +24,21 @@ trait uiKitFauxTopBar {
             $color = 'black';
         }
 
+        if($this->notch){
+            $height = '80';
+            $padding = '0 0 10 0';
+        } else {
+            if($this->transparent_statusbar AND $this->phone_statusbar){
+                $height = '60';
+                $padding = '0 0 10 0';
+            } else {
+                $height = '40';
+                $padding = '0 0 6 0';
+            }
+        }
+
+        $color = $this->getTextColour($this->color_top_bar_text_color);
+
         if(isset($parameters['route_back'])){
             $close = $this->getOnclickRoute($parameters['route_back']);
             $top[] = $this->getComponentImage('div-back-icon.png',array('onclick' => $close,'style' => 'fauxheader_close'));
@@ -54,7 +69,7 @@ trait uiKitFauxTopBar {
                 array(
                     "height" => "24",
                     "width" => "24",
-                    "margin" => "4 0 0 13"
+                    "margin" => '4 0 0 13'
                 )
             );
         } else {
@@ -129,16 +144,33 @@ trait uiKitFauxTopBar {
 
         if($hairline){
             $out[] = $this->getComponentRow($top,array(),array('background-color' => $this->color_top_bar_color,
-                'height' => '40','width' => $this->screen_width,'vertical-align' => 'top','padding' => '0 0 0 0'));
+                'height' => $height,'width' => $this->screen_width,'vertical-align' => 'bottom','padding' => $padding));
 
             $out[] = $this->getComponentText('',[],['height' => 2,'background-color' => $hairline,'width' => '100%']);
-            return $this->getComponentColumn($out);
+            return $this->getComponentColumn($out,[],[
+                'vertical-align' => 'bottom']);
         } else {
             return $this->getComponentRow($top,array(),array('background-color' => $this->color_top_bar_color,
-                'height' => '40','width' => $this->screen_width,'vertical-align' => 'top','padding' => '0 0 0 0'));
+                'height' => $height,
+                'padding' => $padding,
+                'width' => $this->screen_width,
+                'vertical-align' => 'bottom'));
         }
 
     }
+
+    function getTextColour($hex){
+        list($red, $green, $blue) = sscanf($hex, "#%02x%02x%02x");
+        $luma = ($red + $green + $blue)/3;
+
+        if ($luma < 128){
+            $textcolour = "white";
+        }else{
+            $textcolour = "black";
+        }
+        return $textcolour;
+    }
+
 
 
 
