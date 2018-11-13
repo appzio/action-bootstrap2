@@ -40,7 +40,7 @@ trait uiKitBottomNavigation
             $this->getComponentText($text, [], [
                 'font-size' => '12',
                 'padding' => '0 0 0 0',
-                'margin' => '5 0 6 0',
+                'margin' => '2 0 6 0',
                 'color' => '#ffffff',
             ]),
         ], $params, [
