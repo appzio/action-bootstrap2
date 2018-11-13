@@ -120,7 +120,7 @@ trait Bottommenu {
         } else {
             $row[] = $this->getComponentText($item['text'], array(),array(
                 'color' => $text_color, 'font-size' => '10', 'width' => $width, 'text-align' => 'center',
-                'margin' => '0 0 8 0'));
+                'margin' => '0 0 5 0'));
             $height = 60;
         }
 
