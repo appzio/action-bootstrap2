@@ -58,12 +58,8 @@ trait Session
 
         /* if you delete session value + then set it again during the same call, this would
         make sure that the value doesn't get deleted */
-        if (in_array($key, $this->session_storage['session-keys-to-delete'])) {
-            $search = array_search($key, $this->session_storage['session-keys-to-delete']);
-            
-            if ($search) {
-                unset($this->session_storage['session-keys-to-delete'][$search]);
-            }
+        if(isset($this->session_storage['session-keys-to-delete'][$key])){
+            unset($this->session_storage['session-keys-to-delete'][$key]);
         }
 
         $this->session_storage[$key] = $value;
@@ -91,10 +87,9 @@ trait Session
      */
     public function sessionUnset($key)
     {
-
         if (isset($this->session_storage[$key])) {
             /* this is for API controller so that it doesn't overwrite old value to this */
-            $this->session_storage['session-keys-to-delete'][] = $key;
+            $this->session_storage['session-keys-to-delete'][$key] = true;
             unset($this->session_storage[$key]);
         }
 
