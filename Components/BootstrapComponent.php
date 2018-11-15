@@ -354,6 +354,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use AppzioUiKit\Navigation\uiKitTopbarWithButtons;
 	use AppzioUiKit\Navigation\uiKitMenuItem;
 	use AppzioUiKit\Navigation\uiKitMenuProfilebox;
+	use AppzioUiKit\Navigation\uiKitMenuProfileboxAdvanced;
 	use AppzioUiKit\Navigation\uiKitFloatingButtons;
 
 	use AppzioUiKit\Divs\uiKitDivHeader;
