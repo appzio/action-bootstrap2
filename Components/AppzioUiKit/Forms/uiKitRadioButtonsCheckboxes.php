@@ -27,6 +27,10 @@ trait uiKitRadioButtonsCheckboxes {
                 'animation' => 'fade'
             );
 
+            if(stristr($current_val, '{')){
+                $current_val = @json_decode($current_val,true);
+            }
+
             if ( !empty($current_val) AND is_array($current_val) AND in_array($item, $active_values) ) {
                 $selectstate['active'] = '1';
             }

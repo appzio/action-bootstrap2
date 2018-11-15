@@ -18,10 +18,10 @@ trait uiKitFauxTopBar {
         $btn_title = isset($parameters['btn_title']) ? $parameters['btn_title'] : '';
         $action = isset($parameters['btn_onclick']) ? $parameters['btn_onclick'] : $this->getOnclickSubmit('photo');
         $hairline = isset($parameters['hairline']) ? $parameters['hairline'] : false;
-        $color = isset($parameters['icon_color']) ? $parameters['icon_color'] : 'white';
+        $icon_color = isset($parameters['icon_color']) ? $parameters['icon_color'] : 'white';
 
-        if(!$color){
-            $color = 'black';
+        if(!$icon_color){
+            $icon_color = 'black';
         }
 
         if($this->notch){
@@ -37,16 +37,15 @@ trait uiKitFauxTopBar {
             }
         }
 
-        $color = $this->getTextColour($this->color_top_bar_text_color);
-
         if(isset($parameters['route_back'])){
+            $back_icon = $icon_color == 'black' ? 'div-back-icon.png' : 'white-div-back-icon.png';
             $close = $this->getOnclickRoute($parameters['route_back']);
-            $top[] = $this->getComponentImage('div-back-icon.png',array('onclick' => $close,'style' => 'fauxheader_close'));
+            $top[] = $this->getComponentImage($back_icon,array('onclick' => $close,'style' => 'fauxheader_close'));
         }elseif(isset($parameters['mode']) AND $parameters['mode'] == 'gohome'){
             $close = $this->getOnclickGoHome();
 
             $top[] = $this->getComponentImage(
-                $color.'-div-back-icon.png',
+                $icon_color.'-div-back-icon.png',
                 array('onclick' => $close),
                 array(
                     "height" => "28",
@@ -64,7 +63,7 @@ trait uiKitFauxTopBar {
         }elseif(isset($parameters['mode']) AND $parameters['mode'] == 'sidemenu'){
             $menuAction = $this->getOnclickOpenSidemenu();
             $top[] = $this->getComponentImage(
-                $color.'_hamburger_icon.png',
+                $icon_color.'_hamburger_icon.png',
                 array('onclick' => $menuAction),
                 array(
                     "height" => "24",
@@ -87,7 +86,7 @@ trait uiKitFauxTopBar {
         if(isset($parameters['logo']) AND $parameters['logo']){
             $top[] = $this->getComponentImage($parameters['logo'],[],['height' => '30','margin' => '4 0 5 0','width' => $center_width,'text-align' => 'center']);
         } elseif($title) {
-            if($color == 'white'){
+            if($icon_color == 'white'){
                 $top[] = $this->getComponentText($title,array(),[
                     'text-align' => 'center','width' => $center_width,
                     'margin' => '9 0 5 0','font-size' => '16','color' => '#ffffff']);

@@ -46,7 +46,7 @@ trait uiKitTwoHandSlider {
                 'right_track_color' => $right_track_color,
                 'thumb_color' => $thumb_color,
                 'track_height' => '4'
-            ),array('width' => '100%','margin' => '15 0 15 0'));
+            ),array('width' => '100%','margin' => '15 15 15 15'));
         
         $output[] = $this->getComponentRow($slider,array('style' => 'uikit_slider_background'));
         return $this->getComponentColumn($output, array());
