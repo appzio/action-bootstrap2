@@ -42,10 +42,18 @@ trait uiKitTopbarWithButtons
                 'text-align' => 'center'
             ]);
         }
+
+        if ($this->notch) {
+            $height = '70';
+        } else {
+            $height = '50';
+        }
+
         $styles = array(
             'width' => 'auto',
-            'height' => '50',
-            'vertical-align' => 'middle',
+            'height' => $height,
+            'vertical-align' => 'bottom',
+            'padding' => '0 0 10 0',
             'background-color' => $this->color_top_bar_color,
         );
 
