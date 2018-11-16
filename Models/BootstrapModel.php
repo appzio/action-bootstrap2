@@ -282,6 +282,8 @@ class BootstrapModel extends CActiveRecord {
             }
         }
 
+        unset($this->model);
+
         /**
          * init mobile notifications
          *

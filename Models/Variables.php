@@ -7,7 +7,6 @@
 
 namespace Bootstrap\Models;
 
-use Aegame;
 use Aevariable;
 
 trait Variables
@@ -104,7 +103,6 @@ trait Variables
      */
     public function getSavedVariable($varname, $default = false)
     {
-
         if (isset($this->varcontent[$varname])) {
             return $this->varcontent[$varname];
         }
@@ -316,6 +314,9 @@ trait Variables
      */
     public function saveVariable($variable, $value)
     {
+        if (isset($_REQUEST['cache_request']) AND $_REQUEST['cache_request'] == true) {
+            return false;
+        }
 
         /* added March 2018, will not save if its already of this value */
         if ($this->getSavedVariable($variable) == $value) {
@@ -338,6 +339,8 @@ trait Variables
 
         \AeplayVariable::updateWithId($this->playid, $varid, $value);
         $this->loadVariableContent(true);
+
+        return true;
     }
 
     /**

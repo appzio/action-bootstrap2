@@ -9,8 +9,6 @@ trait CalendarHelper {
     /**
      * The model instance. Models are responsible for querying and storing data.
      * They also provide variable, session and validation functionality as well as other useful utility methods.
-     *
-     * @var \Bootstrap\Models\BootstrapModel $this->model
      */
     public $model;
 

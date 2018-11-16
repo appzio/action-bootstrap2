@@ -30,6 +30,7 @@ trait Session
      * Save an array in session storage
      *
      * @param $array
+     * @return bool
      */
     public function sessionSetArray($array)
     {
@@ -42,6 +43,8 @@ trait Session
                 $this->sessionSet($key, $value);
             }
         }
+
+        return true;
     }
 
     /**
@@ -49,6 +52,7 @@ trait Session
      *
      * @param $key
      * @param $value
+     * @return bool
      */
     public function sessionSet($key, $value)
     {
@@ -63,6 +67,8 @@ trait Session
         }
 
         $this->session_storage[$key] = $value;
+
+        return true;
     }
 
     /**
@@ -84,10 +90,10 @@ trait Session
      * Unset a session variable
      *
      * @param $key
+     * @return bool
      */
     public function sessionUnset($key)
     {
-
         if (isset($_REQUEST['cache_request']) AND $_REQUEST['cache_request'] == true) {
             return false;
         }
@@ -98,6 +104,7 @@ trait Session
             unset($this->session_storage[$key]);
         }
 
+        return true;
     }
 
 }
