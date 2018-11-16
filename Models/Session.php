@@ -87,6 +87,11 @@ trait Session
      */
     public function sessionUnset($key)
     {
+
+        if (isset($_REQUEST['cache_request']) AND $_REQUEST['cache_request'] == true) {
+            return false;
+        }
+
         if (isset($this->session_storage[$key])) {
             /* this is for API controller so that it doesn't overwrite old value to this */
             $this->session_storage['session-keys-to-delete'][$key] = true;
