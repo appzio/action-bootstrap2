@@ -66,12 +66,12 @@ trait DataHelpers {
      *
      * @return bool
      */
-    public function setUserAddress(){
+    public function setUserAddress($force=true){
         if(!$this->getSavedVariable('lat')){
             return false;
         }
 
-        if($this->getSavedVariable('country')){
+        if($this->getSavedVariable('country') AND $force==false){
             return false;
         }
 
