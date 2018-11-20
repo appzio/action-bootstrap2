@@ -933,7 +933,7 @@ trait Onclick
     /**
      * TODO
      * @param $scheme_url
-     * @param array $parameters
+     * @param array $parameters - share_title, share_description, share_url, share_image
      * @return \stdClass
      */
     public function getOnclickCheckSchme($scheme_url, $parameters = array())
