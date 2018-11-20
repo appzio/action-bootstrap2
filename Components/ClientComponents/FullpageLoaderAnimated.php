@@ -26,7 +26,7 @@ trait FullpageLoaderAnimated {
         $text = isset($parameters['text']) ? $parameters['text'] : '{#loading#}';
 
         $col[] = $this->getComponentSpacer('80');
-        $col[] = $this->getComponentImage('uikit_balls_loader.gif',[],['width' => '180']);
+        $col[] = $this->getComponentImage('uikit_eclipse_loader.gif',[],['width' => '80']);
         $col[] = $this->getComponentText($text,array('style' => 'loader-text'));
 
         return $this->getComponentColumn($col,[],array('text-align' => 'center','width' => '100%','align' => 'center'));
