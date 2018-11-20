@@ -16,20 +16,17 @@ trait uiKitDivSelectorField
         $variable = $this->addParam('variable', $parameters, '');
         $div = $this->addParam('div', $parameters, false);
 
-        /*if (isset($this->model->validation_errors[$variable])) {
-            $error = $this->model->validation_errors[$variable];
-        } elseif (isset($parameters['error']) AND $parameters['error']) {
-            $error = $parameters['error'];
-        } else {
-            $error = false;
-        }*/
+        $value = $this->model->getSavedVariable(
+            $variable,
+            $this->model->getSubmittedVariableByName($variable)
+        );
 
         return $this->getComponentRow([
             $this->getComponentImage($icon, array('style' => 'uikit-general-field-icon')),
             $this->getComponentText($title, [
                 'style' => 'uikit-general-field-text'
             ]),
-            $this->getComponentText($this->model->getSavedVariable($variable, ''), [
+            $this->getComponentText($value, [
                 'variable' => $variable
             ], [
                 'padding' => '0 15 0 0',
