@@ -34,7 +34,7 @@ NOTE: you can use either actual variable id's together with $this->getVariableId
 
 `value` Initial value of the field.
 
-`value2` Initially or keep-open. Initially means that the text field is in focus when opening the view, keep-open will keep the focus in the form field and keyboard open even when the view is submitted.
+`activation` Initially or keep-open. Initially means that the text field is in focus when opening the view, keep-open will keep the focus in the form field and keyboard open even when the view is submitted.
 
 `maxlength` Max length of the field content. Number of characters, also whitespace is counted.
 
@@ -160,13 +160,45 @@ Swipe component is a very powerful component, which allows the actions to be rec
 
 #### Used by swipe and scrolling content
 
+Dynamic swipe component can call the server with following parameters on $_REQUEST:
+`swid`
+`world_ending`
+`backwards`
+`merge_before`
+
+Component parameters:
+
 `dynamic` Defines the element to be dynamically loading
 
-`world_ending` Yes, really, don't ask about parameter naming. This is the menuid that gets called when we are near the cached content ending. This is a que for the backend to provide more items.
+`world_ending` Yes, really, don't ask about parameter naming. This is the menuid that gets called when we are near the cached content ending. This is a que for the backend to provide more items. 
+
+`id` Id of the swipe container, needed for dynamic swipes
+
+`item_scale` set this to 1 to have scaling effect when swiping
+
+`transition` swipe
+
+`preserve_position` preserve the swipe position between action refreshes
+
+`initial_swipe_id` items need to have swipe_id defined in order to use this. Opens the swipestack on this page.
+
+`item_width` width of the items
+
+`remember_position` used by non-dynamic swipes. Remembers users position between action refreshes. 
+
+`merge_data` If this is set to 1, client will merge the new data based on swipe_id's. This way the backend doesn't need to fetch the entire swipe stack, only new items.
+
+Best example of the swipestack you can find from action Mcalendar. 
 
 #### Advertising component parameters
 
-`ad_size` either banner or rectangle
+`ad_size` Sizes are:
+- 'banner' => '{%small%} (320x50)',
+- 'large' => '{%large%} (320x100)',
+- 'rectangle' => '{%box%} (300x250)',
+
+`ad_id` required, ID as defined in the Google Ads console or AdColony
+
 
 #### Slider component parameters
 

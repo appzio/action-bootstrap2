@@ -18,3 +18,9 @@
 1. Inline styles only for development when they need to be dynamic (rely on screen width for example)
 2. Unique identifiers for the styles or prefixes
 3. Put any component styles into it’s own style file where the name of the file is the same as the name of the component
+
+## Most common problems
+
+1. Not using isset is the most common reason for errors.
+2. Make sure that none of the objects are sent null values. 
+3. Namespaces
