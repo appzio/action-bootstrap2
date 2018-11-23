@@ -45,7 +45,7 @@ trait uiKitTextAccordion
                 $col[] = $this->getComponentSpacer(10);
                 $row[] = $this->getComponentText($title, [], [
                     'vertical-align' => 'middle',
-                    'margin' => '10 0 0 20',
+                    'margin' => '10 60 0 20',
                     'font-size' => '18',
                     'color' => $color]);
 
@@ -56,7 +56,7 @@ trait uiKitTextAccordion
 
                 $row2[] = $this->getComponentText($title, [], [
                     'vertical-align' => 'middle',
-                    'margin' => '10 0 0 20',
+                    'margin' => '10 60 0 20',
                     'font-size' => '18',
                     'color' => $color]);
 
