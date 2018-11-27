@@ -207,7 +207,6 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\Loader;
     use ClientComponents\Onclick;
 
-    use ClientComponents\Text;
     use ClientComponents\Progress;
     use ClientComponents\RangeSlider;
     use ClientComponents\Row;
@@ -215,6 +214,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\RichText;
     use ClientComponents\Video;
     use ClientComponents\Fieldlist;
+    use ClientComponents\Text;
 
     use ClientComponents\FullpageLoader;
     use ClientComponents\FullpageLoaderAnimated;

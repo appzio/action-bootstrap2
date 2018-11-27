@@ -19,6 +19,19 @@ trait uiKitFauxTopBarTransparent {
         $action = isset($parameters['btn_onclick']) ? $parameters['btn_onclick'] : $this->getOnclickSubmit('photo');
         $color = isset($parameters['icon_color']) ? $parameters['icon_color'] : 'white';
 
+        if($this->notch){
+            $height = '80';
+            $padding = '0 0 10 0';
+        } else {
+            if($this->transparent_statusbar AND $this->phone_statusbar){
+                $height = '60';
+                $padding = '0 0 10 0';
+            } else {
+                $height = '40';
+                $padding = '0 0 6 0';
+            }
+        }
+
         if(isset($parameters['route_back'])){
             $close = $this->getOnclickRoute($parameters['route_back']);
             $top[] = $this->getComponentImage('div-back-icon.png',array('onclick' => $close,'style' => 'fauxheader_close'));
@@ -105,14 +118,14 @@ trait uiKitFauxTopBarTransparent {
         $layout->center = 0;
 
         return $this->getComponentRow($top,array(),array(
-            'height' => '32',
+            'height' => $height,
             //'border' => 1,
             //'border-color' => '#ffffff',
             'width' => 'auto',
             'text-align' => 'center',
             'vertical-align' => 'middle',
             'layout' => $layout,
-            'padding' => '0 0 0 0'));
+            'padding' => $padding));
 
     }
 
