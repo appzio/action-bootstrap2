@@ -88,6 +88,8 @@ trait uiKitInfiniteUserList
 
         if (isset($content['current_venue']) AND $content['current_venue']) {
             $location = $content['current_venue'];
+        } elseif(isset($content['city'])) {
+            $location = $content['city'];
         } else {
             $location = '';
         }

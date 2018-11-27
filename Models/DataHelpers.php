@@ -37,6 +37,13 @@ trait DataHelpers {
         return $output;
     }
 
+    public function convertBirthDateToAge($year,$month='01',$day='01'){
+        $date = new \DateTime("$day.$month.$year");
+        $now = new \DateTime();
+        $interval = $now->diff($date);
+        return $interval->y;
+    }
+
     public function getMenuData($id){
         return \AeMenuItems::model()->findByAttributes(['menu_id' => $id]);
     }
