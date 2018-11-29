@@ -723,6 +723,24 @@ trait Onclick
         return $obj;
     }
 
+    public function getOnclickStripeChooseCard($parameters = array())
+    {
+        //stripe-choose-card
+        $obj = new \stdClass();
+        $obj->action = 'stripe-choose-card';
+        $obj = $this->attachParameters($obj, $parameters);
+        return $obj;
+    }
+
+    public function getOnclickStripePurchase($parameters = array())
+    {
+        //stripe-purchase
+        $obj = new \stdClass();
+        $obj->action = 'stripe-purchase';
+        $obj = $this->attachParameters($obj, $parameters);
+        return $obj;
+    }
+
     /**
      * TODO
      * @param array $parameters
@@ -913,14 +931,13 @@ trait Onclick
     }
 
 
-
     public function getOnclickSwipeDelete($container_id, $parameters = array())
     {
         $onclick = new \stdClass();
         $onclick->action = 'swipe-delete';
         $onclick->container_id = $container_id;
         $onclick->send_ids = 1;
-        $onclick = $this->attachParameters($onclick,$parameters);
+        $onclick = $this->attachParameters($onclick, $parameters);
         return $onclick;
     }
 
