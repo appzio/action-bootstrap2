@@ -20,7 +20,7 @@ trait uiKitEmailWithInputDiv
                 'close_icon' => 'cross-sign.png',
                 'div_id' => 'email',
             )),
-            $this->getEmailDivSubtitle($subtitle),
+            $this->getEmailDivSubtitle($subtitle, $images),
             $this->getEmailAttachedImages($images),
             $this->getComponentFormFieldText('', array(
                 'hint' => 'To:',
@@ -94,8 +94,12 @@ trait uiKitEmailWithInputDiv
         ));
     }
 
-    protected function getEmailDivSubtitle($subtitle)
+    protected function getEmailDivSubtitle($subtitle, $images)
     {
+        if (empty($images)) {
+            $subtitle = 'No images available';
+        }
+
         return $this->getComponentText($subtitle, array(), array(
             'text-align' => 'center',
             'color' => '#797f82',
