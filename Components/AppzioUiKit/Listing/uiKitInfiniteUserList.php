@@ -186,10 +186,11 @@ trait uiKitInfiniteUserList
 
         $icon_bookmark = isset($parameters['icon_bookmark']) ? $parameters['icon_bookmark'] : 'uikit_icon_feed_bookmark.png';
         $icon_bookmark_active = isset($parameters['icon_bookmark_active']) ? $parameters['icon_bookmark_active'] : 'uikit_icon_feed_bookmark_active.png';
+        $icon_like = isset($parameters['icon_like']) ? $parameters['icon_like'] : 'uikit_icon_feed_heart.png';
 
         $width = $this->screen_width - 120;
 
-        $controls[] = $this->getComponentImage('uikit_icon_feed_heart.png', [
+        $controls[] = $this->getComponentImage($icon_like, [
             'onclick' => $dolike
         ], [
             'width' => '35', 'margin' => '10 15 10 10'
