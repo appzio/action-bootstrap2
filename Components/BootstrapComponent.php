@@ -238,6 +238,7 @@ class BootstrapComponent implements BootstrapComponentInterface {
     use ClientComponents\SwipeStack;
     use ClientComponents\ImageGrid;
     use ClientComponents\Charts;
+    use ClientComponents\Listing;
 
     use Snippets\Forms\formHintedField;
 
