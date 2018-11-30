@@ -4,10 +4,7 @@
 namespace Bootstrap\Models;
 
 use Bootstrap\Components\CalendarHelper;
-use Bootstrap\Router\BootstrapRouter;
 use CActiveRecord;
-use Aevariable;
-use AeplayVariable;
 use packages\actionMnotifications\Models\NotificationsModel as NotificationsModel;
 
 /**
@@ -15,7 +12,8 @@ use packages\actionMnotifications\Models\NotificationsModel as NotificationsMode
  *
  * @package Bootstrap\Models
  */
-class BootstrapModel extends CActiveRecord {
+class BootstrapModel extends CActiveRecord
+{
 
     use Variables;
     use Session;
@@ -267,7 +265,8 @@ class BootstrapModel extends CActiveRecord {
      * BootstrapModel constructor.
      * @param string $obj
      */
-    public function __construct($obj){
+    public function __construct($obj)
+    {
 
         parent::__construct();
         /* this exist to make the referencing of
@@ -275,9 +274,9 @@ class BootstrapModel extends CActiveRecord {
 
         \Yii::import('application.modules.aechat.models.*');
 
-        while($n = each($this)){
+        while ($n = each($this)) {
             $key = $n['key'];
-            if(isset($obj->$key) AND !$this->$key){
+            if (isset($obj->$key) AND !$this->$key) {
                 $this->$key = $obj->$key;
             }
         }
@@ -292,10 +291,10 @@ class BootstrapModel extends CActiveRecord {
         $theme = $this->getActionThemeByPermaname('notifications');
 
         /* sets theme specific model */
-        if($theme){
-            $namespace = 'packages\actionMnotifications\themes\\' .$theme .'\Models\NotificationsModel';
+        if ($theme) {
+            $namespace = 'packages\actionMnotifications\themes\\' . $theme . '\Models\NotificationsModel';
 
-            if(class_exists($namespace)){
+            if (class_exists($namespace)) {
                 $this->notifications = new $namespace;
             } else {
                 $this->notifications = new NotificationsModel;
@@ -310,7 +309,7 @@ class BootstrapModel extends CActiveRecord {
         $this->notifications->app_id = $this->appid;
         $this->notifications->model = $this;
 
-        if(isset($this->actionobj->playtaskid)){
+        if (isset($this->actionobj->playtaskid)) {
             $this->actionid = $this->actionobj->playtaskid;
         }
 
@@ -320,7 +319,8 @@ class BootstrapModel extends CActiveRecord {
     /**
      * @return string
      */
-    public function tableName(){
+    public function tableName()
+    {
         return 'ae_game_branch_action';
     }
 
@@ -336,7 +336,8 @@ class BootstrapModel extends CActiveRecord {
      * @param string $className
      * @return mixed|static
      */
-    public static function model($className=__CLASS__){
+    public static function model($className = __CLASS__)
+    {
         return parent::model($className);
     }
 
@@ -371,7 +372,8 @@ class BootstrapModel extends CActiveRecord {
      * @param bool $default
      * @return bool
      */
-    public function getConfigParam($param,$default=false){
+    public function getConfigParam($param, $default = false)
+    {
 
         if (isset($this->configobj->$param)) {
             return $this->configobj->$param;
@@ -388,20 +390,21 @@ class BootstrapModel extends CActiveRecord {
      * @param $name
      */
 
-    public function registerTheme($name){
+    public function registerTheme($name)
+    {
         $appid = $this->appid;
-        
-        if(isset($this->registered_themes[$name])){
+
+        if (isset($this->registered_themes[$name])) {
             return true;
         }
 
-        $cachename = '--system-themes--'.$appid;
+        $cachename = '--system-themes--' . $appid;
         $themes = $this->sessionGet($cachename);
 
-        if(is_array($themes) AND !isset($themes[$name])){
+        if (is_array($themes) AND !isset($themes[$name])) {
             $themes[$name] = true;
-            \Appcaching::setGlobalCache($cachename,$themes);
-        } elseif(!is_array($themes)) {
+            \Appcaching::setGlobalCache($cachename, $themes);
+        } elseif (!is_array($themes)) {
             \Appcaching::setGlobalCache($cachename, array($name => true));
         }
 
@@ -415,7 +418,8 @@ class BootstrapModel extends CActiveRecord {
      * @param bool $default -- default value
      * @return mixed
      */
-    public function getParam($param, $obj, $default=false){
+    public function getParam($param, $obj, $default = false)
+    {
 
         if (isset($obj->$param)) {
             return $obj->$param;
@@ -433,7 +437,8 @@ class BootstrapModel extends CActiveRecord {
      *
      * @return array
      */
-    public function getValidationErrors() {
+    public function getValidationErrors()
+    {
         return $this->validation_errors;
     }
 
@@ -442,7 +447,8 @@ class BootstrapModel extends CActiveRecord {
      *
      * @return array
      */
-    public function getAllConfigParams(){
+    public function getAllConfigParams()
+    {
         $params = (array)$this->configobj;
         return $params;
     }
@@ -452,7 +458,8 @@ class BootstrapModel extends CActiveRecord {
      *
      * @return void
      */
-    public function reloadData(){
+    public function reloadData()
+    {
         $this->loadVariables();
         $this->loadVariableContent();
         $this->actionobj = \AeplayAction::model()->with('aetask')->findByPk($this->actionid);
@@ -465,7 +472,8 @@ class BootstrapModel extends CActiveRecord {
      * @param $string
      * @return bool|mixed|string
      */
-    public function localize($string){
+    public function localize($string)
+    {
         return $this->localizationComponent->smartLocalize($string);
     }
 
@@ -474,16 +482,17 @@ class BootstrapModel extends CActiveRecord {
      *
      * @return array
      */
-    public function getCurrentActionPermaname(){
+    public function getCurrentActionPermaname()
+    {
         $permanames = $this->permanames;
 
-        if(!is_array($permanames)){
+        if (!is_array($permanames)) {
             return array();
         }
 
         $permanames = array_flip($permanames);
 
-        if(isset($permanames[$this->action_id])){
+        if (isset($permanames[$this->action_id])) {
             return $permanames[$this->action_id];
         }
 
@@ -495,9 +504,10 @@ class BootstrapModel extends CActiveRecord {
      * @param $name
      * @return bool
      */
-    public function getActionidByPermaname($name){
+    public function getActionidByPermaname($name)
+    {
 
-        if(isset($this->permanames[$name])){
+        if (isset($this->permanames[$name])) {
             return $this->permanames[$name];
         }
 
@@ -515,7 +525,8 @@ class BootstrapModel extends CActiveRecord {
      * @param $newcontent
      */
 
-    public function rewriteActionConfigField($field, $newcontent){
+    public function rewriteActionConfigField($field, $newcontent)
+    {
         $this->rewriteconfigs[$field] = $newcontent;
     }
 
@@ -526,7 +537,8 @@ class BootstrapModel extends CActiveRecord {
      * @param $newcontent
      */
 
-    public function rewriteActionField($field, $newcontent){
+    public function rewriteActionField($field, $newcontent)
+    {
         $this->rewriteactionfield[$field] = $newcontent;
     }
 
@@ -539,17 +551,18 @@ class BootstrapModel extends CActiveRecord {
      *
      * @return bool|mixed
      */
-    public function getItemId($session_only=false){
-        $pointer = 'item_id_'.$this->action_id;
+    public function getItemId($session_only = false)
+    {
+        $pointer = 'item_id_' . $this->action_id;
 
-        if($session_only){
+        if ($session_only) {
             return $this->sessionGet($pointer);
         }
 
-        if($this->getMenuId()){
+        if ($this->getMenuId()) {
             $this->current_itemid = $this->getMenuId();
             $this->sessionSet($pointer, $this->current_itemid);
-        } elseif($this->sessionGet($pointer)){
+        } elseif ($this->sessionGet($pointer)) {
             $this->current_itemid = $this->sessionGet($pointer);
         } else {
             $this->current_itemid = false;
@@ -565,19 +578,20 @@ class BootstrapModel extends CActiveRecord {
      * @return array
      */
 
-    public function getItemParts(){
+    public function getItemParts()
+    {
         $id = $this->getItemId();
-        $default = array('string' => '','id' => '');
-        preg_match('/_\d.*/', $id,$numeric);
+        $default = array('string' => '', 'id' => '');
+        preg_match('/_\d.*/', $id, $numeric);
 
-        if(!isset($numeric[0])){
+        if (!isset($numeric[0])) {
             return $default;
         }
 
         $text = str_replace($numeric[0], '', $id);
         $numeric = str_replace('_', '', $numeric[0]);
-        if($numeric AND $text){
-            return array('string' => $text,'id' => $numeric);
+        if ($numeric AND $text) {
+            return array('string' => $text, 'id' => $numeric);
         }
 
         return $default;
@@ -589,7 +603,8 @@ class BootstrapModel extends CActiveRecord {
      *
      * @return mixed
      */
-    public function getMenuId(){
+    public function getMenuId()
+    {
         return $this->router->getMenuId();
     }
 
@@ -599,19 +614,25 @@ class BootstrapModel extends CActiveRecord {
      *
      * @return int
      */
-    public function getActionId(){
+    public function getActionId()
+    {
         return $this->action_id;
     }
 
     /**
      * Return validation error from the array by name
+     * The method would handle composite variables as well
      *
      * @param $name
      * @return bool|string
      */
-    public function getValidationError($name){
+    public function getValidationError($name)
+    {
+        if (preg_match('~-hour~', $name) OR preg_match('~-minute~', $name)) {
+            $name = str_replace(['-hour', '-minute'], '', $name);
+        }
 
-        if(isset($this->validation_errors[$name])){
+        if (isset($this->validation_errors[$name])) {
             return (string)$this->validation_errors[$name];
         }
 
@@ -624,7 +645,8 @@ class BootstrapModel extends CActiveRecord {
      * @param $string
      * @return void
      */
-    public function setError($string){
+    public function setError($string)
+    {
         $this->errors[] = $string;
     }
 
@@ -634,7 +656,8 @@ class BootstrapModel extends CActiveRecord {
      * @return mixed
      * @return void
      */
-    public function getRuntimeErrors(){
+    public function getRuntimeErrors()
+    {
         return $this->errors;
     }
 
@@ -644,18 +667,19 @@ class BootstrapModel extends CActiveRecord {
      * @param bool $actionid
      * @param bool $actionpermaname
      */
-    public function flushActionRoutes($actionid=false,$actionpermaname=false){
+    public function flushActionRoutes($actionid = false, $actionpermaname = false)
+    {
 
-        if(is_string($actionpermaname)){
+        if (is_string($actionpermaname)) {
             $actionid = $this->getActionidByPermaname($actionpermaname);
         }
 
-        if(!$actionid){
+        if (!$actionid) {
             $actionid = $this->action_id;
         }
 
-        $this->sessionSet('current_route_'.$actionid, '');
-        $this->sessionSet('persist_route_'.$actionid, '');
+        $this->sessionSet('current_route_' . $actionid, '');
+        $this->sessionSet('persist_route_' . $actionid, '');
     }
 
     /**
@@ -663,8 +687,9 @@ class BootstrapModel extends CActiveRecord {
      * you should return the next batch of content.
      * @return bool
      */
-    public function getNextPageId(){
-        if(isset($_REQUEST['next_page_id'])){
+    public function getNextPageId()
+    {
+        if (isset($_REQUEST['next_page_id'])) {
             return $_REQUEST['next_page_id'];
         }
 
@@ -686,19 +711,20 @@ class BootstrapModel extends CActiveRecord {
      * This will check whether user should be asked for touch login or not
      * @return bool
      */
-    public function touchLoginCheck(){
-        if(isset($_REQUEST['touchid_result'])){
+    public function touchLoginCheck()
+    {
+        if (isset($_REQUEST['touchid_result'])) {
             $this->sessionSet('touch_asked', 1);
             return false;
-        } elseif($this->sessionGet('touch_asked')) {
+        } elseif ($this->sessionGet('touch_asked')) {
             return false;
-        } elseif($this->getSavedVariable('touchid_supported') AND
+        } elseif ($this->getSavedVariable('touchid_supported') AND
             $this->getSavedVariable('deviceid') AND
             !$this->getSavedVariable('touchid') AND
             !$this->sessionGet('touch_asked')
         ) {
             return true;
-        } elseif(md5($this->getSavedVariable('deviceid')) != $this->getSavedVariable('touchid')) {
+        } elseif (md5($this->getSavedVariable('deviceid')) != $this->getSavedVariable('touchid')) {
             return true;
         } else {
             return false;
